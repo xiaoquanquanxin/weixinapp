@@ -933,9 +933,6 @@ class App extends React.Component {
     }
 }
 
-var vConsole = new VConsole();
-
-console.log(vConsole);
 export default App
 
 
