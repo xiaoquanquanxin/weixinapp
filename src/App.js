@@ -787,12 +787,8 @@ window.__initWX__isReady = false;
 //当前浏览器是不是微信
 window.isWeiXin = function (){
     var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-        return true;
-    } else {
-        return false;
-    }
-}
+    return (ua.match(/MicroMessenger/i) === 'micromessenger')
+};
 
 async function initWX(){
     function getCurrentUrl(){
