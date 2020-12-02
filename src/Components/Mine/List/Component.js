@@ -81,7 +81,7 @@ export default class MineList extends React.Component {
             userLogo,
             nickName
         };
-        const isLoachost=(window.location.origin.includes('test') || window.location.origin.includes('10.3')) ? true: false;
+        const isLoachost=(window.location.origin.includes('test') || window.location.origin.includes('100.128')) ? true: false;
         console.info('当前环境是___________', isLoachost? '测试':'生产')
         debugger
 		return <div className={"Components-MineList-container"}>
