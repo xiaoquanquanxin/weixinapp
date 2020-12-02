@@ -44,14 +44,12 @@ window.myFun401 = function (){
             // let url="login/getWxAuthUrl?forwordUrl="+encodeURI(window.location.href);
             let origin = window.location.origin;
             let PhasetwoActivityListDetail = window.location.href.includes('/PhasetwoActivityListDetail');
-            debugger
             let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/");
             let PhasetwoMyQuestionnaire = window.location.href.includes('/PhasetwoMyQuestionnaire');
             let pageName = JSON.stringify(window.getLocalData("pageName"));
             /*活动*/
             if (PhasetwoActivityListDetail) {
                 let activityid = window.getLocalData("activityid");
-                debugger
                 url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/PhasetwoActivityListDetail/" + activityid);
             }
 
@@ -62,7 +60,6 @@ window.myFun401 = function (){
                 let isDone = JSON.parse(window.getLocalData("isDone"));
                 let str = encodeURI(origin + "/index.html?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
                 str = encodeURI(str);
-                debugger
                 url = "login/getWxAuthUrl?forwordUrl=" + str;
                 window.delLocalData('pageName');
                 window.delLocalData('PhasetwoMyQuestionnaireType')
@@ -72,6 +69,7 @@ window.myFun401 = function (){
 
             window.GETNoAuth({url}).then((data) => {
                 if (!data.isSucess) return;
+                debugger
                 window.location.href = data.data
             });
             window.clearLocalData();
