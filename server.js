@@ -26,5 +26,5 @@ new WebpackDevServer(webpack(config), {
     if (err) {
         return console.log(err);
     }
-    console.log(`监听地址：：https://${host}:${port}/`);
+    console.log(`监听地址：：http://${host}:${port}/`);
 });
