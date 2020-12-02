@@ -1,0 +1,65 @@
+
+.Components-Repair-WorkDetails-container{
+  @relative_div:relative;
+  @paddingDefault:0.2rem;
+  @smallFont: 0.08rem;
+  @grayColor: #666666;
+  @whiteColor: #fff;
+  @m_topDefault:10px;
+  border-bottom: solid 1px #D8D8D8;
+  background:#fff;
+  overflow:hidden;
+  .relative_div{
+    position: @relative_div;
+  }
+  .repair-details{
+    padding: @paddingDefault @paddingDefault 0;
+    position:relative;
+  }
+  .font12{
+    font-size: @smallFont;
+  }
+  color: @grayColor;
+  .repair-item{
+    background-color:@whiteColor ;
+    padding-bottom: @paddingDefault/2;
+  }
+  .content{
+    line-height: 0.27rem;
+  }
+  .m_top10{
+    margin-top:@m_topDefault ;
+    display: flex;
+    img{
+      width: 0.5rem;
+      height:0.5rem;
+    }
+  }
+  .imgStyle{
+    width: 0.2rem;
+    vertical-align: text-bottom;
+    height: 0.2rem;
+  }
+  .type{
+    color:#3890F9;
+    font-size:0.13rem;
+  }
+  .time{
+    color:#999999;
+    font-size:0.13rem;
+  }
+  .meiti{
+    display: flex;
+    .m_top10{
+      div{
+            margin-right:0.1rem;
+          }
+    }
+    
+  }
+  .SoundPad{
+    .item{
+      margin-top:0.1rem;
+    }
+  }
+}

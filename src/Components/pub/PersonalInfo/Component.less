@@ -1,0 +1,57 @@
+//空白提示
+.Component-personalInfo-container{
+  display: flex;
+   >div{
+       //display:inline-block;
+   }
+   .personalimg{
+       width:0.44rem;
+       height:0.44rem;
+       background:#fff;
+       border-radius: 50%;
+       >img{
+           width:100%;
+           height:100%;
+           border-radius:50%;
+       }
+   }
+   .personalInfo{
+       position:relative;   
+       margin-left:0.10rem;
+       //top:-0.14rem;
+       color:#fff;
+       .nameItem{
+           .name{
+               font-size:0.18rem;
+             color: #6D1200;
+             font-weight: bold;
+           }
+           .nameStatus{
+               border:1px solid #fff;
+               padding:0.0015rem 0.06rem;
+               margin-left:0.1rem;
+           }
+         .status{
+           height: 0.17rem;
+           width: auto;
+           margin-left: 8px;
+           position: relative;
+           top: 0.02rem;
+         }
+       }
+       .phoneNumber{
+           font-size:0.12rem;
+         color: #6D1200;
+       }
+   }
+}
+.clearfix:after{
+    content:"";
+    display:block;
+    height:0;
+    clear:both;
+    visibility: hidden;
+}
+.clearfix{
+    *zoom:1;
+}

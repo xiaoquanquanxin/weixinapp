@@ -1,0 +1,78 @@
+@import "../GlobalPrivate";
+
+.Components-Autograph-container {
+  @relative_div:relative;
+  @paddingDefault:0.2rem;
+  @smallFont: 0.08rem;
+  @grayColor: #666666;
+  @whiteColor: #fff;
+  @m_topDefault:10px;
+  @blue: #108EE9;
+
+  line-height: 0.25rem;
+  background-color: #fff;
+  .msg-tip .describe{
+    text-align: justify;
+  }
+  .blue {
+    color: @blue
+  }
+
+  .am-list-item .am-list-line .am-list-content,.am-list-item .am-input-label{
+    color: #999999;
+  }
+  .grayColor{
+    color: #999999;
+  }
+  .upload-img-title{
+   .grayColor;
+    line-height: 0.35rem;
+    height: 0.35rem;
+  }
+  padding: @paddingDefault 0;
+
+.CertificationStatus{
+  border-bottom: solid @border #eee;
+  padding-bottom: @paddingDefault*.2;
+}
+  .m_left10{
+    margin-left: 10px;
+  }
+  .content{
+    .row{
+      padding: @m_topDefault*.5 0;
+    }
+  }
+  .role{
+    border: solid @blue 0.007rem;
+    padding:0.02rem 0.12rem;
+    color: @blue;
+  }
+
+  .Components-setp-container {
+    .status{
+      background-color: #108ee9;
+      border-radius: 50%;
+      text-align: center;
+      width: 0.2rem;
+      height: 0.2rem;
+      display: inline-block;
+      line-height: 0.2rem;
+      color: #fff;
+      font-size: 0.01rem;
+    }
+
+    .am-steps-item-tail {
+      top: 0.04rem;
+      left: 0.12rem;
+    }
+
+  }
+
+
+}
+.upload-img{
+  min-height: 1.2rem;
+}
+
+

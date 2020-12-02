@@ -1,0 +1,59 @@
+@import "../GlobalPrivate";
+
+.Components-AddFamilyMembers-container{
+  .am-list-item .am-list-line .am-list-extra{
+    color: #333333;
+  }
+  .project{
+    padding:0.12rem 0.15rem;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content:space-between;
+    color: #000;
+    font-size: 0.17rem;
+    line-height: 1.5;
+    background: #fff;
+    border-bottom:1px solid #DEDEDE;
+    span:nth-of-type(1){
+      width: 2.2rem;
+      font-size: 0.17rem;
+      color:#999;
+    }
+    span:nth-of-type(2){
+      display: flex;
+      display: -webkit-flex;
+      align-items: center;
+      justify-content:flex-end;
+      i{
+        font-style: normal;
+        font-size: 0.16rem;
+        color: #333333;
+        white-space: nowrap;  
+        text-overflow: ellipsis;  
+        overflow: hidden;
+        width: 2.5rem;
+        display: inline-block;
+        text-align: right;
+      }
+    }
+  }
+  .am-list-item{
+    border-bottom:1px solid #DEDEDE;
+  }
+  .am-list-line:after{
+    height: 0;
+  }
+  .am-list-item:not(:last-child) .am-list-line{
+    border:none;
+  }
+  .am-list-body{
+    border:none;
+  }
+  .am-list-item .am-input-label{
+    color:#999;
+  }
+  .am-list-item .am-list-line .am-list-content{
+    color:#999;
+  }
+}

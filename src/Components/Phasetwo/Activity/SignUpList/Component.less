@@ -1,0 +1,86 @@
+.Components-ActivityMyList-container{
+    .list{
+        width: 100%;
+    }
+    .am-list-item .am-list-line .am-list-extra{
+        display: none;
+    }
+    .am-list-item .am-list-line .am-list-content{
+        color:#666666;
+    }
+    .enroll{
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-between;
+        background: #fff;
+        border-bottom:0.01rem solid #ECECEC;
+        align-items: center;
+        >div{
+            width: 49%;
+        }
+        .line{
+            height: 0.25rem;
+            background: #ECECEC;
+            width: 1px;
+        }
+    }
+    .tab{
+        display:flex; 
+        align-items:center;
+        justify-content:center;
+    }
+    .list{
+        .item{
+            background:rgba(255,255,255,1);
+            box-shadow:0.01rem 0.02rem 0.05rem 0rem rgba(178,190,198,0.5);
+            border-radius:0.04rem;
+            margin: 0.1rem 0.12rem 0;
+            padding:0.02rem 0 0.12rem 0;
+            position: relative;
+            .headerimg{
+                    position: relative;
+                    width: 100%;
+                    overflow: hidden;
+                img{
+                    width: 100%;
+                }
+                .flag{
+                    width: 1.2rem;
+                    padding: 0.12rem;
+                    position: absolute;
+                    left: -0.32rem;
+                    top: 0.2rem;
+                    background-color: #ff5b05;
+                    color: #fff;
+                    white-space: nowrap;
+                    -webkit-transform: rotate(-45deg);
+                    -ms-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
+                    text-align: center;
+                    font-size: 0.15rem;
+                    }
+                
+            }
+            .title{
+                font-size:0.16rem;
+                color:rgba(51,51,51,1);
+                line-height:0.21rem;
+                margin:0.09rem 0 0.06rem 0.1rem;
+            }
+            .text{
+                margin-left:0.1rem;
+                p{
+                    font-size:0.12rem;
+                    color:rgba(102,102,102,1);
+                    line-height:0.16rem;
+                }
+            }
+            .status-flag{
+                position: absolute;
+                right:0;
+                bottom:0.15rem;
+                top: initial;
+            }
+        }
+    }
+}

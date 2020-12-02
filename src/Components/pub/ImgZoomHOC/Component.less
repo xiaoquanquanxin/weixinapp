@@ -1,0 +1,58 @@
+
+@zindex:99;
+
+.ImgZoomHOC{
+  box-sizing: border-box;
+  .img-box{
+    //position: fixed;
+    position: absolute;
+    left: 0;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    top:0;
+    height: 100vh;
+    z-index: @zindex+1;
+    width: 100vw;
+    //background-position: 0px 10px;
+    //background-size: cover;
+    display: flex!important;
+    align-items: center!important;;
+    justify-content: center!important;;
+    flex-direction: column!important;;
+  }
+  .ImgZoomHOCModal{
+    background-color: #000;
+    opacity: 0.5;
+    position: fixed;
+    left: 0;
+    top:0;
+    height: 100vh;
+    z-index: @zindex;
+    width: 100vw;
+  }
+
+}
+
+/*
+.ImgZoomHOCModal{
+  !*   .am-modal-body{
+       padding: 0!important;
+     }
+     .am-modal-content{
+       padding: 0;
+     }*!
+     .am-modal-close {
+       border: 0;
+       padding: 0;
+       background-color: transparent;
+       outline: none;
+       position: absolute;
+       right: 1px;
+       z-index: 999;
+       height: 21px;
+       width: 21px;
+       margin-top: -14px;
+     }
+     padding: 0;
+   }*/

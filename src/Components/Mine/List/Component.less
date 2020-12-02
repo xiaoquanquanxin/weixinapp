@@ -1,0 +1,101 @@
+@import "../../CloudPayment/pub/iconfont/iconfont.css";
+@topbarColor:#1A2C52;
+.Components-MineList-container{
+  .enterMiniProgram{
+    border: solid 1px #eee;
+    padding: .15rem 0;
+    text-align:center;
+    font-size: 16px;
+    margin-bottom: 0.1rem;
+    margin-left: 0.1em;
+    margin-right: 0.1rem;
+    background-color: #85a4d9;
+    border-radius: 6px;
+    color: #fff;
+
+  }
+  .header-padding{
+    padding: 10px 12px 0 12px;
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    .header-bg{
+      position: absolute;
+      width: 124%;
+      height: 100%;
+      background: #1A2C52;
+      bottom: 0.4rem;
+      border-radius: 0 0 1rem 1rem;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    .header{
+      position: absolute;
+      top: 0;
+    }
+    .header-img{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+  }
+    .content-header{
+      background-color: #fff;
+      padding: 0 10px 20px 10px;
+        .am-flexbox.am-flexbox-align-center{
+            //height:100%;
+            .iconitem{
+                .iconBox{
+                    height:0.44rem;
+                    width:0.44rem;
+                  max-height: 55px;
+                  max-width: 55px;
+                    .img{
+                        width:100%;
+                        height:100%;
+                    }
+                }
+                .test{
+                    color:#333;
+                    font-size:12px;
+                }
+            }
+        }
+    }
+    .listcontent{
+        //margin-top:-15px;
+      .list-icon{
+        font-size: 23px;
+      }
+      .am-list-item .am-list-thumb:first-child{
+        margin-right: 13px;
+      }
+    }
+  .am-list-body:after{
+    height: 0 !important;
+  }
+  .am-list-body:before{
+    height: 0 !important;
+  }
+  .am-list-line:after{
+    background-color: #eee !important;
+  }
+    /*.am-list-item{
+        border-bottom:1px solid #ddd;
+    }*/
+    .am-list-item .am-list-line .am-list-content{
+        color:#333;
+        font-size:14px;
+    }
+    .personalcontent{
+        padding-top:0.4rem;
+      position: relative;
+      z-index: 2;
+      padding-left: 0.2rem;
+    }
+}

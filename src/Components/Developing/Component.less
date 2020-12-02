@@ -1,0 +1,53 @@
+.Components-Developing-container {
+  @relative_div:relative;
+  @paddingDefault:0.2rem;
+  @smallFont: 0.08rem;
+  @grayColor: #666666;
+  @whiteColor: #fff;
+  @m_topDefault:10px;
+  @blue: #108EE9;
+  line-height: 0.25rem;
+  padding: @paddingDefault 0;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff;
+  height: 100%;
+  .am-result .am-result-pic{
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .developing-result.am-result::after{
+    height: 0;
+  }
+  .blue {
+    color: @blue
+  }
+  .grayColor{
+    color: #999999;
+  }
+  .am-list-item .am-list-line .am-list-content,.am-list-item .am-input-label{
+    color: #999999;
+  }
+  .upload-img-title{
+    .grayColor;
+    line-height: 0.35rem;
+    height: 0.35rem;
+  }
+  .gobackButton{
+    width:1.64rem;
+    height:0.47rem;
+    line-height:0.47rem;
+    text-align:center;
+    color:#fff;
+    border-radius:10px;
+  }
+  .btnReturn{
+    background:rgba(56,144,249,1);
+    border-radius:0.05rem;
+    .gobackButton{
+      font-size:0.18rem;
+      color:rgba(255,255,255,1);
+    }
+  }
+
+}

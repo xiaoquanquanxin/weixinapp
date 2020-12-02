@@ -1,0 +1,132 @@
+/*全局css样式*/
+html {
+    touch-action: manipulation;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: #FAFAFC;
+    height: 100%;
+    margin: 0;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+#root {
+    height: 100%;
+    margin: 0;
+}
+
+img {
+    width: 100%;
+    pointer-events: none; 
+}
+a {
+    text-decoration: none;
+}
+
+/*路由切换动画——改变透明度*/
+.normal-enter {
+    opacity: 0;
+    z-index: 10000;
+}
+
+.normal-enter,
+.normal-enter-active {
+    opacity: 1;
+    transition: all 0.4s ease-in;
+}
+
+.normal-leave {
+    opacity: 1;
+}
+
+.normal-leave,
+.normal-leave-active {
+    opacity: 0;
+    transition: all .4s ease-out;
+}
+input {
+    pointer-events: auto;
+}
+.am-list-item .am-input-control input{
+    font-size: .14rem !important;
+}
+.am-textarea-control textarea{
+    font-size: .14rem !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size: .14rem !important;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    font-size: .14rem !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    font-size: .14rem !important;
+}
+::-webkit-textarea-placeholder { /* WebKit browsers */
+    font-size: .14rem !important;
+}
+:-ms-textarea-placeholder { /* Internet Explorer 10+ */
+    font-size: .14rem !important;
+}
+.nopermissions{
+    display: none !important;
+}
+
+/*路由切换动画——左移动*/
+/*.left-enter {
+    position: absolute;
+    top: 0;
+    background: #fff;
+    z-index: 10000;
+    opacity: 1;
+    transform: translateX(100%);
+}
+
+.left-enter.left-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.4s ease-out;
+}
+
+.left-leave {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.left-leave.left-leave-active {
+    opacity: 1;
+    transform: translateX(-100%);
+    transition: all 0.4s ease-out;
+}*/
+/*路由切换动画——右移动*/
+/*
+.right-enter {
+    transform: translateX(-100%);
+}
+.right-enter.right-enter-active {
+    transform: translateX(0);
+    transition: all 0.4s ease-out;
+}
+.right-leave {
+    position: absolute;
+    top: 0;
+    background: #fff;
+    z-index: 10000;
+    opacity: 1;
+    transform: translateX(0);
+}
+.right-leave.right-leave-active {
+    opacity: 1;
+    transform: translateX(100%);
+    transition: all 0.4s ease-out;
+}*/
+
+.g-Fork{ display: inline-block; width: 20px;height:5px; background: red;line-height: 0;font-size:0;vertical-align: middle;-webkit-transform: rotate(45deg);}
+.g-Fork:after{content:'/';display:block;width: 20px;height:5px; background: red;-webkit-transform: rotate(-90deg);}
+
+.g-tick{ display: inline-block; width: 10px;height:5px; background: red;line-height: 0;font-size:0;vertical-align: middle;-webkit-transform: rotate(45deg);}
+.g-tick:after{content:'/';display:block;width: 20px;height:5px; background: red;-webkit-transform: rotate(-90deg) translateY(-50%) translateX(50%);}

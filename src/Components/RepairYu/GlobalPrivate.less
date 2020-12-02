@@ -1,0 +1,50 @@
+/*公共值*/
+@relative_div: relative;
+@paddingDefault: 0.2rem;
+@apdddingGap: 0.1rem;
+@smallFont: 0.08rem;
+@grayColor: #666666;
+@color999: #999;
+@whiteColor: #fff;
+@m_topDefault: 0.08rem;
+@blue: #108EE9;
+@red: #FF0000;
+@border: 0.005rem;
+@defaultLineHeight: 0.22rem;
+@defaultMarginLeft: 0.17rem;
+@defaultFontSize: 0.10rem;
+* {
+  list-style: none;
+  padding: 0;
+  margin: 0
+}
+
+.m_top10{
+  margin-top:@m_topDefault ;
+}
+.grayColor {
+  color: @color999;
+}
+
+.line {
+  border-bottom: solid @border #eee;
+}
+
+::-webkit-input-placeholder {
+  color: #999;
+  font-size: @smallFont;
+}
+
+::-moz-placeholder {
+  color: #999;
+  font-size: @smallFont;
+}
+
+:-ms-input-placeholder {
+  color: #999;
+  font-size: @smallFont;
+}
+
+.am-list-item .am-input-control input {
+  text-align: right;
+}

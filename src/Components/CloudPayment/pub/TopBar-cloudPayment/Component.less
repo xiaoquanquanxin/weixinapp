@@ -1,0 +1,35 @@
+@topbarColor:#1A2C52;
+@import "../iconfont/iconfont.css";
+
+.Components-TopBar-container{
+    .topbar{
+        color: #fff;
+        text-align: center;
+        height: 55px;
+        display: flex;
+        width: 100%;
+        line-height: 55px;
+        font-size: 20px;
+        //background-color: @topbarColor;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        .item{
+            text-align: center;
+        }
+        .item:nth-child(1) {
+            flex-basis: 10%;
+        }
+        .item:nth-child(2) {
+            flex-basis: 80%;
+        }
+        .item:nth-child(3) {
+            padding-right: 0.100rem;
+            flex-basis: 10%;
+        }
+    }
+    .topbarHeight{
+      height: 55px;
+    }
+}

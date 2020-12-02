@@ -1,0 +1,79 @@
+@import "../GlobalPrivate";
+
+.Components-EntrustedUploadSelfInfo-container {
+  @relative_div:relative;
+  @paddingDefault:0.2rem;
+  @smallFont: 0.08rem;
+  @grayColor: #666666;
+  @whiteColor: #fff;
+  @m_topDefault:10px;
+  @blue: #108EE9;
+  line-height: 0.25rem;
+  background-color: #fff;
+
+  .flag{
+    height: 0.2rem;
+    line-height: 0.2rem;
+    border-left: solid 0.025rem @blue;
+    overflow: hidden;
+    display: inline-block;
+    padding-left: 0.1rem;
+
+  }
+  .project-name{
+    padding-bottom: 0.15rem;
+    display: flex;
+    font-size: 0.17rem;
+
+  }
+  .card-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+
+    .card{
+      margin: 0.25rem 0;
+      width: 85%;
+      height:1.5rem;
+      background-color: #f1f2f3;
+      border-radius: 0.06rem;
+      border:sold @border #ddd;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      .cimg{
+        width: 1.2rem;
+        height: auto;
+      }
+      .cimgap{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 1.5rem;
+        background: #f1f2f3;
+        z-index: 2;
+      }
+      .cimgflex{
+        display: flex;
+        justify-content: center;
+      }
+      .cimgb{
+        max-width: 100%;
+        width:auto;
+        max-height: 1.5rem;
+      }
+      span{
+        display: block;
+        color:#999999;
+        font-size:0.14rem;
+      }
+
+    }
+  }
+}
+
+

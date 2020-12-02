@@ -1,0 +1,174 @@
+.Components-VScreen-container{
+/*  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  line-height: 100vh;*/
+}
+
+/*横屏*/
+@media (orientation: portrait) {
+  .transformNode {
+    transition: all 0.5s linear;
+    transform: rotate(90deg);
+    width: 100vh;
+    height: 100vw;
+    transform-origin: 188px 188px; //设置旋转元素的基点位置
+  }
+
+
+
+}
+/* 竖屏*/
+@media (orientation: landscape) {
+
+}
+
+
+
+.Components-VScreen-container{
+  .comfirmType{
+    border-bottom: solid 1px #ddd;
+    height:  45px;
+
+  }
+
+
+  *,
+  :before,
+  :after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font: 18px 'Helvetica Neue', sans-serif;
+  }
+
+  body {
+    text-align: center;
+  }
+
+  .signature-component {
+    text-align: left;
+    display: inline-block;
+    max-width: 100%;
+    button {
+      padding: 1em;
+      background: transparent;
+      box-shadow: 2px 2px 4px #777;
+      margin-top: .5em;
+      border: 1px solid #777;
+      font-size: 1rem;
+    }
+    canvas {
+      display: block;
+      position: relative;
+      border: 1px solid;
+    }
+    img {
+
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  .signaturePad-img-box{
+    background-color: #fff;
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .guest-advice{
+    padding-right: 8px;
+    border-top: solid 1px #ddd;
+    background-color: #fff;
+  }
+  .Repair{
+    display: block;
+    background-color: #fff;
+    border-bottom: solid 1px #EAEAEA;
+    padding: 10px;
+    .title{
+      height: 40px;
+      line-height: 40px;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: solid 1px #EAEAEA;
+      margin-top: 8px;
+    }
+    .rep-info{
+      padding-bottom: 15px;
+      padding-top: 5px;
+    }
+
+    p{margin: 0;padding: 0}
+  }
+  .btn-status{
+    background-color: #fff;
+    color: #888;
+    border: 1PX solid #ddd;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+    padding: 0 15px;
+    line-height: 23px;
+    box-sizing: border-box;
+    margin-right: 14px;
+
+  }
+  .on{
+    color: #108ee9;
+    border: 1PX solid #108ee9;
+  }
+  .no-signature{
+    padding: 10px;
+    background-color: #fff;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+.signature-box{
+  box-sizing: border-box;
+  background-color: #fff;
+  padding: 10px 10px 0;
+  position: relative;
+  z-index: 0;
+  padding-top: 0px;
+  border-bottom: solid 1px #ddd;
+ #signature-pad{
+   box-sizing: border-box;
+ }
+  .btn-loaction{
+    position: absolute;
+    width: 96%;
+    bottom: -63px;
+    height: 53px;
+    line-height: 53px;
+    .fix{
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      border-bottom: solid 1px #ddd;
+      #clear{
+        color: #0a62c3;
+      }
+    }
+  }
+}

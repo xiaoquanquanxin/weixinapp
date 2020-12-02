@@ -1,0 +1,199 @@
+@import "../GlobalPrivate";
+
+.Components-HouseAuthentication-container{
+  line-height: 0.25rem;
+  
+  background-color: @whiteColor;
+  height: 100%;
+  .g-padding{
+    //padding:@paddingDefault 0 0;
+    min-height: 100%;
+    box-sizing: border-box;
+    background: #1A2C52;
+
+    .login-padding{
+      padding: 0.3rem;
+      position: relative;
+      z-index: 2;
+    }
+    .login-box{
+      background-color: #fff;
+      border-radius:15px;
+      overflow: hidden;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+  }
+  .am-list-item .am-input-control input:disabled{
+    color: #333;
+  }
+  .am-list-item .am-input-label{
+    color: @color999;
+  }
+  .getCodeParentDode{
+    position: relative;
+    &:after{
+      content: '';
+      position: absolute;
+      background-color: #ddd;
+      display: block;
+      z-index: 1;
+      top: auto;
+      right: auto;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1PX;
+      -webkit-transform-origin: 50% 100%;
+      -ms-transform-origin: 50% 100%;
+      transform-origin: 50% 100%;
+      -webkit-transform: scaleY(0.5);
+      -ms-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+    }
+  .fristNode{
+    flex-basis: 50%;
+    justify-content: flex-start !important;
+   }
+
+  }
+  .time{
+    font-style: normal;
+  }
+  .GetCode{
+    border: none;
+    border-radius: 0.27rem;
+    padding: 0 11px 0 19px;
+    color: #1B88EB;
+    position: relative;
+    width: 100px;
+    text-align: right;
+    font-size: 14px;
+    &:after{
+      content: "";
+      border-left: 1px solid #EEEEEE;
+      height: 80%;
+      position: absolute;
+      top: 10%;
+      left: 0;
+    }
+  }
+  .HouseProperty{
+    padding: @paddingDefault*0.7;
+    .left{
+      font-size: .16rem;
+      margin-left: 0;
+      margin-right: 5px;
+      color: #999;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+  }
+  .noHouseInfo{
+    height: @defaultLineHeight*2;
+    line-height: @defaultLineHeight*2;
+    text-align: center;
+  }
+  .line{
+    border-bottom: solid @border #eee;
+  }
+  .am-flexbox .am-flexbox-item{
+    display: flex;
+    justify-content: flex-end;
+    //margin-right: 15px;
+    margin-left:0;
+  }
+  .getCodeParentDode {
+    .am-list-item.am-list-item-middle .am-list-line{
+      padding:0;
+    }
+    .am-list-item.am-input-item{
+      width: 100%;
+    }
+  }
+  .choicephone{
+    color: #1B88EB;
+    text-align: right;
+    width: 100%;
+    margin-top: 0.1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 14px;
+  }
+  .phonecss{
+    text-align: right;
+    font-size: 0.12rem;
+    color: #000;
+    min-height: auto;
+    line-height: 0.12rem;
+    margin-top: 0.06rem;
+    .right{
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 0.15rem;
+    }
+  }
+  .btn{
+    background-color: #1660A3;
+    height: 40px;
+    line-height: 40px;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .tips{
+    font-size:14px;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-weight: bold;
+    color:rgba(102,102,102,1);
+    line-height:20px;
+    margin-bottom: 6px;
+    margin-top: 34px;
+  }
+  .tips-content{
+    font-size:12px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    line-height:20px;
+  }
+  .input-icon{
+    font-size: 16px;
+    color: #999999;
+  }
+  .am-list-item .am-input-label.am-input-label-5{
+    width: 32px;
+  }
+  .am-list-item .am-input-control input {
+    text-align: left;
+  }
+  .am-list-item.am-input-item{
+    padding-left: 0;
+  }
+  .logo-icon{
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 20px auto;
+    img{
+      width: 100%;
+    }
+  }
+  .bg{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    overflow: hidden;
+    z-index: 1;
+    img{
+      width: 100%;
+      height: auto;
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}
