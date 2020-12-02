@@ -58,7 +58,7 @@ let randBuildDirname = new Date().format('yyyyMMddhhmmss')
 let html = `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <title>加载中..</title>
+  <title>【我是模板】加载中..</title>
   <meta http-equiv="Access-Control-Allow-Origin" content="*" />
   <meta charset="utf-8" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -66,7 +66,9 @@ let html = `<!DOCTYPE html>
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <link type="favicon" rel="shortcut icon" href="favicon.ico" />
-  <script language="javascript" type="text/javascript">
+  <script src="./jquery-3.3.1.min.js"></script>
+  <script src="./jweixin-1.3.2.js"></script>
+  <script>
     try {
            window.getQueryString = function (name) {
               var aftername = window.location.href.split("?")[1];
@@ -127,7 +129,12 @@ if (isPro) {
     });
     //},3000)
 }
-
+console.log('xxxxxxxxxxxxxxxx')
+console.log('xxxxxxxxxxxxxxxx')
+console.log('xxxxxxxxxxxxxxxx')
+console.log('xxxxxxxxxxxxxxxx')
+console.log('xxxxxxxxxxxxxxxx')
+console.log('xxxxxxxxxxxxxxxx')
 let buildPath = path.resolve(buildDirName, './' + randBuildDirname + "/")
 module.exports = {
     context: path.resolve(__dirname, 'src'),
@@ -155,8 +162,12 @@ module.exports = {
                 to: path.resolve(buildDirName, './favicon.ico')
             },
             {
-                from: __dirname + '/lib/jquery/jquery.min.js',
-                to: path.resolve(buildPath, './jquery.min.js')
+                from: __dirname + '/lib/jquery-3.3.1.min.js',
+                to: path.resolve(buildPath, `./${randBuildDirname}/lib/jquery-3.3.1.min.js`)
+            },
+            {
+                from: __dirname + '/lib/jweixin-1.3.2.js',
+                to: path.resolve(buildPath, `./${randBuildDirname}/lib/jweixin-1.3.2.js`)
             },
             {
                 from: __dirname + '/lib/vconsole.min.js',
