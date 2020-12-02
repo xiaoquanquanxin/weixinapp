@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <title>加载中..</title>
+    <title>【我是模板】加载中..</title>
     <meta http-equiv="Access-Control-Allow-Origin" content="*"/>
     <meta charset="utf-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -9,7 +9,7 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link type="favicon" rel="shortcut icon" href="favicon.ico"/>
-    <script language="javascript" type="text/javascript">
+    <script>
         try {
             window.getQueryString = function (name){
                 var aftername = window.location.href.split("?")[1];
@@ -45,13 +45,13 @@
                 }
             }
             // console.log("url:",url)
-            // console.log("20201202153445/"+url)
+            // console.log("20201202155011/"+url)
             console.log("url1:", url)
             url = url.replace(/__jh__/g, "#")
             url = url.replace(/##/g, "#")
             //url=url.replace(/#///g, "#/")
             console.log("url2:", url)
-            window.location.replace("20201202153445/" + url);
+            window.location.replace("20201202155011/" + url);
         } catch (err) {
             alert("錯誤信息" + JSON.stringify(err) + e)
         }
