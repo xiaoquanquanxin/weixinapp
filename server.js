@@ -3,7 +3,6 @@ const WebpackDevServer = require('webpack-dev-server')
 const config = require('./webpack.dev')
 const errorOverlayMiddleware = require('react-error-overlay/middleware')
 const webpackServerConfig = require('./webpack/webpackServerConfig')
-const proxy = require('http-proxy-middleware')
 
 const {host,port} = webpackServerConfig.devServer;
 new WebpackDevServer(webpack(config), {
