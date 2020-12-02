@@ -68,8 +68,11 @@ window.myFun401 = function (){
             }
 
             window.GETNoAuth({url}).then((data) => {
-                if (!data.isSucess) return;
+                if (!data.isSucess) {
+                    return
+                }
                 debugger
+                return;
                 window.location.href = data.data
             });
             window.clearLocalData();
