@@ -47,6 +47,8 @@ const API_TYPE = process.env.API_TYPE || '1'
 const isPro = nodeEnv === 'production'
 console.log('当前运行环境：', isPro ? 'production' : 'development')
 let buildDirName = path.resolve(__dirname, './build/')
+//  todo
+// let buildDirName = path.resolve(__dirname, './wechat-pay/')
 if (isPro) {
     console.log("清空build目录。。")
     if (!fs.existsSync(buildDirName)) {
@@ -58,7 +60,7 @@ let randBuildDirname = new Date().format('yyyyMMddhhmmss')
 let html = `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <title>【我是模板】加载中..</title>
+  <title>加载中..</title>
   <meta http-equiv="Access-Control-Allow-Origin" content="*" />
   <meta charset="utf-8" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -66,9 +68,7 @@ let html = `<!DOCTYPE html>
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <link type="favicon" rel="shortcut icon" href="favicon.ico" />
-  <script src="./jquery-3.3.1.min.js"></script>
-  <script src="./jweixin-1.3.2.js"></script>
-  <script>
+  <script language="javascript" type="text/javascript">
     try {
            window.getQueryString = function (name) {
               var aftername = window.location.href.split("?")[1];
@@ -111,6 +111,8 @@ let html = `<!DOCTYPE html>
         //url=url.replace(/#\/\//g, "#/")
 		console.log("url2:",url)
         window.location.replace("${randBuildDirname}/"+url); 
+        // todo
+        // window.location.replace("/wechat-pay/${randBuildDirname}/"+url); 
     } catch (err) {
         alert("錯誤信息"+JSON.stringify(err)+e)
     }
@@ -129,13 +131,11 @@ if (isPro) {
     });
     //},3000)
 }
-console.log('xxxxxxxxxxxxxxxx')
-console.log('xxxxxxxxxxxxxxxx')
-console.log('xxxxxxxxxxxxxxxx')
-console.log('xxxxxxxxxxxxxxxx')
-console.log('xxxxxxxxxxxxxxxx')
-console.log('xxxxxxxxxxxxxxxx')
-let buildPath = path.resolve(buildDirName, './' + randBuildDirname + "/")
+
+let buildPath = path.resolve(buildDirName, './' + randBuildDirname + "/");
+// console.log(`/wechat-pay/${randBuildDirname}`)
+// console.log(`/wechat-pay/${randBuildDirname}`)
+// console.log(`/wechat-pay/${randBuildDirname}`)
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     entry: {
@@ -144,6 +144,8 @@ module.exports = {
     output: {
         path: buildPath,
         publicPath: './', //填写服务器绝对路径
+        //  todo
+        // publicPath: `/wechat-pay/${randBuildDirname}/`, //填写服务器绝对路径
         filename: 'js/[name].js',
         chunkFilename: 'js/[name].js'
     },
@@ -162,12 +164,8 @@ module.exports = {
                 to: path.resolve(buildDirName, './favicon.ico')
             },
             {
-                from: __dirname + '/lib/jquery-3.3.1.min.js',
-                to: path.resolve(buildPath, `./${randBuildDirname}/lib/jquery-3.3.1.min.js`)
-            },
-            {
-                from: __dirname + '/lib/jweixin-1.3.2.js',
-                to: path.resolve(buildPath, `./${randBuildDirname}/lib/jweixin-1.3.2.js`)
+                from: __dirname + '/lib/jquery/jquery.min.js',
+                to: path.resolve(buildPath, './jquery.min.js')
             },
             {
                 from: __dirname + '/lib/vconsole.min.js',
