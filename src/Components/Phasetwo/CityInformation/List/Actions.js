@@ -1,11 +1,12 @@
-import {action } from 'mobx';
-import { Toast } from 'antd-mobile';
+import {action} from 'mobx';
+import {Toast} from 'antd-mobile';
 // 定义对数据的操作
 class Actions {
-    constructor(store) {
+    constructor(store){
         this.store = store;
         this.pageNum = 1
     }
+
     /*
     @action
     incA = () => {
@@ -13,16 +14,16 @@ class Actions {
     }*/
     @action
     listProvide = async () => {
-        this.store.provincesList=[]
-        let result = await window.GET({ url: "user/provincesList" });
+        this.store.provincesList = []
+        let result = await window.GET({url: "user/provincesList"});
         if (!result.isSucess) return;
         result.data.provincesList.forEach((v, i) => {
             this.store.provincesList.push({
                 label: v.provinceName,
                 value: v.provinceId,
-                children:[]
+                children: []
             })
-            if (result.data.defaultProvincesId == v.provinceId){
+            if (result.data.defaultProvincesId == v.provinceId) {
                 this.store.provincesId = v.provinceId
                 this.store.provincesName = v.provinceName
             }
@@ -31,7 +32,7 @@ class Actions {
                     label: vv.cityName,
                     value: vv.cityId
                 })
-                if (result.data.defaultCityId == vv.cityId){
+                if (result.data.defaultCityId == vv.cityId) {
                     this.store.cityId = vv.cityId
                     this.store.cityName = vv.cityName
                 }
@@ -39,7 +40,7 @@ class Actions {
         })
         this.articleList(1)
     }
-    
+
 
     @action
     articleList = async (pageNum) => {
@@ -50,11 +51,11 @@ class Actions {
             pageNum: pageNum,
             pageSize: 10
         }
-        let result = await window.GET({ url: "user/articleList", cformData });
+        let result = await window.GET({url: "user/articleList", cformData});
         if (!result.isSucess) return;
         //this.store.listdata = result1.dataif (result.resultCode == 0) {
-        if (result.resultCode == 0){
-            
+        if (result.resultCode == 0) {
+
             if (result.data.length == 0) {
                 this.store.actbottom = 1
                 //Toast.info(`已经到底部`, 1);
@@ -65,12 +66,12 @@ class Actions {
                     this.store.CityListdata = result.data
                 }
                 this.store.actbottom = 2
-                
+
             }
 
         }
-        
-       // console.log(111, this.store.CityListdata)
+
+        // console.log(111, this.store.CityListdata)
     }
     @action
     PickProvinces = (value) => {
@@ -86,21 +87,22 @@ class Actions {
                 }
             })
         })
-        console.log(2222,value)
-        this.store.CityListdata=[]
+        console.log(2222, value)
+        this.store.CityListdata = []
         this.articleList(1)
     }
 
     @action
-    itemfun = (history,v) => {
-        if (v.contentType==2){
-           // window.location.href = v.contentUrl
-        window.location.href = v.content
-       }else{
-            
-           history.push('/PhasetwoArticle/' + v.id)
-       }
-    
+    itemfun = (history, v) => {
+        debugger
+        if (v.contentType == 2) {
+            window.location.href = v.contentUrl
+            // window.location.href = v.content
+        } else {
+
+            history.push('/PhasetwoArticle/' + v.id)
+        }
+
     }
 
 
