@@ -164,7 +164,6 @@ export default class TemplateNoMbox extends React.Component {
         }*/
     }
     fun1(){
-        debugger
         let url="login/getWxAuthUrl?forwordUrl="+encodeURI(window.location.href);
         window.GETNoAuth({url}).then((data)=> {
             console.log("超时系统准备刷新:",data)
