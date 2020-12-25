@@ -39,6 +39,7 @@ window.myFun401 = function (){
         window.__temhttp401_ = true;
 
         function refrshe(){
+            debugger;
             window.__temhttp401_ = false;
             // window.location.href="#/Login";
             // let url="login/getWxAuthUrl?forwordUrl="+encodeURI(window.location.href);
@@ -68,11 +69,7 @@ window.myFun401 = function (){
             }
 
             window.GETNoAuth({url}).then((data) => {
-                if (!data.isSucess) {
-                    return
-                }
-                debugger
-                return;
+                if (!data.isSucess) return;
                 window.location.href = data.data
             });
             window.clearLocalData();
