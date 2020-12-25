@@ -4,7 +4,7 @@ let host = ""
 if (API_TYPE == "1") {//测试
     // host ="http://asm-test.seedland.cc/wechat-mobile/"
     // host ="https://asm-test.seedland.cc/wechat-mobile/"
-    host = "http://192.168.100.208:80/wechat-mobile/"
+    host = "http://192.168.100.208:5080/wechat-mobile/"
     // host ="http://wx.seedland.cc:8888//wechat-mobile/"   //辉：8888  超:8089
 } else if (API_TYPE == "2") {//生产
     host = "https://wx-life.seedland.cc/wechat-mobile/"
