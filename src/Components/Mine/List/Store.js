@@ -16,8 +16,8 @@ class Store {
         {"ico": jianyi, test: "投诉建议", link: "/ComplaintSuggestions"},
     ];
     @observable list1 = [
-        {ico: addFamily, test: "用户认证", link: `${router.FamilyMembers}`, renzhen: 1},
-        {ico: addFamily, test: "添加家属", link: `${router.FamilyMembers}`, renzhen: 1},
+        {ico: addFamily, test: "用户认证", link: router.FamilyMembers, renzhen: 1},
+        {ico: addFamily, test: "添加家属", link: router.FamilyMembers, renzhen: 1},
     ];
     @observable list2 = [
         {ico: myActivity, test: "我的活动", link: "/PhasetwoActivitySignUpList",},
