@@ -97,17 +97,8 @@ class Actions {
     @action
     weiRenZhengRender(list1){
         // 直接修改仓库中的状态值
-        if (list1[0].test !== "用户认证") {
-            console.log('未认证')
-            console.log('未认证')
-            console.log('未认证')
-            list1.unshift({
-                ico: 'icon-yonghurenzheng',
-                test: "用户认证",
-                link: `${router.FamilyMembers}`,
-                renzhen: 1,
-                color: '#87b0e8'
-            },)
+        if (list1[0].test === "用户认证") {
+            list1.shift();
         }
     }
 }
