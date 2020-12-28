@@ -16,6 +16,7 @@ const title = '我的';
 /*自定义类*/
 import './Component.less'
 import router from "../../../router";
+import rightArrow from './img/right-arrow.png';
 
 
 @inject('store', 'actions')
@@ -110,7 +111,6 @@ export default class MineList extends React.Component {
                 <img src={seedlandbg} title="" className={'header-img'}/>
             </div>
 
-
             {/*4个块、5个块，张淼说不做*/}
             {/*<div className="content-header" type="content">*/}
             {/*    <WhiteSpace/>*/}
@@ -145,13 +145,15 @@ export default class MineList extends React.Component {
                     list1.map((item, index) => {
                         console.log('***************************');
                         console.log(item.test);
+                        const {ico} = item;
                         //  test是模块名称
                         const {test} = item;
                         return (
                             <Item key={index}
-                                  thumb={<i className={`font_family list-icon ${item.ico}`}
-                                            style={{color: `${item.color}`, marginLeft: '10px'}}> </i>}
-                                  arrow="horizontal"
+                                  thumb={<img className={`font_family list-icon ${item.ico}`}
+                                              src={ico} alt=''
+                                  />}
+                                  extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
                                   onClick={() => {
                                       if (test === '同步房产') {
                                           return tongbufun();
@@ -166,11 +168,13 @@ export default class MineList extends React.Component {
             <List className={"listcontent"}>
                 {
                     list2.map((item, index) => {
+                        const {ico} = item;
                         return (
                             <Item key={index}
-                                  thumb={<i className={`font_family list-icon ${item.ico}`}
-                                            style={{color: `${item.color}`, marginLeft: '10px'}}> </i>}
-                                  arrow="horizontal"
+                                  thumb={<img className={`font_family list-icon ${item.ico}`}
+                                              src={ico} alt=''
+                                  />}
+                                  extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
                                   onClick={() => {
                                       this.hanldClick(item);
                                   }}>{item.test}</Item>
@@ -182,13 +186,16 @@ export default class MineList extends React.Component {
             <List className={"listcontent"}>
                 {
                     list3.map((item, index) => {
+                        const {ico} = item;
                         return (
                             <Item key={index}
-                                  thumb={<i className={`font_family list-icon ${item.ico}`}
-                                            style={{color: `${item.color}`, marginLeft: '10px'}}> </i>}
-                                  arrow="horizontal"
+                                  thumb={<img className={`font_family list-icon ${item.ico}`}
+                                              src={ico} alt=''
+                                  />}
+                                  extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
                                   onClick={() => {
-                                      this.hanldClick(item);
+                                      //    这里暂时只有更换号码，所以只有一个弹框
+                                      Toast.info('请联系本楼栋管家', 3);
                                   }}>{item.test}</Item>
                         )
                     })
@@ -199,7 +206,8 @@ export default class MineList extends React.Component {
             {(useInfo.authStatus == 1 && isLoachost) &&
             <List className={"listcontent"}>
                 <Item thumb={<i className={`font_family list-icon icon-tuichu`}
-                                style={{color: '#de8686', marginLeft: '10px'}}> </i>} arrow="horizontal"
+                                style={{color: '#de8686', marginLeft: '10px'}}> </i>}
+                      extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
                       onClick={() => {
                           tuichu()
                       }}>{label}</Item>
