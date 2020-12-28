@@ -22,7 +22,7 @@ class Store {
     @observable list2 = [
         {ico: myActivity, test: "我的活动", link: "/PhasetwoActivitySignUpList",},
         {ico: myQuestionnaire, test: "我的问卷", link: "/PhasetwoMyQuestionnaireList/1"},
-        {ico: myRepair, test: '我的报修', link: router.RepairList[0]},
+        {ico: myRepair, test: '我的报修 有列表，具体需要验证', link: router.RepairList[0]},
     ];
     @observable list3 = [
         {ico: changePhone, test: "更换号码  √", type: 'changePhone'}
