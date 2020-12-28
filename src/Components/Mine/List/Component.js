@@ -195,7 +195,7 @@ export default class MineList extends React.Component {
                                   extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
                                   onClick={() => {
                                       //    这里暂时只有更换号码，所以只有一个弹框
-                                      Toast.info('请联系本楼栋管家', 3);
+                                      Toast.info('请联系本楼栋管家', 2);
                                   }}>{item.test}</Item>
                         )
                     })
