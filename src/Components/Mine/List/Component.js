@@ -72,9 +72,9 @@ export default class MineList extends React.Component {
         const {store, actions} = this.props;
         const {storeMineList} = store;
         const {actionsMineList} = actions;
-        const {IconList, list1, list2, list3, type, label, useInfo} = storeMineList;
+        const {list1, label, useInfo} = storeMineList;
         const {fullName, authStatus, phoneNo, userLogo, nickName} = useInfo;
-        const {tongbufun, tuichu, weiRenZhengRender} = actionsMineList;
+        const {tuichu} = actionsMineList;
         const personalInfo = {
             fullName,
             authStatus,
@@ -84,12 +84,6 @@ export default class MineList extends React.Component {
         };
         const isLoachost = !!(window.location.origin.includes('test') || window.location.origin.includes('10.3'));
         console.info('当前环境是___________', isLoachost ? '测试' : '生产');
-
-        //  如果已经认证，则不需要用户认证功能
-        if (authStatus === 1) {
-            console.log('已认证');
-            weiRenZhengRender(list1);
-        }
         return <div className={"Components-MineList-container"}>
             {/*头部*/}
             <TopBar
@@ -99,7 +93,7 @@ export default class MineList extends React.Component {
             />
             {/*<Layout>*/}
             <div className={"header-padding"}>
-                <div className={"header-bg"}></div>
+                <div className={"header-bg"}/>
                 {/*是否显示退入小程序*/}
 
                 <div className="header">
@@ -109,100 +103,46 @@ export default class MineList extends React.Component {
                         </div>
                     </WingBlank>
                 </div>
-                <img src={seedlandbg} title="" className={'header-img'}/>
+                <img src={seedlandbg} title="" className={'header-img'} alt=''/>
             </div>
-
-            {/*4个块、5个块，张淼说不做*/}
-            {/*<div className="content-header" type="content">*/}
-            {/*    <WhiteSpace/>*/}
-            {/*    <Flex justify="center">*/}
-            {/*        {*/}
-            {/*            IconList.map((item, index) => {*/}
-            {/*                return (*/}
-            {/*                    <BoxItem key={index}>*/}
-            {/*                        <Flex onClick={() => {*/}
-            {/*                            this.toUrl(item);*/}
-            {/*                        }}>*/}
-            {/*                            <BoxItem justify='center' align='center'>*/}
-            {/*                                <div className="iconitem">*/}
-            {/*                                    <div className="iconBox">*/}
-            {/*                                        <img src={item.ico}/>*/}
-            {/*                                    </div>*/}
-            {/*                                    <WhiteSpace/>*/}
-            {/*                                    <div className="test">{item.test}</div>*/}
-            {/*                                </div>*/}
-            {/*                            </BoxItem>*/}
-            {/*                        </Flex>*/}
-            {/*                    </BoxItem>*/}
-            {/*                )*/}
-            {/*            })*/}
-            {/*        }*/}
-            {/*    </Flex>*/}
-            {/*</div>*/}
 
             <WhiteSpace/>
             <List className={"listcontent"}>
                 {
                     list1.map((item, index) => {
                         console.log('***************************');
-                        console.log(item.test);
-                        const {ico} = item;
-                        //  test是模块名称
-                        const {test} = item;
+                        //  test:模块名称；type:类型；unverifiedShow:未认证才展示
+                        const {ico, type, unverifiedShow} = item;
+
+                        //  如果已经认证，则不需要用户认证功能
+                        if (authStatus === 1) {
+                            console.log('已认证');
+                            if (unverifiedShow) {
+                                return '';
+                            }
+                        }
                         return (
                             <Item key={index}
-                                  thumb={<img className={`font_family list-icon ${item.ico}`}
-                                              src={ico} alt=''
-                                  />}
+                                // thumb={<img className={`font_family list-icon ${item.ico}`}
+                                //             src={ico} alt=''
+                                // />}
                                   extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
                                   onClick={() => {
-                                      if (test === '同步房产') {
-                                          return tongbufun();
+                                      switch (type) {
+                                          case 'changePhone':
+                                              //    这里暂时只有更换号码，所以只有一个弹框
+                                              Toast.info('请联系本楼栋管家', 2);
+                                              break;
+                                          default:
+                                              console.log(item);
+                                              this.hanldClick(item);
                                       }
-                                      this.hanldClick(item);
-                                  }}>{item.test}</Item>
+                                  }}
+                            ><img className='thumb' src={ico} alt=''/>{item.test}</Item>
                         )
                     })
                 }
             </List>
-            <WhiteSpace/>
-            <List className={"listcontent"}>
-                {
-                    list2.map((item, index) => {
-                        const {ico} = item;
-                        return (
-                            <Item key={index}
-                                  thumb={<img className={`font_family list-icon ${item.ico}`}
-                                              src={ico} alt=''
-                                  />}
-                                  extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
-                                  onClick={() => {
-                                      this.hanldClick(item);
-                                  }}>{item.test}</Item>
-                        )
-                    })
-                }
-            </List>
-            <WhiteSpace/>
-            <List className={"listcontent"}>
-                {
-                    list3.map((item, index) => {
-                        const {ico} = item;
-                        return (
-                            <Item key={index}
-                                  thumb={<img className={`font_family list-icon ${item.ico}`}
-                                              src={ico} alt=''
-                                  />}
-                                  extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
-                                  onClick={() => {
-                                      //    这里暂时只有更换号码，所以只有一个弹框
-                                      Toast.info('请联系本楼栋管家', 2);
-                                  }}>{item.test}</Item>
-                        )
-                    })
-                }
-            </List>
-            <WhiteSpace/>
 
             {(useInfo.authStatus == 1 && isLoachost) &&
             <List className={"listcontent"}>
