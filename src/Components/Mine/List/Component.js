@@ -33,7 +33,7 @@ export default class MineList extends React.Component {
     }
 
     hanldClick = (item) => {
-        const {store, actions} = this.props;
+        const {store} = this.props;
         const {storeMineList} = store;
         const {useInfo} = storeMineList;
         if (useInfo.authStatus === 1 || item.renzhen !== 1) {
