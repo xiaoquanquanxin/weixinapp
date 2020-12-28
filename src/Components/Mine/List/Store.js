@@ -16,15 +16,11 @@ class Store {
         {"ico": jianyi, test: "投诉建议", link: "/ComplaintSuggestions"},
     ];
     @observable list1 = [
-        {ico: addFamily, test: "用户认证", link: router.FamilyMembers, renzhen: 1},
+        {ico: addFamily, test: "用户认证", link: router.FamilyMembers, renzhen: 1, unverifiedShow: true,},
         {ico: addFamily, test: "添加家属", link: router.FamilyMembers, renzhen: 1},
-    ];
-    @observable list2 = [
-        {ico: myActivity, test: "我的活动", link: "/PhasetwoActivitySignUpList",},
+        {ico: myActivity, test: "我的活动", link: "/PhasetwoActivitySignUpList"},
         {ico: myQuestionnaire, test: "我的问卷", link: "/PhasetwoMyQuestionnaireList/1"},
         {ico: myRepair, test: '我的报修 有列表，具体需要验证', link: router.RepairList[0]},
-    ];
-    @observable list3 = [
         {ico: changePhone, test: "更换号码  √", type: 'changePhone'}
     ];
     @observable type = "blue";
