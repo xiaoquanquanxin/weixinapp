@@ -86,7 +86,8 @@ export default class MineList extends React.Component {
         console.info('当前环境是___________', isLoachost ? '测试' : '生产');
 
         //  如果已经认证，则不需要用户认证功能
-        if (authStatus !== 1) {
+        if (authStatus === 1) {
+            console.log('已认证');
             weiRenZhengRender(list1);
         }
         return <div className={"Components-MineList-container"}>
