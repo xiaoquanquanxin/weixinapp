@@ -90,17 +90,7 @@ class Actions {
                 }
             },
         ])
-
-    }
-
-    //  权鑫
-    @action
-    weiRenZhengRender(list1){
-        // 直接修改仓库中的状态值
-        if (list1[0].test === "用户认证") {
-            list1.shift();
-        }
-    }
+    };
 }
 
 export default Actions;
