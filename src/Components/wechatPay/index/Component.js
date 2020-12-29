@@ -23,28 +23,26 @@ export default class Template extends React.Component {
 
     render(){
         return <div className="Components-WeChatPay-container">
-            <div>
-                <div className="banner"/>
-                <div className="payment right-button paid-out">
-                    <div onClick={() => {
-                        this.goPage('/wechat-pay/PaymentList');
-                    }}>
-                        物业缴费
-                    </div>
+            <div className="banner"/>
+            <div className="payment right-button paid-out">
+                <div onClick={() => {
+                    this.goPage('/wechat-pay/PaymentList');
+                }}>
+                    物业缴费
                 </div>
-                <div className="payment right-button prepayment">
-                    <div onClick={() => {
-                        this.goPage('/wechat-pay/PaymentList');
-                    }}>
-                        预缴费用
-                    </div>
+            </div>
+            <div className="payment right-button prepayment">
+                <div onClick={() => {
+                    this.goPage('/wechat-pay/PaymentList');
+                }}>
+                    预缴费用
                 </div>
-                <div className="payment right-button paymentRecords">
-                    <div onClick={() => {
-                        this.goPage('/wechat-pay/PaymentList');
-                    }}>
-                        缴费记录
-                    </div>
+            </div>
+            <div className="payment right-button paymentRecords">
+                <div onClick={() => {
+                    this.goPage('/wechat-pay/PaymentList');
+                }}>
+                    缴费记录
                 </div>
             </div>
         </div>;
