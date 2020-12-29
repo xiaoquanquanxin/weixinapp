@@ -66,29 +66,27 @@ class Actions {
         });
 
         let editFamilyid = window.getQueryString();
-        debugger
         //console.log(2222, editFamilyid)
-        if (editFamilyid && editFamilyid.id && editFamilyid.authUserId) {//进入编辑
-			debugger
+        //进入编辑
+        if (editFamilyid && editFamilyid.id && editFamilyid.authUserId) {
+            console.log('家庭成员-编辑');
             //	console.log(111, JSON.parse(window.getLocalData("editFamily")))
             this.store.AddFamilyMembers = JSON.parse(window.getLocalData("editFamily"))
             //console.log("AddFamilyMembersAddFamilyMembers",this.store.AddFamilyMembers)
             let cformDataedit = {
                 userType: this.store.AddFamilyMembers.userType,
                 authUserId: editFamilyid.authUserId
-            }
-            debugger;
+            };
             //console.log("cformDataedit", cformDataedit)
             let resultedit = await window.POST({url: "auth/findHouseAuths", cformData: cformDataedit});
             if (!resultedit.isSucess) return;
             resultedit.data.forEach((item, index) => {
                 this.store.ProjectSelectvalarr.push(
                     item.name
-                )
+                );
                 this.store.roomIdarr.push(
                     item.id * 1
                 )
-
             });
             this.roomId = this.store.roomIdarr.join(",")
             this.store.roomName = this.store.ProjectSelectvalarr.join(",")
