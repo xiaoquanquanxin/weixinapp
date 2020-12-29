@@ -74,7 +74,7 @@ export default class MineList extends React.Component {
         const {actionsMineList} = actions;
         const {list1, label, useInfo} = storeMineList;
         const {fullName, authStatus, phoneNo, userLogo, nickName} = useInfo;
-        const {tuichu} = actionsMineList;
+        const {tuichu, tongbufun} = actionsMineList;
         const personalInfo = {
             fullName,
             authStatus,
@@ -123,15 +123,20 @@ export default class MineList extends React.Component {
                         }
                         return (
                             <Item key={index}
-                                // thumb={<img className={`font_family list-icon ${item.ico}`}
-                                //             src={ico} alt=''
-                                // />}
                                   extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
                                   onClick={() => {
                                       switch (type) {
                                           case 'changePhone':
                                               //    这里暂时只有更换号码，所以只有一个弹框
                                               Toast.info('请联系本楼栋管家', 2);
+                                              break;
+                                          case 'layout':
+                                              //    退出登录
+                                              tuichu();
+                                              break;
+                                          case 'synchronous':
+                                              //    同步房产
+                                              tongbufun();
                                               break;
                                           default:
                                               console.log(item);
@@ -143,16 +148,16 @@ export default class MineList extends React.Component {
                     })
                 }
             </List>
-
-            {(useInfo.authStatus == 1 && isLoachost) &&
-            <List className={"listcontent"}>
-                <Item thumb={<i className={`font_family list-icon icon-tuichu`}
-                                style={{color: '#de8686', marginLeft: '10px'}}> </i>}
-                      extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
-                      onClick={() => {
-                          tuichu()
-                      }}>{label}</Item>
-            </List>
+            {
+                (useInfo.authStatus == 1 && isLoachost) && false &&
+                <List className={"listcontent"}>
+                    <Item thumb={<i className={`font_family list-icon icon-tuichu`}
+                                    style={{color: '#de8686', marginLeft: '10px'}}> </i>}
+                          extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
+                          onClick={() => {
+                              tuichu()
+                          }}>{label}</Item>
+                </List>
             }
             <WhiteSpace/>
             <WingBlank>
