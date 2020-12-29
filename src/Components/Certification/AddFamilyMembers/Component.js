@@ -40,6 +40,7 @@ export default class Template extends React.Component {
 
 
     componentDidMount(){
+        debugger
         window.setWindowTitle('添加家庭成员');
         const {store, actions} = this.props;
         const {storeAddFamilyMembers} = store;
