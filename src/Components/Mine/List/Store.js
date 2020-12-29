@@ -21,7 +21,9 @@ class Store {
         {ico: myActivity, test: "我的活动", link: "/PhasetwoActivitySignUpList"},
         {ico: myQuestionnaire, test: "我的问卷", link: "/PhasetwoMyQuestionnaireList/1"},
         {ico: myRepair, test: '我的报修 有列表，具体需要验证', link: router.RepairList[0]},
-        {ico: changePhone, test: "更换号码  √", type: 'changePhone'}
+        {ico: changePhone, test: "同步房产  √",type:'synchronous'},
+        {ico: changePhone, test: "更换号码  √", type: 'changePhone'},
+        {ico: changePhone, test: "退出登录", type: 'layout'},
     ];
     @observable type = "blue";
     @observable label = "退出";
