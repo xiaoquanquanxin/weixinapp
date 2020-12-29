@@ -110,13 +110,13 @@ export default class MineList extends React.Component {
             <List className={"listcontent"}>
                 {
                     list1.map((item, index) => {
-                        console.log('***************************');
+                        // console.log('***************************');
                         //  test:模块名称；type:类型；unverifiedShow:未认证才展示
                         const {ico, type, unverifiedShow} = item;
 
                         //  如果已经认证，则不需要用户认证功能
                         if (authStatus === 1) {
-                            console.log('已认证');
+                            // console.log('已认证');
                             if (unverifiedShow) {
                                 return '';
                             }
