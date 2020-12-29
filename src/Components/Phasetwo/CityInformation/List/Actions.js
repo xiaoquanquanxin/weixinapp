@@ -77,40 +77,37 @@ class Actions {
     PickProvinces = (value) => {
         this.store.provincesList.forEach((v, i) => {
             if (value[0] == v.value) {
-                this.store.provincesId = v.value
-                this.store.provincesName = v.label
+                this.store.provincesId = v.value;
+                this.store.provincesName = v.label;
             }
             v.children.forEach((vv, ii) => {
                 if (value[1] == vv.value) {
-                    this.store.cityId = vv.value
-                    this.store.cityName = vv.label
+                    this.store.cityId = vv.value;
+                    this.store.cityName = vv.label;
                 }
             })
-        })
-        console.log(2222, value)
-        this.store.CityListdata = []
+        });
+        console.log(2222, value);
+        this.store.CityListdata = [];
         this.articleList(1)
-    }
+    };
 
     @action
     itemfun = (history, v) => {
-        debugger
         if (v.contentType == 2) {
             window.location.href = v.contentUrl
             // window.location.href = v.content
         } else {
-
-            history.push('/PhasetwoArticle/' + v.id)
+            history.push('/PhasetwoArticle/' + v.id);
         }
-
-    }
+    };
 
 
     @action
     onRefresh = () => {
-        this.pageNum = this.pageNum + 1
-        this.store.refreshing = true
-        this.articleList(this.pageNum)
+        this.pageNum = this.pageNum + 1;
+        this.store.refreshing = true;
+        this.articleList(this.pageNum);
         setTimeout(() => {
             this.store.refreshing = false
         }, 1000);
