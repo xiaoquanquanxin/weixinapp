@@ -39,7 +39,7 @@ window.myFun401 = function (){
         window.__temhttp401_ = true;
 
         function refrshe(){
-            debugger;
+            // todo check debugger;
             window.__temhttp401_ = false;
             // window.location.href="#/Login";
             // let url="login/getWxAuthUrl?forwordUrl="+encodeURI(window.location.href);
