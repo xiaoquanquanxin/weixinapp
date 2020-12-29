@@ -71,7 +71,6 @@ class Actions {
                 }
             },
         ])
-
     }
     @action
     tuichu = async () => {
@@ -79,9 +78,9 @@ class Actions {
             {text: '取消', onPress: () => console.log('cancel')},
             {
                 text: '确定', onPress: async () => {
-                    let url = `/user/logout`;
+                    let url = `user/logout`;
                     let result = await window.GET({url});
-                    if (result.resultCode == 0) {
+                    if (result.resultCode === 0) {
                         Toast.info('退出成功', 1.5);
                         setTimeout(function (){
                             location.reload()
