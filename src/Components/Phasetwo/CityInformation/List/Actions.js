@@ -13,9 +13,10 @@ class Actions {
     incA = () => {
         this.store.xxxxx++;
     }*/
+    //  获取省份列表
     @action
     listProvide = async () => {
-        this.store.provincesList = []
+        this.store.provincesList = [];
         let result = await window.GET({url: "user/provincesList"});
         if (!result.isSucess) return;
         result.data.provincesList.forEach((v, i) => {
@@ -23,7 +24,7 @@ class Actions {
                 label: v.provinceName,
                 value: v.provinceId,
                 children: []
-            })
+            });
             if (result.data.defaultProvincesId == v.provinceId) {
                 this.store.provincesId = v.provinceId
                 this.store.provincesName = v.provinceName
@@ -32,17 +33,18 @@ class Actions {
                 this.store.provincesList[i].children.push({
                     label: vv.cityName,
                     value: vv.cityId
-                })
+                });
                 if (result.data.defaultCityId == vv.cityId) {
                     this.store.cityId = vv.cityId
                     this.store.cityName = vv.cityName
                 }
             })
-        })
-        this.articleList(1)
-    }
+        });
+        this.articleList(1);
+    };
 
 
+    //  获取纹章列表
     @action
     articleList = async (pageNum) => {
         let cformData = {
@@ -51,12 +53,12 @@ class Actions {
             projectId: "",
             pageNum: pageNum,
             pageSize: 10
-        }
+        };
         let result = await window.GET({url: "user/articleList", cformData});
         if (!result.isSucess) return;
         //this.store.listdata = result1.dataif (result.resultCode == 0) {
+        // debugger
         if (result.resultCode == 0) {
-
             if (result.data.length == 0) {
                 this.store.actbottom = 1
                 //Toast.info(`已经到底部`, 1);
@@ -67,11 +69,8 @@ class Actions {
                     this.store.CityListdata = result.data
                 }
                 this.store.actbottom = 2
-
             }
-
         }
-
         // console.log(111, this.store.CityListdata)
     }
     @action
