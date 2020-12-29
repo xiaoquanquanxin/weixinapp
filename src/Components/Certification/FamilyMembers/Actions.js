@@ -37,15 +37,15 @@ class Actions {
     topfunproject = async (roomId) => {
         this.store.getRoomInfo.forEach((item, index) => {
             if (roomId == item.value) {
-                this.store.roomName = item.label
-                this.store.userType = item.userType
+                this.store.roomName = item.label;
+                this.store.userType = item.userType;
             }
         });
-        console.log(1090909111, this.store.roomName, this.store.userType)
+        console.log(1090909111, this.store.roomName, this.store.userType);
         let cformData = {roomId: roomId};
         let result = await window.GET({url: 'auth/userFamily', cformData});
         if (!result.isSucess) return;
-        this.store.userFamily = []
+        this.store.userFamily = [];
         result.data.forEach((item, index) => {
             this.store.userFamily.push({
                 id: item.memberId,
@@ -59,7 +59,7 @@ class Actions {
                 editStatus: false
             })
         });
-    }
+    };
 
     /*获取用户下的房间信息userType	1-业主，2 - 家属，3 - 租客，0 - 所有 /auth/getRoomInfo*/
 
