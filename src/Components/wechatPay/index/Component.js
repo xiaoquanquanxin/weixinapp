@@ -33,14 +33,14 @@ export default class Template extends React.Component {
             </div>
             <div className="payment right-button prepayment">
                 <div onClick={() => {
-                    this.goPage('/wechat-pay/PaymentList');
+                    this.goPage('/wechat-pay/Prepayment');
                 }}>
                     预缴费用
                 </div>
             </div>
             <div className="payment right-button paymentRecords">
                 <div onClick={() => {
-                    this.goPage('/wechat-pay/PaymentList');
+                    this.goPage('/wechat-pay/PaymentRecords');
                 }}>
                     缴费记录
                 </div>
