@@ -1,5 +1,6 @@
 import {action} from 'mobx';
 import {Toast} from 'antd-mobile';
+
 // 定义对数据的操作
 class Actions {
     constructor(store){
@@ -117,4 +118,5 @@ class Actions {
         console.log(this.store.refreshing)
     }
 }
+
 export default Actions;
