@@ -17,13 +17,20 @@ class Store {
     ];
     @observable list1 = [
         {ico: addFamily, test: "用户认证    √", link: router.FamilyMembers, renzhen: 1, unverifiedShow: true,},
-        {ico: addFamily, test: "添加家属    √、", link: router.FamilyMembers, renzhen: 1},
-        {ico: myActivity, test: "我的活动", link: "/PhasetwoActivitySignUpList"},
-        {ico: myQuestionnaire, test: "我的问卷", link: "/PhasetwoMyQuestionnaireList/1"},
-        {ico: myRepair, test: '我的报修 有列表，具体需要验证', link: router.RepairList[0]},
+        {ico: addFamily, test: "添加家属    √、瑕疵", link: router.FamilyMembers, renzhen: 1},
+        {ico: myActivity, test: "我的活动   ?、有列表，具体需要验证", link: "/PhasetwoActivitySignUpList"},
+        {ico: myQuestionnaire, test: "我的问卷   ×无法验证，后台不对", link: "/PhasetwoMyQuestionnaireList/1"},
+        {ico: myRepair, test: '我的报修 ?、有列表，具体需要验证', link: router.RepairList[0]},
         {ico: changePhone, test: "同步房产  √",type:'synchronous'},
         {ico: changePhone, test: "更换号码  √", type: 'changePhone'},
-        {ico: changePhone, test: "退出登录", type: 'layout'},
+        {ico: changePhone, test: "退出登录  x等待接口", type: 'layout'},
+        //  todo    多余
+        {ico: changePhone, test: "↓↓说明↓↓"},
+        {ico: changePhone, test: "城市资讯  √"},
+        {ico: changePhone, test: "社区文化  √"},
+        {ico: changePhone, test: "活动报名  ?、有列表，具体需要验证"},
+        {ico: changePhone, test: "投诉建议  √"},
+        {ico: changePhone, test: "社区通知  ?、社区文化是家书？这块出个说明，找也找不见"},
     ];
     @observable type = "blue";
     @observable label = "退出";
