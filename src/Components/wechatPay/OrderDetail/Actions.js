@@ -9,32 +9,32 @@ class Actions {
 
     //  设置值通过url
     @action
-    setInfoByUrl(orderId, type){
-        this.store.orderId = orderId;
+    setInfoByUrl(transactionid, type){
+        this.store.transactionid = transactionid;
         this.store.type = type;
     }
 
     //  获取
     @action
     getOrderDetail = async () => {
-        const {orderId, type} = this.store;
+        const {transactionid, type} = this.store;
         if (+type === 1) {
             //  获取预缴订单详情
-            await this.getPaymentInfo(orderId);
+            await this.getPaymentInfo(transactionid);
         } else {
             //  获取欠缴订单详情
-            await this.getBillDetailByTrans(orderId);
+            await this.getBillDetailByTrans(transactionid);
         }
         return this.getRoomList();
     };
 
     //  获取预缴订单详情
     @action
-    getPaymentInfo = async (orderId) => {
+    getPaymentInfo = async (transactionid) => {
         const result = await new Promise(function (resolve, reject){
             let data = {
                 // 订单编号
-                orderId,
+                orderId: transactionid,
             };
             const url = `${ipUri["/bpi"]}/property/prepayment/getPaymentInfo`;
             window.JQ.ajax({
@@ -76,10 +76,10 @@ class Actions {
 
     //  获取欠缴订单详情
     @action
-    getBillDetailByTrans = async (orderId) => {
+    getBillDetailByTrans = async (transactionid) => {
         const result = await new Promise(function (resolve, reject){
             let data = {
-                transactionid: orderId,
+                transactionid,
                 payMenthod: '',
             };
             const url = `${ipUri["/bpi"]}/getBillDetailByTrans.do`;
@@ -144,10 +144,10 @@ class Actions {
         if (tranStatus !== 0) {
             return
         }
-        const {orderID} = this.store;
+        const {transactionid} = this.store;
         const url = `${ipUri["/bpi"]}/getTime.do`;
         let data = {
-            orderID,
+            orderID: transactionid,
         };
         window.JQ.ajax({
             crossDomain: true,
@@ -173,8 +173,6 @@ class Actions {
         store.minutes = 15;
         //  当前时间-秒钟
         store.seconds = 0;
-        //  订单号码
-        store.orderNumber = "";
         //  最大时间
         store.maxtime = 15 * 60 - 1;
         clearInterval(store.timer);
@@ -224,7 +222,6 @@ class Actions {
         let url = '';
         const store = this.store;
         let data = {};
-        debugger
         //  预交
         if (+store.type === 1) {
             url = 'property/prepayment/cancelAdvanceOrder';
@@ -243,8 +240,13 @@ class Actions {
             type: "post",
             url: `${ipUri["/bpi"]}/${url}`,
             contentType: "application/x-www-form-urlencoded",
-            data: data,
+            data,
             success: (res) => {
+                const {data} = res;
+                //  todo    等于多少才成功？
+                if (data.code) {
+                    return Toast.info(data.describe, 1.5);
+                }
                 console.log(res);
                 //  提示成功，重新请求
                 Toast.info('取消订单成功', 1.5);
@@ -282,6 +284,30 @@ class Actions {
         });
 
         return result;
+    }
+
+
+    // 去支付--获取订单状态
+    @action
+    getTranStatusFn = async () => {
+        const store = this.store;
+        let data = {transactionId: store.transactionid};
+        window.JQ.ajax({
+            crossDomain: true,
+            type: "post",
+            url: `${ipUri["/bpi"]}/getTranStatus.do`,
+            contentType: "application/x-www-form-urlencoded",
+            data: {'json': JSON.stringify(data)},
+            success: (res) => {
+                const {data} = res;
+                if (data.status === 0) {
+                    //  微信支付
+                    //  todo    没数据
+                    return this.getPay();
+                }
+                Toast.info(data.describe, 1.5);
+            }
+        })
     }
 }
 
