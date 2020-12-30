@@ -6,8 +6,6 @@ class Store {
     @observable minutes = 15;
     //  当前时间-秒钟
     @observable seconds = 0;
-    //  订单号码
-    @observable orderNumber = "";
     //  最大时间
     @observable maxtime = 15 * 60 - 1;
     //  定时器

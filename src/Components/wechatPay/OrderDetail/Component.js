@@ -5,6 +5,46 @@ import {observer, inject} from 'mobx-react';
 /*自定义类*/
 import './Component.less'
 
+
+//  订单信息
+const OrderInformationRender = ({transactionid, tranDate}) => {
+    return (
+        <div className="payment">
+            <div className="room line">订单信息</div>
+            <div className="payment-box">
+                <div className="payment-list pay-message line">
+                    <div>
+                        <p className="paymen-name">订单号码</p>
+                        <p className="payment-money">{transactionid}</p>
+                    </div>
+                    <div>
+                        <p className="paymen-name">下单时间</p>
+                        <p className="payment-money">{tranDate}</p>
+                    </div>
+                    <div>
+                        <p className="paymen-name">支付方式</p>
+                        <p className="payment-money">在线支付</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+};
+
+//  订单状态信息
+const OrderStatusInfoRender = ({type, tranDate, spaceTime}) => {
+    return (
+        <div className="banner">
+            <div>
+                <p className="type">{type}</p>
+                <p className="name">{tranDate}</p>
+            </div>
+            <div className="spaceTime">{spaceTime}</div>
+        </div>
+    )
+};
+
+
 @inject('store', 'actions')
 @observer
 export default class Template extends React.Component {
@@ -32,6 +72,13 @@ export default class Template extends React.Component {
         actionsOrderDetail.cancellationOfOrderFn()
     }
 
+    //  去支付
+    getTranStatusFn(){
+        const {actions} = this.props;
+        const {actionsOrderDetail} = actions;
+        actionsOrderDetail.getTranStatusFn()
+    }
+
     render(){
         const {store} = this.props;
         const {storeOrderDetail} = store;
@@ -47,7 +94,7 @@ export default class Template extends React.Component {
             paymentList,
             totalMoney,
             roomInfo,
-            orderId
+            transactionid,
         } = storeOrderDetail;
         // console.log(`type:${type}, tranStatus:${tranStatus},minutes:${minutes}, seconds:${seconds}, memo:${memo},tranDate:${tranDate}, feeName:${feeName}, payMoney:${payMoney}, paymentList:${paymentList}, totalMoney`);
         return <div className="Components-OrderDetail-container">
@@ -97,7 +144,7 @@ export default class Template extends React.Component {
                                     </div>
                                     <OrderInformationRender
                                         data-msg='订单信息'
-                                        orderId={orderId}
+                                        transactionid={transactionid}
                                         tranDate={tranDate}
                                     />
                                 </div>
@@ -167,7 +214,7 @@ export default class Template extends React.Component {
                                     </div>
                                     <OrderInformationRender
                                         data-msg='订单信息'
-                                        orderId={orderId}
+                                        transactionid={transactionid}
                                         tranDate={tranDate}
                                     />
                                 </div>
@@ -186,7 +233,7 @@ export default class Template extends React.Component {
                                 }}>取消订单
                                 </div>
                                 <div className="gopay" onClick={() => {
-
+                                    this.getTranStatusFn();
                                 }}>去支付
                                 </div>
                             </div>
@@ -197,43 +244,3 @@ export default class Template extends React.Component {
         </div>
     }
 }
-
-
-//  订单信息
-const OrderInformationRender = ({orderId, tranDate}) => {
-    return (
-        <div className="payment">
-            <div className="room line">订单信息</div>
-            <div className="payment-box">
-                <div className="payment-list pay-message line">
-                    <div>
-                        <p className="paymen-name">订单号码</p>
-                        <p className="payment-money">{orderId}</p>
-                    </div>
-                    <div>
-                        <p className="paymen-name">下单时间</p>
-                        <p className="payment-money">{tranDate}</p>
-                    </div>
-                    <div>
-                        <p className="paymen-name">支付方式</p>
-                        <p className="payment-money">在线支付</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-};
-
-//  订单状态信息
-const OrderStatusInfoRender = ({type, tranDate, spaceTime}) => {
-    return (
-        <div className="banner">
-            <div>
-                <p className="type">{type}</p>
-                <p className="name">{tranDate}</p>
-            </div>
-            <div className="spaceTime">{spaceTime}</div>
-        </div>
-    )
-};
-
