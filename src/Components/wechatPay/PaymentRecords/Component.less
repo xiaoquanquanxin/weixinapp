@@ -1,0 +1,79 @@
+
+.Components-PaymentRecords-container {
+
+	.list {
+		font-size: 0.16rem;
+		background: #ffffff;
+		position: relative;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+
+		.line {
+			display: flex;
+			position: relative;
+			align-items: center;
+			padding-bottom: 0.12rem;
+
+			div {
+				line-height: 0.35rem;
+
+				h3 {
+					font-size: 0.15rem;
+					font-weight: 400;
+				}
+
+			}
+
+			p {
+				font-size: 0.12rem;
+				color: #808080;
+				line-height: 0.17rem;
+			}
+		}
+
+		.line:after {
+			content: '';
+			height: 1px;
+			position: absolute;
+			background: #ECECEC;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			transform: scaleY(0.5);
+		}
+	}
+
+	.pay-state {
+		position: absolute;
+		right: 0.1rem;
+		top: 0.13rem;
+	}
+
+	.type {
+		width: 0.35rem;
+		height: 0.35rem;
+		background: #619AE0;
+		border-radius: 0.35rem;
+		color: #ffffff;
+		text-align: center;
+		margin: 0 0.1rem;
+	}
+
+	.payment {
+		background: #56BC8E;
+	}
+
+	.no-message {
+		padding-top: 2.2rem;
+		text-align: center;
+		color: #808080;
+		font-size: 0.13rem;
+
+		img {
+			width: 0.66rem;
+
+		}
+	}
+
+}
