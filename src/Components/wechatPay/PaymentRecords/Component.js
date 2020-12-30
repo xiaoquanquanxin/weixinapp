@@ -57,7 +57,11 @@ export default class Template extends React.Component {
                             // payFeesType: "1"
                             // payMoney: "549.00"
                             return (
-                                <div className="line" key={index}>
+                                <div className="line" key={index}
+                                     onClick={() => {
+                                         this.goOrderDetail(item.orderNo, item.payFeesType)
+                                     }}
+                                >
                                     {Number(item.payFeesType) ?
                                         (<div className="type prepay">预</div>)
                                         : (<div className="type payment">缴</div>)
