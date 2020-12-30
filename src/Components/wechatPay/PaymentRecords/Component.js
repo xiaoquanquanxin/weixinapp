@@ -23,6 +23,7 @@ export default class Template extends React.Component {
 
     //  跳转
     goOrderDetail(number, type){
+        //  todo    这里，拼接了参数，这可能是有问题的
         this.props.history.push(`/wechat-pay/OrderDetail?orderId=${number}&type=${type}`)
     };
 
