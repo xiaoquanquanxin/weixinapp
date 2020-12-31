@@ -80,7 +80,8 @@ class Actions {
         const result = await new Promise(function (resolve, reject){
             let data = {
                 transactionid,
-                payMenthod: '',
+                //  这个是600
+                payMethod: '600',
             };
             const url = `${ipUri["/bpi"]}/getBillDetailByTrans.do`;
             window.JQ.ajax({
@@ -231,8 +232,8 @@ class Actions {
             url = 'cancelPaidOrder.do';
             data.transactionId = store.transactionid;
             data.updateTime = store.tranDate;
-            //  todo    payMethod是什么？
-            data.payMethod = '900';
+            //  这个是600
+            data.payMethod = '600';
             data = {'json': JSON.stringify(data)};
         }
         window.JQ.ajax({
