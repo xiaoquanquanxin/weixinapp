@@ -28,7 +28,7 @@ export default class Template extends React.Component {
     };
 
     render(){
-        const {store, action} = this.props;
+        const {store, actions} = this.props;
         const {storePaymentRecords} = store;
         const {refreshing, paymentList, actbottom, height} = storePaymentRecords;
         return <div className="Components-PaymentRecords-container">
