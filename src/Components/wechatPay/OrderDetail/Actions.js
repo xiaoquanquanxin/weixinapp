@@ -243,9 +243,9 @@ class Actions {
             contentType: "application/x-www-form-urlencoded",
             data,
             success: (res) => {
-                const {data} = res;
-                //  todo    等于多少才成功？
-                if (data.code) {
+                const {data, msg, code} = res;
+                //  todo    等于多少才成功？欠缴是2000，预交是多少
+                if (data.code || code === 2000) {
                     return Toast.info(data.describe, 1.5);
                 }
                 console.log(res);
