@@ -197,7 +197,7 @@ class Actions {
                 endDate: '2020-02-05'
             };
             window.JQ.ajax({
-                crossDomain: true,//兼容ie8,9
+                crossDomain: true,
                 type: "post",
                 url: `${ipUri["/bpi"]}/getPaidBill.do`,
                 contentType: "application/x-www-form-urlencoded",

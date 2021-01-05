@@ -38,7 +38,7 @@ class Actions {
             };
             const url = `${ipUri["/bpi"]}/property/prepayment/getPaymentInfo`;
             window.JQ.ajax({
-                crossDomain: true,//兼容ie8,9
+                crossDomain: true,
                 type: "post",
                 contentType: "application/x-www-form-urlencoded",
                 url,

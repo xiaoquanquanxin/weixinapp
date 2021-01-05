@@ -22,7 +22,7 @@ class Actions {
             window.JQ.ajax({
                 url,
                 type: "post",
-                crossDomain: true,//兼容ie8,9
+                crossDomain: true,
                 contentType: "application/x-www-form-urlencoded",
                 data,
                 success: (res) => {
