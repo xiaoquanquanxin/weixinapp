@@ -1,260 +1,263 @@
 .Components-Prepayment-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
 
-  .header {
-    height: 0.45rem;
-    line-height: 0.45rem;
-    font-size: 0.14rem;
-    padding-left: 0.11rem;
-    box-sizing: border-box;
-    background-color: #ffffff;
-
-  }
-
-  .content {
-    background: #ffffff;
-    flex: 1;
-  }
-
-  .bg {
-    padding-right: 0.25rem;
-    background-image: url("./img/rightB.png");
-    background-size: 0.07rem 0.11rem;
-    background-repeat: no-repeat;
-    background-position: center right 0.1rem;
-  }
-
-  .pay {
-    padding-top: 0.22rem;
-  }
-
-  .payment {
-    height: 0.45rem;
-    line-height: 0.45rem;
-    font-size: 0.14rem;
-    padding-left: 0.11rem;
-    margin-top: 0.1rem;
-    box-sizing: border-box;
+  .container {
     display: flex;
-    justify-content: space-between;
-    background: #ffffff;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 
-    .paymen-name {
-      font-size: 0.12rem;
-    }
-  }
-
-  .payment-box {
-    background: #ffffff;
-
-    .payment-list {
-      padding: 0.13rem;
+    .header {
+      height: 0.45rem;
+      line-height: 0.45rem;
+      font-size: 0.14rem;
+      padding-left: 0.11rem;
       box-sizing: border-box;
+      background-color: #ffffff;
+
+    }
+
+    .content {
+      background: #ffffff;
+      flex: 1;
+    }
+
+    .bg {
+      padding-right: 0.25rem;
+      background-image: url("./img/rightB.png");
+      background-size: 0.07rem 0.11rem;
+      background-repeat: no-repeat;
+      background-position: center right 0.1rem;
+    }
+
+    .pay {
+      padding-top: 0.22rem;
+    }
+
+    .payment {
+      height: 0.45rem;
+      line-height: 0.45rem;
+      font-size: 0.14rem;
+      padding-left: 0.11rem;
+      margin-top: 0.1rem;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
       background: #ffffff;
 
-      h3 {
-        font-size: 0.14rem;
+      .paymen-name {
+        font-size: 0.12rem;
       }
+    }
 
-      div {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.13rem;
-        line-height: 0.3rem;
+    .payment-box {
+      background: #ffffff;
 
-        .paymen-name {
-          color: #505050;
+      .payment-list {
+        padding: 0.13rem;
+        box-sizing: border-box;
+        background: #ffffff;
 
+        h3 {
+          font-size: 0.14rem;
         }
 
-        .payment-money {
-          color: #333333;
+        div {
+          display: flex;
+          justify-content: space-between;
+          font-size: 0.13rem;
+          line-height: 0.3rem;
+
+          .paymen-name {
+            color: #505050;
+
+          }
+
+          .payment-money {
+            color: #333333;
+          }
         }
       }
     }
-  }
 
-  .calcTimeUint {
-    text-align: center;
-    font-size: 0.14rem;
-    color: #808080;
-    padding-top: 0.9rem;
-
-    img {
-      width: 8%;
-      margin-bottom: 0.08rem;
-    }
-  }
-
-  .pay-list {
-    display: flex;
-    margin-bottom: 0.14rem;
-    flex-wrap: wrap;
-
-    > div div {
-      width: 1.09rem;
-      height: 0.75rem;
-      border-radius: 0.04rem;
-      border: 0.01rem solid #DBDBDB;
+    .calcTimeUint {
       text-align: center;
-      box-sizing: border-box;
-      flex: none;
-      flex-direction: column;
-      display: flex;
-      justify-content: center;
-      margin: 0 0.04rem 0.1rem 0.1rem;
-
-      .month {
-        font-size: 0.13rem;
-        position: relative;
-
-        span {
-          position: absolute;
-          right: -0.08rem;
-          top: -0.22rem;
-          width: 0.37rem;
-          height: 0.15rem;
-          background: #FFF1ED;
-          border-radius: 0 0.02rem 0 0.02rem;
-          color: #E6582F;
-          font-size: 0.1rem;
-        }
-      }
-
-      .price {
-        font-size: 0.16rem;
-
-        span {
-          font-size: 0.12rem;
-        }
-      }
-    }
-
-    .checked {
-      background: #F5FBFF;
-      border: 0.01rem solid #04639D;
-
-      .price {
-        color: #04639D;
-      }
-    }
-
-  }
-
-  .rates {
-    .one-level-contain {
-      overflow-y: scroll;
-    }
-
-    li {
-      display: flex;
-      opacity: 1;
-      justify-content: space-between;
-    }
-  }
-
-  .custom {
-    .sure {
-      color: #333333;
-    }
-
-    section {
-      padding: 0 0.16rem;
-      box-sizing: border-box;
-    }
-
-    li {
-      display: flex;
-      justify-content: space-between;
-      opacity: 1;
-      height: 0.6rem;
-      line-height: 0.6rem;
-      border-bottom: 0.01rem solid #ECECEC;
-      padding: 0;
       font-size: 0.14rem;
+      color: #808080;
+      padding-top: 0.9rem;
 
-      .money {
-        color: #ce6a6a;
-        font-size: 0.15rem;
+      img {
+        width: 8%;
+        margin-bottom: 0.08rem;
       }
+    }
 
-      .choose-price {
+    .pay-list {
+      display: flex;
+      margin-bottom: 0.14rem;
+      flex-wrap: wrap;
+
+      > div div {
+        width: 1.09rem;
+        height: 0.75rem;
+        border-radius: 0.04rem;
+        border: 0.01rem solid #DBDBDB;
+        text-align: center;
+        box-sizing: border-box;
+        flex: none;
+        flex-direction: column;
         display: flex;
-        align-items: center;
+        justify-content: center;
+        margin: 0 0.04rem 0.1rem 0.1rem;
 
-        img {
-          width: 0.12rem;
-        }
+        .month {
+          font-size: 0.13rem;
+          position: relative;
 
-        span {
-          background-repeat: no-repeat;
-          background-position: left center;
-          background-size: 0.12rem;
-          width: 0.12rem;
-          height: 0.12rem;
-        }
-
-        .monthRed {
-          background-image: url("./img/redu.png");
-        }
-
-        .monthAdd {
-          background-image: url("./img/add.png");
+          span {
+            position: absolute;
+            right: -0.08rem;
+            top: -0.22rem;
+            width: 0.37rem;
+            height: 0.15rem;
+            background: #FFF1ED;
+            border-radius: 0 0.02rem 0 0.02rem;
+            color: #E6582F;
+            font-size: 0.1rem;
+          }
         }
 
         .price {
-          width: 0.46rem;
-          height: 0.3rem;
-          font-size: 0.15rem;
-          line-height: 0.3rem;
-          background: #EDEDED;
-          border-radius: 0.02rem;
-          display: inline-block;
-          margin: 0 0.15rem;
+          font-size: 0.16rem;
 
-          input {
-            width: 100%;
-            height: 100%;
-            border: none;
-            text-align: center;
-            background: transparent;
+          span {
+            font-size: 0.12rem;
           }
         }
       }
 
+      .checked {
+        background: #F5FBFF;
+        border: 0.01rem solid #04639D;
+
+        .price {
+          color: #04639D;
+        }
+      }
+
     }
-  }
 
-  .footer {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0.1rem;
-    margin: auto;
-    font-size: 0.15rem;
-    width: 92%;
-    height: 0.44rem;
-    background: #04639D;
-    border-radius: 0.04rem;
-    text-align: center;
-    line-height: 0.44rem;
-    color: #ffffff;
-  }
+    .rates {
+      .one-level-contain {
+        overflow-y: scroll;
+      }
 
-  .is-freeze {
-    color: #ffffff;
-    background: #a4a1a1;
-  }
+      li {
+        display: flex;
+        opacity: 1;
+        justify-content: space-between;
+      }
+    }
 
-  .is-custom {
-    z-index: 999;
-  }
+    .custom {
+      .sure {
+        color: #333333;
+      }
 
-  .isFrozen {
-    opacity: 0.4;
+      section {
+        padding: 0 0.16rem;
+        box-sizing: border-box;
+      }
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        opacity: 1;
+        height: 0.6rem;
+        line-height: 0.6rem;
+        border-bottom: 0.01rem solid #ECECEC;
+        padding: 0;
+        font-size: 0.14rem;
+
+        .money {
+          color: #ce6a6a;
+          font-size: 0.15rem;
+        }
+
+        .choose-price {
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 0.12rem;
+          }
+
+          span {
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: 0.12rem;
+            width: 0.12rem;
+            height: 0.12rem;
+          }
+
+          .monthRed {
+            background-image: url("./img/redu.png");
+          }
+
+          .monthAdd {
+            background-image: url("./img/add.png");
+          }
+
+          .price {
+            width: 0.46rem;
+            height: 0.3rem;
+            font-size: 0.15rem;
+            line-height: 0.3rem;
+            background: #EDEDED;
+            border-radius: 0.02rem;
+            display: inline-block;
+            margin: 0 0.15rem;
+
+            input {
+              width: 100%;
+              height: 100%;
+              border: none;
+              text-align: center;
+              background: transparent;
+            }
+          }
+        }
+
+      }
+    }
+
+    .footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0.1rem;
+      margin: auto;
+      font-size: 0.15rem;
+      width: 92%;
+      height: 0.44rem;
+      background: #04639D;
+      border-radius: 0.04rem;
+      text-align: center;
+      line-height: 0.44rem;
+      color: #ffffff;
+    }
+
+    .is-freeze {
+      color: #ffffff;
+      background: #a4a1a1;
+    }
+
+    .is-custom {
+      z-index: 999;
+    }
+
+    .isFrozen {
+      opacity: 0.4;
+    }
   }
 }
