@@ -28,10 +28,10 @@ export default class Template extends React.Component {
         const {storePaymentList} = store;
         const {actionsPaymentList} = actions;
         const billIDsList = actionsPaymentList.goConfirmPayment();
-        const {roomId, roomName} = storePaymentList.currentRoom;
+        const {roomId} = storePaymentList.currentRoom;
         console.log(billIDsList);
-        console.log(roomId, roomName);
-        this.props.history.push(`/wechat-pay/ConfirmPayment?billIDsList=${billIDsList}&roomId=${roomId}&roomName=${roomName}`);
+        console.log(roomId);
+        this.props.history.push(`/wechat-pay/ConfirmPayment?billIDsList=${billIDsList}&roomId=${roomId}`);
     };
 
 
