@@ -136,7 +136,7 @@ export default class Template extends React.Component {
                                 }
                                 <div className="orderList">
                                     <div className="payment">
-                                        <p className="room world line">{roomInfo.roomName}</p>
+                                        <p className="room world line">房间: {roomInfo.roomName}</p>
                                         <div className="prepay">
                                             <p className="paymen-name">{feeName}</p>
                                             <p className="payMoney">实付：<span>¥{payMoney}</span></p>
@@ -184,7 +184,7 @@ export default class Template extends React.Component {
                                 }
                                 <div className="orderList">
                                     <div className="payment">
-                                        <p className="room world line">{roomInfo.roomName}</p>
+                                        <p className="room world line">房间: {roomInfo.roomName}</p>
                                         {/*欠缴订单*/}
                                         <div>
                                             {
