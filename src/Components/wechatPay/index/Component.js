@@ -13,7 +13,7 @@ export default class Template extends React.Component {
     }
 
     componentDidMount(){
-        window.setWindowTitle("微信支付")
+        window.setWindowTitle("物业缴费");
     }
 
     //  跳转
