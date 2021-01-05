@@ -159,28 +159,6 @@ class Actions {
         store.allChecked = !store.isFrozen;
     }
 
-    //  获取支付列表数据
-    @action
-    getPropertyAdvanceHistory = async () => {
-        const result = await new Promise(function (resolve, reject){
-            window.JQ.ajax({
-                url,
-                type: "post",
-                crossDomain: true,//兼容ie8,9
-                contentType: "application/x-www-form-urlencoded",
-                data,
-                success: (res) => {
-                    resolve(res);
-                }
-            })
-        });
-        const {code, data} = result;
-        //  请求错误
-        if (code !== 2000) {
-            return;
-        }
-    };
-
     //  未缴账单导航点击事件,tab切换
     @action
     setAct = async () => {
