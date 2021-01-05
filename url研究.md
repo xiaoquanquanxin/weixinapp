@@ -35,3 +35,9 @@ http://192.168.100.128:8088/#/AddRepairYu/1
 城市资讯，没权限
 http://asm-test.seedland.cc/index.html?url=PhasetwoCityInformationList
 
+
+************************************
+wechat-pay目录：搜索
+todo    wechat-pay
+
+start和build 的应该不一样，start还用原来的
