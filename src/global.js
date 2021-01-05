@@ -365,7 +365,7 @@ window.funcReadImgInfo = function (){
     var protocol = window.location.protocol;//获取协议
     var host = window.location.host;//获取主地址
     var port = window.location.port;//获取端口
-    console.log("imgObj", imgObj)
+    //  console.log("imgObj", imgObj)
     for (var i = 0; i < imgObj.length; i++) {
 
         var src = imgObj.eq(i).attr('src');
