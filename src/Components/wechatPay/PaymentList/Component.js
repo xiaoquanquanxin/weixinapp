@@ -24,11 +24,14 @@ export default class Template extends React.Component {
 
     //  跳转到支付页面
     goConfirmPayment(){
-        const {actions} = this.props;
+        const {actions, store} = this.props;
+        const {storePaymentList} = store;
         const {actionsPaymentList} = actions;
         const billListStr = actionsPaymentList.goConfirmPayment();
+        const {roomId, roomName} = storePaymentList.currentRoom;
         console.log(billListStr);
-        this.props.history.push(`/wechat-pay/ConfirmPayment?billListStr=${billListStr}`);
+        console.log(roomId, roomName);
+        this.props.history.push(`/wechat-pay/ConfirmPayment?billListStr=${billListStr}&roomId=${roomId}&roomName=${roomName}`);
     };
 
 
