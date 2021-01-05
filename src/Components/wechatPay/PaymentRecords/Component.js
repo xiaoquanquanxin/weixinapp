@@ -10,7 +10,7 @@ import {PullToRefresh} from "antd-mobile";
 @observer
 export default class Template extends React.Component {
     componentDidMount(){
-        window.setWindowTitle("支付列表");
+        window.setWindowTitle("缴费记录");
         this.getPropertyAdvanceHistory();
     }
 
