@@ -1,0 +1,134 @@
+.Components-ConfirmPayment-container {
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		background: #F8F8F8;
+		font-size: 0.14rem;
+	}
+
+	.content {
+		flex: 1;
+		overflow-y: scroll;
+		padding-bottom: 0.6rem;
+	}
+
+	.room {
+		width: 100%;
+		height: 0.45rem;
+		line-height: 0.45rem;
+		text-align: left;
+		padding: 0 0.1rem;
+		box-sizing: border-box;
+		background-color: #ffffff;
+		font-size: 0.14rem;
+		color: #000000;
+		flex: none;
+	}
+
+	.payment-box {
+		margin-top: 0.1rem;
+		background: #ffffff;
+
+		.payment-list {
+			padding: 0.13rem;
+			box-sizing: border-box;
+			background: #ffffff;
+
+			h3 {
+				font-size: 0.14rem;
+			}
+
+			div {
+				display: flex;
+				justify-content: space-between;
+				font-size: 0.13rem;
+				line-height: 0.3rem;
+
+				.paymen-name {
+					color: #505050;
+
+				}
+
+				.payment-money {
+					color: #333333;
+				}
+			}
+		}
+	}
+
+	.box-shadow {
+		box-shadow: 0 -2px 10px 0 #cbc7c7;
+		padding: 0 0.1rem;
+		box-sizing: border-box;
+		height: 0.5rem;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		background: #ffffff;
+
+		.checkbox {
+			display: inline-block;
+			width: 0.14rem;
+			height: 0.14rem;
+			border: 0.01rem solid #979797;
+			border-radius: 100%;
+			margin-right: 0.1rem;
+		}
+
+		.isChecked {
+			background-image: url("./img/checked.png");
+			background-size: cover;
+			width: 0.16rem;
+			height: 0.16rem;
+			border: none;
+		}
+
+		.allCheck {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			font-size: 0.13rem;
+			font-weight: 400;
+			color: #333333;
+
+			b {
+				font-size: 0.15rem;
+				color: #DF4949;
+				line-height: 0.21rem;
+				margin-left: 0.2rem;
+			}
+
+		}
+
+		.payment {
+			width: 1rem;
+			height: 0.4rem;
+			background: #04639D;
+			border-radius: 0.05rem;
+			font-size: 0.15rem;
+			color: #FFFFFF;
+			line-height: 0.4rem;
+			text-align: center;
+		}
+
+		.all-box {
+			flex: 1;
+			height: 100%;
+			display: flex;
+			align-items: center;
+
+			label {
+				display: flex;
+				align-items: center;
+				height: 100%;
+			}
+
+		}
+	}
+}
