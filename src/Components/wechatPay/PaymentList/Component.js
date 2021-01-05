@@ -149,7 +149,7 @@ export default class Template extends React.Component {
                                                                     <b>¥ {totalMoneyForPay.toFixed(2)}</b>
                                                                 </div>
                                                                 {(() => {
-                                                                    if (isFrozen) {
+                                                                    if (isFrozen || +totalMoneyForPay === 0) {
                                                                         return (
                                                                             <div className="payment isFrozen">立即缴费</div>
                                                                         )

@@ -87,16 +87,16 @@ class Actions {
             //  所有未缴账单列表
             store.paidOutList = data.content;
             //  todo    for-test
-            // store.paidOutList[1].billDetails.push(Object.assign({}, store.paidOutList[0].billDetails[0], {
-            //     isFrozen: 1,
-            //     billIds: Math.random(),
-            //     paidName: "车位管理费"
-            // }));
-            // store.paidOutList[1].billDetails.push(Object.assign({}, store.paidOutList[0].billDetails[0], {
-            //     isFrozen: 1,
-            //     billIds: Math.random(),
-            //     paidName: 'fjijwafo'
-            // }));
+            store.paidOutList[1].billDetails.push(Object.assign({}, store.paidOutList[0].billDetails[0], {
+                isFrozen: 1,
+                billIds: Math.random(),
+                paidName: "车位管理费"
+            }));
+            store.paidOutList[1].billDetails.push(Object.assign({}, store.paidOutList[0].billDetails[0], {
+                isFrozen: 1,
+                billIds: Math.random(),
+                paidName: 'fjijwafo'
+            }));
             // 根据费项
             store.paidOutListFilter = JSON.parse(JSON.stringify(store.paidOutList));
             // console.log(JSON.parse(JSON.stringify(store.paidOutListFilter)));
