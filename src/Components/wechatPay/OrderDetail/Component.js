@@ -49,7 +49,7 @@ const OrderStatusInfoRender = ({type, tranDate, spaceTime}) => {
 @observer
 export default class Template extends React.Component {
     componentDidMount(){
-        window.setWindowTitle("支付详情");
+        window.setWindowTitle("订单详情");
         const {actions} = this.props;
         const {actionsOrderDetail} = actions;
         const {orderId, type} = window.getQueryString();
