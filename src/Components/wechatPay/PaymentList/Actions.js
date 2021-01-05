@@ -349,7 +349,7 @@ class Actions {
                 }
             }
         }
-        return billIDsList.join(',');
+        return billIDsList.join(';');
     };
 }
 

@@ -29,8 +29,8 @@ export default class Template extends React.Component {
         const {actionsPaymentList} = actions;
         const billIDsList = actionsPaymentList.goConfirmPayment();
         const {roomId} = storePaymentList.currentRoom;
-        console.log(billIDsList);
-        console.log(roomId);
+        // console.log(billIDsList);
+        // console.log(roomId);
         this.props.history.push(`/wechat-pay/ConfirmPayment?billIDsList=${billIDsList}&roomId=${roomId}`);
     };
 
