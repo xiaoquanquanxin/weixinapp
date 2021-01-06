@@ -10,14 +10,14 @@ class Actions {
     //  获取房间列表
     @action
     getRoomList = async () => {
+        const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
         const result = await new Promise(function (resolve, reject){
             window.JQ.ajax({
                 type: "POST",
                 url: `${ipUri["/bpi"]}/getPmdRooms.do`,
                 contentType: "application/x-www-form-urlencoded",
                 data: {
-                    //  todo    用户的id
-                    wxUserID: "5"
+                    wxUserID: userInfo.id,
                 },
                 success: (result) => {
                     resolve(result);
@@ -192,9 +192,10 @@ class Actions {
             let data = {
                 roomIDs: currentRoom.roomId,
                 userID: currentRoom.cmdsId,
-                //  todo    开始时间、结束时间
-                startDate: '2012-02-05',
-                endDate: '2020-02-05'
+                //  startDate是今天-365天
+                startDate:new Date(new Date().getTime() - 365 * 24 * 60 * 60 * 1000).format('yyyy-MM-dd'),
+                //  endDate是今天
+                endDate: new Date().format('yyyy-MM-dd'),
             };
             window.JQ.ajax({
                 crossDomain: true,
