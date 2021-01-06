@@ -29,3 +29,4 @@ module.exports = merge(common, {
         }]
     }
 })
+console.log('执行dev编译');
