@@ -47,7 +47,7 @@ const API_TYPE = process.env.API_TYPE || '1'
 const isPro = nodeEnv === 'production'
 console.log('当前运行环境：', isPro ? 'production' : 'development')
 let buildDirName = path.resolve(__dirname, './build/')
-//  todo
+//  todo    wechat-pay
 // let buildDirName = path.resolve(__dirname, './wechat-pay/')
 if (isPro) {
     console.log("清空build目录。。")
@@ -69,6 +69,7 @@ let html = `<!DOCTYPE html>
   <meta http-equiv="Expires" content="0">
   <link type="favicon" rel="shortcut icon" href="favicon.ico" />
   <script language="javascript" type="text/javascript">
+  debugger;
     try {
            window.getQueryString = function (name) {
               var aftername = window.location.href.split("?")[1];
@@ -104,14 +105,14 @@ let html = `<!DOCTYPE html>
             }
         } 
         // console.log("url:",url)
-        // console.log("${randBuildDirname}/"+url)
+        console.log("${randBuildDirname}/"+url)
         console.log("url1:",url)
         url=url.replace(/__jh__/g, "#")
         url=url.replace(/##/g, "#")
         //url=url.replace(/#\/\//g, "#/")
 		console.log("url2:",url)
         window.location.replace("${randBuildDirname}/"+url); 
-        // todo
+        //  todo    wechat-pay
         // window.location.replace("/wechat-pay/${randBuildDirname}/"+url); 
     } catch (err) {
         alert("錯誤信息"+JSON.stringify(err)+e)
@@ -144,7 +145,7 @@ module.exports = {
     output: {
         path: buildPath,
         publicPath: './', //填写服务器绝对路径
-        //  todo
+        //  todo    wechat-pay
         // publicPath: `/wechat-pay/${randBuildDirname}/`, //填写服务器绝对路径
         filename: 'js/[name].js',
         chunkFilename: 'js/[name].js'
