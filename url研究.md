@@ -41,3 +41,17 @@ wechat-pay目录：搜索
 todo    wechat-pay
 
 start和build 的应该不一样，start还用原来的
+
+
+
+开发者 监听地址：：
+http://192.168.100.128:8088/
+http://192.168.100.128:8088/
+http://192.168.100.128:8088/
+
+
+我希望跳转到
+window.location.origin + window.location.pathname
+window.location.origin + window.location.pathname + '#/'+location.search
+
+
