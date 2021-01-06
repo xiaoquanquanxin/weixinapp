@@ -46,9 +46,8 @@ const nodeEnv = process.env.NODE_ENV || 'development'
 const API_TYPE = process.env.API_TYPE || '1'
 const isPro = nodeEnv === 'production'
 console.log('当前运行环境：', isPro ? 'production' : 'development')
-let buildDirName = path.resolve(__dirname, './build/')
 //  todo    wechat-pay
-// let buildDirName = path.resolve(__dirname, './wechat-pay/')
+let buildDirName = path.resolve(__dirname, './wechat-pay/')
 if (isPro) {
     console.log("清空build目录。。")
     if (!fs.existsSync(buildDirName)) {
@@ -56,7 +55,7 @@ if (isPro) {
     }
     deleteall(buildDirName)
 }
-let randBuildDirname = new Date().format('yyyyMMddhhmmss')
+let randBuildDirname = new Date().format('yyyyMMdd')
 let html = `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -69,7 +68,6 @@ let html = `<!DOCTYPE html>
   <meta http-equiv="Expires" content="0">
   <link type="favicon" rel="shortcut icon" href="favicon.ico" />
   <script language="javascript" type="text/javascript">
-  debugger;
     try {
            window.getQueryString = function (name) {
               var aftername = window.location.href.split("?")[1];
@@ -111,9 +109,10 @@ let html = `<!DOCTYPE html>
         url=url.replace(/##/g, "#")
         //url=url.replace(/#\/\//g, "#/")
 		console.log("url2:",url)
-        window.location.replace("${randBuildDirname}/"+url); 
+        // window.location.replace("${randBuildDirname}/"+url); 
+          debugger;
         //  todo    wechat-pay
-        // window.location.replace("/wechat-pay/${randBuildDirname}/"+url); 
+        window.location.replace("/wechat-pay/${randBuildDirname}/"+url); 
     } catch (err) {
         alert("錯誤信息"+JSON.stringify(err)+e)
     }
@@ -134,9 +133,9 @@ if (isPro) {
 }
 
 let buildPath = path.resolve(buildDirName, './' + randBuildDirname + "/");
-// console.log(`/wechat-pay/${randBuildDirname}`)
-// console.log(`/wechat-pay/${randBuildDirname}`)
-// console.log(`/wechat-pay/${randBuildDirname}`)
+console.log(`/wechat-pay/${randBuildDirname}`)
+console.log(`/wechat-pay/${randBuildDirname}`)
+console.log(`/wechat-pay/${randBuildDirname}`)
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     entry: {
@@ -145,10 +144,13 @@ module.exports = {
     output: {
         path: buildPath,
         publicPath: './', //填写服务器绝对路径
-        //  todo    wechat-pay
+        //  todo    wechat-pay      这块是否需要改成新的？
         // publicPath: `/wechat-pay/${randBuildDirname}/`, //填写服务器绝对路径
-        filename: 'js/[name].js',
-        chunkFilename: 'js/[name].js'
+        // publicPath: `/wechat-pay/`, //填写服务器绝对路径
+        // filename: 'js/[name].js',
+        filename: 'wechat-pay/js/[name].js',
+        // chunkFilename: 'js/[name].js',
+        chunkFilename: 'wechat-pay/js/[name].js'
     },
     plugins: [
         new CopyWebpackPlugin([
