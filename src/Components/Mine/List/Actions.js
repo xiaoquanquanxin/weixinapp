@@ -39,7 +39,8 @@ class Actions {
         let cformData = {};
         //let cformData = config.format(obj);
         let result = await window.GET({url, cformData});
-        this.store.useInfo = result.data
+        this.store.useInfo = result.data;
+        window.setLocalData('userInfo', result.data);
         return result.resultCode
     }
 
