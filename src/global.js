@@ -45,7 +45,7 @@ window.myFun401 = function (){
             // let url="login/getWxAuthUrl?forwordUrl="+encodeURI(window.location.href);
             let origin = window.location.origin;
             let PhasetwoActivityListDetail = window.location.href.includes('/PhasetwoActivityListDetail');
-            //  todo    wechat-pay
+            //  todo    wechat-pay  dev和prod不一样
             // let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/");
             let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210106?url=/");
             let PhasetwoMyQuestionnaire = window.location.href.includes('/PhasetwoMyQuestionnaire');
@@ -53,7 +53,7 @@ window.myFun401 = function (){
             /*活动*/
             if (PhasetwoActivityListDetail) {
                 let activityid = window.getLocalData("activityid");
-                //  todo    wechat-pay
+                //  todo    wechat-pay  dev和prod不一样
                 // url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/PhasetwoActivityListDetail/" + activityid);
                 url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210106?url=/PhasetwoActivityListDetail/" + activityid);
             }
@@ -63,7 +63,7 @@ window.myFun401 = function (){
                 let PhasetwoMyQuestionnaireType = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireType"));
                 let PhasetwoMyQuestionnaireId = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireId"));
                 let isDone = JSON.parse(window.getLocalData("isDone"));
-                //  todo    wechat-pay
+                //  todo    wechat-pay  dev和prod不一样
                 // let str = encodeURI(origin + "/index.html?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
                 let str = encodeURI(origin + "/wechat-pay/20210106?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
                 str = encodeURI(str);
