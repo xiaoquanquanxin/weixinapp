@@ -10,8 +10,8 @@ class Actions {
     //  获取房间列表
     @action
     getRoomList = async () => {
-        const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
         const result = await new Promise(function (resolve, reject){
+            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             window.JQ.ajax({
                 type: "POST",
                 url: `${ipUri["/bpi"]}/getPmdRooms.do`,
