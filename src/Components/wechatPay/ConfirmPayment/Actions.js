@@ -260,8 +260,9 @@ class Actions {
                 mchOrderNo: submitOrderData.orderId,
                 //  渠道id,公众号传"WX_JSAPI"
                 channelId: "WX_JSAPI",
-                //  支付金额（单位分）
-                amount: (submitOrderData.orderMoney * 100) | 0,
+                //  支付金额（单位分）   todo    暂时交1分钱
+                // amount: (submitOrderData.orderMoney * 100) | 0,
+                amount: 1,
                 //  就传空字符串
                 clientIp: "192.168.100.128",
                 //  设备
