@@ -6,7 +6,7 @@
     "start": "set NODE_ENV=development&set API_TYPE=3&node server.js",
     "start_dev": "set NODE_ENV=development&set API_TYPE=1&node server.js",
     "start_pro": "set NODE_ENV=development&set API_TYPE=2&node server.js",
-    "build-dev": "set NODE_ENV=production&set API_TYPE=1& webpack --progress --hide-modules --config  webpack.pro.js",
+    "build-dev": "set NODE_ENV=production&set API_TYPE=1& webpack --progress --hide-modules --config  webpack.dev.js",
     "build-pro": "set NODE_ENV=production&set API_TYPE=2& webpack --progress --hide-modules --config  webpack.pro.js"
   },
   "author": "smallerbird",
