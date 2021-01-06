@@ -45,13 +45,17 @@ window.myFun401 = function (){
             // let url="login/getWxAuthUrl?forwordUrl="+encodeURI(window.location.href);
             let origin = window.location.origin;
             let PhasetwoActivityListDetail = window.location.href.includes('/PhasetwoActivityListDetail');
-            let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/");
+            //  todo    wechat-pay
+            // let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/");
+            let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210106?url=/");
             let PhasetwoMyQuestionnaire = window.location.href.includes('/PhasetwoMyQuestionnaire');
             let pageName = JSON.stringify(window.getLocalData("pageName"));
             /*活动*/
             if (PhasetwoActivityListDetail) {
                 let activityid = window.getLocalData("activityid");
-                url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/PhasetwoActivityListDetail/" + activityid);
+                //  todo    wechat-pay
+                // url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/PhasetwoActivityListDetail/" + activityid);
+                url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210106?url=/PhasetwoActivityListDetail/" + activityid);
             }
 
             //问卷
@@ -59,7 +63,9 @@ window.myFun401 = function (){
                 let PhasetwoMyQuestionnaireType = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireType"));
                 let PhasetwoMyQuestionnaireId = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireId"));
                 let isDone = JSON.parse(window.getLocalData("isDone"));
-                let str = encodeURI(origin + "/index.html?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
+                //  todo    wechat-pay
+                // let str = encodeURI(origin + "/index.html?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
+                let str = encodeURI(origin + "/wechat-pay/20210106?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
                 str = encodeURI(str);
                 url = "login/getWxAuthUrl?forwordUrl=" + str;
                 window.delLocalData('pageName');
