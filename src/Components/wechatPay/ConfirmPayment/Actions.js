@@ -44,13 +44,13 @@ class Actions {
     @action
     getRoomList = async () => {
         const result = await new Promise((resolve, reject) => {
+            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             window.JQ.ajax({
                 type: "POST",
                 url: `${ipUri["/bpi"]}/getPmdRooms.do`,
                 contentType: "application/x-www-form-urlencoded",
                 data: {
-                    //  todo    用户的id
-                    wxUserID: "5"
+                    wxUserID: userInfo.id,
                 },
                 success: (result) => {
                     resolve(result);
@@ -105,8 +105,8 @@ class Actions {
                 }
                 item.period = billMonth;
                 item.roomID = currentRoom.roomId;
-                //  todo    没数据 暂时写死
-                item.buildingID = 0;
+                //  当前楼盘的buildingId
+                item.buildingID = currentRoom.belongBuilding;
                 item.billId = item.billIds;
                 totalMoney += item.paidTotal;
                 //  组织渲染
@@ -131,18 +131,20 @@ class Actions {
     @action
     goPay = async () => {
         const store = this.store;
+        const {currentRoom, billIDsList} = store;
         const result = await new Promise((resolve, reject) => {
+            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             let json = {
-                customerId: store.currentRoom.cmdsId,
-                paidIDs: store.billIDsList.join(','),
-                //  todo    从哪里取
-                contactNumber: "18201538993",
-                //  todo    这些参数什么意思
-                terminalSource: "0",
-                //  todo    这些参数什么意思
-                hqUserId: "0",
-                //  todo    这些参数什么意思
-                projectID: "1"
+                customerId: currentRoom.cmdsId,
+                paidIDs: billIDsList.join(','),
+                //  手机号
+                contactNumber: userInfo.phoneNo,
+                //  平台
+                terminalSource: (window.OSInfo() === "ios") ? '1' : '0',
+                //  微信的用户id
+                hqUserId: userInfo.id,
+                //  当前房间的belongProject
+                projectID: currentRoom.belongProject,
             };
             window.JQ.ajax({
                 crossDomain: true,
@@ -179,21 +181,21 @@ class Actions {
     @action
     creatOrder = async () => {
         const store = this.store;
-        const {submitOrderData, billDetails, totalMoney} = store;
+        const {submitOrderData, billDetails, totalMoney, currentRoom} = store;
         const result = await new Promise((resolve, reject) => {
+            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             let data = {
                 //  0 欠缴
                 payType: 0,
                 orderCode: submitOrderData.orderId,
                 billDetails: JSON.stringify(billDetails),
                 orderMoney: totalMoney,
-
-                //  todo    這是什麼
-                terminalSource: 0,
-                //  todo    这是什么
-                projectID: 1,
-                // todo 微信用户id
-                userID: 5,
+                //  设备
+                terminalSource: (window.OSInfo() === "ios") ? '1' : '0',
+                //  当前房间的belongProject
+                projectID: currentRoom.belongProject,
+                //  微信用户id
+                userID: userInfo.id,
             };
             window.JQ.ajax({
                 crossDomain: true,
@@ -250,6 +252,7 @@ class Actions {
         const store = this.store;
         const {submitOrderData} = store;
         const result = await new Promise((resolve, reject) => {
+            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             const params = {
                 // 自定义商户ID，公众号支付传10000000
                 mchId: '10000000',
@@ -258,14 +261,13 @@ class Actions {
                 //  渠道id,公众号传"WX_JSAPI"
                 channelId: "WX_JSAPI",
                 //  支付金额（单位分）
-                //  todo    amount: (submitOrderData.orderMoney * 100) | 0,
-                amount: 1,
+                amount: (submitOrderData.orderMoney * 100) | 0,
                 //  就传空字符串
                 clientIp: "192.168.100.128",
                 //  设备
                 device: (window.OSInfo() === "ios") ? 'ios' : 'Android',
-                //  todo    当前app对应的下openId
-                openId: "ouxLS1G1Y2ZMQ81vz3KZJe0oyieQ"
+                //  openId
+                openId: userInfo.openId,
             };
             window.JQ.ajax({
                 type: "get",
@@ -354,8 +356,8 @@ class Actions {
             let data = {
                 transactionId: submitOrderData.orderId,
                 updateTime: submitOrderData.createTime,
-                //  todo    这是什么
-                payMethod: submitOrderData.orderMoney
+                //  服务端处理
+                payMethod: ''
             };
             window.JQ.ajax({
                 crossDomain: true,
