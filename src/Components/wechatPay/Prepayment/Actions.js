@@ -95,7 +95,7 @@ class Actions {
                 contentType: "application/x-www-form-urlencoded",
                 data: {
                     pmdsRoomId: currentRoom.roomId,
-                    // cmdsId: userInfo.id,
+                    // cmdsId: currentRoom.cmdsId,
                     //  todo    for development
                     cmdsId: '575cd6b8b1c54389936cf47fe8347a40',
                 },
@@ -161,7 +161,7 @@ class Actions {
             const data = {
                 //  当前房间id
                 pmdsRoomId: currentRoom.roomId,
-                // cmdsId: userInfo.id,
+                // cmdsId: currentRoom.cmdsId,
                 //  todo    for development
                 cmdsId: '575cd6b8b1c54389936cf47fe8347a40',
                 // 费项id
@@ -201,7 +201,7 @@ class Actions {
             const data = {
                 //  当前房间id
                 pmdsRoomId: currentRoom.roomId,
-                // cmdsId: userInfo.id,
+                // cmdsId: currentRoom.cmdsId,
                 //  todo    for development
                 cmdsId: '575cd6b8b1c54389936cf47fe8347a40',
                 // 费项id
