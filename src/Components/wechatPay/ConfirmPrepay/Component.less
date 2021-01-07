@@ -4,31 +4,46 @@
 		flex-direction: column;
 		width: 100%;
 		height: 100%;
-		overflow: hidden; {
-		padding: 0.11rem;
-		box-sizing: border-box;
-		background: #ffffff;
-		margin-top: 0.11rem;
+		overflow: hidden;
 
-		h3 {
+		.room {
+			width: 100%;
+			height: 0.45rem;
+			line-height: 0.45rem;
+			text-align: left;
+			padding: 0 0.11rem;
+			box-sizing: border-box;
+			background-color: #ffffff;
 			font-size: 0.14rem;
+			color: #000000;
+			flex: none;
 		}
 
-		div {
-			display: flex;
-			justify-content: space-between;
-			font-size: 0.14rem;
-			line-height: 0.3rem;
+		.payment-list {
+			padding: 0.11rem;
+			box-sizing: border-box;
+			background: #ffffff;
+			margin-top: 0.11rem;
 
-			.paymen-name {
-				color: #505050;
+			h3 {
+				font-size: 0.14rem;
 			}
 
-			.payment-money {
-				color: #DF4949;
+			div {
+				display: flex;
+				justify-content: space-between;
+				font-size: 0.14rem;
+				line-height: 0.3rem;
+
+				.paymen-name {
+					color: #505050;
+				}
+
+				.payment-money {
+					color: #DF4949;
+				}
 			}
 		}
-	}
 
 		.footer {
 			position: fixed;
