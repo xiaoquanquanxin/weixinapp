@@ -257,7 +257,7 @@ class Actions {
         store.queryFeeitemDetails = queryFeeitemDetails;
         store.paymentList = paymentList;
         Toast.hide();
-    }
+    };
 
     //  自定义块点击事件
     @action
@@ -287,6 +287,7 @@ class Actions {
             return false;
         }
         store.customPickerShow = false;
+        return true;
     }
 
     //  普通块的点击事件
@@ -356,22 +357,25 @@ class Actions {
     //  跳转
     @action
     goPayment(){
+        //  先关闭自定义picker
+        if (!this.closeCustomFee()) {
+            return;
+        }
         const store = this.store;
         const {
             activeIndex,
+            paymentList,
             currentFee,
-            customFeeItem,
             currentRoom,
         } = store;
-        const {label, feeId} = currentFee;
-        const {perUnit} = customFeeItem;
+        const {label} = currentFee;
         const {roomId} = currentRoom;
-        console.log('activeIndex ：', activeIndex,);
+        const {paymentMonth} = paymentList[activeIndex];
+        console.clear();
+        console.log('paymentMonth ：', paymentMonth);
         console.log('label ：', label,);
-        console.log('feeId ：', feeId,);
-        console.log('perUnit ：', perUnit,);
         console.log('roomId ：', roomId,);
-        return `/wechat-pay/ConfirmPrepay?activeIndex=${activeIndex}&label=${label}&feeId=${feeId}&perUnit=${perUnit}&roomId=${roomId}`
+        return `/wechat-pay/ConfirmPrepay?paymentMonth=${paymentMonth}&label=${label}&roomId=${roomId}`
     }
 }
 
