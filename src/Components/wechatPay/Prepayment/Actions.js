@@ -363,15 +363,15 @@ class Actions {
             customFeeItem,
             currentRoom,
         } = store;
-        const {feeName, feeId} = currentFee;
+        const {label, feeId} = currentFee;
         const {perUnit} = customFeeItem;
         const {roomId} = currentRoom;
         console.log('activeIndex ：', activeIndex,);
-        console.log('feeName ：', feeName,);
+        console.log('label ：', label,);
         console.log('feeId ：', feeId,);
         console.log('perUnit ：', perUnit,);
         console.log('roomId ：', roomId,);
-        return `/wechat-pay/ConfirmPrepay?activeIndex=${activeIndex}&feeName=${feeName}&feeId=${feeId}&perUnit=${perUnit}&roomId=${roomId}`
+        return `/wechat-pay/ConfirmPrepay?activeIndex=${activeIndex}&label=${label}&feeId=${feeId}&perUnit=${perUnit}&roomId=${roomId}`
     }
 }
 
