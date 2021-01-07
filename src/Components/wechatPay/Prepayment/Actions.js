@@ -371,7 +371,7 @@ class Actions {
         console.log('feeId ：', feeId,);
         console.log('perUnit ：', perUnit,);
         console.log('roomId ：', roomId,);
-        return `/wechat-pay/ConfirmPrepay?type=1&activeIndex=${activeIndex}&feeName=${feeName}&feeId=${feeId}&perUnit=${perUnit}&roomId=${roomId}`
+        return `/wechat-pay/ConfirmPrepay?activeIndex=${activeIndex}&feeName=${feeName}&feeId=${feeId}&perUnit=${perUnit}&roomId=${roomId}`
     }
 }
 
