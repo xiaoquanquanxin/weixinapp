@@ -232,8 +232,6 @@ class Actions {
         const paymentList = [];
         let perUnit = 0;
         const len = feeItems.length;
-        //  todo    for development
-        queryFeeitemDetails.hasOutstandingBill = false;
         //  组织数据，一个列表，1个月、3个月、6个月、12个月的数据的合计
         for (let i = 0; i < len; i++) {
             if (i >= queryFeeitemDetails.maxMonth) {
@@ -254,6 +252,8 @@ class Actions {
         store.activeIndex = Math.min(paymentList.length - 1, 1);
         //  在快捷支付列表中加入自定义块
         paymentList.push(customFeeItem);
+        //  todo    for development
+        queryFeeitemDetails.hasOutstandingBill = false;
         store.queryFeeitemDetails = queryFeeitemDetails;
         store.paymentList = paymentList;
         Toast.hide();
