@@ -258,7 +258,7 @@ class Actions {
                 // 自定义商户ID，公众号支付传10000000
                 mchId: '10000000',
                 //  商户订单号
-                mchOrderNo: submitOrderData.orderId,
+                mchOrderNo: submitOrderData.orderCode,
                 //  渠道id,公众号传"WX_JSAPI"
                 channelId: "WX_JSAPI",
                 //  支付金额（单位分）   todo    暂时交1分钱
