@@ -197,8 +197,6 @@ class Actions {
         store.payMoney = "0";
         //  预缴或欠缴
         store.type = "";
-        //  订单id
-        store.transactionid = null;
         //  房间信息
         store.roomInfo = {};
     }
@@ -258,6 +256,7 @@ class Actions {
                     //  提示成功，重新请求
                     Toast.info('取消订单成功', 1);
                 }
+                Toast.loading('Loading...', 3);
                 this.resetData();
                 this.getOrderDetail();
             }
