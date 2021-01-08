@@ -12,6 +12,8 @@ class Store {
     @observable perUnit = 0;
     //  费用的列表
     @observable feeItems = [];
+    //  订单对象
+    @observable submitOrderData = {};
 }
 
 export default Store;
