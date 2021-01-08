@@ -97,7 +97,7 @@ class Actions {
     @action
     getFeeInfo = async () => {
         const store = this.store;
-        const {params} = store;
+        const {params, currentRoom} = store;
         const result = await new Promise(function (resolve, reject){
             const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             window.JQ.ajax({
@@ -106,9 +106,7 @@ class Actions {
                 contentType: "application/x-www-form-urlencoded",
                 data: {
                     pmdsRoomId: params.roomId,
-                    // cmdsId: currentRoom.cmdsId,
-                    //  todo    for development
-                    cmdsId: '575cd6b8b1c54389936cf47fe8347a40',
+                    cmdsId: currentRoom.cmdsId,
                 },
                 success: (result) => {
                     resolve(result);
@@ -147,9 +145,7 @@ class Actions {
             const data = {
                 //  当前房间id
                 pmdsRoomId: params.roomId,
-                // cmdsId: currentRoom.cmdsId,
-                //  todo    for development
-                cmdsId: '575cd6b8b1c54389936cf47fe8347a40',
+                cmdsId: currentRoom.cmdsId,
                 // 费项id
                 feeId: currentFee.feeId,
                 // 数据来源：房间号、表具编号、车位号
