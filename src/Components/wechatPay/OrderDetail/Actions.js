@@ -217,6 +217,7 @@ class Actions {
     //  用户取消订单操作
     @action
     userBehaviorFun(){
+        Toast.loading('Loading...', 3);
         //  如果为预缴订单
         let url = '';
         const store = this.store;
@@ -242,21 +243,26 @@ class Actions {
             data,
             success: (res) => {
                 const {data, msg, code} = res;
-                //  预交
-                if (+store.type === 1) {
-                    //  todo    等于多少才成功？欠缴是2000，预交是多少
-                    if (data.code || code === 2000) {
-                        return Toast.info(data.describe, 1);
-                    }
-                } else {
-                    if (code !== 2000) {
-                        Toast.info(msg, 1);
-                        return;
-                    }
-                    //  提示成功，重新请求
-                    Toast.info('取消订单成功', 1);
+                // //  预交
+                // if (+store.type === 1) {
+                //     if (code !== 2000) {
+                //         Toast.info(msg, 1);
+                //         return;
+                //     }
+                // } else {
+                //     if (code !== 2000) {
+                //         Toast.info(msg, 1);
+                //         return;
+                //     }
+                //     //  提示成功，重新请求
+                //     Toast.info('取消订单成功', 1);
+                // }
+                if (code !== 2000) {
+                    Toast.info(msg, 1);
+                    return;
                 }
-                Toast.loading('Loading...', 3);
+                //  提示成功，重新请求
+                Toast.info('取消订单成功', 3);
                 this.resetData();
                 this.getOrderDetail();
             }
