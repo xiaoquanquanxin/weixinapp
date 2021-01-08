@@ -130,6 +130,7 @@ class Actions {
     //  去支付，提交订单到物管
     @action
     goPay = async () => {
+        Toast.loading('Loading...', 3);
         const store = this.store;
         const {currentRoom, billIDsList} = store;
         const result = await new Promise((resolve, reject) => {
