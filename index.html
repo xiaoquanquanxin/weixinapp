@@ -84,6 +84,7 @@
       var authTime = JSON.parse(window.getLocalData('authTime'));
       if (!authTime) {
         var curtime = new Date().getTime(); // 获取当前时间 ，转换成JSON字符串序列
+        console.log('源码 设置 authTime');
         window.setLocalData('authTime', curtime)
       }
     }, 1000);
