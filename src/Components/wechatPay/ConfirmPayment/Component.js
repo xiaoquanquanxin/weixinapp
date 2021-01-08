@@ -41,6 +41,7 @@ export default class Template extends React.Component {
             if (result === true) {
                 console.log('可以跳转了');
                 Toast.hide();
+                //  todo    需要参数
                 this.props.history.push(`/wechat-pay/PaySuccess`);
             }
             //  其他情况在具体的await里处理，他们中的大部分不需要跳转
