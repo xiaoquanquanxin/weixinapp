@@ -64,7 +64,7 @@ export default class ComplaintSuggestions extends React.Component {
                         <WhiteSpace size="lg"/><WhiteSpace size="lg"/>
                         <p className={'tit'}>尊敬的业主，您好</p>
                         <WhiteSpace size="lg"/><WhiteSpace size="lg"/>
-                        <p className={'destion'}>客服工作时间是工作日早9：00-晚18：00，请您在工作时间内进行咨询哦~ </p>
+                        <p className={'destion'}>若您有任何建议和问题，欢迎您致电客服中心，我们将全天候7*24小时为您服务。</p>
                         <WhiteSpace size="lg"/>
                         <p className={'destion'}>您可以拨打</p>
                     </div>
