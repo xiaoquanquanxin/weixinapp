@@ -46,7 +46,6 @@ const nodeEnv = process.env.NODE_ENV || 'development'
 const API_TYPE = process.env.API_TYPE || '1'
 const isPro = nodeEnv === 'production'
 console.log('当前运行环境：', isPro ? 'production' : 'development')
-//  todo    wechat-pay
 let buildDirName = path.resolve(__dirname, './wechat-pay/')
 if (isPro) {
     console.log("清空build目录。。")
