@@ -95,9 +95,7 @@ class Actions {
                 contentType: "application/x-www-form-urlencoded",
                 data: {
                     pmdsRoomId: currentRoom.roomId,
-                    // cmdsId: currentRoom.cmdsId,
-                    //  todo    for development
-                    cmdsId: '575cd6b8b1c54389936cf47fe8347a40',
+                    cmdsId: currentRoom.cmdsId,
                 },
                 success: (result) => {
                     resolve(result);
@@ -161,9 +159,7 @@ class Actions {
             const data = {
                 //  当前房间id
                 pmdsRoomId: currentRoom.roomId,
-                // cmdsId: currentRoom.cmdsId,
-                //  todo    for development
-                cmdsId: '575cd6b8b1c54389936cf47fe8347a40',
+                cmdsId: currentRoom.cmdsId,
                 // 费项id
                 feeId: currentFee.feeId,
                 // 数据来源：房间号、表具编号、车位号
@@ -201,9 +197,7 @@ class Actions {
             const data = {
                 //  当前房间id
                 pmdsRoomId: currentRoom.roomId,
-                // cmdsId: currentRoom.cmdsId,
-                //  todo    for development
-                cmdsId: '575cd6b8b1c54389936cf47fe8347a40',
+                cmdsId: currentRoom.cmdsId,
                 // 费项id
                 feeId: currentFee.feeId,
                 // 数据来源：房间号、表具编号、车位号
