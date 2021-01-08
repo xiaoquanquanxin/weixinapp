@@ -335,8 +335,8 @@ class Actions {
         });
         const {data} = result;
         const {tranStatus} = data;
-        //  1:待支付;3:已取消
-        if (tranStatus !== 1 && tranStatus !== 3) {
+        //  欠缴2是完成
+        if (tranStatus === 1) {
             //  完成订单【确实已经支付】
             return this.completePaidOrder();
         }
