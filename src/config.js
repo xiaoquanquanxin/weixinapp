@@ -20,7 +20,6 @@ var obj = {
     siteHost: host, //api前面的静态资源前缀
     urlPrefix: host
 }
-console.log('config api:', obj)
 
 obj.format = function (obj){
     let str = '';
@@ -39,7 +38,8 @@ export const ipUri = {
     '/opi': 'http://hachi-pay.mynatapp.cc/api',  //  少杰 端口
 
 
-    '/bpi':'http://192.168.100.208:3080', //  todo  本地调试 容丽姐 端口
+    //  todo    wechat-pay
+    '/bpi':'http://192.168.100.208:3080',
     // '/bpi': 'https://hachiseedland-dev.hachi-tech.com/v3/api/',
 };
 
