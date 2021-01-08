@@ -171,7 +171,6 @@ class Actions {
             //  0:未缴，type是前端加的
             type: 0
         };
-        data.type = 0;
         //  物管接口返回的数据
         store.submitOrderData = data;
         //  创建订单接口，提交到hachi后台
