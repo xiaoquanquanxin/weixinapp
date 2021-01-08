@@ -4,7 +4,8 @@ let host = ""
 if (API_TYPE == "1") {//测试
     // host ="http://asm-test.seedland.cc/wechat-mobile/"
     // host ="https://asm-test.seedland.cc/wechat-mobile/"
-    host = "http://192.168.100.208:5080/wechat-mobile/"
+    // host = "http://192.168.100.208:5080/wechat-mobile/"
+    host = "https://hachiseedland-dev.hachi-tech.com/wechat-mobile/"
     // host ="http://wx.seedland.cc:8888//wechat-mobile/"   //辉：8888  超:8089
 } else if (API_TYPE == "2") {//生产
     host = "https://wx-life.seedland.cc/wechat-mobile/"
@@ -31,4 +32,14 @@ obj.format = function (obj){
     return str.slice(0, str.length - 1);
 }
 export default obj;
+
+//  2020年12月29日19:41:37，新增接口配置
+export const ipUri = {
+    '/mpi': 'https://hachiseedland-dev.hachi-tech.com',
+    '/opi': 'http://hachi-pay.mynatapp.cc/api',  //  少杰 端口
+
+
+    '/bpi':'http://192.168.100.208:3080', //  todo  本地调试 容丽姐 端口
+    // '/bpi': 'https://hachiseedland-dev.hachi-tech.com/v3/api/',
+};
 
