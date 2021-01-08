@@ -244,13 +244,20 @@ class Actions {
             data,
             success: (res) => {
                 const {data, msg, code} = res;
-                //  todo    等于多少才成功？欠缴是2000，预交是多少
-                if (data.code || code === 2000) {
-                    return Toast.info(data.describe, 1.5);
+                //  预交
+                if (+store.type === 1) {
+                    //  todo    等于多少才成功？欠缴是2000，预交是多少
+                    if (data.code || code === 2000) {
+                        return Toast.info(data.describe, 1);
+                    }
+                } else {
+                    if (code !== 2000) {
+                        Toast.info(msg, 1);
+                        return;
+                    }
+                    //  提示成功，重新请求
+                    Toast.info('取消订单成功', 1);
                 }
-                console.log(res);
-                //  提示成功，重新请求
-                Toast.info('取消订单成功', 1.5);
                 this.resetData();
                 this.getOrderDetail();
             }
@@ -306,7 +313,7 @@ class Actions {
                     //  todo    没数据
                     return this.getPay();
                 }
-                Toast.info(data.describe, 1.5);
+                Toast.info(data.describe, 1);
             }
         })
     }
