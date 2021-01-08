@@ -34,8 +34,8 @@ export default class Template extends React.Component {
             if (result === false) {
                 Toast.info('下单失败', 1);
                 const {submitOrderData} = storeConfirmPayment;
-                const {type, orderId} = submitOrderData;
-                this.props.history.push(`/wechat-pay/OrderDetail?orderId=${orderId}&type=${type}`);
+                const {orderId} = submitOrderData;
+                this.props.history.push(`/wechat-pay/OrderDetail?orderId=${orderId}&type=0`);
                 return;
             }
             if (result === true) {
