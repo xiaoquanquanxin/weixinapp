@@ -13,7 +13,7 @@ class Actions {
         params.orderId = _params.orderId;
         params.type = _params.type;
         params.orderMoney = _params.orderMoney;
-        params.createTime = _params.createTime;
+        params.updateTime = _params.updateTime;
         console.log('url params:', this.store.params);
     }
 }
