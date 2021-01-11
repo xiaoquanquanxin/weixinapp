@@ -39,11 +39,11 @@ export default class Template extends React.Component {
         (async () => {
             const result = await actionsConfirmPayment.goPay();
             console.log(result);
+            const {submitOrderData} = storeConfirmPayment;
+            const {orderId} = submitOrderData;
             //  下单失败
             if (result === false) {
                 Toast.info('下单失败', 1);
-                const {submitOrderData} = storeConfirmPayment;
-                const {orderId} = submitOrderData;
                 this.props.history.push(`/wechat-pay/OrderDetail?orderId=${orderId}&type=0`);
                 return;
             }
@@ -52,9 +52,8 @@ export default class Template extends React.Component {
                 Toast.hide();
                 //  todo    需要验证
                 debugger;
-                const {submitOrderData} = storeConfirmPayment;
-                const {orderId, createTime, orderMoney} = submitOrderData;
-                this.props.history.push(`/wechat-pay/PaySuccess?orderId=${orderId}&orderMoney=${orderMoney}&createTime=${createTime}&type=1`);
+                const {updateTime, orderMoney} = submitOrderData;
+                this.props.history.push(`/wechat-pay/PaySuccess?orderId=${orderId}&orderMoney=${orderMoney}&updateTime=${updateTime}&type=1`);
             }
             //  其他情况在具体的await里处理，他们中的大部分不需要跳转
         })()
