@@ -134,23 +134,23 @@ export default class Template extends React.Component {
                     cols={1}
                     extra="请选择"
                     value={[AddRepair.pkRoom]}
-                    // onChange={v => {
-                    // 	//this.setState({ sValue: v });
-                    // }}
-                    onOk={(v) => {
-                        AddRepair.pkRoom = v + '';//注入store
-                        //this.setState({ sValue: v });
-                        actionsAddRepairYu.changeRoom(...v);
+                    onOk={(pkRoom) => {
+                        //  防止重复
+                        if (AddRepair.pkRoom === pkRoom) {
+                            return
+                        }
+                        AddRepair.pkRoom = pkRoom;
+                        //this.setState({ sValue: pkRoom });
+                        actionsAddRepairYu.changeRoom(...pkRoom);
                         _checkForm(AddRepair);	//检查是否有空项，选修改提交按纽状态
-                    }
-                    }
+                    }}
                 >
                     <List.Item arrow="horizontal" multipleLine>房间名称</List.Item>
                 </Picker>
-                <List.Item multipleLine>
-                    <RadioLine callback={actionsAddRepairYu.radioCheck} data={storeAddRepairYu.radioData}/>
-                </List.Item>
+
+
             </List>
+
             <WhiteSpace size="lg"/>
             <p className="text-areaTitle">问题描述</p>
             <TextareaItem
