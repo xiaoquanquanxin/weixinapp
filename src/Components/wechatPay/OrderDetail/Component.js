@@ -4,6 +4,7 @@ import {observer, inject} from 'mobx-react';
 
 /*自定义类*/
 import './Component.less'
+import {Toast} from "antd-mobile";
 
 //  订单信息
 const OrderInformationRender = ({transactionid, tranDate}) => {
@@ -193,9 +194,29 @@ export default class Template extends React.Component {
 
     //  去支付
     getTranStatusFn(){
-        const {actions} = this.props;
-        const {actionsOrderDetail} = actions;
-        actionsOrderDetail.getTranStatusFn()
+        (async () => {
+            const {actions, store} = this.props;
+            const {actionsOrderDetail} = actions;
+            const {storeOrderDetail} = store;
+            //  这与直接支付不同，需要先验证是否已经支付、是否已经过期等等
+            const result = await actionsOrderDetail.getTranStatusFn();
+            console.log(result);
+            const {orderId} = storeOrderDetail;
+            //  下单失败
+            if (result === false) {
+                Toast.info('下单失败', 1);
+                return;
+            }
+            if (result === true) {
+                console.log('可以跳转了');
+                Toast.hide();
+                //  todo    需要验证
+                debugger;
+                const {updateTime, type, totalMoney: orderMoney,} = storeOrderDetail;
+                this.props.history.push(`/wechat-pay/PaySuccess?orderId=${orderId}&orderMoney=${orderMoney}&updateTime=${updateTime}&type=${type}`);
+            }
+            //  其他情况在具体的await里处理，他们中的大部分不需要跳转
+        })()
     }
 
     render(){
