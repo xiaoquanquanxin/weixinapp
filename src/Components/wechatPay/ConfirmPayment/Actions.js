@@ -15,6 +15,10 @@ class Actions {
         store.billList = [];
         store.currentRoom = {};
         store.totalMoney = 0;
+        //  清除定时器
+        clearTimeout(store.timeout);
+        store.timeout = null;
+        console.log('清除定时器');
         //  for development
         // this.pollingGetTranStatus();
     }
