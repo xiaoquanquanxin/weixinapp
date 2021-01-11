@@ -353,7 +353,7 @@ class Actions {
             return this.pollingGetTranStatus();
         }
     };
-    //  完成订单
+    //  完成订单-调物管
     @action
     completePaidOrder = async () => {
         const store = this.store;
