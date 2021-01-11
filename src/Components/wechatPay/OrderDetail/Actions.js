@@ -190,7 +190,6 @@ class Actions {
         }
     };
 
-
     //  重置数据
     @action
     resetData(){
@@ -324,32 +323,170 @@ class Actions {
                 store.roomInfo = item;
             }
         });
-
         return result;
-    }
-
+    };
 
     // 去支付--获取订单状态
     @action
     getTranStatusFn = async () => {
         const store = this.store;
-        let data = {transactionId: store.transactionid};
-        window.JQ.ajax({
-            crossDomain: true,
-            type: "post",
-            url: `${ipUri["/bpi"]}/getTranStatus.do`,
-            contentType: "application/x-www-form-urlencoded",
-            data: {'json': JSON.stringify(data)},
-            success: (res) => {
-                const {data} = res;
-                if (data.status === 0) {
-                    //  微信支付
-                    //  todo    没数据
-                    return this.getPay();
+        const result = await new Promise(function (resolve, reject){
+            let data = {transactionId: store.transactionid};
+            window.JQ.ajax({
+                crossDomain: true,
+                type: "post",
+                url: `${ipUri["/bpi"]}/getTranStatus.do`,
+                contentType: "application/x-www-form-urlencoded",
+                data: {'json': JSON.stringify(data)},
+                success: (res) => {
+                    resolve(res);
                 }
-                Toast.info(data.describe, 1);
+            })
+        });
+        const {code, data, msg} = result;
+        //  请求错误
+        if (code !== 2000) {
+            Toast.info(msg, 1);
+            return;
+        }
+        //  其他可能，已冻结啥的
+        if (data.status !== 0) {
+            Toast.info(data.describe, 1);
+            return;
+        }
+        //  微信支付
+        return this.getPay();
+    };
+
+    //  下单支付
+    @action
+    getPay = async () => {
+        const store = this.store;
+        const result = await new Promise((resolve, reject) => {
+            const {transactionid, totalMoney} = store;
+            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
+            const params = {
+                //  自定义商户ID，公众号支付传10000000
+                mchId: '10000000',
+                //  商户订单号-从 获取订单状态 /getTranStatus.do接口取
+                mchOrderNo: transactionid,
+                //  渠道id,公众号传"WX_JSAPI"
+                channelId: "WX_JSAPI",
+                //  支付金额（单位分）   todo    暂时交1分钱
+                // amount: (totalMoney * 100) | 0,
+                amount: 1,
+                //  任意ip
+                clientIp: "192.168.100.128",
+                //  设备
+                device: (window.OSInfo() === "ios") ? 'ios' : 'Android',
+                //  openId-从微信授权数据里取
+                openId: userInfo.openId,
+            };
+            window.JQ.ajax({
+                type: "get",
+                url: `${ipUri["/opi"]}/pay/create_order`,
+                data: {params: JSON.stringify(params)},
+                success: (result) => {
+                    resolve(result);
+                },
+            })
+        });
+        //  result是一个字符串
+        const res = JSON.parse(result);
+        const {resCode, payParams} = res;
+        //  唤起微信支付
+        if (resCode === 'SUCCESS') {
+            return this.arouseWeChatToPay(payParams);
+        } else {
+            return false;
+        }
+    };
+
+    //  唤起微信支付
+    @action
+    arouseWeChatToPay = async (payParams) => {
+        const result = await new Promise((resolve, reject) => {
+            if (typeof WeixinJSBridge != "undefined") {
+                WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    payParams,
+                    (res) => {
+                        resolve(res.err_msg === "get_brand_wcpay_request:ok");
+                    }
+                );
+                return;
             }
-        })
+            resolve(false);
+        });
+        console.log('唤起微信支付', result);
+        //  如果支付失败
+        if (result !== true) {
+            return false;
+        }
+        Toast.loading('正在处理订单', 10000);
+        return this.pollingGetTranStatus();
+    };
+
+    //  轮训状态
+    @action
+    pollingGetTranStatus = async () => {
+        const store = this.store;
+        const result = await new Promise((resolve, reject) => {
+            window.JQ.ajax({
+                crossDomain: true,
+                type: "post",
+                url: `${ipUri["/bpi"]}/getTranStatus.do`,
+                contentType: "application/x-www-form-urlencoded",
+                data: {'json': JSON.stringify({transactionId: store.transactionid})},
+                success: (result) => {
+                    resolve(result);
+                },
+            })
+        });
+        const {data} = result;
+        const {tranStatus} = data;
+        //  预交1是已支付
+        if (tranStatus === 1) {
+            //  完成订单【确实已经支付】
+            return this.completePaidOrder();
+        }
+        console.log('轮训状态', new Date().getSeconds());
+        console.log(data);
+        const next = await new Promise(resolve => {
+            setTimeout(() => {
+                resolve(true);
+            }, 3000);
+        });
+        if (next) {
+            return this.pollingGetTranStatus();
+        }
+    };
+    //  完成订单
+    @action
+    completePaidOrder = async () => {
+        const store = this.store;
+        const result = await new Promise((resolve, reject) => {
+            const updateTime = new Date().format('yyyy-MM-dd hh:mm:ss');
+            store.updateTime = updateTime;
+            let data = {
+                transactionId: store.transactionid,
+                updateTime,
+                //  服务端处理
+                payMethod: ''
+            };
+            window.JQ.ajax({
+                crossDomain: true,
+                type: "post",
+                url: `${ipUri["/bpi"]}/completePaidOrder.do`,
+                contentType: "application/x-www-form-urlencoded",
+                data: {'json': JSON.stringify(data)},
+                success: (result) => {
+                    resolve(result);
+                },
+            })
+        });
+        const {code} = result;
+        return code === 2000;
     }
 }
 
