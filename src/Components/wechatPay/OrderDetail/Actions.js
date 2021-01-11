@@ -188,8 +188,6 @@ class Actions {
         } else {
             //  重新获取订单详情
             this.getOrderDetail();
-            //  清除定时器
-            clearTimeout(store.timeout);
         }
     };
 
@@ -236,6 +234,9 @@ class Actions {
             {text: '取消', onPress: () => console.log('cancel')},
             {
                 text: '确定', onPress: async () => {
+                    //  清除定时器
+                    clearTimeout(this.store.timeout);
+                    this.store.timeout = null;
                     this.userBehaviorFun();
                 }
             },
