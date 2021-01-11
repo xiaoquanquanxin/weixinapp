@@ -136,15 +136,17 @@ class Actions {
         const result = await new Promise((resolve, reject) => {
             const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             const json = {
+                //  当前房间数据里的cmdsId-从getPmdRooms.do接口里取
                 customerId: currentRoom.cmdsId,
+                //  要缴纳费用的id用“，”分隔-从欠缴账单列表里取
                 paidIDs: billIDsList.join(','),
-                //  手机号
+                //  手机号-从微信的登录后的数据里取
                 contactNumber: userInfo.phoneNo,
-                //  平台
+                //  平台-前独胆判断
                 terminalSource: (window.OSInfo() === "ios") ? '1' : '0',
-                //  微信的用户id
+                //  微信的用户id-从微信的登录后的数据里取
                 hqUserId: userInfo.id,
-                //  当前房间的belongProject
+                //  当前房间的belongProject-从getPmdRooms.do接口里取
                 projectID: currentRoom.belongProject,
             };
             window.JQ.ajax({
