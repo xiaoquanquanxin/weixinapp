@@ -40,6 +40,6 @@ export const ipUri = {
 
     //  todo    wechat-pay
     '/bpi':'http://192.168.100.208:3080',
-    // '/bpi': 'https://hachiseedland-dev.hachi-tech.com/v3/api/',
+    // '/bpi': 'https://hachiseedland-dev.hachi-tech.com/v3/api',
 };
 
