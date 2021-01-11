@@ -261,7 +261,7 @@ class Actions {
             const params = {
                 // 自定义商户ID，公众号支付传10000000
                 mchId: '10000000',
-                //  商户订单号
+                //  商户订单号-从物管接口返回的数据取
                 mchOrderNo: submitOrderData.orderId,
                 //  渠道id,公众号传"WX_JSAPI"
                 channelId: "WX_JSAPI",
@@ -359,8 +359,10 @@ class Actions {
         const store = this.store;
         const {submitOrderData} = store;
         const result = await new Promise((resolve, reject) => {
-            let data = {
+            const data = {
+                //  从物管接口返回的数据取
                 transactionId: submitOrderData.orderId,
+                //  创建时间-从物管接口返回的数据取
                 updateTime: submitOrderData.createTime,
                 //  服务端处理
                 payMethod: ''
