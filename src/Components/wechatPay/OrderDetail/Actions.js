@@ -38,11 +38,10 @@ class Actions {
                 //  这个是600
                 payMethod: '600',
             };
-            const url = `${ipUri["/bpi"]}/getBillDetailByTrans.do`;
             window.JQ.ajax({
                 crossDomain: true,
                 type: "post",
-                url,
+                url: `${ipUri["/bpi"]}/getBillDetailByTrans.do`,
                 contentType: "application/x-www-form-urlencoded",
                 data: {'json': JSON.stringify(data)},
                 success: (res) => {
