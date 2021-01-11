@@ -338,7 +338,6 @@ class Actions {
                 url: `${ipUri["/bpi"]}/getTranStatus.do`,
                 contentType: "application/x-www-form-urlencoded",
                 data: {'json': JSON.stringify({transactionId: submitOrderData.orderId})},
-                // data: {'json': JSON.stringify({transactionId: '20210108170819078'})},
                 success: (result) => {
                     resolve(result);
                 },
