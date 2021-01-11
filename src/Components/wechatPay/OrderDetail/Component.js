@@ -43,7 +43,7 @@ const OrderStatusInfoRender = ({type, tranDate, spaceTime}) => {
     )
 };
 
-//  欠缴账单
+//  欠缴账单-0
 const OutstandingBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInfo, paymentList, totalMoney, transactionid}) => {
     let type = '';
     let spaceTime = '';
@@ -109,7 +109,7 @@ const OutstandingBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInf
     )
 };
 
-// 预缴账单
+//  预缴账单-1
 const AdvancePaymentBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInfo, feeName, payMoney, transactionid,}) => {
     let type = '';
     let spaceTime = '';
