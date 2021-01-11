@@ -20,6 +20,9 @@ class Store {
     @observable submitOrderData = null;
     //  订单详情 完成订单时需要的参数
     @observable orderDate = null;
+
+    //  定时器
+    @observable timeout = null;
 }
 
 export default Store;
