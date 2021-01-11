@@ -183,9 +183,14 @@ export default class Template extends React.Component {
     }
 
     componentWillUnmount(){
-        const {actions} = this.props;
+        const {actions, store} = this.props;
         const {actionsOrderDetail} = actions;
-        actionsOrderDetail.resetData()
+        actionsOrderDetail.resetData();
+        //  清除定时器
+        const {storeOrderDetail} = store;
+        clearTimeout(storeOrderDetail.timeout);
+        //  定时器
+        storeOrderDetail.timeout = null;
     }
 
     //  取消订单
