@@ -7,7 +7,7 @@ class Store {
     //  当前时间-秒钟
     @observable seconds = 0;
     //  最大时间
-    @observable maxtime = 15 * 60 - 1;
+    @observable maxTime = 15 * 60 - 1;
     //  定时器
     @observable timeout = null;
     //  欠缴列表
