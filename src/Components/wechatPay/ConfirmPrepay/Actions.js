@@ -192,24 +192,25 @@ class Actions {
         const result = await new Promise(function (resolve, reject){
             const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             const data = {
+                //  当前房间数据里的roomId-从getPmdRooms.do接口里取
                 pmdsRoomId: currentRoom.roomId,
-                //  物管用户id
+                //  当前房间数据里的cmdsId-从getPmdRooms.do接口里取
                 cmdsId: currentRoom.cmdsId,
-                //  用户主数据id-微信id
+                //  微信的用户id-从微信的登录后的数据里取
                 userID: userInfo.id,
-                //  客户名称
+                //  客户名称-从微信的登录后的数据里取
                 userName: userInfo.fullName || userInfo.nickName,
-                //  用户手机号
+                //  手机号-从微信的登录后的数据里取
                 phoneNum: userInfo.phoneNo,
-                //  订单明细 json格式
+                //  订单明细 json格式-从/property/prepayment/queryFeeitemDetails接口取+前端组织
                 feeItems: JSON.stringify(feeItems),
-                //  当前楼盘的buildingId
+                //  当前房间的belongProject-从getPmdRooms.do接口里取
                 villageInfoId: currentRoom.belongProject,
                 //  设备
                 terminalSource: (window.OSInfo() === "ios") ? '1' : '0',
-                //  订单金额
+                //  订单金额-从/property/prepayment/queryFeeitemDetails接口取+前端计算
                 totalAmount: perUnit,
-                //  费项id
+                //  费项id-从/property/prepayment/queryFeeInfo接口取+前端计算
                 feeId: currentFee.feeId,
             };
             console.log('微信支付第一个接口，穿参 ', data);
