@@ -259,7 +259,7 @@ class Actions {
         const result = await new Promise((resolve, reject) => {
             const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             const params = {
-                // 自定义商户ID，公众号支付传10000000
+                //  自定义商户ID，公众号支付传10000000
                 mchId: '10000000',
                 //  商户订单号-从物管接口返回的数据取
                 mchOrderNo: submitOrderData.orderId,
