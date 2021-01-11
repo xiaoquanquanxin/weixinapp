@@ -35,7 +35,7 @@ export default class Template extends React.Component {
         const {store, actions} = this.props;
         const {storePaySuccess} = store;
         const {params} = storePaySuccess;
-        const {orderId, createTime, orderMoney} = params;
+        const {orderId, updateTime, orderMoney} = params;
         return (
             <div className="Components-PaySuccess-container">
                 <div className="pay">
@@ -50,7 +50,7 @@ export default class Template extends React.Component {
                         </div>
                         <div>
                             <p className="paymen-name">下单时间</p>
-                            <p className="payment-money">{createTime}</p>
+                            <p className="payment-money">{updateTime}</p>
                         </div>
                         <div>
                             <p className="paymen-name">订单金额</p>
