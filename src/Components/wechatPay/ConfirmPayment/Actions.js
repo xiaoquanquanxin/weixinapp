@@ -15,6 +15,8 @@ class Actions {
         store.billList = [];
         store.currentRoom = {};
         store.totalMoney = 0;
+        //  for development
+        // this.pollingGetTranStatus();
     }
 
     //  解析url参数
@@ -332,6 +334,7 @@ class Actions {
                 url: `${ipUri["/bpi"]}/getTranStatus.do`,
                 contentType: "application/x-www-form-urlencoded",
                 data: {'json': JSON.stringify({transactionId: submitOrderData.orderId})},
+                // data: {'json': JSON.stringify({transactionId: '20210108170819078'})},
                 success: (result) => {
                     resolve(result);
                 },
@@ -344,7 +347,7 @@ class Actions {
             //  完成订单【确实已经支付】
             return this.completePaidOrder();
         }
-        console.log('轮训状态');
+        console.log('轮训状态', new Date().getSeconds());
         console.log(data);
         const next = await new Promise(resolve => {
             setTimeout(() => {
