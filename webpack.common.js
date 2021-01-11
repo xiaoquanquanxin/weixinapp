@@ -54,7 +54,8 @@ if (isPro) {
     }
     deleteall(buildDirName)
 }
-let randBuildDirname = new Date().format('yyyyMMdd')
+//  版本
+const randBuildDirname = 20210108;
 let html = `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -131,9 +132,6 @@ if (isPro) {
 }
 
 let buildPath = path.resolve(buildDirName, './' + randBuildDirname + "/");
-console.log(`/wechat-pay/${randBuildDirname}`)
-console.log(`/wechat-pay/${randBuildDirname}`)
-console.log(`/wechat-pay/${randBuildDirname}`)
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     entry: {
