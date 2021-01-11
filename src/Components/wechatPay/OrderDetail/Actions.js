@@ -161,7 +161,9 @@ class Actions {
         store.maxTime = (new Date(data.createTime).getTime() + (15 * 60 - 1) * 1000 - new Date(data.nowTime).getTime()) / 1000;
         if (store.maxTime <= 0) {
             //  重新获取订单详情
-            this.getOrderDetail();
+            //  todo，暂时不调
+            console.log('超时了');
+            // this.getOrderDetail();
             //  清除定时器
             clearInterval(store.timeout);
             store.timeout = null;
