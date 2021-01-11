@@ -182,6 +182,7 @@ export default class Template extends React.Component {
         actionsOrderDetail.getOrderDetail();
     }
 
+    //  离开页面清除定时器
     componentWillUnmount(){
         const {actions, store} = this.props;
         const {actionsOrderDetail} = actions;
