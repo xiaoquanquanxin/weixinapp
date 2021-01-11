@@ -273,18 +273,18 @@ class Actions {
             const params = {
                 //  自定义商户ID，公众号支付传10000000
                 mchId: '10000000',
-                //  商户订单号
+                //  商户订单号-从 获取订单状态 /getTranStatus.do接口取
                 mchOrderNo: submitOrderData.orderCode,
                 //  渠道id,公众号传"WX_JSAPI"
                 channelId: "WX_JSAPI",
                 //  支付金额（单位分）   todo    暂时交1分钱
                 // amount: (submitOrderData.orderMoney * 100) | 0,
                 amount: 1,
-                //  就传空字符串
+                //  任意ip
                 clientIp: "192.168.100.128",
                 //  设备
                 device: (window.OSInfo() === "ios") ? 'ios' : 'Android',
-                //  openId
+                //  openId-从微信授权数据里取
                 openId: userInfo.openId,
             };
             window.JQ.ajax({
