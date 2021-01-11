@@ -34,7 +34,7 @@ export default obj;
 
 //  2020年12月29日19:41:37，新增接口配置
 export const ipUri = {
-    '/mpi': 'https://hachiseedland-dev.hachi-tech.com',
+    '/mpi': 'https://hachiseedland-dev.hachi-tech.com/wechat-moblie',
     '/opi': 'http://hachi-pay.mynatapp.cc/api',  //  少杰 端口
 
 
