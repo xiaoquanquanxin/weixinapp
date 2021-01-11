@@ -161,7 +161,7 @@ class Actions {
         //  计算出下单到现在的时间 进行倒计时 /s
         store.maxTime = (new Date(data.createTime).getTime() + (15 * 60 - 1) * 1000 - new Date(data.nowTime).getTime()) / 1000;
         if (store.maxTime <= 0) {
-            //  重新拿所有数据
+            //  重新获取订单详情
             this.getOrderDetail();
             //  清除定时器
             clearInterval(store.timeout);
