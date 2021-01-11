@@ -14,6 +14,8 @@ class Store {
     @observable feeItems = [];
     //  订单对象
     @observable submitOrderData = {};
+    //  定时器
+    @observable timeout = null;
 }
 
 export default Store;
