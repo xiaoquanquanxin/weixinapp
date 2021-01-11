@@ -29,6 +29,57 @@ class Actions {
         return this.getRoomList();
     };
 
+    //  获取欠缴订单详情
+    @action
+    getBillDetailByTrans = async (transactionid) => {
+        const result = await new Promise(function (resolve, reject){
+            let data = {
+                transactionid,
+                //  这个是600
+                payMethod: '600',
+            };
+            const url = `${ipUri["/bpi"]}/getBillDetailByTrans.do`;
+            window.JQ.ajax({
+                crossDomain: true,
+                type: "post",
+                url,
+                contentType: "application/x-www-form-urlencoded",
+                data: {'json': JSON.stringify(data)},
+                success: (res) => {
+                    resolve(res);
+                }
+            })
+        });
+        const {code, data} = result;
+        //  请求错误
+        if (code !== 2000) {
+            return;
+        }
+        const store = this.store;
+        console.log(data);
+        console.log('获取欠缴订单详情-请求成功');
+        // 支付状态
+        store.tranStatus = data.tranStatus;
+        // 支付信息
+        store.memo = data.memo;
+        // 下单时间
+        store.tranDate = data.tranDate.substring(0, 16);
+        // 订单id
+        store.transactionid = data.transactionid;
+        // 欠缴总费用
+        store.totalMoney = data.totalMoney;
+        //  欠缴列表
+        store.paymentList = data.billDetail;
+        //  房间信息，只有id，注意id和ids
+        store.roomInfo.roomId = data.roomIds;
+        //  如果不是待支付0
+        if (+data.tranStatus !== 0) {
+            return;
+        }
+        //  待支付，倒计时
+        this.getTime();
+    };
+
     //  获取预缴订单详情
     @action
     getPaymentInfo = async (transactionid) => {
@@ -72,19 +123,24 @@ class Actions {
         store.payMoney = data.payMoney;
         store.feeName = data.feeName;
         store.roomInfo.roomId = data.roomIds;
-        this.getTime(data.tranStatus);
+        //  如果不是待支付0
+        if (+data.tranStatus !== 0) {
+            return;
+        }
+        //  待支付，倒计时
+        this.getTime();
     };
 
-    //  获取欠缴订单详情
+    //  获取时间接口
     @action
-    getBillDetailByTrans = async (transactionid) => {
+    getTime = async () => {
+        const store = this.store;
+        const {transactionid} = store;
         const result = await new Promise(function (resolve, reject){
+            const url = `${ipUri["/bpi"]}/getTime.do`;
             let data = {
-                transactionid,
-                //  这个是600
-                payMethod: '600',
+                orderID: transactionid,
             };
-            const url = `${ipUri["/bpi"]}/getBillDetailByTrans.do`;
             window.JQ.ajax({
                 crossDomain: true,
                 type: "post",
@@ -96,76 +152,47 @@ class Actions {
                 }
             })
         });
-
-        const {code, data} = result;
+        const {code, data, msg} = result;
         //  请求错误
         if (code !== 2000) {
+            Toast.info(msg, 1);
             return;
         }
-        const store = this.store;
-        console.log(data);
-        console.log('获取欠缴订单详情-请求成功');
-        // 支付状态
-        store.tranStatus = data.tranStatus;
-        // 支付信息
-        store.memo = data.memo;
-        // 下单时间
-        store.tranDate = data.tranDate.substring(0, 16);
-        // 订单id
-        store.transactionid = data.transactionid;
-        // 欠缴总费用
-        store.totalMoney = data.totalMoney;
-        //  欠缴列表
-        store.paymentList = data.billDetail;
-        //  房间信息，只有id，注意id和ids
-        store.roomInfo.roomId = data.roomIds;
-        this.getTime(data.tranStatus);
+        //  计算出下单到现在的时间 进行倒计时 /s
+        store.maxTime = (new Date(data.createTime).getTime() + (15 * 60 - 1) * 1000 - new Date(data.nowTime).getTime()) / 1000;
+        if (store.maxTime <= 0) {
+            //  重新拿所有数据
+            this.getOrderDetail();
+            //  清除定时器
+            clearInterval(store.timeout);
+            store.timeout = null;
+            return;
+        }
+        store.timeout = setTimeout(this.CountDown, 1000);
+        const intervalTime = 5 * 1000;
+        //  5s后继续调用获取时间接口
+        if (store.maxTime <= intervalTime) {
+            return;
+        }
+        setTimeout(this.getTime, intervalTime);
     };
 
     //  定时器计数
     @action
     CountDown(){
-        if (this.store.maxtime > 0) {
-            this.store.minutes = Math.floor(this.store.maxtime / 60);
-            this.store.seconds = Math.floor(this.store.maxtime % 60);
-            --this.store.maxtime;
+        const store = this.store;
+        if (store.maxTime > 0) {
+            store.minutes = Math.floor(store.maxTime / 60);
+            store.seconds = Math.floor(store.maxTime % 60);
+            --store.maxTime;
         } else {
             //  重新获取订单详情
-            //  todo    先注释掉 因为目前后台没跑定时程序 所以永远都是待支付
             this.getOrderDetail();
-
             //  清除定时器
-            clearInterval(this.store.timer);
+            clearTimeout(store.timeout);
         }
     };
 
-    //  获取时间接口
-    @action
-    getTime = async (tranStatus) => {
-        // 如果支付状态为待支付 则开启倒计时
-        if (tranStatus !== 0) {
-            return
-        }
-        const {transactionid} = this.store;
-        const url = `${ipUri["/bpi"]}/getTime.do`;
-        let data = {
-            orderID: transactionid,
-        };
-        window.JQ.ajax({
-            crossDomain: true,
-            type: "post",
-            url,
-            contentType: "application/x-www-form-urlencoded",
-            data: {'json': JSON.stringify(data)},
-            success: (res) => {
-                debugger
-                const {data} = res;
-                // 计算出下单到现在的时间 进行倒计时
-                this.maxtime = (new Date(data.createTime) * 1 + (15 * 60 - 1) * 1000 - new Date(data.nowTime) * 1) / 1000;
-                this.timer = setInterval(this.CountDown, 1000);
-            }
-        })
-    }
 
     //  重置数据
     @action
@@ -176,10 +203,10 @@ class Actions {
         //  当前时间-秒钟
         store.seconds = 0;
         //  最大时间
-        store.maxtime = 15 * 60 - 1;
-        clearInterval(store.timer);
+        store.maxTime = 15 * 60 - 1;
+        clearTimeout(store.timeout);
         //  定时器
-        store.timer = null;
+        store.timeout = null;
         //  欠缴列表
         store.paymentList = [];
         //  总费用
