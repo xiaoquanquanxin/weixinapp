@@ -272,7 +272,7 @@ class Actions {
                 clientIp: "192.168.100.128",
                 //  设备
                 device: (window.OSInfo() === "ios") ? 'ios' : 'Android',
-                //  openId
+                //  openId-从微信授权数据里取
                 openId: userInfo.openId,
             };
             window.JQ.ajax({
