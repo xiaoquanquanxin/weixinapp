@@ -70,9 +70,10 @@ class Actions {
                 }
             })
         });
-        const {code, data} = result;
+        const {code, data, msg} = result;
         //  请求错误
         if (code !== 2000) {
+            Toast.info(msg, 1);
             return;
         }
         if (data.content) {
@@ -168,7 +169,6 @@ class Actions {
         //  await this.getUnpaidBillTran();
         //  获取未缴账单列表
         await this.getPaymentList();
-        Toast.hide();
     };
 
 
@@ -179,7 +179,6 @@ class Actions {
         this.store.active = false;
         // 获取已缴账单列表
         await this.getPaidInList();
-        Toast.hide();
     };
 
     // 获取已缴账单列表     √
@@ -193,7 +192,7 @@ class Actions {
                 roomIDs: currentRoom.roomId,
                 userID: currentRoom.cmdsId,
                 //  startDate是今天-365天
-                startDate:new Date(new Date().getTime() - 365 * 24 * 60 * 60 * 1000).format('yyyy-MM-dd'),
+                startDate: new Date(new Date().getTime() - 365 * 24 * 60 * 60 * 1000).format('yyyy-MM-dd'),
                 //  endDate是今天
                 endDate: new Date().format('yyyy-MM-dd'),
             };
@@ -208,9 +207,10 @@ class Actions {
                 }
             })
         });
-        const {code, data} = result;
+        const {code, data, msg} = result;
         //  请求错误
         if (code !== 2000) {
+            Toast.info(msg, 1);
             return;
         }
         store.paidInList = data.content;
