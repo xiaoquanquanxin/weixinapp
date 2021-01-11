@@ -16,6 +16,8 @@ class Store {
     @observable submitOrderData = {};
     //  定时器
     @observable timeout = null;
+    //  完成订单的时间
+    @observable updateTime = null;
 }
 
 export default Store;
