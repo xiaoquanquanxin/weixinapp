@@ -18,12 +18,13 @@ class Actions {
     @action
     getOrderDetail = async () => {
         const {transactionid, type} = this.store;
-        if (+type === 1) {
-            //  获取预缴订单详情
-            await this.getPaymentInfo(transactionid);
-        } else {
+        console.clear();
+        if (+type === 0) {
             //  获取欠缴订单详情
             await this.getBillDetailByTrans(transactionid);
+        } else {
+            //  获取预缴订单详情
+            await this.getPaymentInfo(transactionid);
         }
         return this.getRoomList();
     };
@@ -131,7 +132,7 @@ class Actions {
         } else {
             //  重新获取订单详情
             //  todo    先注释掉 因为目前后台没跑定时程序 所以永远都是待支付
-            // this.getOrderDetail()
+            this.getOrderDetail();
 
             //  清除定时器
             clearInterval(this.store.timer);
@@ -274,13 +275,14 @@ class Actions {
     @action
     getRoomList = async () => {
         const result = await new Promise((resolve, reject) => {
+            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             window.JQ.ajax({
                 type: "POST",
                 url: `${ipUri["/bpi"]}/getPmdRooms.do`,
                 contentType: "application/x-www-form-urlencoded",
                 data: {
-                    //  todo    用户的id
-                    wxUserID: "5"
+                    //  微信的用户id-从微信的登录后的数据里取
+                    wxUserID: userInfo.id,
                 },
                 success: (result) => {
                     resolve(result);
