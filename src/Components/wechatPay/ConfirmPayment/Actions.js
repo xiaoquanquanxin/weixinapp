@@ -186,7 +186,7 @@ class Actions {
         const {submitOrderData, billDetails, totalMoney, currentRoom} = store;
         const result = await new Promise((resolve, reject) => {
             const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
-            let data = {
+            const data = {
                 //  0 欠缴
                 payType: 0,
                 orderCode: submitOrderData.orderId,
