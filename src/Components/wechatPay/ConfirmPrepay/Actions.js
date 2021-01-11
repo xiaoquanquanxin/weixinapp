@@ -105,7 +105,6 @@ class Actions {
         const store = this.store;
         const {params, currentRoom} = store;
         const result = await new Promise(function (resolve, reject){
-            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             window.JQ.ajax({
                 type: "post",
                 url: `${ipUri["/bpi"]}/property/prepayment/queryFeeInfo`,
@@ -147,7 +146,6 @@ class Actions {
         const store = this.store;
         const {currentFee, currentRoom, params} = store;
         const result = await new Promise(function (resolve, reject){
-            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             const data = {
                 //  当前房间id
                 pmdsRoomId: params.roomId,
@@ -377,7 +375,7 @@ class Actions {
     @action
     completePaidOrder = async () => {
         const store = this.store;
-        const {submitOrderData} = store;
+
         const result = await new Promise((resolve, reject) => {
             let data = {
                 transactionId: submitOrderData.orderId,
