@@ -66,36 +66,35 @@ export default class Template extends React.Component {
     //提交
     submit = () => {
         const {store, actions} = this.props;
-        const {colorStyle} = store.storeAddRepairYu
-        const {problemDescription, appealNature} = store.storeAddRepairYu.AddRepair
+        const {colorStyle} = store.storeAddRepairYu;
+        const {problemDescription, appealNature} = store.storeAddRepairYu.AddRepair;
         // console.log("colorStyle,appealNature,problemDescription",colorStyle,appealNature,problemDescription)
         if (!colorStyle) {
-            if (!appealNature || appealNature == "") return Toast.info(`请选择类型`, 1);
-            if (!problemDescription || problemDescription == "") return Toast.info(`请填写问题描述`, 1);
+            if (!appealNature || appealNature === "") return Toast.info(`请选择类型`, 1);
+            if (!problemDescription || problemDescription === "") return Toast.info(`请填写问题描述`, 1);
             Toast.info(`填写不全`, 1);
             return;
         }
 
         // console.log("submit:",JSON.stringify(this.refs.RUA.getData()))
-        let aData = this.refs.RUA.getData();
-        let voicelist = aData.voicelist;
-        let recordCollection = []
-        for (var i = 0; i < voicelist.length; i++) {
+        const aData = this.refs.RUA.getData();
+        const voicelist = aData.voicelist;
+        const recordCollection = [];
+        for (let i = 0; i < voicelist.length; i++) {
             recordCollection.push(voicelist[i].id)
         }
-        let ivlist = aData.ivlist;
-        let imageCollection = []
-        let videoCollection = []
+        const ivlist = aData.ivlist;
+        const imageCollection = [];
+        const videoCollection = [];
 
         function isAssetTypeAnImage(ext){
-            return [
-                'png', 'jpg', 'jpeg', 'bmp', 'gif', 'webp', 'psd', 'svg', 'tiff'].indexOf(ext.toLowerCase()) !== -1;
+            return ['png', 'jpg', 'jpeg', 'bmp', 'gif', 'webp', 'psd', 'svg', 'tiff'].indexOf(ext.toLowerCase()) !== -1;
         }
 
         for (var i = 0; i < ivlist.length; i++) {
             //判断是不是图片
-            var filePath = ivlist[i].visitUrl
-            var id = ivlist[i].id
+            var filePath = ivlist[i].visitUrl;
+            var id = ivlist[i].id;
             //获取最后一个.的位置
             var index = filePath.lastIndexOf(".");
             //获取后缀
@@ -106,22 +105,19 @@ export default class Template extends React.Component {
                 videoCollection.push(id)
             }
         }
-        // console.log("videoCollection:",videoCollection)
-        // console.log("imageCollection:",imageCollection)
-        // console.log("recordCollection:",recordCollection)
-        videoCollection = videoCollection.join(',')
-        imageCollection = imageCollection.join(',')
-        recordCollection = recordCollection.join(',')
+        console.log("videoCollection:", videoCollection);
+        console.log("imageCollection:", imageCollection);
+        console.log("recordCollection:", recordCollection);
 
 
         const {actionsAddRepairYu} = actions;
-        actionsAddRepairYu.submit(videoCollection, imageCollection, recordCollection).then((data) => {
+        actionsAddRepairYu.submit(videoCollection.join(','), imageCollection.join(','), recordCollection.join(',')).then((data) => {
             //console.log("上报成功");
             //this.props.history.push(`${router.SubmitSucessYu}?id=${data.data.id}&code=${data.data.code}$type=${storeAddRepairYu.type}`);
             // console.log("判断三生三世", this.props.match.params.type)
             this.props.history.push(`${router.SubmitSucessYu[0]}` + "/" + this.props.match.params.type);
         })
-    }
+    };
 
     change_RichUploadAttach(t, msg){
         console.log("change_RichUploadAttach:", t, msg)
