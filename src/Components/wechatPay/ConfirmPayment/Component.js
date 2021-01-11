@@ -22,6 +22,15 @@ export default class Template extends React.Component {
         actionsConfirmPayment.getUrlParams();
     }
 
+    //  离开页面清除定时器
+    componentWillUnmount(){
+        const {store} = this.props;
+        const {storeConfirmPayment} = store;
+        clearTimeout(storeConfirmPayment.timeout);
+        storeConfirmPayment.timeout = null;
+        console.log('清除定时器');
+    }
+
     //  微信支付
     goPay(){
         const {actions, store} = this.props;
