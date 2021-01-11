@@ -8,7 +8,7 @@ class Store {
         type: 0,
         orderId: "",
         orderMoney: "",
-        createTime: "",
+        updateTime: "",
     };
 
 }
