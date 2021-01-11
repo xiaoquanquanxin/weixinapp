@@ -189,14 +189,17 @@ class Actions {
             const data = {
                 //  0 欠缴
                 payType: 0,
+                //  orderCode-从物管接口返回的数据取
                 orderCode: submitOrderData.orderId,
+                //  要交付的订单详情列表-从未缴账单接口getUnpaidBill.do取+前端计算
                 billDetails: JSON.stringify(billDetails),
+                //  总支付金额--从未缴账单接口getUnpaidBill.do取+前端计算
                 orderMoney: totalMoney,
                 //  设备
                 terminalSource: (window.OSInfo() === "ios") ? '1' : '0',
-                //  当前房间的belongProject
+                //  当前房间的belongProject-从getPmdRooms.do接口里取
                 projectID: currentRoom.belongProject,
-                //  微信用户id
+                //  微信的用户id-从微信的登录后的数据里取
                 userID: userInfo.id,
             };
             window.JQ.ajax({
