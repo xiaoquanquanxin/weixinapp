@@ -9,7 +9,7 @@ class Store {
     //  最大时间
     @observable maxtime = 15 * 60 - 1;
     //  定时器
-    @observable timer = null;
+    @observable timeout = null;
     //  欠缴列表
     @observable paymentList = [];
     //  总费用
