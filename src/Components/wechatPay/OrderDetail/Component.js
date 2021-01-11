@@ -5,7 +5,6 @@ import {observer, inject} from 'mobx-react';
 /*自定义类*/
 import './Component.less'
 
-
 //  订单信息
 const OrderInformationRender = ({transactionid, tranDate}) => {
     return (
@@ -40,6 +39,130 @@ const OrderStatusInfoRender = ({type, tranDate, spaceTime}) => {
                 <p className="name">{tranDate}</p>
             </div>
             <div className="spaceTime">{spaceTime}</div>
+        </div>
+    )
+};
+
+//  欠缴账单
+const OutstandingBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInfo, paymentList, totalMoney, transactionid}) => {
+    return (
+        <div className="content">
+            {
+                (() => {
+                    let type = '';
+                    let spaceTime = '';
+                    switch (+tranStatus) {
+                        case 0:
+                            type = '待支付';
+                            spaceTime = `${minutes}分${seconds}秒后订单自动关闭`;
+                            break;
+                        case 3:
+                            type = '已取消';
+                            spaceTime = memo;
+                            break;
+                        default:
+                            type = '支付成功';
+                            spaceTime = '感谢您使用在线缴费！';
+                            break;
+                    }
+                    return (
+                        <OrderStatusInfoRender
+                            data-msg='订单状态信息'
+                            type={type}
+                            tranDate={tranDate}
+                            spaceTime={spaceTime}
+                        />
+                    )
+                })()
+            }
+            <div className="orderList">
+                <div className="payment">
+                    <p className="room world line">房间: {roomInfo.roomName}</p>
+                    {/*欠缴订单*/}
+                    <div>
+                        {
+                            paymentList.map((item, index) => {
+                                return (
+                                    <div className="payment-box"
+                                         key={index}>
+                                        <div className="payment-list line">
+                                            <h3>【{item.billMonth}】</h3>
+                                            {
+                                                item.billDetails.map((_item, _index) => {
+                                                    return (
+                                                        <div key={_index}>
+                                                            <p className="paymen-name">{_item.paidName}</p>
+                                                            <p className="payment-money">￥{_item.paidTotal}</p>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                        <p className="payMoney">实付：<span>¥{totalMoney}</span></p>
+                    </div>
+                </div>
+                <OrderInformationRender
+                    data-msg='订单信息'
+                    transactionid={transactionid}
+                    tranDate={tranDate}
+                />
+            </div>
+        </div>
+    )
+};
+
+// 预缴账单
+const AdvancePaymentBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInfo, feeName, payMoney, transactionid,}) => {
+    return (
+        <div className="content">
+            {
+                (() => {
+                    let type = '';
+                    let spaceTime = '';
+                    switch (+tranStatus) {
+                        case 0:
+                            type = '待支付';
+                            spaceTime = `${minutes}分${seconds}秒后订单自动关闭`;
+                            break;
+                        case 1:
+                            type = '支付成功';
+                            spaceTime = '感谢您使用在线缴费！';
+                            break;
+                        case 2:
+                            type = '已取消';
+                            spaceTime = memo;
+                            break;
+                        default:
+                            throw new Error(`错误的类型${tranStatus}`)
+                    }
+                    return (
+                        <OrderStatusInfoRender
+                            data-msg='订单状态信息'
+                            type={type}
+                            tranDate={tranDate}
+                            spaceTime={spaceTime}
+                        />
+                    )
+                })()
+            }
+            <div className="orderList">
+                <div className="payment">
+                    <p className="room world line">房间: {roomInfo.roomName}</p>
+                    <div className="prepay">
+                        <p className="paymen-name">{feeName}</p>
+                        <p className="payMoney">实付：<span>¥{payMoney}</span></p>
+                    </div>
+                </div>
+                <OrderInformationRender
+                    data-msg='订单信息'
+                    transactionid={transactionid}
+                    tranDate={tranDate}
+                />
+            </div>
         </div>
     )
 };
@@ -99,147 +222,33 @@ export default class Template extends React.Component {
         // console.log(`type:${type}, tranStatus:${tranStatus},minutes:${minutes}, seconds:${seconds}, memo:${memo},tranDate:${tranDate}, feeName:${feeName}, payMoney:${payMoney}, paymentList:${paymentList}, totalMoney`);
         return <div className="Components-OrderDetail-container">
             {
-                (() => {
-                    if (+type === 1) {
-                        return (
-                            // 预缴账单
-                            <div className="content">
-                                {
-                                    (() => {
-                                        let type = '';
-                                        let spaceTime = '';
-                                        switch (+tranStatus) {
-                                            case 0:
-                                                type = '待支付';
-                                                spaceTime = `${minutes}分${seconds}秒后订单自动关闭`;
-                                                break;
-                                            case 1:
-                                                type = '支付成功';
-                                                spaceTime = '感谢您使用在线缴费！';
-                                                break;
-                                            case 2:
-                                                type = '已取消';
-                                                spaceTime = memo;
-                                                break;
-                                            default:
-                                                throw new Error(`错误的类型${tranStatus}`)
-                                        }
-                                        return (
-                                            <OrderStatusInfoRender
-                                                data-msg='订单状态信息'
-                                                type={type}
-                                                tranDate={tranDate}
-                                                spaceTime={spaceTime}
-                                            />
-                                        )
-                                    })()
-                                }
-                                <div className="orderList">
-                                    <div className="payment">
-                                        <p className="room world line">房间: {roomInfo.roomName}</p>
-                                        <div className="prepay">
-                                            <p className="paymen-name">{feeName}</p>
-                                            <p className="payMoney">实付：<span>¥{payMoney}</span></p>
-                                        </div>
-                                    </div>
-                                    <OrderInformationRender
-                                        data-msg='订单信息'
-                                        transactionid={transactionid}
-                                        tranDate={tranDate}
-                                    />
-                                </div>
-                            </div>
-                        )
-                    } else {
-                        return (
-                            // 欠缴账单
-                            <div className="content">
-                                {
-                                    (() => {
-                                        let type = '';
-                                        let spaceTime = '';
-                                        switch (+tranStatus) {
-                                            case 0:
-                                                type = '待支付';
-                                                spaceTime = `${minutes}分${seconds}秒后订单自动关闭`;
-                                                break;
-                                            case 3:
-                                                type = '已取消';
-                                                spaceTime = memo;
-                                                break;
-                                            default:
-                                                type = '支付成功';
-                                                spaceTime = '感谢您使用在线缴费！';
-                                                break;
-                                        }
-                                        return (
-                                            <OrderStatusInfoRender
-                                                data-msg='订单状态信息'
-                                                type={type}
-                                                tranDate={tranDate}
-                                                spaceTime={spaceTime}
-                                            />
-                                        )
-                                    })()
-                                }
-                                <div className="orderList">
-                                    <div className="payment">
-                                        <p className="room world line">房间: {roomInfo.roomName}</p>
-                                        {/*欠缴订单*/}
-                                        <div>
-                                            {
-                                                paymentList.map((item, index) => {
-                                                    return (
-                                                        <div className="payment-box"
-                                                             key={index}>
-                                                            <div className="payment-list line">
-                                                                <h3>【{item.billMonth}】</h3>
-                                                                {
-                                                                    item.billDetails.map((_item, _index) => {
-                                                                        return (
-                                                                            <div key={_index}>
-                                                                                <p className="paymen-name">{_item.paidName}</p>
-                                                                                <p className="payment-money">￥{_item.paidTotal}</p>
-                                                                            </div>
-                                                                        )
-                                                                    })
-                                                                }
-                                                            </div>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                            <p className="payMoney">实付：<span>¥{totalMoney}</span></p>
-                                        </div>
-                                    </div>
-                                    <OrderInformationRender
-                                        data-msg='订单信息'
-                                        transactionid={transactionid}
-                                        tranDate={tranDate}
-                                    />
-                                </div>
-                            </div>
-                        )
-                    }
-                })()
+                (+type === 0) ? (
+                    // 欠缴账单
+                    <OutstandingBills
+                        tranStatus={tranStatus} minutes={minutes} seconds={seconds} memo={memo}
+                        tranDate={tranDate} roomInfo={roomInfo} paymentList={paymentList}
+                        totalMoney={totalMoney} transactionid={transactionid}
+                    />) : (
+                    // 预交账单
+                    <AdvancePaymentBills
+                        tranStatus={tranStatus} minutes={minutes} seconds={seconds} memo={memo}
+                        tranDate={tranDate} roomInfo={roomInfo} feeName={feeName} payMoney={payMoney}
+                        transactionid={transactionid}
+                    />
+                )
             }
             {
-                (() => {
-                    if (+tranStatus === 0) {
-                        return (
-                            <div className="footer">
-                                <div className="cancel" onClick={() => {
-                                    this.cancellationOfOrderFn();
-                                }}>取消订单
-                                </div>
-                                <div className="gopay" onClick={() => {
-                                    this.getTranStatusFn();
-                                }}>去支付
-                                </div>
-                            </div>
-                        )
-                    }
-                })()
+                // 底部按钮
+                (+tranStatus === 0) ? (<div className="footer">
+                    <div className="cancel" onClick={() => {
+                        this.cancellationOfOrderFn();
+                    }}>取消订单
+                    </div>
+                    <div className="gopay" onClick={() => {
+                        this.getTranStatusFn();
+                    }}>去支付
+                    </div>
+                </div>) : null
             }
         </div>
     }
