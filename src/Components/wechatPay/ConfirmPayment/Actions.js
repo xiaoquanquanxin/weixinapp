@@ -135,7 +135,7 @@ class Actions {
         const {currentRoom, billIDsList} = store;
         const result = await new Promise((resolve, reject) => {
             const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
-            let json = {
+            const json = {
                 customerId: currentRoom.cmdsId,
                 paidIDs: billIDsList.join(','),
                 //  手机号
