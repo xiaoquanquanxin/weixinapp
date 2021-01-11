@@ -375,11 +375,12 @@ class Actions {
     @action
     completePaidOrder = async () => {
         const store = this.store;
-
         const result = await new Promise((resolve, reject) => {
+            const updateTime = new Date().format('yyyy-MM-dd hh:mm:ss');
+            store.updateTime = updateTime;
             let data = {
                 transactionId: submitOrderData.orderId,
-                updateTime: submitOrderData.createTime,
+                updateTime,
                 //  服务端处理
                 payMethod: ''
             };
