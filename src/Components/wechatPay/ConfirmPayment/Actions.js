@@ -367,11 +367,13 @@ class Actions {
         const store = this.store;
         const {submitOrderData} = store;
         const result = await new Promise((resolve, reject) => {
+            const updateTime = new Date().format('yyyy-MM-dd hh:mm:ss');
+            store.updateTime = updateTime;
             const data = {
                 //  从物管接口返回的数据取
                 transactionId: submitOrderData.orderId,
                 //  创建时间-从物管接口返回的数据取
-                updateTime: submitOrderData.createTime,
+                updateTime,
                 //  服务端处理
                 payMethod: ''
             };
