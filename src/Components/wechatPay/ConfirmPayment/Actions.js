@@ -340,11 +340,13 @@ class Actions {
         const {data} = result;
         const {tranStatus} = data;
         //  欠缴2是完成
-        if (tranStatus === 1) {
+        if (tranStatus === 2) {
             //  完成订单【确实已经支付】
             return this.completePaidOrder();
         }
-        const next = new Promise(resolve => {
+        console.log('轮训状态');
+        console.log(data);
+        const next = await new Promise(resolve => {
             setTimeout(() => {
                 resolve(true);
             }, 3000);
