@@ -45,19 +45,13 @@ export default class Template extends React.Component {
     };
 
     componentDidMount(){
-        //console.log('[Template] componentDidMount..')
         const {store, actions} = this.props;
         const {storeAddRepairYu} = store;
         const {actionsAddRepairYu} = actions;
         actionsAddRepairYu.init();
-        storeAddRepairYu.type = this.props.match.params.type;
-        //console.log(123441,storeAddRepairYu.type)
-        //storeAddRepairYu.AddRepair.type = this.props.match.params.type;
-        window.setWindowTitle(this.props.match.params.type == 1 ? '房屋报修' : '投诉建议');
+        storeAddRepairYu.type = +this.props.match.params.type;
+        window.setWindowTitle(storeAddRepairYu.type === 1 ? '房屋报修' : '投诉建议');
         actionsAddRepairYu.getRoomInfo();
-        //获取该报修/投诉的下拉框选项
-        actionsAddRepairYu.getRadioInfo();
-        // this.refs.RUA.addImg("abc.mp4","abc.mp4")
     }
 
     //检查按纽状态
