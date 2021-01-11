@@ -27,11 +27,13 @@ class Store {
     //  预缴费项价格
     @observable payMoney = "0";
     //  预缴或欠缴
-    @observable type = "";
+    @observable type = 0;
     //  订单id
     @observable transactionid = null;
     //  房间信息
     @observable roomInfo = {};
+    //  完成订单的时间
+    @observable updateTime = null;
 }
 
 export default Store;
