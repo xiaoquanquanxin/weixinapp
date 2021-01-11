@@ -19,48 +19,24 @@ import './Component.less';
 export default class ComplaintSuggestions extends React.Component {
     componentDidMount(){
         window.setWindowTitle('投诉建议 ');
-        //注入a标签，href 打电话
-        // window.JQ("#tel1").attr("href","tel:")
+        const {actions} = this.props;
+        const {actionsComplaintSuggestions} = actions;
+        actionsComplaintSuggestions.areaPhoneList();
     }
 
-    //检查按纽状态
-    _checkForm = (data) => {
-        const array = [];
-        const bolean = data instanceof Object || data instanceof Array;
-        if (bolean) {
-            if (data instanceof Object) {
-                for (let ele of Object.values(data)) {
-                    array.push(ele);
-                }
-            }
-            const value = array.every((item, index) => {
-                return item != '';							//注:自定义store时，必需为空('')
-            });
-            if (value) {
-                this.setState({
-                    colorStyle: true
-                });
-            } else {
-                this.setState({
-                    colorStyle: false
-                });
-            }
-        } else {
-            Toast.info(`只支持数组和对象`, 1);
-        }
-
+    clickPhone = (phone) => {
+        window.location.href = `tel:${phone}`;
     };
-    clickPhone = () => {
-        window.location.href = 'tel:400-008-0808'
-    }
 
     render(){
-        // const { store, actions } = this.props;
+        const {store} = this.props;
+        const {storeComplaintSuggestions} = store;
+        const {phoneList} = storeComplaintSuggestions;
         return <div className={'Components-ComplaintSuggestions-container'}>
             <WingBlank>
                 <div className={'sugggestion'}>
                     <div>
-                        <p className={'headerImg'}><img src={header} style={{width: '35%'}}/></p>
+                        <p className={'headerImg'}><img src={header} style={{width: '35%'}} alt=''/></p>
                         <WhiteSpace size="lg"/><WhiteSpace size="lg"/>
                         <p className={'tit'}>尊敬的业主，您好</p>
                         <WhiteSpace size="lg"/><WhiteSpace size="lg"/>
@@ -70,17 +46,23 @@ export default class ComplaintSuggestions extends React.Component {
                     </div>
                     <WhiteSpace size="lg"/>
                     <WhiteSpace size="lg"/>
-
-                    <div className={'call-tel'}>
-                        <p>
-                            400电话
-                        </p>
-                        <WhiteSpace size="lg"/>
-                        <Flex>
-                            <Mybutton id="tel1" callback={() => this.clickPhone('400-008-0808')} type={'white'}
-                                      label="400-008-0808"/>
-                        </Flex>
-                    </div>
+                    {
+                        phoneList.map((item, index) => {
+                            return (
+                                <div className={'call-tel'} key={index}>
+                                    <p>
+                                        {item.areaTitle}
+                                    </p>
+                                    <WhiteSpace size="lg"/>
+                                    <Flex>
+                                        <Mybutton id="tel1" callback={() => this.clickPhone(item.areaPhone)}
+                                                  type={'white'}
+                                                  label={item.areaPhone}/>
+                                    </Flex>
+                                </div>
+                            )
+                        })
+                    }
                     <WhiteSpace size="lg"/>
                 </div>
             </WingBlank>
