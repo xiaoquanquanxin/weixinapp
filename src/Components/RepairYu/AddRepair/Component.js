@@ -3,7 +3,6 @@ import React from 'react';
 import {observer, inject} from 'mobx-react';
 /*antd-mobile*/
 import {
-    Modal,
     Picker,
     WhiteSpace,
     Toast,
@@ -14,19 +13,12 @@ import {
 
 import Mybutton from '../../pub/MyButton';
 import router from '../../../router'
-import constant from '../../../constant';
-import VerificationParameter from '../../pub/VerificationParameter';
 import RadioLine from "./RadioBoxItem"
 import ImgZoomHOC from '../../pub/ImgZoomHOC';
-// import EmptyStoreData from '../../pub/EmptyStoreData';
 import RichUploadAttach from '../../../../lib/Components/RichUploadAttach'
-/*当前页面用到的*/
-/*const nowTimeStamp = Date.now();
-const now = new Date(nowTimeStamp);*/
 
 /*自定义类*/
 import './Component.less';
-import Intercept from '../../Intercept';
 import config from '../../../config.js'
 
 @ImgZoomHOC('')
@@ -93,16 +85,16 @@ export default class Template extends React.Component {
 
         for (var i = 0; i < ivlist.length; i++) {
             //判断是不是图片
-            var filePath = ivlist[i].visitUrl;
-            var id = ivlist[i].id;
+            const filePath = ivlist[i].visitUrl;
+            const id = ivlist[i].id;
             //获取最后一个.的位置
-            var index = filePath.lastIndexOf(".");
+            const index = filePath.lastIndexOf(".");
             //获取后缀
-            var ext = filePath.substr(index + 1);
+            const ext = filePath.substr(index + 1);
             if (isAssetTypeAnImage(ext)) {
-                imageCollection.push(id)
+                imageCollection.push(id);
             } else {
-                videoCollection.push(id)
+                videoCollection.push(id);
             }
         }
         console.log("videoCollection:", videoCollection);
@@ -124,15 +116,15 @@ export default class Template extends React.Component {
     }
 
     render(){
-        let apiupload = "user/common/uploadFileByMediaId";
-        let apidel = "";
-        let uploadonefile_api = config.urlPrefix + "user/common/uploadFile";
+        const apiupload = "user/common/uploadFileByMediaId";
+        const apidel = "";
+        const uploadonefile_api = config.urlPrefix + "user/common/uploadFile";
         const {store, actions} = this.props;
         const {files} = this.state;
         const {storeAddRepairYu} = store;
         const {actionsAddRepairYu} = actions;
         const {colorStyle, AddRepair, roomData} = storeAddRepairYu;
-        const {_checkForm} = actionsAddRepairYu
+        const {_checkForm} = actionsAddRepairYu;
         //默认预约时间（不选择）
         //AddRepair.appointmentTime = new Date(this.state.date).format('yyyy-MM-dd hh:mm:ss');
         return <div className={'Components-RepairYu-AddRepair-container'}>
@@ -177,7 +169,6 @@ export default class Template extends React.Component {
             <WhiteSpace size="lg"/>
 
             <WingBlank>
-
                 <div className={'upload-img'}>
                     <p className={'upload-img-title'}>附件</p>
                     <div className={'upload-img-list'}>
