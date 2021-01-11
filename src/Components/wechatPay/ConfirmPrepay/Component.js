@@ -14,7 +14,6 @@ export default class Template extends React.Component {
     }
 
     componentDidMount(){
-        // setTimeout(() => {
         console.clear();
         window.setWindowTitle("预缴确认订单");
         const {actions} = this.props;
@@ -26,7 +25,6 @@ export default class Template extends React.Component {
         actionsConfirmPrepay.getRoomList();
         //  拿费项列表
         actionsConfirmPrepay.getFeeItem();
-        // }, 200)
     }
 
     //  微信支付
