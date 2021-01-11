@@ -79,7 +79,7 @@ class Actions {
         this.store.repairList = [];
         this.pageNum = 1;
         this.getRepairList();
-        console.log(2222, this.pageNum)
+        console.log('pageNum', this.pageNum);
     };
 
 
