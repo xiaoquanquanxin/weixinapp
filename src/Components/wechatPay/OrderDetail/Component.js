@@ -47,6 +47,7 @@ const OrderStatusInfoRender = ({type, tranDate, spaceTime}) => {
 const OutstandingBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInfo, paymentList, totalMoney, transactionid}) => {
     let type = '';
     let spaceTime = '';
+    //  todo    欠缴的状态是什么
     switch (+tranStatus) {
         case 0:
             type = '待支付';
@@ -113,6 +114,7 @@ const OutstandingBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInf
 const AdvancePaymentBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInfo, feeName, payMoney, transactionid,}) => {
     let type = '';
     let spaceTime = '';
+    //  0待支付  1支付成功  2 已取消
     switch (+tranStatus) {
         case 0:
             type = '待支付';
