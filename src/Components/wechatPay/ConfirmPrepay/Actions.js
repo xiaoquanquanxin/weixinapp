@@ -21,6 +21,8 @@ class Actions {
         params.label = decodeURIComponent(params.label);
         store.params = params;
         console.log('页面参数', JSON.parse(JSON.stringify(params)));
+        //  for development
+        // this.pollingGetTranStatus();
     }
 
     //  获取房间列表
@@ -183,7 +185,7 @@ class Actions {
     /***************************上面应该都没问题*********************************/
     /***************************上面应该都没问题*********************************/
     /***************************上面应该都没问题*********************************/
-    //  微信支付
+        //  微信支付
     @action
     goPay = async () => {
         Toast.loading('Loading...', 3);
@@ -344,6 +346,7 @@ class Actions {
                 url: `${ipUri["/bpi"]}/getTranStatus.do`,
                 contentType: "application/x-www-form-urlencoded",
                 data: {'json': JSON.stringify({transactionId: submitOrderData.orderId})},
+                // data: {'json': JSON.stringify({transactionId: '20210108170819078'})},
                 success: (result) => {
                     resolve(result);
                 },
@@ -356,7 +359,9 @@ class Actions {
             //  完成订单【确实已经支付】
             return this.completePaidOrder();
         }
-        const next = new Promise(resolve => {
+        console.log('轮训状态', new Date().getSeconds());
+        console.log(data);
+        const next = await new Promise(resolve => {
             setTimeout(() => {
                 resolve(true);
             }, 3000);
