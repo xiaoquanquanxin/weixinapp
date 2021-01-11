@@ -45,36 +45,30 @@ const OrderStatusInfoRender = ({type, tranDate, spaceTime}) => {
 
 //  欠缴账单
 const OutstandingBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInfo, paymentList, totalMoney, transactionid}) => {
+    let type = '';
+    let spaceTime = '';
+    switch (+tranStatus) {
+        case 0:
+            type = '待支付';
+            spaceTime = `${minutes}分${seconds}秒后订单自动关闭`;
+            break;
+        case 3:
+            type = '已取消';
+            spaceTime = memo;
+            break;
+        default:
+            type = '支付成功';
+            spaceTime = '感谢您使用在线缴费！';
+            break;
+    }
     return (
         <div className="content">
-            {
-                (() => {
-                    let type = '';
-                    let spaceTime = '';
-                    switch (+tranStatus) {
-                        case 0:
-                            type = '待支付';
-                            spaceTime = `${minutes}分${seconds}秒后订单自动关闭`;
-                            break;
-                        case 3:
-                            type = '已取消';
-                            spaceTime = memo;
-                            break;
-                        default:
-                            type = '支付成功';
-                            spaceTime = '感谢您使用在线缴费！';
-                            break;
-                    }
-                    return (
-                        <OrderStatusInfoRender
-                            data-msg='订单状态信息'
-                            type={type}
-                            tranDate={tranDate}
-                            spaceTime={spaceTime}
-                        />
-                    )
-                })()
-            }
+            <OrderStatusInfoRender
+                data-msg='订单状态信息'
+                type={type}
+                tranDate={tranDate}
+                spaceTime={spaceTime}
+            />
             <div className="orderList">
                 <div className="payment">
                     <p className="room world line">房间: {roomInfo.roomName}</p>
@@ -117,38 +111,32 @@ const OutstandingBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInf
 
 // 预缴账单
 const AdvancePaymentBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInfo, feeName, payMoney, transactionid,}) => {
+    let type = '';
+    let spaceTime = '';
+    switch (+tranStatus) {
+        case 0:
+            type = '待支付';
+            spaceTime = `${minutes}分${seconds}秒后订单自动关闭`;
+            break;
+        case 1:
+            type = '支付成功';
+            spaceTime = '感谢您使用在线缴费！';
+            break;
+        case 2:
+            type = '已取消';
+            spaceTime = memo;
+            break;
+        default:
+            throw new Error(`错误的类型${tranStatus}`)
+    }
     return (
         <div className="content">
-            {
-                (() => {
-                    let type = '';
-                    let spaceTime = '';
-                    switch (+tranStatus) {
-                        case 0:
-                            type = '待支付';
-                            spaceTime = `${minutes}分${seconds}秒后订单自动关闭`;
-                            break;
-                        case 1:
-                            type = '支付成功';
-                            spaceTime = '感谢您使用在线缴费！';
-                            break;
-                        case 2:
-                            type = '已取消';
-                            spaceTime = memo;
-                            break;
-                        default:
-                            throw new Error(`错误的类型${tranStatus}`)
-                    }
-                    return (
-                        <OrderStatusInfoRender
-                            data-msg='订单状态信息'
-                            type={type}
-                            tranDate={tranDate}
-                            spaceTime={spaceTime}
-                        />
-                    )
-                })()
-            }
+            <OrderStatusInfoRender
+                data-msg='订单状态信息'
+                type={type}
+                tranDate={tranDate}
+                spaceTime={spaceTime}
+            />
             <div className="orderList">
                 <div className="payment">
                     <p className="room world line">房间: {roomInfo.roomName}</p>
