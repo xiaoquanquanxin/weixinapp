@@ -17,6 +17,11 @@ class Store {
     @observable colorStyle = false;
 
 
+
+    /***
+     * 以下
+     * 以下
+     * **/
     //  房间列表
     @observable roomList = [];
     //  房间下的客户列表
