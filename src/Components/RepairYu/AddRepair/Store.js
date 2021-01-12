@@ -7,30 +7,42 @@ class Store {
     //上传图片列表
     @observable array = [temp, temp2, temp, temp2];
     @observable type = "";//状态 1.报修 2.投诉
-    //添加报修
-    @observable AddRepair = {
-        //type: "",//1-报事，2-投诉
-        pkRoom: "",//房间id
-        appealNature: "",//室内1；室外0；投诉2；咨询3；建议4；表扬5
-        problemDescription: "",//问题描述
-    };
-    @observable imageCollection = "";//图片地址，多个以逗号分隔
+    //  图片地址，多个以逗号分隔
+    @observable imageCollection = "";
     @observable recordCollection = "";
     //单选框数据
-    @observable radioData = []
-    //房间下拉框的数据
-    //[{ label: '广州常春藤-G1-1-2802', value: '1', }, { label: '广州常春藤-G1-1-28022', value: '2', },]
-    @observable roomData = [];
+    @observable radioData = [];
     //认证信息
     @observable userAuthInfo = {};
     @observable colorStyle = false;
-    //使用 observable decorator
 
-    @observable test = 0
-    //业主ID
-    @observable custId = 0
-    //业主信息。保存获取的数据
-    custInfo;
+
+    //  房间列表
+    @observable roomList = [];
+    //  房间下的客户列表
+    @observable contactList = [];
+
+    //  预约时间
+    @observable appointmentTime = new Date();
+
+    //  添加报修
+    @observable AddRepair = {
+        //  房间id
+        roomId: "",
+        roomName: "",
+
+        //  联系人
+        contactId: '',
+        contactName: '',
+        //  手机号
+        phoneNo: '',
+
+        //type: "",//1-报事，2-投诉
+
+        appealNature: "",//室内1；室外0；投诉2；咨询3；建议4；表扬5
+        problemDescription: "",//问题描述
+
+    };
 }
 
 export default Store;
