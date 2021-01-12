@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            width: 600px;
+            overflow: hidden;
+            word-break: break-all;
+        }
+
+        li {
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+<body>
+<ul id="list"></ul>
+<script>
+    const originUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx38471b86e45e684f&redirect_uri=https%3A%2F%2Fhachiseedland-dev.hachi-tech.com%2Fwechat-mobile%2Fwx%2Fredirect%3FforwordUrl%3Dhttp%253A%252F%252F192.168.100.128%253A8080%252F%2523%252FAddRepair%26snsApi%3Dsnsapi_base&response_type=code&scope=snsapi_base&state=1569237672274#wechat_redirect';
+    const deUrl = decodeURIComponent(originUrl);
+    // console.log(deUrl);
+    const dedeUrl = decodeURIComponent(deUrl);
+    // console.log(dedeUrl);
+    // console.log(decodeURIComponent(decodeURIComponent('http%253A%252F%252F192.168.100.128%253A8080%252F%2523%252FAddRepair')));
+
+</script>
+<script data-msg="创建连接">
+    function createLink(realUrl){
+        return `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx38471b86e45e684f&redirect_uri=${
+            encodeURIComponent(`https://hachiseedland-dev.hachi-tech.com/wechat-mobile/wx/redirect?forwordUrl=${
+                encodeURIComponent(realUrl)}&snsApi=`)}snsapi_base&response_type=code&scope=snsapi_base&state=1569237672274#wechat_redirect`
+    }
+</script>
+<script data-msg="创建连接">
+    const basicUrl = 'http://192.168.100.128:8080/wechat-pay/20210108/#';
+    // const basicUrl = 'https://hachiseedland-dev.hachi-tech.com/wechat-pay/20210108/#';
+
+    ((dataList) => {
+        dataList.forEach(({name, url}) => {
+            //  报事报修
+            const resultUrl = createLink(`${basicUrl}${url}`);
+            const li = document.createElement('li');
+            li.innerText = `${name}\n${resultUrl}`;
+            list.appendChild(li);
+        });
+    })(
+        [
+            {name: '报事报修', url: `/AddRepair/1`},
+            {name: '物业缴费', url: `/wechat-pay/PayIndex`},
+        ]
+    );
+</script>
+</body>
+</html>
