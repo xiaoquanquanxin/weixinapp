@@ -118,7 +118,7 @@ export default class RepairList extends React.Component {
                 </div>
             </PullToRefresh>
             {/*按纽*/}
-            <div className={'submit-btn'}>
+            <div className={'submit-btn'} style={{display: 'none'}}>
                 <div className={"btn"} onClick={() => {
                     history.push('/ComplaintSuggestions?phone=1')
                 }}>
