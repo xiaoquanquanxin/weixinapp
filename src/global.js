@@ -66,7 +66,6 @@ window.myFun401 = function (){
                 //  todo    wechat-pay  dev和prod不一样，注意时间二级路径
                 // let str = encodeURI(origin + "/index.html?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
                 let str = encodeURI(origin + "/wechat-pay/20210108?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
-                str = encodeURI(str);
                 url = "login/getWxAuthUrl?forwordUrl=" + str;
                 window.delLocalData('pageName');
                 window.delLocalData('PhasetwoMyQuestionnaireType')
