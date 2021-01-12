@@ -110,7 +110,6 @@ let html = `<!DOCTYPE html>
         //url=url.replace(/#\/\//g, "#/")
 		console.log("url2:",url)
         // window.location.replace("${randBuildDirname}/"+url); 
-        debugger
         window.location.replace("/wechat-pay/${randBuildDirname}/"+url); 
     } catch (err) {
         alert("錯誤信息"+JSON.stringify(err)+e)
