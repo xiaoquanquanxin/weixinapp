@@ -39,18 +39,17 @@ window.myFun401 = function (){
         window.__temhttp401_ = true;
 
         function refrshe(){
-            // todo check debugger;
+            //  401后的跳转
             window.__temhttp401_ = false;
-            // window.location.href="#/Login";
-            // let url="login/getWxAuthUrl?forwordUrl="+encodeURI(window.location.href);
-            let origin = window.location.origin;
+            //  window.location.href="#/Login";
+            //  let url="login/getWxAuthUrl?forwordUrl="+encodeURI(window.location.href);
+            const {origin, href} = window.location;
             let PhasetwoActivityListDetail = window.location.href.includes('/PhasetwoActivityListDetail');
             //  todo    wechat-pay  dev和prod不一样，注意时间二级路径
-            // let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/");
-            let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210108?url=/");
-            let PhasetwoMyQuestionnaire = window.location.href.includes('/PhasetwoMyQuestionnaire');
+            //  let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/");
+            let url = "login/getWxAuthUrl?forwordUrl=" + encodeURIComponent(href);
             let pageName = JSON.stringify(window.getLocalData("pageName"));
-            /*活动*/
+            //  活动
             if (PhasetwoActivityListDetail) {
                 let activityid = window.getLocalData("activityid");
                 //  todo    wechat-pay  dev和prod不一样，注意时间二级路径
@@ -58,7 +57,7 @@ window.myFun401 = function (){
                 url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210108?url=/PhasetwoActivityListDetail/" + activityid);
             }
 
-            //问卷
+            //  问卷
             if (pageName && pageName.includes('我的问卷')) {
                 let PhasetwoMyQuestionnaireType = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireType"));
                 let PhasetwoMyQuestionnaireId = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireId"));
@@ -72,7 +71,6 @@ window.myFun401 = function (){
                 window.delLocalData('PhasetwoMyQuestionnaireId')
                 window.delLocalData('isDone')
             }
-
             window.GETNoAuth({url}).then((data) => {
                 setTimeout(() => {
                     if (!data.isSucess) {
@@ -86,9 +84,9 @@ window.myFun401 = function (){
             window.clearLocalData();
         }
 
-        refrshe()
+        refrshe();
     }
-}
+};
 window.GET = async function ({url, cformData = null, headers = null, prefix = null, isAutoError = true, isShowLoading = true, isRanTimestamp = true, fun401 = null}){
     if (_isGet401()) return;
     if (!fun401) fun401 = window.myFun401;
