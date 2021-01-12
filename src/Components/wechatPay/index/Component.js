@@ -16,7 +16,6 @@ export default class Template extends React.Component {
         window.setWindowTitle("物业缴费");
         const {actions} = this.props;
         const {actionsWeChatPayIndex} = actions;
-        console.log('userInfo')
         actionsWeChatPayIndex.userInfo();
     }
 
