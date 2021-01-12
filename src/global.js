@@ -14,7 +14,7 @@ function _appendHeader(headers){
     try {
         headers['sessionkey'] = JSON.parse(window.getLocalData('auth'))
         // headers['sessionkey']=JSON.parse('oSuxiwhHkAbgHVnlcF_DXSpiJ-JY')
-        console.log('sessionkey', headers['sessionkey'])
+        // console.log('sessionkey', headers['sessionkey'])
 
     } catch (e) {
         console.log("追加sessionkey错误:", e)
@@ -45,17 +45,17 @@ window.myFun401 = function (){
             // let url="login/getWxAuthUrl?forwordUrl="+encodeURI(window.location.href);
             let origin = window.location.origin;
             let PhasetwoActivityListDetail = window.location.href.includes('/PhasetwoActivityListDetail');
-            //  todo    wechat-pay  dev和prod不一样
+            //  todo    wechat-pay  dev和prod不一样，注意时间二级路径
             // let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/");
-            let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210106?url=/");
+            let url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210108?url=/");
             let PhasetwoMyQuestionnaire = window.location.href.includes('/PhasetwoMyQuestionnaire');
             let pageName = JSON.stringify(window.getLocalData("pageName"));
             /*活动*/
             if (PhasetwoActivityListDetail) {
                 let activityid = window.getLocalData("activityid");
-                //  todo    wechat-pay  dev和prod不一样
+                //  todo    wechat-pay  dev和prod不一样，注意时间二级路径
                 // url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/PhasetwoActivityListDetail/" + activityid);
-                url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210106?url=/PhasetwoActivityListDetail/" + activityid);
+                url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210108?url=/PhasetwoActivityListDetail/" + activityid);
             }
 
             //问卷
@@ -63,9 +63,9 @@ window.myFun401 = function (){
                 let PhasetwoMyQuestionnaireType = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireType"));
                 let PhasetwoMyQuestionnaireId = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireId"));
                 let isDone = JSON.parse(window.getLocalData("isDone"));
-                //  todo    wechat-pay  dev和prod不一样
+                //  todo    wechat-pay  dev和prod不一样，注意时间二级路径
                 // let str = encodeURI(origin + "/index.html?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
-                let str = encodeURI(origin + "/wechat-pay/20210106?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
+                let str = encodeURI(origin + "/wechat-pay/20210108?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
                 str = encodeURI(str);
                 url = "login/getWxAuthUrl?forwordUrl=" + str;
                 window.delLocalData('pageName');
@@ -75,9 +75,15 @@ window.myFun401 = function (){
             }
 
             window.GETNoAuth({url}).then((data) => {
-                if (!data.isSucess) return;
-                window.location.href = data.data
+                setTimeout(() => {
+                    if (!data.isSucess) {
+                        return
+                    }
+                    console.log('我要跳转到', data.data);
+                    window.location.replace(data.data);
+                }, 60);
             });
+            console.log('清除所有auth');
             window.clearLocalData();
         }
 
