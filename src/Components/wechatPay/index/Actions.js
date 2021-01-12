@@ -10,6 +10,7 @@ class Actions {
     * */
     @action
     userInfo = async () => {
+        console.log('userInfo');
         let url = `user/userInfo`;
         let cformData = {};
         //let cformData = config.format(obj);
