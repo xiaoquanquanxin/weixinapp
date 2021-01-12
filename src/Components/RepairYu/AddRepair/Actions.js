@@ -1,80 +1,132 @@
 import {action} from 'mobx';
-// 定义对数据的操作
-import VerificationMobileFormat from '../../pub/VerificationMobileFormat';
 
 class Actions {
     constructor(store){
         this.store = store;
     }
 
-    _test = async () => {
-        this.store.test = await this.incB()
-    }
     @action
     init = () => {
-        //初始化store变量，都放这里
-        this.store.AddRepair = {
-            //type: "",//1-报事，2-投诉
-            pkRoom: "",//房间id
-            appealNature: "",//室内1；室外0；投诉2；咨询3；建议4；表扬5
-            problemDescription: "",//问题描述
-        };
-        this.store.colorStyle = false;
-    }
-    /*获取报修/投诉单选按钮*/
+        const store = this.store;
+        store.isValidated = false;
+        const {AddRepair} = store;
+        AddRepair.roomId = "";
+        AddRepair.roomName = "";
+
+        AddRepair.contactId = '';
+        AddRepair.contactName = '';
+        AddRepair.phoneNo = '';
+
+        AddRepair.problemDescription = "";
+    };
+
+    //  获取房间信息
     @action
-    getRadioInfo = async (type) => {
-        let url = "auth/getWorkType";
-        let cformData = {
-            type: this.store.type
-        };
-        let result = await window.GET({url, cformData});
-        if (!result.isSucess) return;
-        this.store.radioData = result.data.map((item, index) => {
-            return {label: item.labelName, value: item.value}
-        })
-        //console.log("radioData",this.store.radioData)
-    }
-    /*获取用户信息*/
-    @action
-    getUserInfo = async (body) => {
-        let url = `user/userInfo`
+    getRoomInfoFn = async () => {
+        let url = "auth/getRoomInfo";
         let cformData = {};
         let result = await window.GET({url, cformData});
-        if (!result.isSucess) return;
-        this.store.AddRepair.custName = result.data.fullName;
-        this.store.AddRepair.custPhone = result.data.phoneNo;
-    }
-    /*获取业主信息*/
-    @action
-    getRoomInfo = async () => {
-        let url = "auth/getRoomInfo";
-        let cformData = {}
-        let result = await window.GET({url, cformData});
-        if (!result.isSucess) return;
+        if (!result.isSucess) {
+            return;
+        }
+        const {data: roomList} = result;
         //获取下拉框的数据
-        this.store.custInfo = result.data;
-        this.store.AddRepair.pkRoom = this.store.custInfo[0].pkDoor;
-        this.store.AddRepair.roomName = this.store.custInfo[0].roomName;
-        this.store.roomData = result.data.map((val, index) => {
-            return {label: val.roomName, value: val.pkDoor}
-        })
-    }
+        const store = this.store;
+        const {AddRepair} = store;
+        //  组织picker数据
+        roomList.forEach(item => {
+            item.label = item.roomName;
+            item.value = item.roomId;
+        });
+        //  赋值
+        store.roomList = roomList;
+        if (!roomList.length) {
+            return false;
+        }
+        //  当前房屋数据
+        AddRepair.roomId = roomList[0].roomId;
+        AddRepair.roomName = roomList[0].roomName;
+        return true;
+    };
 
-    //更改房间信息和ID
+    //  根据roomId拿当前房间下的联系人
     @action
-    changeRoom(roomID){
-        this.store.custInfo.forEach((val, index) => {
-            if (val.pkDoor == roomID) {
-                this.store.AddRepair.pkRoom = val.pkDoor;
-                this.store.AddRepair.roomName = this.store.custInfo[index].roomName
+    getUserListByRoomId = async (roomId) => {
+        const store = this.store;
+        const {AddRepair} = store;
+        //  先重置当前联系人的信息
+        AddRepair.contactId = '';
+        AddRepair.contactName = '';
+        const url = `auth/getUserListByRoomId`;
+        let cformData = {roomId};
+        let result = await window.GET({url, cformData});
+        if (!result.isSucess) {
+            return;
+        }
+        const {data: contactList} = result;
+        AddRepair.contactList = contactList;
+        //  组织picker数据
+        contactList.forEach((item, index) => {
+            item.label = item.userName;
+            item.value = `contactId_${index}`;
+        });
+        //  筛选数据，至少得有姓名
+        store.contactList = contactList.filter(item => {
+            return item.userName
+        });
+        const contactItem = store.contactList[0];
+        if (!contactItem) {
+            return;
+        }
+        console.log(JSON.parse(JSON.stringify(contactItem)));
+        const {value: contactId, label: contactName, phoneNo} = contactItem;
+        AddRepair.contactId = contactId;
+        AddRepair.contactName = contactName;
+        AddRepair.phoneNo = phoneNo;
+    };
+
+    //  更改房间信息和ID
+    @action
+    changeRoom(roomId){
+        const {AddRepair, contactList} = this.store;
+        contactList.forEach((val, index) => {
+            if (val.roomId === roomId) {
+                AddRepair.roomId = val.roomId;
+                AddRepair.roomName = contactList[index].roomName;
             }
         })
     }
 
+    //  更改联系人信息和ID
     @action
-        /*提交*/
-    submit = async (videoCollection, imageCollection, recordCollection) => {
+    changeContact(contactId){
+        const {AddRepair, contactList} = this.store;
+        contactList.forEach((contactItem, index) => {
+            if (contactItem.contactId === contactId) {
+                const {value: contactId, label: contactName, phoneNo} = contactItem;
+                AddRepair.contactId = contactId;
+                AddRepair.contactName = contactName;
+                AddRepair.phoneNo = phoneNo;
+            }
+        })
+    }
+
+    //  检查是否有空项，选修改提交按纽状态
+    @action
+    _checkForm = (data) => {
+        let keys = ['roomId', 'problemDescription'];
+        for (let i = 0; i < keys.length; i++) {
+            if (!data[keys[i]]) {
+                this.store.isValidated = false;
+                break;
+            }
+        }
+        this.store.isValidated = true
+    };
+
+    /*提交*/
+    @action
+    submit = async (imageCollection) => {
         //较验电话号码格式
         // const boolean = VerificationMobileFormat.checkMobile(this.store.AddRepair.custPhone);
         // if (!boolean) return false;
@@ -85,51 +137,29 @@ class Actions {
         // 		address = constant.COMPLAINSUGGESTIONS
         // 	}
         // 	this.props.history.push(`${router.SubmitSucess}`);
-        // 	// this.props.history.push(`${router.RepairList[0]}/${address}`);
+        // 	// this.props.history.push(`${router.RepairList[0]} /${address}`);
         // }
-        if (this.store.type == 1) {
-            if (this.store.labelName == "室内") {
+        if (+this.store.type === 1) {
+            if (this.store.labelName === "室内") {
                 this.store.AddRepair["rangeFlag"] = 1;
-            } else if (this.store.labelName == "室外") {
+            } else if (this.store.labelName === "室外") {
                 this.store.AddRepair["rangeFlag"] = 0;
             }
-            this.store.AddRepair.appealNature = 1;
+
         } else {
             this.store.AddRepair["rangeFlag"] = 0;
         }
-        videoCollection, imageCollection, recordCollection
-        this.store.AddRepair["imageCollection"] = imageCollection
-        this.store.AddRepair["recordCollection"] = recordCollection
-        this.store.AddRepair["videoCollection"] = videoCollection
+        this.store.AddRepair.imageCollection = imageCollection;
         let url = 'auth/saveServiceBill';
-        let cformData = this.store.AddRepair
+        let cformData = this.store.AddRepair;
         // console.log("提交的数据格式:",cformData);
         let result = await window.POST({url, cformData});
-        if (!result.isSucess) return;
+        if (!result.isSucess) {
+            return;
+        }
         return result;
     };
-    @action
-    radioCheck = (value, label) => {
-        this.store.AddRepair.appealNature = value;
-        this.store.labelName = label;
-        this._checkForm(this.store.AddRepair)
-        console.log("colorStyle:", this.store.colorStyle)
-        // console.log(3333333,this.store.AddRepair.appealNature, this.store.labelName)
-    }
 
-    @action
-    _checkForm = (data) => {
-        var isCheck = true;
-        let keys = ['pkRoom', 'appealNature', 'problemDescription']
-        for (var i = 0; i < keys.length; i++) {
-            var key = keys[i]
-            if (!data[key] || data[key] == "") {
-                isCheck = false;
-                break;
-            }
-        }
-        this.store.colorStyle = isCheck
-    };
 
 }
 
