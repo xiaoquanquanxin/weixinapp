@@ -12,12 +12,14 @@ class Actions {
 
     /*初始化一些*/
     @action
-    init = async (obj) => {
-        this.store.roomName = ""
-        this.store.ProjectSelectvalarr = []
-        this.store.roomIdarr = []
-        this.store.colorStyle = false
-        this.store.AddFamilyMembers = {
+    init = async () => {
+        const store = this.store;
+        store.Foldval = false;
+        store.roomName = "";
+        store.ProjectSelectvalarr = [];
+        store.roomIdarr = [];
+        store.colorStyle = false;
+        store.AddFamilyMembers = {
             fullName: '',                 //姓名
             phoneNo: '',                 //电话号码
             identityNo: '',           //身份证
@@ -25,8 +27,8 @@ class Actions {
             birthday: '',              //出生年月
             userType: '',       //客户类型
             roomName: ''
-        }
-        this.store.getUserInfoByParamval = ''
+        };
+        store.getUserInfoByParamval = '';
     };
 
 
@@ -39,7 +41,9 @@ class Actions {
         let obj = {...body};
         let cformData = config.format(obj);
         let result = await window.POST({url, cformData});
-        if (!result.isSucess) return;
+        if (!result.isSucess) {
+            return;
+        }
         this.store.addFamilyUser = result.data;
         return result.resultCode
     };
@@ -54,7 +58,9 @@ class Actions {
             userType: 1
         }
         let result = await window.GET({url: "auth/getRoomInfo", cformData});
-        if (!result.isSucess) return;
+        if (!result.isSucess) {
+            return;
+        }
         //this.store.getRoomInfo = result.data
         this.store.getRoomInfo = []
         result.data.forEach((item, index) => {
@@ -79,7 +85,9 @@ class Actions {
             };
             //console.log("cformDataedit", cformDataedit)
             let resultedit = await window.POST({url: "auth/findHouseAuths", cformData: cformDataedit});
-            if (!resultedit.isSucess) return;
+            if (!resultedit.isSucess) {
+                return;
+            }
             resultedit.data.forEach((item, index) => {
                 this.store.ProjectSelectvalarr.push(
                     item.name
@@ -106,15 +114,17 @@ class Actions {
         let obj = {...body};
         let cformData = config.format(obj);
         let result = await window.POST({url, cformData});
-        if (!result.isSucess) return;
+        if (!result.isSucess) {
+            return;
+        }
         //this.store.userFamily=result.data;
         return result.resultCode
     };
 
 
     @action
-    Fold = (v) => {
-        this.store.Foldval = !v
+    Fold = (Foldval) => {
+        this.store.Foldval = !Foldval
     }
     @action
     ProjectSelectOK = (v) => {
@@ -166,7 +176,9 @@ class Actions {
                         roomIds: this.roomId,
                     }
                     let result = await window.POST({url: "auth/addFamilyUser", cformData});
-                    if (!result.isSucess) return;
+                    if (!result.isSucess) {
+                        return;
+                    }
                     history.goBack(-1)
                 }
             },
@@ -204,7 +216,9 @@ class Actions {
                     }
                     //console.log("cformData111111111111111111",cformData)
                     let result = await window.POST({url: "auth/updateFamilyUser", cformData});
-                    if (!result.isSucess) return;
+                    if (!result.isSucess) {
+                        return;
+                    }
                     history.goBack(-1)
                 }
             },
@@ -228,17 +242,13 @@ class Actions {
             }
             //console.log("array", array)
             const value = array.every((item, index) => {
-                if (item != '') {
-                    return item != false
+                if (item !== '') {
+                    return item !== false
                 }					//注:自定义store时，必需为空('')
             });
 
             //console.log("value",value)
-            if (value) {
-                this.store.colorStyle = true
-            } else {
-                this.store.colorStyle = false
-            }
+            this.store.colorStyle = !!value;
         } else {
             Toast.info(`只支持数组和对象`, 1);
         }
@@ -246,29 +256,32 @@ class Actions {
     };
     //添加手机和身份证获取其他信息
     @action
-    getUserInfoByParam = async (data) => {
+    getUserInfoByParam = async () => {
+        const store = this.store;
+        const {AddFamilyMembers, getUserInfoByParamval} = store;
         //window.identity()
-        if (data.phoneNo.length == 11 && (this.store.AddFamilyMembers.identityNo != "")) {
-            console.log(1221)
+        if (AddFamilyMembers.phoneNo.length === 11 && (AddFamilyMembers.identityNo !== "")) {
+            // console.log(AddFamilyMembers);
             let cformData = {
-                phoneNo: data.phoneNo,
-                identityNo: data.identityNo
-            }
+                phoneNo: AddFamilyMembers.phoneNo,
+                identityNo: AddFamilyMembers.identityNo
+            };
             let result = await window.GET({url: "user/getUserInfoByParam", cformData});
-            if (!result.isSucess) return;
-            if (result.data.id) {
-                this.store.getUserInfoByParamval = result.data.id
-                this.store.AddFamilyMembers.id = result.data.id
-                this.store.AddFamilyMembers.nickName = result.data.nickName
-                this.store.AddFamilyMembers.sex = result.data.sex
-                this.store.AddFamilyMembers.birthday = result.data.birthday
-                this.store.AddFamilyMembers.fullName = result.data.fullName
-                console.log(12)
+            if (!result.isSucess) {
+                return;
             }
-
+            const {data} = result;
+            if (data && data.id) {
+                store.getUserInfoByParamval = data.id;
+                AddFamilyMembers.id = data.id;
+                AddFamilyMembers.nickName = data.nickName;
+                AddFamilyMembers.sex = data.sex;
+                AddFamilyMembers.birthday = data.birthday;
+                AddFamilyMembers.fullName = data.fullName;
+                console.log(data);
+            }
         }
     }
-
 }
 
 export default Actions;
