@@ -15,7 +15,8 @@ class Actions {
     }*/
     @action
     Listfun = async (activityType, pageNum) => {
-        console.log(888, activityType, pageNum);
+        console.log('activityType:', activityType);
+        console.log('pageNum:', pageNum);
         this.store.tabval = activityType;
         this.pageNum = pageNum;
         let cformData = {
@@ -24,27 +25,24 @@ class Actions {
             pageNum: pageNum,
             pageSize: 10
         };
-        console.log(999, cformData);
+        console.log('请求数据', cformData);
         let result = await window.GET({url: 'user/activity/activitiList', cformData});
-
         if (!result.isSucess) {
             return;
         }
-        //console.log(999,pageNum)
         if (+result.resultCode === 0) {
             if (result.data.length === 0) {
                 this.store.actbottom = 1
             } else {
                 if (pageNum > 1) {
-                    this.store.actListdata = this.store.actListdata.concat(result.data)
+                    this.store.actListdata = this.store.actListdata.concat(result.data);
                 } else {
-                    //console.log(111999)
                     this.store.actListdata = result.data
                 }
                 this.store.actbottom = 2
             }
         }
-        console.log(this.store.actListdata, "actListdata")
+        console.log(this.store.actListdata, "actListdata");
     };
     @action
     tabfun = (index) => {
