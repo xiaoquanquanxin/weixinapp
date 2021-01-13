@@ -70,8 +70,9 @@ export default class Template extends React.Component {
         const {storeFamilyMembers} = store;
         const {userFamily} = storeFamilyMembers;
         history.push(`${router.AddFamilyMembers[0]}?id=${item.id}&authUserId=${item.authUserId}`);
-        console.log("item", item)
-        window.setLocalData("editFamily", item)
+        console.log("item", item);
+        //  服了。。。
+        window.setLocalData("editFamily", item);
         //userFamily[index].editStatus=true;
     };
     /*删除成员*/
@@ -80,9 +81,6 @@ export default class Template extends React.Component {
         const {storeFamilyMembers} = store;
         const {actionsFamilyMembers} = actions;
         const {userFamily} = storeFamilyMembers;
-        const body = {
-            wxUesrId: 1
-        };
         alert('提示', '确定要删除？', [
             {text: '关闭', onPress: () => console.log('cancel')},
             {
@@ -90,7 +88,7 @@ export default class Template extends React.Component {
 
                     /*删除操作*/
                     userFamily.forEach((item, indx) => {
-                        if (ele.id == item.id) {
+                        if (ele.id === item.id) {
                             userFamily.splice(index, 1)
                         }
                     });
@@ -98,7 +96,7 @@ export default class Template extends React.Component {
                     /*删除操作-服务端请求*/
                     const o = actionsFamilyMembers.delFamilyUser(ele.authUserId);
                     o.then((txt) => {
-                        if (txt == 0) {
+                        if (+txt === 0) {
                             Toast.info(`删除成功!`, 1);
                         }
                     });
@@ -112,32 +110,32 @@ export default class Template extends React.Component {
     render(){
         const {store, actions} = this.props;
         const {storeFamilyMembers} = store;
-        const {actionsFamilyMembers} = actions
-        const {useInfo, userFamily, getRoomInfo, roomName, userType} = storeFamilyMembers;
-        const {topfunproject} = actionsFamilyMembers
+        const {actionsFamilyMembers} = actions;
+        const {useInfo, userFamily, getRoomInfo, roomName, userType, roomId} = storeFamilyMembers;
+        const {topfunproject} = actionsFamilyMembers;
         // console.log('getRoomInfo___________', getRoomInfo, userFamily)
         return (
             <div className={'Components-FamilyMembers-container'}>
                 <div className={'Components-DemoLayout-container '}>
                     <LayoutContainerOne height={144}>
-                        <div type="header">
-
+                        <div type='header' data-msg='type=header 不可删'>
                             <header>
                                 <Picker
                                     data={getRoomInfo}
                                     cols={1}
+                                    value={[roomId]}
                                     onOk={(v) => {
                                         topfunproject(v[0])
                                     }}
                                 >
                                     <div className={"headproject"}>
-                                        <div className={"name"}><span>{roomName}</span><img src={xiaIcon}/></div>
+                                        <div className={"name"}><span>{roomName}</span><img src={xiaIcon} alt=''/></div>
                                     </div>
                                 </Picker>
 
                                 <Flex className={'OwnerComment-header'}>
                                     <div className={'header-img'}>
-                                        <img src={useInfo.userLogo || header}/>
+                                        <img src={useInfo.userLogo || header} alt=''/>
                                     </div>
                                     <div className={'info'}>
                                         <p className={'owner'}>
@@ -149,7 +147,7 @@ export default class Template extends React.Component {
                                 </Flex>
                             </header>
                         </div>
-                        <div type="content">
+                        <div type='content' data-msg='type=content 不可删'>
                             {
                                 // (userFamily && userFamily.length>0 && userFamily.peek()) .map((item, index) => {
                                 userFamily && userFamily.length > 0 && userFamily.map((item, index) => {
@@ -163,7 +161,7 @@ export default class Template extends React.Component {
                                                     </div>
                                                     <div className={'grayColor'}>
                                                         <Flex>
-                                                            <Flex.Item> <span>性别：{item.sex == 1 ? '男' : '女'} </span>
+                                                            <Flex.Item> <span>性别：{+item.sex === 1 ? '男' : '女'} </span>
                                                                 &nbsp;&nbsp;&nbsp; &nbsp;
                                                             </Flex.Item>
                                                             <Flex.Item>
@@ -172,35 +170,29 @@ export default class Template extends React.Component {
                                                         </Flex>
                                                     </div>
                                                 </div>
-                                                {userType == 1 && <Flex className={'editInfo'}>
+                                                {+userType === 1 && <Flex className={'editInfo'}>
                                                     <Flex.Item onClick={() => {
                                                         this.editFamily(item, index);
-                                                    }}><img src={editIcon}/> 编辑</Flex.Item>
+                                                    }}><img src={editIcon} alt=''/> 编辑</Flex.Item>
                                                     <Flex.Item onClick={() => {
                                                         this.deleteFamily(item, index);
-                                                    }}><img src={deleteIcon}/> 删除</Flex.Item>
+                                                    }}><img src={deleteIcon} alt=''/> 删除</Flex.Item>
                                                 </Flex>}
 
                                             </li>
                                         </ul>);
                                     }
-
-
                                 })
                             }
-
-
                             <WhiteSpace size="lg"/>
                             <WhiteSpace size="lg"/>
-                            {userType == 1 && <Flex onClick={() => {
+                            {+userType === 1 && <Flex onClick={() => {
                                 this.props.history.push(`${router.AddFamilyMembers[0]}`);
                             }}>
-                                <div className={'addFamily grayColor'}><p><img src={addIcon}/></p> <p
-                                    className={'m_top10'}>添加家庭成员</p></div>
+                                <div className={'addFamily grayColor'}><p><img src={addIcon} alt=''/></p>
+                                    <p className={'m_top10'}>添加家庭成员</p></div>
                             </Flex>}
                         </div>
-
-
                     </LayoutContainerOne>
                 </div>
             </div>
