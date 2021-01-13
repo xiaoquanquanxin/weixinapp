@@ -43,12 +43,14 @@ export default class PhasetwoHomeLetterList extends React.Component {
         let name = 'yz';
         switch (+urlObject.subjectId) {
             case 1:
+                //  不一定有
                 subjectName = '活动文章';
                 break;
             case 33:
                 subjectName = '社区文化';
                 break;
             case 34:
+                //  不在这里调
                 subjectName = '城市资讯';
                 break;
             case 35:
