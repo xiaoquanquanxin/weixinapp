@@ -1,5 +1,5 @@
 容丽姐配置的url，房屋保修
-https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd27ff55f5c89385&redirect_uri=https%3A%2F%2Fhachiseedland-dev.hachi-tech.com%2Fwechat-mobile%2Fwx%2Fredirect%3FforwordUrl%3Dhttp%253A%252F%252F192.168.100.128%253A8088%252F%2523%252FAddRepair%26snsApi%3Dsnsapi_base&response_type=code&scope=snsapi_base&state=1569237672274#wechat_redirect
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx38471b86e45e684f&redirect_uri=https%3A%2F%2Fhachiseedland-dev.hachi-tech.com%2Fwechat-mobile%2Fwx%2Fredirect%3FforwordUrl%3Dhttp%253A%252F%252F192.168.100.128%253A8088%252F%2523%252FAddRepair%26snsApi%3Dsnsapi_base&response_type=code&scope=snsapi_base&state=1569237672274#wechat_redirect
 
 
 线上城市资讯
@@ -55,3 +55,25 @@ window.location.origin + window.location.pathname
 window.location.origin + window.location.pathname + '#/'+location.search
 
 
+
+
+https://hachiseedland-dev.hachi-tech.com/wechat-pay/20210106/?url=/&sessionKey=xxxxxx#/
+https://hachiseedland-dev.hachi-tech.com/wechat-pay/20210106/#/?url=/&newSessionKey=xxxxxx
+
+https://hachiseedland-dev.hachi-tech.com/wechat-pay/20210106?url=/&sessionKey=xxxxxx
+
+
+
+
+
+
+//  域名
+https://hachiseedland-dev.hachi-tech.com/
+//  这是真正服务器的最深的目录了
+https://hachiseedland-dev.hachi-tech.com/wechat-pay/20210108/
+//  仅前端hash
+https://hachiseedland-dev.hachi-tech.com/wechat-pay/20210108/#/wechat-pay/
+//  这是带一个前端hash的地址
+https://hachiseedland-dev.hachi-tech.com/wechat-pay/20210108/#/wechat-pay/
+//  完整url
+https://hachiseedland-dev.hachi-tech.com/wechat-pay/20210108/#/wechat-pay/ConfirmPayment
