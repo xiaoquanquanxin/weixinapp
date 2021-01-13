@@ -176,12 +176,12 @@ window.setWindowTitle = function (title){
     console.log('设置标题为：', title);
     window.document.title = title;
     const iframe = document.createElement('iframe');
-    iframe.src = '';
     iframe.style.display = 'none';
     iframe.onload = iframe.onerror = function (e){
         console.log(e);
         document.body.removeChild(iframe);
     };
+    iframe.src = '';
     document.body.appendChild(iframe);
     //  解决输入框弹出，页面滚动的bug,点击不了弹框。
     window.JQ('input').on('blur', function (){
