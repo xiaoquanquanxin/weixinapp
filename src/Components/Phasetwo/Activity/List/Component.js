@@ -114,8 +114,8 @@ export default class PhasetwoActivityList extends React.Component {
                     {/* <div className={"tab"}>
                     2
                 </div> */}
-                    {actListdata && actListdata.length == 0 ? < div className={"actbottomgray"}>暂无数据</div> :
-                        actbottom == 1 ? <div className={"actbottom"}>已经到底部</div> :
+                    {actListdata && actListdata.length === 0 ? < div className={"actbottomgray"}>暂无数据</div> :
+                        +actbottom === 1 ? <div className={"actbottom"}>已经到底部</div> :
                             <div className={"actbottom"}>拉动刷新数据</div>
                     }
                 </div>
