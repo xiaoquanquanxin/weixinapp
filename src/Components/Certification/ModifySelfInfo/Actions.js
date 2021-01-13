@@ -1,28 +1,30 @@
-import {action } from 'mobx';
-import { Modal, Toast} from 'antd-mobile';
+import {action} from 'mobx';
+import {Modal, Toast} from 'antd-mobile';
+
 // 定义对数据的操作
 class Actions {
-    constructor(store) {
+    constructor(store){
         this.store = store;
     }
+
     @action
     Modalfun = (key) => {
         this.store.Modalval = key
-        if (key){
-            this.store.heightval='100%'
-        }else{
+        if (key) {
+            this.store.heightval = '100%'
+        } else {
             this.store.heightval = 'auto'
         }
     }
     @action
-    choicephonefun = (v, i)=>{
+    choicephonefun = (v, i) => {
         this.store.custId = v.custId
         this.store.choicephoneindex = i
-        console.log(2121,this.store.custId)
+        console.log('custId', this.store.custId)
     }
     @action
-    Modaltrue = async(history) => {
-        if (this.store.custId!=''){
+    Modaltrue = async (history) => {
+        if (this.store.custId != '') {
             let cformData = {
                 custName: this.store.Nameval,
                 phoneNo: this.store.phoneval,
@@ -32,13 +34,13 @@ class Actions {
                 faceImg: this.store.faceImg,//正面照
                 custId: this.store.custId//客户iD
             }
-            let result = await window.POSTJSON({ url: "user/modifyphone/submit", cformData });
+            let result = await window.POSTJSON({url: "user/modifyphone/submit", cformData});
             if (!result.isSucess) return;
             history.push('/CertificationModifySelfInfoSucess')
-        }else{
+        } else {
             Toast.info('请选择更换的手机号码', 2);
         }
-        
+
     }
 
 
@@ -52,7 +54,7 @@ class Actions {
         // this.store.authPhoto=""
         // this.store.identityPhotoFront=""
         // this.store.custList = [
-        //     { custId: "phoneNo", phoneNo: "phoneNo" }, { custId: "phoneNo", phoneNo: "phoneNo" }, 
+        //     { custId: "phoneNo", phoneNo: "phoneNo" }, { custId: "phoneNo", phoneNo: "phoneNo" },
         //     { custId: "phoneNo", phoneNo: "phoneNo" }, { custId: "phoneNo", phoneNo: "phoneNo" },
         //     { custId: "phoneNo", phoneNo: "phoneNo" }
         // ]
@@ -61,8 +63,8 @@ class Actions {
         this.store.heightval = 'auto'
         this.store.colorStyle = false
         this.store.verificationval = ''//验证码
-        this.store.phoneval =''
-        this.store.Nameval=''
+        this.store.phoneval = ''
+        this.store.Nameval = ''
         this.store.IdentityNoval = ''//身份证号码
         this.store.choicephoneindex = ''//選擇客戶樣式
         this.store.identityImg = ''//身份证照片
@@ -70,65 +72,71 @@ class Actions {
         this.store.custId = ''//客戶id
     }
     @action
-    colorStylefun=()=>{
-        this.store.colorStyle = 
-            this.store.verificationval && 
-            this.store.phoneval && 
-            this.store.Nameval && 
+    colorStylefun = () => {
+        this.store.colorStyle =
+            this.store.verificationval &&
+            this.store.phoneval &&
+            this.store.Nameval &&
             this.store.IdentityNoval ? true : false
     }
-    
+
     @action
-    SignSavefun = async (history)=>{
+    SignSavefun = async (history) => {
         console.log("AddRepair", this.store.AddRepair)
         //window.identity()
-        if (window.phone(this.store.phoneval) && this.store.IdentityNoval!="") {
-         if (this.store.identityImg != "" && this.store.faceImg != "") {
-            let cformData = {
-                custName: this.store.Nameval,
-                phoneNo: this.store.phoneval,
-                validCode: this.store.verificationval,//验证码
-                identityNo: this.store.IdentityNoval,//身份证号码
-                identityImg: this.store.identityImg,//身份证照片
-                faceImg: this.store.faceImg,//正面照
-                //custId: this.store.custId//客户iD
-            }
-                let result = await window.POSTJSON({ url: "user/modifyphone/submit", cformData });
+        if (window.phone(this.store.phoneval) && this.store.IdentityNoval != "") {
+            if (this.store.identityImg != "" && this.store.faceImg != "") {
+                let cformData = {
+                    custName: this.store.Nameval,
+                    phoneNo: this.store.phoneval,
+                    validCode: this.store.verificationval,//验证码
+                    identityNo: this.store.IdentityNoval,//身份证号码
+                    identityImg: this.store.identityImg,//身份证照片
+                    faceImg: this.store.faceImg,//正面照
+                    //custId: this.store.custId//客户iD
+                }
+                let result = await window.POSTJSON({url: "user/modifyphone/submit", cformData});
                 if (!result.isSucess) return;
-                if (result.data.needChoose==0){
+                if (result.data.needChoose == 0) {
                     history.push('/CertificationModifySelfInfoSucess')
-                }else{
+                } else {
                     this.store.custList = result.data.custList
                     this.Modalfun(true)
                 }
-                
-               // window.setLocalData("orderEntrustId", result.data)
-            // wx.scanQRCode({
-            //     needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-            //     scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
-            //     success: async(res)=> {
-                    
-            //         //alert(JSON.stringify(result))
-            //         let resultcode = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-            //         window.setLocalData("signType", 2)
-            //         //alert("成功返回结果" + JSON.stringify(result))
-            //         history.push(`/HandInBuildingSignInSuccess?orderBulidId=${resultcode}`)
-            //     }
-            // });
-            //history.push("/HandInBuildingSignInSuccess")
 
-            }else{
+                // window.setLocalData("orderEntrustId", result.data)
+                // wx.scanQRCode({
+                //     needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                //     scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                //     success: async(res)=> {
+
+                //         //alert(JSON.stringify(result))
+                //         let resultcode = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                //         window.setLocalData("signType", 2)
+                //         //alert("成功返回结果" + JSON.stringify(result))
+                //         history.push(`/HandInBuildingSignInSuccess?orderBulidId=${resultcode}`)
+                //     }
+                // });
+                //history.push("/HandInBuildingSignInSuccess")
+
+            } else {
                 Modal.alert('提示', "身份证或者正面照沒有上传", [
-                    { text: '确定', onPress: () => { } }
+                    {
+                        text: '确定', onPress: () => {
+                        }
+                    }
                 ])
             }
         } else {
             Modal.alert('提示', "手机号或者身份证有误，请重新输入", [
-                { text: '确定', onPress: () => { } }
+                {
+                    text: '确定', onPress: () => {
+                    }
+                }
             ])
         }
 
-        
+
     }
     // @action
     // imgonefun = async(img)=>{
@@ -136,7 +144,7 @@ class Actions {
     //     alert(JSON.stringify(await this.uploadimgone()))
     // }
     @action
-    uploadimgone = async (img)=> {
+    uploadimgone = async (img) => {
         if (!window.isWeiXin()) {
             alert("请用微信打开")
         }
@@ -160,7 +168,7 @@ class Actions {
             },
             success: (res) => {
                 var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-               // alert("localIds:" + JSON.stringify(localIds))
+                // alert("localIds:" + JSON.stringify(localIds))
                 // this.props.change("chooseImage",res)
                 //返回的格式：
                 //["wxLocalResource://xxxxxx"]
@@ -183,17 +191,17 @@ class Actions {
                         var serverId = res1.serverId; // 返回图片的服务器端ID
                         // this.props.change("uploadImage",res1)
                         //alert("uploadImage success serverId:"+serverId)
-                        let cformData = { mediaId: serverId }
+                        let cformData = {mediaId: serverId}
                         // let prefix="http://211.159.163.183:9090/mock/150/";
-                        window.POST({ url: "user/modifyphone/uploadimg", cformData }).then((data) => {
+                        window.POST({url: "user/modifyphone/uploadimg", cformData}).then((data) => {
                             //成功
-                          //  alert("返回的数据:"+JSON.stringify(data))
+                            //  alert("返回的数据:"+JSON.stringify(data))
                             if (!data.isSucess) return;
                             // let visitUrl=data.data.visitUrl;
                             let id = data.data.id;
                             let visitUrl = data.data.visitUrl
                             this.store[img] = data.data.visitUrl
-                           // alert("返回的数据111:" + JSON.stringify(this.store[img]) + this.store["identityPhotoFront"] )
+                            // alert("返回的数据111:" + JSON.stringify(this.store[img]) + this.store["identityPhotoFront"] )
                             // return visitUrl
                         }, () => {
                             //失败
@@ -241,16 +249,16 @@ class Actions {
             let cformData = {
                 phoneNo: this.store.phoneval
             }
-            let result = await window.GET({ url, cformData });
+            let result = await window.GET({url, cformData});
             if (!result.isSucess) return;
             if (API_TYPE == "1") {//
                 alert("调试信息:验证码:" + result.data)
             }
             //console.log(result.data)
-        }
-        else {
+        } else {
             Toast.info(`手机号码有误`, 2);
         }
     }
 }
+
 export default Actions;
