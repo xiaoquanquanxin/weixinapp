@@ -139,7 +139,7 @@ export default class MineList extends React.Component {
                                               tongbufun();
                                               break;
                                           default:
-                                              console.log(item);
+                                              console.log('点击', JSON.parse(JSON.stringify(item)));
                                               this.hanldClick(item);
                                       }
                                   }}
