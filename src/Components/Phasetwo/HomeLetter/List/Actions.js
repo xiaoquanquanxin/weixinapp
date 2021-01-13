@@ -1,11 +1,13 @@
-import { observable, action } from 'mobx';
-import { Toast } from 'antd-mobile';
+import {observable, action} from 'mobx';
+import {Toast} from 'antd-mobile';
+
 // 定义对数据的操作
 class Actions {
-    constructor(store) {
+    constructor(store){
         this.store = store;
         this.pageNum = 1
     }
+
     /*
     @action
     incA = () => {
@@ -13,34 +15,30 @@ class Actions {
     }*/
     @action
     listfun = async (name, subjectId, pageNum) => {
-        
-        this.store.name = name
-        this.store.subjectId = subjectId
-        this.store.listdataval=[]
-        this.store.projectList = []
-        this.store.projectId = ""
-        console.log(99, this.store.subjectId, this.store.name)
-        // let urlobj = window.getQueryString();
-        if (name == "yz") {
+        const store = this.store;
+        store.name = name;
+        store.subjectId = subjectId;
+        store.listdataval = [];
+        store.projectList = [];
+        store.projectId = "";
+        if (name === "yz") {
             this.articleList(pageNum)
         } else {
-            let result = await window.GET({ url: "user/projectList" });
+            let result = await window.GET({url: "user/projectList"});
             if (!result.isSucess) return;
             result.data.projectList.forEach((v, i) => {
                 this.store.projectList.push({
                     label: v.projectName,
-                    value: v.projectId
-                })
-                if (v.projectId == result.data.defaultProjectId) {
-                    this.store.projectId = v.projectId
-                    this.store.projectName = v.projectName
+                    value: v.projectId,
+                });
+                if (v.projectId === result.data.defaultProjectId) {
+                    this.store.projectId = v.projectId;
+                    this.store.projectName = v.projectName;
                 }
-            })
+            });
             this.articleList(pageNum)
         }
-
-
-    }
+    };
     @action
     articleList = async (pageNum) => {
         console.log("getCompanyId", JSON.parse(window.getCompanyId()))
@@ -60,8 +58,8 @@ class Actions {
         //     subjectId = 33
         // }
 
-        let companyId = this.store.name == "yz" ? JSON.parse(window.getCompanyId()) : ""
-        let projectId = this.store.name == "yz" ? "" : this.store.projectId
+        let companyId = this.store.name === "yz" ? JSON.parse(window.getCompanyId()) : "";
+        let projectId = this.store.name === "yz" ? "" : this.store.projectId;
         let cformData = {
             cityId: "",
             subjectId: this.store.subjectId,
@@ -69,12 +67,12 @@ class Actions {
             companyId: companyId,
             pageNum: pageNum,
             pageSize: 10
-        }
-        console.log(11111,cformData)
-        let result = await window.GET({ url: "user/articleList", cformData });
+        };
+        console.log('cformData', cformData);
+        let result = await window.GET({url: "user/articleList", cformData});
         if (!result.isSucess) return;
-        if (result.resultCode == 0) {
-            if (result.data.length == 0) {
+        if (+result.resultCode === 0) {
+            if (result.data.length === 0) {
                 this.store.actbottom = 1
                 //Toast.info(`已经到底部`, 1);
             } else {
@@ -85,10 +83,8 @@ class Actions {
                 }
                 this.store.actbottom = 2
             }
-
         }
-
-    }
+    };
     @action
     Pickfun = (value) => {
         this.store.projectList.forEach((v, i) => {
@@ -116,15 +112,15 @@ class Actions {
         // } else {
         //     subjectId = 1
         // }
-       if (v.contentType == 2) {
-           window.location.href = v.contentUrl
+        if (v.contentType == 2) {
+            window.location.href = v.contentUrl
         } else {
-           let sessionKeyurl = ""
-           if (window.getLocalData('auth') != "") {
-               sessionKeyurl = "&sessionKey=" + JSON.parse(window.getLocalData('auth'))
-           }
-           console.log("sessionKeyurl", sessionKeyurl)
-           history.push('/PhasetwoArticle/' + v.id + '?title=' + this.store.subjectId + sessionKeyurl)
+            let sessionKeyurl = ""
+            if (window.getLocalData('auth') != "") {
+                sessionKeyurl = "&sessionKey=" + JSON.parse(window.getLocalData('auth'))
+            }
+            console.log("sessionKeyurl", sessionKeyurl)
+            history.push('/PhasetwoArticle/' + v.id + '?title=' + this.store.subjectId + sessionKeyurl)
         }
 
     }
@@ -141,4 +137,5 @@ class Actions {
         console.log(this.store.refreshing)
     }
 }
+
 export default Actions;
