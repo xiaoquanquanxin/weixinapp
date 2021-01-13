@@ -15,7 +15,9 @@ class Actions {
             joinerId: this.store.joinerId
         };
         let result = await window.GET({url: "user/activity/activitiApplyDetail", cformData});
-        if (!result.isSucess) return;
+        if (!result.isSucess) {
+            return;
+        }
         this.store.DetailsData = result.data;
         window.setLocalData("signDetailsData", this.store.DetailsData);
         this.findInfoByJoinerIdfun(joinerId)
@@ -25,9 +27,11 @@ class Actions {
         const cformData = {
             joinerId,
         };
-        //  todo    接口404
+        //  todo   这个接口是干什么的
         let result = await window.GET({url: "user/activity/findInfoByJoinerId", cformData});
-        if (!result.isSucess) return;
+        if (!result.isSucess) {
+            return;
+        }
         this.store.findInfoByJoinerId = result.data
     };
 
@@ -76,7 +80,9 @@ class Actions {
             joinerId: this.store.joinerId
         };
         let result = await window.GET({url: "user/activity/cancelSignup", cformData});
-        if (!result.isSucess) return;
+        if (!result.isSucess) {
+            return;
+        }
         history.push('/PhasetwoActivityCancelSuccess')
     }
 }
