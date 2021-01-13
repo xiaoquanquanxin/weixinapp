@@ -9,39 +9,41 @@ class Actions {
 
     @action
     Modalfun = (key) => {
-        this.store.Modalval = key
+        const store = this.store;
+        store.Modalval = key;
         if (key) {
-            this.store.heightval = '100%'
+            store.heightval = '100%';
         } else {
-            this.store.heightval = 'auto'
+            store.heightval = 'auto';
         }
-    }
+    };
     @action
     choicephonefun = (v, i) => {
-        this.store.custId = v.custId
-        this.store.choicephoneindex = i
-        console.log('custId', this.store.custId)
-    }
+        const store = this.store;
+        store.custId = v.custId;
+        store.choicephoneindex = i;
+        console.log('custId', store.custId);
+    };
     @action
     Modaltrue = async (history) => {
-        if (this.store.custId != '') {
+        const store = this.store;
+        if (store.custId !== '') {
             let cformData = {
-                custName: this.store.Nameval,
-                phoneNo: this.store.phoneval,
-                validCode: this.store.verificationval,//验证码
-                identityNo: this.store.IdentityNoval,//身份证号码
-                identityImg: this.store.identityImg,//身份证照片
-                faceImg: this.store.faceImg,//正面照
-                custId: this.store.custId//客户iD
-            }
+                custName: store.Nameval,
+                phoneNo: store.phoneval,
+                validCode: store.verificationval,//验证码
+                identityNo: store.IdentityNoval,//身份证号码
+                identityImg: store.identityImg,//身份证照片
+                faceImg: store.faceImg,//正面照
+                custId: store.custId//客户iD
+            };
             let result = await window.POSTJSON({url: "user/modifyphone/submit", cformData});
             if (!result.isSucess) return;
             history.push('/CertificationModifySelfInfoSucess')
         } else {
             Toast.info('请选择更换的手机号码', 2);
         }
-
-    }
+    };
 
 
     @action
@@ -59,33 +61,30 @@ class Actions {
         //     { custId: "phoneNo", phoneNo: "phoneNo" }
         // ]
 
-        this.store.Modalval = false
-        this.store.heightval = 'auto'
-        this.store.colorStyle = false
-        this.store.verificationval = ''//验证码
-        this.store.phoneval = ''
-        this.store.Nameval = ''
-        this.store.IdentityNoval = ''//身份证号码
-        this.store.choicephoneindex = ''//選擇客戶樣式
-        this.store.identityImg = ''//身份证照片
-        this.store.faceImg = ''//正面照
-        this.store.custId = ''//客戶id
-    }
+        this.store.Modalval = false;
+        this.store.heightval = 'auto';
+        this.store.colorStyle = false;
+        this.store.verificationval = '';//验证码
+        this.store.phoneval = '';
+        this.store.Nameval = '';
+        this.store.IdentityNoval = '';//身份证号码
+        this.store.choicephoneindex = '';//選擇客戶樣式
+        this.store.identityImg = '';//身份证照片
+        this.store.faceImg = '';//正面照
+        this.store.custId = '';//客戶id
+    };
     @action
     colorStylefun = () => {
-        this.store.colorStyle =
-            this.store.verificationval &&
-            this.store.phoneval &&
-            this.store.Nameval &&
-            this.store.IdentityNoval ? true : false
-    }
+        const store = this.store;
+        store.colorStyle = (store.verificationval && store.phoneval && store.Nameval && store.IdentityNoval);
+    };
 
     @action
     SignSavefun = async (history) => {
-        console.log("AddRepair", this.store.AddRepair)
+        console.log("AddRepair", this.store.AddRepair);
         //window.identity()
-        if (window.phone(this.store.phoneval) && this.store.IdentityNoval != "") {
-            if (this.store.identityImg != "" && this.store.faceImg != "") {
+        if (window.phone(this.store.phoneval) && this.store.IdentityNoval !== "") {
+            if (this.store.identityImg !== "" && this.store.faceImg !== "") {
                 let cformData = {
                     custName: this.store.Nameval,
                     phoneNo: this.store.phoneval,
@@ -94,10 +93,10 @@ class Actions {
                     identityImg: this.store.identityImg,//身份证照片
                     faceImg: this.store.faceImg,//正面照
                     //custId: this.store.custId//客户iD
-                }
+                };
                 let result = await window.POSTJSON({url: "user/modifyphone/submit", cformData});
                 if (!result.isSucess) return;
-                if (result.data.needChoose == 0) {
+                if (+result.data.needChoose === 0) {
                     history.push('/CertificationModifySelfInfoSucess')
                 } else {
                     this.store.custList = result.data.custList
@@ -135,9 +134,7 @@ class Actions {
                 }
             ])
         }
-
-
-    }
+    };
     // @action
     // imgonefun = async(img)=>{
     //     this.store[img]=await this.uploadimgone()
@@ -161,7 +158,7 @@ class Actions {
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
             fail: () => {
-                if (JSON.stringify(arguments) != '{}') {
+                if (JSON.stringify(arguments) !== '{}') {
                     //this.props.change("chooseImage_fail",arguments)
                 }
                 alert("网络不好，请重新选择")
@@ -177,7 +174,7 @@ class Actions {
                     localId: localIds[0], // 图片的localID
                     success: res => {
                         var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
-                        if (localData.indexOf('data:image') != 0) {
+                        if (localData.indexOf('data:image') !== 0) {
                             localData = 'data:image/jpeg;base64,' + localData
                         }
                         //alert("getLocalImgData success localId:"+localIds+"localIds:"+JSON.stringify(localIds))
@@ -191,7 +188,7 @@ class Actions {
                         var serverId = res1.serverId; // 返回图片的服务器端ID
                         // this.props.change("uploadImage",res1)
                         //alert("uploadImage success serverId:"+serverId)
-                        let cformData = {mediaId: serverId}
+                        let cformData = {mediaId: serverId};
                         // let prefix="http://211.159.163.183:9090/mock/150/";
                         window.POST({url: "user/modifyphone/uploadimg", cformData}).then((data) => {
                             //成功
@@ -199,7 +196,7 @@ class Actions {
                             if (!data.isSucess) return;
                             // let visitUrl=data.data.visitUrl;
                             let id = data.data.id;
-                            let visitUrl = data.data.visitUrl
+                            let visitUrl = data.data.visitUrl;
                             this.store[img] = data.data.visitUrl
                             // alert("返回的数据111:" + JSON.stringify(this.store[img]) + this.store["identityPhotoFront"] )
                             // return visitUrl
@@ -208,47 +205,44 @@ class Actions {
                         })
                     },
                     fail: () => {
-                        if (JSON.stringify(arguments) != '{}') {
+                        if (JSON.stringify(arguments) !== '{}') {
                             alert("uploadImage fail:", JSON.stringify(arguments))
                             // this.props.change("uploadImage_fail",arguments)
                         }
                         //alert("失败"+JSON.stringify(arguments))
                     }
                 });
-
             }
         });
-    }
+    };
 
     //输入框赋值
     @action
     inputfun = (v, tar) => {
-        this.store[tar] = v
-        this.colorStylefun()
+        this.store[tar] = v;
+        this.colorStylefun();
         //console.log(v)
-    }
+    };
     //验证码倒计时获取
     @action
     getverificationfun = async () => {
         if (window.phone(this.store.phoneval)) {
-
-            this.store.getverificationval = false
+            this.store.getverificationval = false;
             this.time = window.setInterval(() => {
                 if (this.store.timesecond <= 60 && this.store.timesecond > 1) {
                     this.store.timesecond -= 1
                 } else {
-                    this.store.timesecond = 60
-                    this.store.getverificationval = true
+                    this.store.timesecond = 60;
+                    this.store.getverificationval = true;
                     window.clearInterval(this.time);
                 }
             }, 1000);
 
-
             let url = `user/getSmsAuthCode`;
-            let prefix = 'http://asm-test.seedland.cc/wechat-mobile/'
+            let prefix = 'http://asm-test.seedland.cc/wechat-mobile/';
             let cformData = {
                 phoneNo: this.store.phoneval
-            }
+            };
             let result = await window.GET({url, cformData});
             if (!result.isSucess) return;
             if (API_TYPE == "1") {//
