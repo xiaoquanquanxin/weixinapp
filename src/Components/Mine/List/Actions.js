@@ -66,7 +66,7 @@ class Actions {
                 text: '确定', onPress: async () => {
                     let url = `/auth/syncRooms`;
                     let result = await window.GET({url});
-                    if (result.resultCode == 0) {
+                    if (result.resultCode === 0) {
                         Toast.info('房产同步成功', 1.5);
                     }
                 }
