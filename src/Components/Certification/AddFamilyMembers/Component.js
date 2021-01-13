@@ -126,7 +126,7 @@ export default class Template extends React.Component {
         const {actionsAddFamilyMembers} = actions;
 
         const {AddFamilyMembers, getRoomInfo, ProjectSelectvalarr, Foldval, colorStyle, ProjectSelectval, getUserInfoByParamval, roomName} = storeAddFamilyMembers;
-        const {submit, submitedit, ProjectSelectfun, Fold, ProjectSelectOK, _checkForm, getUserInfoByParam} = actionsAddFamilyMembers
+        const {submit, submitedit, ProjectSelectfun, Fold, ProjectSelectOK, _checkForm} = actionsAddFamilyMembers
         const argid = window.getQueryString();
         const nowTimeStamp = Date.now();
         //let minDate = new Date(nowTimeStamp - 10000000)
@@ -144,7 +144,7 @@ export default class Template extends React.Component {
                         onChange={(e) => {
                             VerificationMobileFormat.setCallerNumber(e) ? AddFamilyMembers.phoneNo = e : AddFamilyMembers.phoneNo = '';
                             _checkForm(AddFamilyMembers);
-                            getUserInfoByParam(AddFamilyMembers)
+                            actionsAddFamilyMembers.getUserInfoByParam()
                         }
                         }
                     >手机电话</InputItem>
@@ -157,13 +157,13 @@ export default class Template extends React.Component {
                             AddFamilyMembers.identityNo = e;
                             // VerificationMobileFormat.setCallerNumber(e) ? AddFamilyMembers.personId = e : AddFamilyMembers.personId = '';
                             _checkForm(AddFamilyMembers);
-                            getUserInfoByParam(AddFamilyMembers)
+                            actionsAddFamilyMembers.getUserInfoByParam()
                         }}
                     >身份证号</InputItem>
 
                     <InputItem
                         placeholder="请输入姓名"
-                        maxLength={11}
+                        maxLength={30}
                         value={AddFamilyMembers.fullName}
                         onChange={(e) => {
                             AddFamilyMembers.fullName = e;
