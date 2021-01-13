@@ -51,6 +51,7 @@ window.myFun401 = function (){
             let pageName = JSON.stringify(window.getLocalData("pageName"));
             //  活动
             if (PhasetwoActivityListDetail) {
+                debugger;
                 let activityid = window.getLocalData("activityid");
                 //  todo    wechat-pay  dev和prod不一样，注意时间二级路径
                 // url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/index.html?url=/PhasetwoActivityListDetail/" + activityid);
@@ -59,6 +60,7 @@ window.myFun401 = function (){
 
             //  问卷
             if (pageName && pageName.includes('我的问卷')) {
+                debugger;
                 let PhasetwoMyQuestionnaireType = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireType"));
                 let PhasetwoMyQuestionnaireId = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireId"));
                 let isDone = JSON.parse(window.getLocalData("isDone"));
@@ -67,8 +69,8 @@ window.myFun401 = function (){
                 let str = encodeURI(origin + "/wechat-pay/20210108?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
                 url = "login/getWxAuthUrl?forwordUrl=" + str;
                 window.delLocalData('pageName');
-                window.delLocalData('PhasetwoMyQuestionnaireType')
-                window.delLocalData('PhasetwoMyQuestionnaireId')
+                window.delLocalData('PhasetwoMyQuestionnaireType');
+                window.delLocalData('PhasetwoMyQuestionnaireId');
                 window.delLocalData('isDone')
             }
             window.GETNoAuth({url}).then((data) => {
@@ -128,7 +130,7 @@ window.POSTJSON = async function ({url, cformData = null, headers = null, prefix
         isShowLoading,
         isRanTimestamp,
         fun401
-    })
+    });
     return result;
 };
 //不附加auth
@@ -152,31 +154,32 @@ window.POSTNoAuth = async function ({url, cformData = null, headers = {}, prefix
         isShowLoading,
         isRanTimestamp,
         fun401
-    })
+    });
     return result;
 };
-var ls = new Storage()
+var ls = new Storage();
 window.setLocalData = function (key, value){
     ls.setData(key, value)
-}
+};
 window.getLocalData = function (key){
     return ls.getData(key)
-}
+};
 window.delLocalData = function (key){
     ls.del(key)
-}
+};
 window.clearLocalData = function (){
     ls.clear()
-}
+};
 
-//设置标题
+//  设置标题
 window.setWindowTitle = function (title){
-    document.title = title
-    //解决输入框弹出，页面滚动的bug,点击不了弹框。
+    console.log('设置标题为：', title);
+    window.document.title = title;
+    //  解决输入框弹出，页面滚动的bug,点击不了弹框。
     window.JQ('input').on('blur', function (){
         window.scroll(0, 0);
     });
-}
+};
 /**
  * 时间戳 转换格式：使用方法
  *    new Date(时间戳).format('yyyy/MM/dd');//年/月/日
