@@ -17,22 +17,24 @@ class Store {
     ];
     @observable list1 = [
         {ico: addFamily, test: "用户认证    √", link: router.FamilyMembers, renzhen: 1, unverifiedShow: true,},
-        {ico: addFamily, test: "添加家属    √√", link: router.FamilyMembers, renzhen: 1},
-        {ico: myActivity, test: "我的活动   ?、有列表，具体需要验证", link: "/PhasetwoActivitySignUpList"},
-        {ico: myQuestionnaire, test: "我的问卷   ×无法验证，后台不对", link: "/PhasetwoMyQuestionnaireList/1"},
+        // {ico: addFamily, test: "添加家属    √√", link: router.FamilyMembers, renzhen: 1},
+        {ico: myActivity, test: "我的活动   ?有一个未知的接口", link: "/PhasetwoActivitySignUpList"},
+        {ico: myQuestionnaire, test: "我的问卷   x详情有错误接口", link: "/PhasetwoMyQuestionnaireList/1"},
         {ico: myRepair, test: '我的报修 ?、有列表，具体需要验证', link: router.RepairList[0]},
-        {ico: changePhone, test: "同步房产  √√", type: 'synchronous'},
-        {ico: changePhone, test: "更换号码  √√", type: 'changePhone'},
+        // {ico: changePhone, test: "同步房产  √√", type: 'synchronous'},
+        // {ico: changePhone, test: "更换号码  √√", type: 'changePhone'},
         {ico: changePhone, test: "退出登录  x等待接口", type: 'layout'},
-        //  todo    多余
-        {ico: changePhone, test: "↓↓说明↓↓↓↓说明↓↓↓↓说明↓↓↓↓说明↓↓"},
+
+        //  todo    以下 测试其他链接
         {ico: myRepair, test: '房屋报修 ?、AddRepair', link: `${router.AddRepair[0]}/1`},
-        {ico: changePhone, test: "城市资讯  √√", link: '/PhasetwoCityInformationList'},
-        {ico: changePhone, test: "社区文化  √√subjectId=33", link: '/PhasetwoHomeLetterList?subjectId=33'},
-        {ico: changePhone, test: "活动报名  ?、有列表，具体需要验证"},
-        {ico: changePhone, test: "投诉建议  √", link: router.ComplaintSuggestions},
-        {ico: changePhone, test: "社区通知  √√subjectId=35", link: '/PhasetwoHomeLetterList?subjectId=35'},
+        {ico: changePhone, test: "活动报名  ?、有列表，具体需要验证", link: '/PhasetwoActivityList'},
+        // {ico: changePhone, test: "投诉建议  √√", link: router.ComplaintSuggestions},
         {ico: changePhone, test: "物业缴费", link: '/wechat-pay/PayIndex'},
+
+
+        // {ico: changePhone, test: "城市资讯  √√", link: '/PhasetwoCityInformationList'},
+        // {ico: changePhone, test: "社区文化  √√subjectId=33", link: '/PhasetwoHomeLetterList?subjectId=33'},
+        // {ico: changePhone, test: "社区通知  √√subjectId=35", link: '/PhasetwoHomeLetterList?subjectId=35'},
     ];
     @observable type = "blue";
     @observable label = "退出";
