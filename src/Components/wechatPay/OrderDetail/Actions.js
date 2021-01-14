@@ -169,7 +169,8 @@ class Actions {
             store.timeout = null;
             return;
         }
-        store.timeout = setTimeout(this.CountDown, 1000);
+        debugger;
+        store.timeout = setTimeout(() => this.CountDown, 1000);
         const intervalTime = 5 * 1000;
         //  5s后继续调用获取时间接口
         if (store.maxTime <= intervalTime) {
@@ -318,8 +319,8 @@ class Actions {
             })
         });
         const store = this.store;
-        console.log(store.roomInfo);
-        console.table(result.data.map(item => item.roomId));
+        // console.log(store.roomInfo);
+        // console.table(result.data.map(item => item.roomId));
         result.data.forEach((item) => {
             if (item.roomId === store.roomInfo.roomId) {
                 store.roomInfo = item;
