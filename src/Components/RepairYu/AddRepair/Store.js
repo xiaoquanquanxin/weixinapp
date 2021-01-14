@@ -18,6 +18,8 @@ class Store {
         //  房间主数据id
         pkDoor: "",
         roomName: "",
+        //  主数据客户id
+        custId: "",
 
         //  联系人
         contactId: '',
