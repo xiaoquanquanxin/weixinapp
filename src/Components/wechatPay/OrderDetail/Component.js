@@ -237,36 +237,38 @@ export default class Template extends React.Component {
             transactionid,
         } = storeOrderDetail;
         // console.log(`type:${type}, tranStatus:${tranStatus},minutes:${minutes}, seconds:${seconds}, memo:${memo},tranDate:${tranDate}, feeName:${feeName}, payMoney:${payMoney}, paymentList:${paymentList}, totalMoney`);
-        return <div className="Components-OrderDetail-container">
-            {
-                (+type === 0) ? (
-                    // 欠缴账单
-                    <OutstandingBills
-                        tranStatus={tranStatus} minutes={minutes} seconds={seconds} memo={memo}
-                        tranDate={tranDate} roomInfo={roomInfo} paymentList={paymentList}
-                        totalMoney={totalMoney} transactionid={transactionid}
-                    />) : (
-                    // 预交账单
-                    <AdvancePaymentBills
-                        tranStatus={tranStatus} minutes={minutes} seconds={seconds} memo={memo}
-                        tranDate={tranDate} roomInfo={roomInfo} feeName={feeName} payMoney={payMoney}
-                        transactionid={transactionid}
-                    />
-                )
-            }
-            {
-                // 底部按钮
-                (+tranStatus === 0) ? (<div className="footer">
-                    <div className="cancel" onClick={() => {
-                        this.cancellationOfOrderFn();
-                    }}>取消订单
-                    </div>
-                    <div className="gopay" onClick={() => {
-                        this.getTranStatusFn();
-                    }}>去支付
-                    </div>
-                </div>) : null
-            }
-        </div>
+        return (
+            <div className="Components-OrderDetail-container">
+                {
+                    (+type === 0) ? (
+                        // 欠缴账单
+                        <OutstandingBills
+                            tranStatus={tranStatus} minutes={minutes} seconds={seconds} memo={memo}
+                            tranDate={tranDate} roomInfo={roomInfo} paymentList={paymentList}
+                            totalMoney={totalMoney} transactionid={transactionid}
+                        />) : (
+                        // 预交账单
+                        <AdvancePaymentBills
+                            tranStatus={tranStatus} minutes={minutes} seconds={seconds} memo={memo}
+                            tranDate={tranDate} roomInfo={roomInfo} feeName={feeName} payMoney={payMoney}
+                            transactionid={transactionid}
+                        />
+                    )
+                }
+                {
+                    // 底部按钮
+                    (+tranStatus === 0) ? (<div className="footer">
+                        <div className="cancel" onClick={() => {
+                            this.cancellationOfOrderFn();
+                        }}>取消订单
+                        </div>
+                        <div className="gopay" onClick={() => {
+                            this.getTranStatusFn();
+                        }}>去支付
+                        </div>
+                    </div>) : null
+                }
+            </div>
+        )
     }
 }
