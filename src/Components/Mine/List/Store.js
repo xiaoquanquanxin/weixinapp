@@ -26,7 +26,7 @@ class Store {
         {ico: changePhone, test: "退出登录  x等待接口", type: 'layout'},
 
         //  todo    以下 测试其他链接
-        {ico: myRepair, test: '房屋报修 ?、AddRepair', link: `${router.AddRepair[0]}/1`},
+        {ico: myRepair, test: '房屋报修 ?、有无法访问的接口', link: `${router.AddRepair[0]}/1`},
         {ico: changePhone, test: "活动报名  ?、有列表，具体需要验证", link: '/PhasetwoActivityList'},
         // {ico: changePhone, test: "投诉建议  √√", link: router.ComplaintSuggestions},
         {ico: changePhone, test: "物业缴费", link: '/wechat-pay/PayIndex'},
