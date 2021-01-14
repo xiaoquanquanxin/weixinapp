@@ -41,7 +41,6 @@ export default class PhasetwoMyQuestionnaireList extends React.Component {
                                 <div className={"lag"}>{isDone[v.isDone]}</div>
                             </div>
                         )
-
                     })
                 }
             </div>
