@@ -21,7 +21,7 @@ class Store {
     //  是否为超时取消
     @observable isType = "1";
     //  支付状态    0:待支付
-    @observable tranStatus = "0";
+    @observable tranStatus = -1;
     //  预缴费项名称
     @observable feeName = "";
     //  预缴费项价格
