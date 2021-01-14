@@ -173,18 +173,20 @@ export default class Template extends React.Component {
 
                 <WhiteSpace size="lg"/>
                 <p className="text-areaTitle">问题描述</p>
-                <TextareaItem
-                    placeholder="输入问题描述"
-                    data-seed="logId"
-                    autoHeight
-                    count={200}
-                    rows={6}
-                    editable={true}
-                    onChange={(e) => {
-                        AddRepair.problemDescription = e;
-                        actionsAddRepairYu._checkForm();
-                    }}
-                />
+                <div style={{paddingRight: '15px'}}>
+                    <TextareaItem
+                        placeholder="输入问题描述"
+                        data-seed="logId"
+                        autoHeight
+                        count={200}
+                        rows={6}
+                        editable={true}
+                        onChange={(e) => {
+                            AddRepair.problemDescription = e;
+                            actionsAddRepairYu._checkForm();
+                        }}
+                    />
+                </div>
                 <WhiteSpace size="lg"/>
 
                 <WingBlank>
