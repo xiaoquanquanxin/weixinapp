@@ -6,6 +6,8 @@ import {observer, inject} from 'mobx-react';
 import './Component.less'
 import {PullToRefresh} from "antd-mobile";
 
+import noMessage from './img/noMessage.png';
+
 @inject('store', 'actions')
 @observer
 export default class Template extends React.Component {
@@ -31,64 +33,74 @@ export default class Template extends React.Component {
         const {store, actions} = this.props;
         const {storePaymentRecords} = store;
         const {refreshing, paymentList, actbottom, height} = storePaymentRecords;
-        return <div className="Components-PaymentRecords-container">
-            <PullToRefresh
-                className="onRefresh"
-                damping={60}
-                direction='up'
-                style={{
-                    height,
-                    overflow: 'auto',
-                }}
-                refreshing={refreshing}
-                onRefresh={() => {
-                    this.getPropertyAdvanceHistory();
-                }}
-                indicator={
-                    {deactivate: '拉动刷新数据', activate: '释放加载数据', finish: '加载数据完成'}
+        return (
+            <div className="Components-PaymentRecords-container">
+                {
+                    (paymentList && paymentList.length) ? (
+                        <PullToRefresh
+                            className="onRefresh"
+                            damping={60}
+                            direction='up'
+                            style={{
+                                height,
+                                overflow: 'auto',
+                            }}
+                            refreshing={refreshing}
+                            onRefresh={() => {
+                                this.getPropertyAdvanceHistory();
+                            }}
+                            indicator={
+                                {deactivate: '拉动刷新数据', activate: '释放加载数据', finish: '加载数据完成'}
+                            }
+                        >
+                            <div className={"list"}>
+                                {
+                                    paymentList.map((item, index) => {
+                                        // orderDate: "2020-12-25 03:49:55"
+                                        // orderMoney: 549
+                                        // orderNo: "20201225174954962"
+                                        // orderState: "0"
+                                        // payFeesType: "1"
+                                        // payMoney: "549.00"
+                                        return (
+                                            <div className="line" key={index}
+                                                 onClick={() => {
+                                                     this.goOrderDetail(item.orderNo, item.payFeesType)
+                                                 }}
+                                            >
+                                                {Number(item.payFeesType) ?
+                                                    (<div className="type prepay">预 {item.payFeesType}</div>)
+                                                    : (<div className="type payment">欠 {item.payFeesType}</div>)
+                                                }
+                                                <div>
+                                                    <h3>{Number(item.payFeesType) ? '预缴订单' : '缴费订单'}</h3>
+                                                    <p>下单时间：{item.orderDate}</p>
+                                                    <p>订单金额：¥{item.payMoney}</p>
+                                                </div>
+                                                <p className="pay-state">
+                                                    {+item.orderState === 1 ?
+                                                        '支付成功' :
+                                                        (+item.orderState === 2 ? '已取消' : '待支付')
+                                                    }
+                                                </p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                            {/*{paymentList && paymentList.length === 0 ? < div className={"actbottomgray"}>暂无数据</div> :*/}
+                            {/*    actbottom ? <div className={"actbottom"}>已经到底部</div> :*/}
+                            {/*        <div className={"actbottom"}>拉动刷新数据</div>*/}
+                            {/*}*/}
+                        </PullToRefresh>
+                    ) : (
+                        <div className="no-message">
+                            <img src={noMessage} alt=''/>
+                            <p>暂无缴费记录</p>
+                        </div>
+                    )
                 }
-            >
-                <div className={"list"}>
-                    {
-                        paymentList.map((item, index) => {
-                            // orderDate: "2020-12-25 03:49:55"
-                            // orderMoney: 549
-                            // orderNo: "20201225174954962"
-                            // orderState: "0"
-                            // payFeesType: "1"
-                            // payMoney: "549.00"
-                            return (
-                                <div className="line" key={index}
-                                     onClick={() => {
-                                         this.goOrderDetail(item.orderNo, item.payFeesType)
-                                     }}
-                                >
-                                    {Number(item.payFeesType) ?
-                                        (<div className="type prepay">预 {item.payFeesType}</div>)
-                                        : (<div className="type payment">欠 {item.payFeesType}</div>)
-                                    }
-                                    <div>
-                                        <h3>{Number(item.payFeesType) ? '预缴订单' : '缴费订单'}</h3>
-                                        <p>下单时间：{item.orderDate}</p>
-                                        <p>订单金额：¥{item.payMoney}</p>
-                                    </div>
-                                    <p className="pay-state">
-                                        {+item.orderState === 1 ?
-                                            '支付成功' :
-                                            (+item.orderState === 2 ? '已取消' : '待支付')
-                                        }
-                                    </p>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-                {/*{paymentList && paymentList.length === 0 ? < div className={"actbottomgray"}>暂无数据</div> :*/}
-                {/*    actbottom ? <div className={"actbottom"}>已经到底部</div> :*/}
-                {/*        <div className={"actbottom"}>拉动刷新数据</div>*/}
-                {/*}*/}
-            </PullToRefresh>
-
-        </div>
+            </div>
+        )
     }
 }
