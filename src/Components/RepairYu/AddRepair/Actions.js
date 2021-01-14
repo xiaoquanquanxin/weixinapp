@@ -113,15 +113,17 @@ class Actions {
 
     //  检查是否有空项，选修改提交按纽状态
     @action
-    _checkForm = (data) => {
+    _checkForm = () => {
+        const {AddRepair} = this.store;
         let keys = ['roomId', 'problemDescription'];
         for (let i = 0; i < keys.length; i++) {
-            if (!data[keys[i]]) {
+            if (!AddRepair[keys[i]]) {
                 this.store.isValidated = false;
                 break;
             }
         }
-        this.store.isValidated = true
+        this.store.isValidated = true;
+        console.log(JSON.parse(JSON.stringify(AddRepair)));
     };
 
     /*提交*/
