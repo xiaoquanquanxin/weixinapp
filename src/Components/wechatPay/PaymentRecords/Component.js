@@ -13,6 +13,9 @@ import noMessage from './img/noMessage.png';
 export default class Template extends React.Component {
     componentDidMount(){
         window.setWindowTitle("缴费记录");
+        const {actions} = this.props;
+        const {actionsPaymentRecords} = actions;
+        actionsPaymentRecords.init();
         this.getPropertyAdvanceHistory();
     }
 
