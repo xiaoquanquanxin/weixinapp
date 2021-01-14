@@ -17,7 +17,11 @@ class Actions {
     //  获取
     @action
     getOrderDetail = async () => {
-        const {transactionid, type} = this.store;
+        const store = this.store;
+        const {transactionid, type} = store;
+        //  清除定时器
+        clearTimeout(store.timeout);
+        store.timeout = null;
         console.clear();
         if (+type === 0) {
             //  获取欠缴订单详情
@@ -75,6 +79,7 @@ class Actions {
         if (+data.tranStatus !== 0) {
             return;
         }
+        // return
         //  待支付，倒计时
         this.getTime();
     };
@@ -133,6 +138,7 @@ class Actions {
     //  获取时间接口
     @action
     getTime = async () => {
+        console.log('获取时间接口');
         const store = this.store;
         const {transactionid} = store;
         const result = await new Promise(function (resolve, reject){
@@ -164,29 +170,35 @@ class Actions {
             //  todo，暂时不调
             console.log('超时了');
             // this.getOrderDetail();
-            //  清除定时器
-            clearInterval(store.timeout);
-            store.timeout = null;
             return;
         }
-        debugger;
-        store.timeout = setTimeout(() => this.CountDown, 1000);
-        const intervalTime = 5 * 1000;
+        this.CountDown();
+        const intervalTime = 5;
         //  5s后继续调用获取时间接口
         if (store.maxTime <= intervalTime) {
             return;
         }
-        setTimeout(this.getTime, intervalTime);
+        // //  清除定时器
+        // clearTimeout(store.timeout);
+        // store.timeout = null;
+        setTimeout(() => this.getOrderDetail(), intervalTime * 1000);
     };
 
     //  定时器计数
     @action
     CountDown(){
         const store = this.store;
+        //  清除定时器
+        clearTimeout(store.timeout);
+        store.timeout = null;
+        console.log('CountDown fn');
         if (store.maxTime > 0) {
-            store.minutes = Math.floor(store.maxTime / 60);
-            store.seconds = Math.floor(store.maxTime % 60);
+            let minutes = Math.floor(store.maxTime / 60);
+            let seconds = Math.floor(store.maxTime % 60);
+            store.minutes = minutes > 9 ? minutes : `0${minutes}`;
+            store.seconds = seconds > 9 ? seconds : `0${seconds}`;
             --store.maxTime;
+            store.timeout = setTimeout(() => this.CountDown(), 1000);
         } else {
             //  重新获取订单详情
             this.getOrderDetail();
