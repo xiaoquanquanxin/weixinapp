@@ -8,6 +8,8 @@ class Store {
     @observable seconds = 0;
     //  最大时间
     @observable maxTime = 15 * 60 - 1;
+    //  定时器请求详情的间隔
+    @observable timeoutDelay = 5;
     //  定时器
     @observable timeout = null;
     //  欠缴列表
