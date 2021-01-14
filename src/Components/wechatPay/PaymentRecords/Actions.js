@@ -1,4 +1,4 @@
-import {action} from "mobx";
+import {action, observable} from "mobx";
 import {ipUri} from "../../../config";
 
 class Actions {
@@ -6,11 +6,25 @@ class Actions {
         this.store = store;
     }
 
+    @action
+    init(){
+        console.clear();
+        console.log('初始化');
+        const store = this.store;
+        //  缴费列表
+        store.paymentList = [];
+        //  当前页码
+        store.curPage = 0;
+        //  正在请求
+        store.refreshing = false;
+        //  到底部了
+        store.actbottom = true;
+    }
+
     //  获取纹章列表
     @action
     getPropertyAdvanceHistory = async () => {
         const {curPage, pageNum, paymentList} = this.store;
-        console.clear();
         const result = await new Promise(function (resolve, reject){
             const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             let data = {
