@@ -29,7 +29,7 @@ class Store {
         {ico: myRepair, test: '房屋报修 ?、有无法访问的接口', link: `${router.AddRepair[0]}/1`},
         {ico: changePhone, test: "活动报名  ?、有列表，具体需要验证", link: '/PhasetwoActivityList'},
         // {ico: changePhone, test: "投诉建议  √√", link: router.ComplaintSuggestions},
-        {ico: changePhone, test: "物业缴费", link: '/wechat-pay/PayIndex'},
+        {ico: changePhone, test: "物业缴费 本期", link: '/wechat-pay/PayIndex'},
 
 
         // {ico: changePhone, test: "城市资讯  √√", link: '/PhasetwoCityInformationList'},
