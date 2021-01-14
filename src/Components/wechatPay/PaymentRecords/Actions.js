@@ -8,7 +8,6 @@ class Actions {
 
     @action
     init(){
-        console.clear();
         console.log('初始化');
         const store = this.store;
         //  缴费列表
