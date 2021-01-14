@@ -36,7 +36,7 @@ class Actions {
         if (code !== 2000) {
             return;
         }
-        console.log(result);
+        console.log(data);
         //  下一页
         this.store.curPage = curPage + 1;
         //  没有更多了，说明到底了
