@@ -21,8 +21,7 @@ class Actions {
         const {transactionid, type} = store;
         //  清除定时器
         clearTimeout(store.timeout);
-        store.timeout = null;
-        console.clear();
+        // console.clear();
         if (+type === 0) {
             //  获取欠缴订单详情
             await this.getBillDetailByTrans(transactionid);
@@ -173,15 +172,6 @@ class Actions {
             return;
         }
         this.CountDown();
-        const intervalTime = 5;
-        //  5s后继续调用获取时间接口
-        if (store.maxTime <= intervalTime) {
-            return;
-        }
-        // //  清除定时器
-        // clearTimeout(store.timeout);
-        // store.timeout = null;
-        setTimeout(() => this.getOrderDetail(), intervalTime * 1000);
     };
 
     //  定时器计数
@@ -190,7 +180,7 @@ class Actions {
         const store = this.store;
         //  清除定时器
         clearTimeout(store.timeout);
-        store.timeout = null;
+        // store.timeout = null;
         console.log('CountDown fn');
         if (store.maxTime > 0) {
             let minutes = Math.floor(store.maxTime / 60);
@@ -198,6 +188,12 @@ class Actions {
             store.minutes = minutes > 9 ? minutes : `0${minutes}`;
             store.seconds = seconds > 9 ? seconds : `0${seconds}`;
             --store.maxTime;
+            --store.timeoutDelay;
+            if (!store.timeoutDelay) {
+                store.timeoutDelay = 5;
+                //  重新获取订单详情
+                this.getOrderDetail();
+            }
             store.timeout = setTimeout(() => this.CountDown(), 1000);
         } else {
             //  重新获取订单详情
@@ -216,6 +212,8 @@ class Actions {
         //  最大时间
         store.maxTime = 15 * 60 - 1;
         clearTimeout(store.timeout);
+        console.log('resetData-清除定时器');
+        store.timeoutDelay = 5;
         //  定时器
         store.timeout = null;
         //  欠缴列表
