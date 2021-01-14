@@ -12,11 +12,12 @@ class Actions {
         const {curPage, pageNum, paymentList} = this.store;
         console.clear();
         const result = await new Promise(function (resolve, reject){
+            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             let data = {
                 pageNum,
                 curPage,
-                //  微信用户id  todo    将来是用户的id
-                userID: 1,
+                //  微信用户id
+                userID: userInfo.id,
             };
             const url = `${ipUri["/bpi"]}/property/prepayment/getPropertyAdvanceHistory`;
             window.JQ.ajax({
