@@ -8,7 +8,6 @@
     <title>Document</title>
     <style>
         ul {
-            width: 600px;
             overflow: hidden;
             word-break: break-all;
         }
@@ -50,8 +49,17 @@
         });
     })(
         [
-            {name: '报事报修', url: `/AddRepair/1`},
-            {name: '物业缴费', url: `/wechat-pay/PayIndex`},
+            {name: '城市资讯', url: '/PhasetwoCityInformationList'},
+            {name: '社区文化', url: '/PhasetwoHomeLetterList?subjectId=33'},
+
+            {name: '物业缴费', url: '/wechat-pay/PayIndex'},
+            {name: '活动报名', url: '/PhasetwoActivityList'},
+            {name: '房屋报修', url: '/AddRepair/1'},
+            {name: '投诉建议', url: '/ComplaintSuggestions'},
+            {name: '社区通知', url: '/PhasetwoHomeLetterList?subjectId=35'},
+
+            {name: '我的中心', url: '/'},
+            {name: '账号登录', url: '/SubmitCertification'},
         ]
     );
 </script>
