@@ -74,7 +74,7 @@ class Actions {
         //  请求错误
         if (code !== 2000) {
             Toast.info(msg, 1);
-            return;
+            return false;
         }
         if (data.content) {
             // data.content.forEach(item => {
@@ -103,6 +103,7 @@ class Actions {
             // console.log(JSON.parse(JSON.stringify(store.paidOutListFilter)));
             this.initPaidOutListFilter();
             this.setCostPicker();
+            return true;
         }
     };
 
@@ -168,7 +169,12 @@ class Actions {
         //  获取冻结账单列表-判断是否有冻结账单
         //  await this.getUnpaidBillTran();
         //  获取未缴账单列表
-        await this.getPaymentList();
+        const result = await this.getPaymentList();
+        if (result) {
+            window.requestAnimationFrame(() => {
+                Toast.hide();
+            });
+        }
     };
 
 
@@ -178,7 +184,12 @@ class Actions {
         Toast.loading('Loading...', 3);
         this.store.active = false;
         // 获取已缴账单列表
-        await this.getPaidInList();
+        const result = await this.getPaidInList();
+        if (result) {
+            window.requestAnimationFrame(() => {
+                Toast.hide();
+            });
+        }
     };
 
     // 获取已缴账单列表     √
@@ -211,9 +222,10 @@ class Actions {
         //  请求错误
         if (code !== 2000) {
             Toast.info(msg, 1);
-            return;
+            return false;
         }
         store.paidInList = data.content;
+        return true;
     };
 
     //  全选
