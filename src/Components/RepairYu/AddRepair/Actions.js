@@ -1,4 +1,5 @@
 import {action} from 'mobx';
+import {ipUri} from "../../../config";
 
 class Actions {
     constructor(store){
@@ -11,6 +12,7 @@ class Actions {
         store.isValidated = false;
         const {AddRepair} = store;
         AddRepair.roomId = "";
+        AddRepair.pkDoor = "";
         AddRepair.roomName = "";
 
         AddRepair.contactId = '';
@@ -43,9 +45,12 @@ class Actions {
         if (!roomList.length) {
             return false;
         }
+        const item = roomList[0];
         //  当前房屋数据
-        AddRepair.roomId = roomList[0].roomId;
-        AddRepair.roomName = roomList[0].roomName;
+        AddRepair.roomId = item.roomId;
+        AddRepair.pkDoor = item.pkDoor;
+        AddRepair.custId = item.custId;
+        AddRepair.roomName = item.roomName;
         return true;
     };
 
@@ -89,10 +94,12 @@ class Actions {
     @action
     changeRoom(roomId){
         const {AddRepair, contactList} = this.store;
-        contactList.forEach((val, index) => {
-            if (val.roomId === roomId) {
-                AddRepair.roomId = val.roomId;
-                AddRepair.roomName = contactList[index].roomName;
+        contactList.forEach((item, index) => {
+            if (item.roomId === roomId) {
+                AddRepair.roomId = item.roomId;
+                AddRepair.pkDoor = item.pkDoor;
+                AddRepair.custId = item.custId;
+                AddRepair.roomName = item.roomName;
             }
         })
     }
@@ -141,21 +148,51 @@ class Actions {
         // 	this.props.history.push(`${router.SubmitSucess}`);
         // 	// this.props.history.push(`${router.RepairList[0]} /${address}`);
         // }
-        if (+this.store.type === 1) {
-            if (this.store.labelName === "室内") {
-                this.store.AddRepair["rangeFlag"] = 1;
-            } else if (this.store.labelName === "室外") {
-                this.store.AddRepair["rangeFlag"] = 0;
-            }
-
-        } else {
-            this.store.AddRepair["rangeFlag"] = 0;
-        }
+        const {AddRepair, type} = this.store;
         this.store.AddRepair.imageCollection = imageCollection;
-        let url = 'auth/saveServiceBill';
-        let cformData = this.store.AddRepair;
-        // console.log("提交的数据格式:",cformData);
-        let result = await window.POST({url, cformData});
+        const url = '/auth/saveServiceBill';
+        const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
+        const cformData = {
+            //  客户姓名
+            customerName: AddRepair.contactName,
+            //  联系方式
+            contactNumber: AddRepair.phoneNo,
+            //  诉求性质,诉求性质: 1.报事报修,2:咨询建议
+            appealNature: type,
+            //  客诉描述
+            problemDescription: AddRepair.problemDescription,
+            //  联系地址
+            contactAddress: AddRepair.roomName,
+            //  请求人
+            petitioner: AddRepair.contactName,
+            //  房间ID，同项目主数据
+            pkRoom: AddRepair.pkDoor,
+            //  房间名称，同项目主数据
+            roomName: AddRepair.roomName,
+            //  预约时间
+            appointmentTime: AddRepair.appointmentTime.format('yyyy-MM-dd'),
+            //  图片附件 [{"fileName":"xxx","filePath":"aaaa","sysFileName":"aaaa"}]
+            imageCollection,
+            //  主数据客户id
+            custId: AddRepair.custId,
+            //  接待时间，预约时间的一天以后
+            receptionistTime: new Date(AddRepair.appointmentTime.getTime() + 1000 * 60 * 60 * 24).format('yyyy-MM-dd'),
+            //  客诉创建人
+            pkHachiId: userInfo.id,
+        };
+        console.log("提交的数据格式:", cformData);
+        // debugger;
+        // window.JQ.ajax({
+        //     type: "post",
+        //     url: `/life-web/auth/saveServiceBill`,
+        //     contentType: "application/x-www-form-urlencoded",
+        //     data: cformData,
+        //     success: (result) => {
+        //         console.log(result);
+        //     }
+        // });
+
+        let result = await window.POST({url, cformData, prefix: ipUri['/life-web']});
         if (!result.isSucess) {
             return;
         }
