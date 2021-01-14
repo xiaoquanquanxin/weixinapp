@@ -26,25 +26,27 @@ export default class PhasetwoMyQuestionnaireList extends React.Component {
         if (window.getLocalData('UserInfodata') !== "") {
             sessionKeyurl = "&sessionKey=" + JSON.parse(window.getLocalData('auth'))
         }
-        return (<div className="Component-PhasetwoMyQuestionnaireList-container">
-            <div className={"list"}>
-                {
-                    ListData && ListData.map((v, i) => {
-                        console.log("isDone", isDone[v.isDone]);
-                        return (
-                            <div className={"item"} key={i} onClick={() => {
-                                history.push(`/PhasetwoMyQuestionnaire/${questiontype}/${v.surveyId}/${v.isDone}${"?isDone=" + v.isDone + sessionKeyurl}`)
-                            }}>
-                                <div className={"tit"}>{v.surveyName}</div>
-                                <div className={"time"}>[调研时间] {v.startTime} - {v.endTime}</div>
-                                <div className={"content"}>{v.surveyDesc}...</div>
-                                <div className={"lag"}>{isDone[v.isDone]}</div>
-                            </div>
-                        )
-                    })
-                }
+        return (
+            <div className="Component-PhasetwoMyQuestionnaireList-container">
+                <div className={"list"}>
+                    {
+                        ListData && ListData.map((v, i) => {
+                            console.log("isDone", isDone[v.isDone]);
+                            return (
+                                <div className={"item"} key={i} onClick={() => {
+                                    history.push(`/PhasetwoMyQuestionnaire/${questiontype}/${v.surveyId}/${v.isDone}${"?isDone=" + v.isDone + sessionKeyurl}`)
+                                }}>
+                                    <div className={"tit"}>{v.surveyName}</div>
+                                    <div className={"time"}>[调研时间] {v.startTime} - {v.endTime}</div>
+                                    <div className={"content"}>{v.surveyDesc}...</div>
+                                    <div className={"lag"}>{isDone[v.isDone]}</div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
             </div>
-        </div>);
+        );
     }
 }
 
