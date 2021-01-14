@@ -15,6 +15,8 @@ class Store {
     @observable AddRepair = {
         //  房间id
         roomId: "",
+        //  房间主数据id
+        pkDoor: "",
         roomName: "",
 
         //  联系人
