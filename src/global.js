@@ -175,7 +175,6 @@ window.setWindowTitle = function (title){
     const iframe = document.createElement('iframe');
     iframe.style.display = 'none';
     iframe.onload = iframe.onerror = function (e){
-        console.log(e);
         document.body.removeChild(iframe);
     };
     iframe.src = '';
