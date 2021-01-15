@@ -129,6 +129,9 @@ const AdvancePaymentBills = ({tranStatus, minutes, seconds, memo, tranDate, room
             type = '已取消';
             spaceTime = memo;
             break;
+        case -1:
+            //  初始化
+            break;
         default:
             throw new Error(`错误的类型${tranStatus}`)
     }
