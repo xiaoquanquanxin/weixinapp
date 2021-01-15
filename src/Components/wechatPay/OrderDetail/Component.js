@@ -179,7 +179,7 @@ export default class Template extends React.Component {
     componentWillUnmount(){
         const {actions, store} = this.props;
         const {actionsOrderDetail} = actions;
-        actionsOrderDetail.resetData();
+        actionsOrderDetail.resetData(true);
     }
 
     //  取消订单
