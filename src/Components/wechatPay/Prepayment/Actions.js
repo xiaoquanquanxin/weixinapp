@@ -1,6 +1,7 @@
 import {action} from "mobx";
 import {ipUri} from "../../../config";
 import {Modal, Toast} from "antd-mobile";
+import {roomRemoveRepeat} from "../../../../lib/utils/number";
 
 class Actions {
     constructor(store){
@@ -35,25 +36,7 @@ class Actions {
             return;
         }
         //  房间去重复
-        const roomListMap = {};
-        const roomList = [];
-        data.forEach(item => {
-            const {roomId, roomName, cmdsId} = item;
-            item.value = roomId;
-            item.key = roomId;
-            item.label = roomName;
-            if (roomId && cmdsId && !roomListMap[roomId]) {
-                roomListMap[roomId] = item;
-            }
-        });
-        data.forEach((item) => {
-            const {roomId} = item;
-            if (roomListMap[roomId] === item) {
-                roomList.push(item);
-                delete roomListMap[roomId];
-            }
-        });
-
+        const roomList = roomRemoveRepeat(data);
         store.roomList = roomList;
         //  默认第一个房间
         store.currentRoom = roomList[0];
