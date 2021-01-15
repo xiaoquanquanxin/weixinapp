@@ -345,7 +345,7 @@ class Actions {
         });
         const {data} = result;
         const {status} = data;
-        //  欠缴2是完成
+        //  todo    这个状态是什么
         if (status === 2) {
             //  完成订单【确实已经支付】
             return this.completePaidOrder();
