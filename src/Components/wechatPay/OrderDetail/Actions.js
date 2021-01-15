@@ -60,7 +60,7 @@ class Actions {
             return;
         }
         const store = this.store;
-        // console.log('获取欠缴订单详情-请求成功-状态是', data.tranStatus);
+        console.log('获取欠缴订单详情-请求成功-状态是', data.tranStatus);
         // 支付状态
         store.tranStatus = data.tranStatus;
         // 支付信息
@@ -109,8 +109,7 @@ class Actions {
         if (code !== 2000) {
             return;
         }
-        //  console.log(data);
-        console.log('获取预缴订单详情-请求成功');
+        console.log('获取预缴订单详情-请求成功-状态是', data.tranStatus);
         const store = this.store;
         // 支付状态
         store.tranStatus = data.tranStatus;
