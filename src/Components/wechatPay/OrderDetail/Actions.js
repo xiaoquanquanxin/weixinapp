@@ -10,7 +10,8 @@ class Actions {
 
     //  设置值通过url
     @action
-    setInfoByUrl(transactionid, type){
+    setInfoByUrl(){
+        const {orderId: transactionid, type} = window.getQueryString();
         this.store.transactionid = transactionid;
         this.store.type = type;
     }
@@ -34,7 +35,7 @@ class Actions {
         return this.getRoomList();
     };
 
-    //  获取欠缴订单详情
+    //  获取欠缴订单详情 - 0
     @action
     getBillDetailByTrans = async (transactionid) => {
         const result = await new Promise(function (resolve, reject){
@@ -73,6 +74,8 @@ class Actions {
         store.totalMoney = data.totalMoney;
         //  欠缴列表
         store.paymentList = data.billDetail;
+        console.log(store.paymentList);
+        debugger
         //  房间信息，只有id，注意id和ids
         store.roomInfo.roomId = data.roomIds;
         //  如果不是待支付0
@@ -84,7 +87,7 @@ class Actions {
         this.getTime();
     };
 
-    //  获取预缴订单详情
+    //  获取预缴订单详情 - 1
     @action
     getPaymentInfo = async (transactionid) => {
         const result = await new Promise(function (resolve, reject){
@@ -229,9 +232,10 @@ class Actions {
         //  预缴费项价格
         store.payMoney = "0";
         //  预缴或欠缴
-        store.type = "";
+        store.type = 0;
         //  房间信息
         store.roomInfo = {};
+        this.setInfoByUrl();
     }
 
     //  取消订单
