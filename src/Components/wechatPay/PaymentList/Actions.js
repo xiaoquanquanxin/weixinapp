@@ -1,6 +1,7 @@
 import {action} from "mobx";
 import {ipUri} from "../../../config";
 import {Toast} from "antd-mobile";
+import {zeroFill} from "../../../../lib/utils/number";
 
 class Actions {
     constructor(store){
@@ -77,12 +78,11 @@ class Actions {
             return false;
         }
         if (data.content) {
-            // data.content.forEach(item => {
-            //     item.billDetails.forEach(_item => {
-            //         //  默认选中所有费项
-            //         _item.checked = true;
-            //     })
-            // });
+            data.content.forEach(item => {
+                const bill = item.billMonth.split('-');
+                //  修正月份数据
+                item.billMonth = `${bill[0]}-${zeroFill(bill[1])}`;
+            });
             //  金额
             store.totalMoney = data.totalMoney;
             //  所有未缴账单列表
@@ -367,34 +367,3 @@ class Actions {
 }
 
 export default Actions;
-
-// 获取冻结账单列表-判断是否有冻结账单
-// @action
-// getUnpaidBillTran = async () => {
-//     const store = this.store;
-//     const result = await new Promise(function (resolve, reject){
-//         const data = {
-//             roomIds: store.currentRoom.roomId,
-//             //  todo    合同人的电话？
-//             contactNumber: 18201538993
-//         };
-//         window.JQ.ajax({
-//             crossDomain: true,
-//             type: "post",
-//             url: `${ipUri["/bpi"]}/getUnpaidBillTranV1.do`,
-//             contentType: "application/x-www-form-urlencoded",
-//             data: {'json': JSON.stringify(data)},
-//             success: (result) => {
-//                 resolve(result);
-//             }
-//         })
-//     });
-//     const {code, data} = result;
-//     //  请求错误
-//     if (code !== 2000) {
-//         return;
-//     }
-//     console.log(data);
-// };
-
-
