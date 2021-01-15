@@ -79,13 +79,15 @@ class Actions {
             {text: '取消', onPress: () => console.log('cancel')},
             {
                 text: '确定', onPress: async () => {
-                    let url = `user/logout`;
-                    let result = await window.GET({url});
-                    if (result.resultCode === 0) {
-                        Toast.info('退出成功', 1.5);
-                        setTimeout(function (){
-                            location.reload()
-                        }, 1000)
+                    let url = `login/out`;
+                    const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
+                    let result = await window.GET({url, cformData: {openId: userInfo.openId}});
+                    const {resultMsg, resultCode} = result;
+                    if (resultCode === 0) {
+                        Toast.info(resultMsg, 1);
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000);
                     }
                 }
             },
