@@ -121,8 +121,6 @@ class Actions {
         store.transactionid = data.transactionid;
         // 欠缴总费用
         store.totalMoney = data.totalMoney;
-        //  欠缴列表
-        store.paymentList = data.billDetail;
         store.payMoney = data.payMoney;
         store.feeName = data.feeName;
         store.roomInfo.roomId = data.roomIds;
