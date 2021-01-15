@@ -40,7 +40,6 @@ class Actions {
         store.roomList = roomList;
         //  默认第一个房间
         store.currentRoom = roomList[0];
-        console.log('roomList', JSON.parse(JSON.stringify(store.roomList)));
         //  获取当前房间下有没有预缴订单
         this.getFeeItem();
     };
