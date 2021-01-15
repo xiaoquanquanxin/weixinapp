@@ -16,7 +16,7 @@ export default class Template extends React.Component {
     }
 
     componentDidMount(){
-        window.setWindowTitle("欠缴账单列表");
+        window.setWindowTitle("缴费成功");
         const {actions} = this.props;
         const {actionsPaySuccess} = actions;
         actionsPaySuccess.getParams();
