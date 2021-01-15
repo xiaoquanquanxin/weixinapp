@@ -1,7 +1,7 @@
 import {action} from "mobx";
 import {ipUri} from "../../../config";
 import {Toast} from "antd-mobile";
-import {zeroFill} from "../../../../lib/utils/number";
+import {roomRemoveRepeat, zeroFill} from "../../../../lib/utils/number";
 
 class Actions {
     constructor(store){
@@ -11,6 +11,9 @@ class Actions {
     //  获取房间列表
     @action
     getRoomList = async () => {
+        const store = this.store;
+        //  清空数据
+        store.currentRoom = {};
         const result = await new Promise(function (resolve, reject){
             const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
             window.JQ.ajax({
@@ -25,19 +28,13 @@ class Actions {
                 }
             })
         });
-        const {code, data: roomList} = result;
+        const {code, data} = result;
         //  请求错误
         if (code !== 2000) {
             return;
         }
-        //  fixme   这这个地方，需要去重，因为框架支持问题。针对的另一个点是没有cmdsId的问题
-        roomList.splice(1, 1);
-        roomList.forEach((item) => {
-            item.value = item.roomId;
-            item.key = item.roomId;
-            item.label = item.roomName;
-        });
-        const store = this.store;
+        //  房间去重复
+        const roomList = roomRemoveRepeat(data);
         store.roomList = roomList;
         //  默认第一个房间
         store.currentRoom = roomList[0];
