@@ -200,7 +200,7 @@ class Actions {
 
     //  重置数据
     @action
-    resetData(){
+    resetData(isLeave){
         const store = this.store;
         //  当前时间-分钟
         store.minutes = 15;
@@ -233,6 +233,9 @@ class Actions {
         store.type = 0;
         //  房间信息
         store.roomInfo = {};
+        if (isLeave) {
+            return;
+        }
         this.setInfoByUrl();
     }
 
