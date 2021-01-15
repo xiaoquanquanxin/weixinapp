@@ -388,7 +388,6 @@ class Actions {
                 mchOrderNo: transactionid,
                 //  渠道id,公众号传"WX_JSAPI"
                 channelId: "WX_JSAPI",
-                //  支付金额（单位分）   todo    暂时交1分钱
                 // amount: (totalMoney * 100) | 0,
                 amount: 1,
                 //  任意ip
