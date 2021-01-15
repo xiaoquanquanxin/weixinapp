@@ -345,13 +345,12 @@ class Actions {
         });
         const {data} = result;
         const {status} = data;
-        //  todo    这个状态是什么
+        console.log('轮训状态', new Date().getSeconds());
+        console.log(data);
         if (status === 2) {
             //  完成订单【确实已经支付】
             return this.completePaidOrder();
         }
-        console.log('轮训状态', new Date().getSeconds());
-        console.log(data);
         const next = await new Promise(resolve => {
             setTimeout(() => {
                 resolve(true);
