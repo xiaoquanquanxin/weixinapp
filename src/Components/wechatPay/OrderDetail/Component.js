@@ -184,7 +184,7 @@ export default class Template extends React.Component {
     cancellationOfOrderFn(){
         const {actions} = this.props;
         const {actionsOrderDetail} = actions;
-        actionsOrderDetail.cancellationOfOrderFn()
+        actionsOrderDetail.cancellationOfOrderFn();
     }
 
     //  去支付
@@ -200,6 +200,8 @@ export default class Template extends React.Component {
             //  下单失败
             if (result === false) {
                 Toast.info('下单失败', 1);
+                //  重新定时
+                actionsOrderDetail.getTime();
                 return;
             }
             if (result === true) {
