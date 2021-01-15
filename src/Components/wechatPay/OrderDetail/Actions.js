@@ -1,6 +1,7 @@
 import {action, observable} from "mobx";
 import {ipUri} from "../../../config";
 import {Modal, Toast} from "antd-mobile";
+import {zeroFill} from "../../../../lib/utils/number";
 
 class Actions {
     constructor(store){
@@ -108,7 +109,7 @@ class Actions {
         if (code !== 2000) {
             return;
         }
-        console.log(data);
+        // console.log(data);
         console.log('获取预缴订单详情-请求成功');
         const store = this.store;
         // 支付状态
@@ -181,12 +182,10 @@ class Actions {
         //  清除定时器
         clearTimeout(store.timeout);
         // store.timeout = null;
-        console.log('CountDown fn');
+        console.log('本地定时器');
         if (store.maxTime > 0) {
-            let minutes = Math.floor(store.maxTime / 60);
-            let seconds = Math.floor(store.maxTime % 60);
-            store.minutes = minutes > 9 ? minutes : `0${minutes}`;
-            store.seconds = seconds > 9 ? seconds : `0${seconds}`;
+            store.minutes = zeroFill(Math.floor(store.maxTime / 60));
+            store.seconds = zeroFill(Math.floor(store.maxTime % 60));
             --store.maxTime;
             --store.timeoutDelay;
             if (!store.timeoutDelay) {
