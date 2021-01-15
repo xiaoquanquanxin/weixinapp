@@ -28,8 +28,8 @@ export default class MineList extends React.Component {
     componentDidMount(){
         const {actions, store} = this.props;
         const {actionsMineList} = actions;
-        window.setWindowTitle("我的")
-        actionsMineList.userInfo();
+        window.setWindowTitle("我的");
+        actionsMineList.getWeChatInfo();
     }
 
     hanldClick = (item) => {
