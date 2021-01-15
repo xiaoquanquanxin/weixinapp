@@ -456,9 +456,9 @@ class Actions {
             })
         });
         const {data} = result;
-        const {tranStatus} = data;
+        const {status} = data;
         //  预交1是已支付
-        if (tranStatus === 1) {
+        if (status === 1) {
             //  完成订单【确实已经支付】
             return this.completePaidOrder();
         }
