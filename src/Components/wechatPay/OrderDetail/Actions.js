@@ -74,7 +74,6 @@ class Actions {
         store.totalMoney = data.totalMoney;
         //  欠缴列表
         store.paymentList = data.billDetail;
-        console.log(store.paymentList);
         //  房间信息，只有id，注意id和ids
         store.roomInfo.roomId = data.roomIds;
         //  如果不是待支付0
