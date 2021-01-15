@@ -56,8 +56,8 @@
     function getLocalStorage(key){
       // var exp = 60*1000 ; //
       // var exp = 60 * 60 * 24 * 1000 * 2; // 2天的秒数
-      //  6个小时
-      var exp = 60 * 60 * 6 * 1000;
+      //  1个小时
+      var exp = 60 * 60 * 1000;
       if (localStorage.getItem(key)) {
         var auth = localStorage.getItem(key); // 获取本地存储的值
         var authTime = localStorage.getItem('authTime');
