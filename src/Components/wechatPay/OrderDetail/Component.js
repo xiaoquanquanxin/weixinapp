@@ -169,9 +169,8 @@ export default class Template extends React.Component {
         window.setWindowTitle("订单详情");
         const {actions} = this.props;
         const {actionsOrderDetail} = actions;
-        const {orderId, type} = window.getQueryString();
         //  设置url的值
-        actionsOrderDetail.setInfoByUrl(orderId, type);
+        actionsOrderDetail.setInfoByUrl();
         //  请求
         actionsOrderDetail.getOrderDetail();
     }
