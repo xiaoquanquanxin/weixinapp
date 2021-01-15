@@ -21,6 +21,7 @@ class Actions {
         const store = this.store;
         const {transactionid, type} = store;
         //  清除定时器
+        console.log('清除定时器');
         clearTimeout(store.timeout);
         // console.clear();
         if (+type === 0) {
@@ -167,9 +168,9 @@ class Actions {
         store.maxTime = (new Date(data.createTime).getTime() + (15 * 60 - 1) * 1000 - new Date(data.nowTime).getTime()) / 1000;
         if (store.maxTime <= 0) {
             //  重新获取订单详情
-            //  todo，暂时不调
+            //  todo，检查超时后的订单状态
             console.log('超时了');
-            // this.getOrderDetail();
+            this.getOrderDetail();
             return;
         }
         this.CountDown();
