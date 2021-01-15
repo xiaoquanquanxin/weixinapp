@@ -21,7 +21,7 @@ class Actions {
         const store = this.store;
         const {transactionid, type} = store;
         //  清除定时器
-        console.log('清除定时器');
+        // console.log('清除定时器');
         clearTimeout(store.timeout);
         // console.clear();
         if (+type === 0) {
@@ -60,7 +60,7 @@ class Actions {
             return;
         }
         const store = this.store;
-        console.log('获取欠缴订单详情-请求成功-状态是', data.tranStatus);
+        // console.log('获取欠缴订单详情-请求成功-状态是', data.tranStatus);
         // 支付状态
         store.tranStatus = data.tranStatus;
         // 支付信息
@@ -138,7 +138,7 @@ class Actions {
     //  获取时间接口
     @action
     getTime = async () => {
-        console.log('获取时间接口');
+        // console.log('获取时间接口');
         const store = this.store;
         const {transactionid} = store;
         const result = await new Promise(function (resolve, reject){
@@ -342,6 +342,8 @@ class Actions {
     @action
     getTranStatusFn = async () => {
         const store = this.store;
+        // console.log('清除定时器');
+        clearTimeout(store.timeout);
         const result = await new Promise(function (resolve, reject){
             let data = {transactionId: store.transactionid};
             window.JQ.ajax({
@@ -457,7 +459,7 @@ class Actions {
         });
         const {data} = result;
         const {status} = data;
-        //  预交1是已支付
+        //  todo    这个状态是什么
         if (status === 1) {
             //  完成订单【确实已经支付】
             return this.completePaidOrder();
