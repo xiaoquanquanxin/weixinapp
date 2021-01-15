@@ -7,7 +7,6 @@ import './Component.less'
 //  图片
 import noMessagePng from './img/noMessage.png';
 import {List, Picker, Toast} from "antd-mobile";
-import {zeroFill} from "../../../../lib/utils/number";
 
 @inject('store', 'actions')
 @observer
@@ -230,7 +229,7 @@ const PaymentRender = ({paidData, dataMsg, isFrozen, paidName, actionsPaymentLis
                     paidData.map((item, index) => {
                         return (
                             <li key={index} className="line">
-                                <div className="year line">{zeroFill(item.billMonth)}</div>
+                                <div className="year line">{item.billMonth}</div>
                                 {
                                     item.billDetails.map((_item, _index) => {
                                         return (
