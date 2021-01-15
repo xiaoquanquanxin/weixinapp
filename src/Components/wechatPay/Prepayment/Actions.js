@@ -29,18 +29,31 @@ class Actions {
                 }
             })
         });
-        const {code, data: roomList} = result;
+        const {code, data} = result;
         //  请求错误
         if (code !== 2000) {
             return;
         }
-        //  fixme   这这个地方，需要去重，因为框架支持问题。针对的另一个点是没有cmdsId的问题
-        roomList.splice(1, 1);
-        roomList.forEach((item) => {
-            item.value = item.roomId;
-            item.key = item.roomId;
-            item.label = item.roomName;
+        //  房间去重复
+        const roomListMap = {};
+        const roomList = [];
+        data.forEach(item => {
+            const {roomId, roomName, cmdsId} = item;
+            item.value = roomId;
+            item.key = roomId;
+            item.label = roomName;
+            if (roomId && cmdsId && !roomListMap[roomId]) {
+                roomListMap[roomId] = item;
+            }
         });
+        data.forEach((item) => {
+            const {roomId} = item;
+            if (roomListMap[roomId] === item) {
+                roomList.push(item);
+                delete roomListMap[roomId];
+            }
+        });
+
         store.roomList = roomList;
         //  默认第一个房间
         store.currentRoom = roomList[0];
