@@ -344,9 +344,9 @@ class Actions {
             })
         });
         const {data} = result;
-        const {tranStatus} = data;
+        const {status} = data;
         //  欠缴2是完成
-        if (tranStatus === 2) {
+        if (status === 2) {
             //  完成订单【确实已经支付】
             return this.completePaidOrder();
         }
