@@ -32,12 +32,17 @@
     function createLink(realUrl){
         return `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx38471b86e45e684f&redirect_uri=${
             encodeURIComponent(`https://hachiseedland-dev.hachi-tech.com/wechat-mobile/wx/redirect?forwordUrl=${
-                encodeURIComponent(realUrl)}&snsApi=`)}snsapi_base&response_type=code&scope=snsapi_base&state=1569237672274#wechat_redirect`
+                encodeURIComponent(realUrl)}`)
+        }&response_type=code&scope=snsapi_base&state=1#wechat_redirect`
     }
 </script>
 <script data-msg="创建连接">
+    //  本地服务环境
     // const basicUrl = 'http://192.168.100.128:8080/wechat-pay/20210108/#';
-    const basicUrl = 'https://hachiseedland-dev.hachi-tech.com/wechat-pay/20210108/#';
+    //  本地开发环境
+    const basicUrl = 'http://192.168.100.128:8088/#';
+    //  dev环境
+    // const basicUrl = 'https://hachiseedland-dev.hachi-tech.com/wechat-pay/20210108/#';
 
     ((dataList) => {
         dataList.forEach(({name, url}) => {
