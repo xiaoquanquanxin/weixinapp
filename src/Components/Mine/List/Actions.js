@@ -1,6 +1,7 @@
 import {action} from "mobx";
 import {Modal, Toast} from 'antd-mobile';
 import router from "../../../router";
+import {APP_ID, APP_SECRET} from "../../../../lib/utils/const";
 
 // 定义对数据的操作
 class Actions {
@@ -9,35 +10,12 @@ class Actions {
     }
 
     /*
-    @action
-    incA = () => {
-        this.store.xxxxx++;
-    }*/
-    @action
-        //退出
-    loginOut = () => {
-        console.log(this.store);
-        /* this.store.type = "white";
-         this.store.label = "登陆";*/
-        Modal.alert('警告', '你确定要退出吗？', [
-            {text: '取消', onPress: () => console.log('cancel')},
-            {
-                text: '确定', onPress: () => {
-                    window.delLocalData('auth')
-                    wx.closeWindow();
-                }
-            },
-        ])
-    };
-
-    /*
     获取用户信息
     * */
     @action
     userInfo = async () => {
         let url = `user/userInfo`;
         let cformData = {};
-        //let cformData = config.format(obj);
         let result = await window.GET({url, cformData});
         this.store.useInfo = result.data;
         window.setLocalData('userInfo', result.data);
@@ -85,6 +63,7 @@ class Actions {
                     const {resultMsg, resultCode} = result;
                     if (resultCode === 0) {
                         Toast.info(resultMsg, 1);
+                        window.clearLocalData();
                         setTimeout(() => {
                             location.reload();
                         }, 1000);
