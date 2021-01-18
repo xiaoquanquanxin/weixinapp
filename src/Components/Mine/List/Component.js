@@ -36,6 +36,7 @@ export default class MineList extends React.Component {
         const {store} = this.props;
         const {storeMineList} = store;
         const {useInfo} = storeMineList;
+        console.log('跳转到', item.link);
         if (useInfo.authStatus === 1 || item.renzhen !== 1) {
             this.props.history.push(item.link);
         } else {
