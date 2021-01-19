@@ -45,10 +45,6 @@ export default class Home extends React.Component {
         window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4327ffad43e7c80d&redirect_uri=http%3a%2f%2fkftest.yuzhou-group.com%2fwechat-mobile%2fwx%2fredirect%3fforwordUrl%3dhttp%3a%2f%2fkftest.yuzhou-group.com%3furl%3d%2fDemo%2fWXTest&response_type=code&scope=snsapi_base&state=1566041599158#wechat_redirect"
     }
 
-    houseAuthenticationClick(e) {
-        let url = encodeURIComponent("/#/MineList")
-        window.location.href = "#/HouseAuthentication?url=" + url;
-    }
 
     navicoClick(index) {
         switch (index) {
