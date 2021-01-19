@@ -139,8 +139,8 @@ module.exports = {
     output: {
         path: buildPath,
         publicPath: './',
-        filename: `js/[name][hash].js`,
-        chunkFilename: `js/[name][chunkhash].js`
+        filename: `js/[name].[hash].js`,
+        chunkFilename: `js/[name].[chunkhash].js`
     },
     plugins: [
         new CopyWebpackPlugin([
