@@ -58,8 +58,7 @@ class Actions {
             {
                 text: '确定', onPress: async () => {
                     let url = `login/out`;
-                    const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
-                    let result = await window.GET({url, cformData: {openId: userInfo.openId}});
+                    let result = await window.GET({url});
                     const {resultMsg, resultCode} = result;
                     if (resultCode === 0) {
                         Toast.info(resultMsg, 1);
