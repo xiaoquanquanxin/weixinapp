@@ -90,7 +90,7 @@ class Actions {
                         let isMineListPaage = window.location.href.includes('isMineListPaage');
                         const url = decodeURIComponent(window.getQueryString("url"));
                         //  todo    需要验证
-                        console.log('需要验证');
+                        console.log('需要验证，跳转规则');
                         if (url) {
                             if (isMineListPaage) {
                                 history.replace('/MineList');
