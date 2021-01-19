@@ -118,7 +118,12 @@ export default class MineList extends React.Component {
                         //  如果已经认证，则不需要用户认证功能
                         if (authStatus === 1) {
                             // console.log('已认证');
-                            if (unverifiedShow) {
+                            if (unverifiedShow === true) {
+                                return '';
+                            }
+                        } else {
+                            //  如果未认证，则不需要退出功能
+                            if (unverifiedShow === false) {
                                 return '';
                             }
                         }
