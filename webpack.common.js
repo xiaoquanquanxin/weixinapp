@@ -131,6 +131,7 @@ if (isPro) {
 }
 
 let buildPath = path.resolve(buildDirName, './' + randBuildDirname + "/");
+const dateString = new Date().format('yyyy-MM-dd.hh-mm-ss');
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     entry: {
@@ -143,9 +144,9 @@ module.exports = {
         // publicPath: `/wechat-pay/${randBuildDirname}/`, //填写服务器绝对路径
         // publicPath: `/wechat-pay/`, //填写服务器绝对路径
         // filename: 'js/[name].js',
-        filename: 'wechat-pay/js/[name].js',
+        filename: `wechat-pay/js/[name]${dateString}.js`,
         // chunkFilename: 'js/[name].js',
-        chunkFilename: 'wechat-pay/js/[name].js'
+        chunkFilename: `wechat-pay/js/[name]${dateString}.js`
     },
     plugins: [
         new CopyWebpackPlugin([
