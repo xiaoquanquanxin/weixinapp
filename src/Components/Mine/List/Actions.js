@@ -57,7 +57,7 @@ class Actions {
             {text: '取消', onPress: () => console.log('cancel')},
             {
                 text: '确定', onPress: async () => {
-                    let url = `login/out`;
+                    let url = `user/logout`;
                     let result = await window.GET({url});
                     const {resultMsg, resultCode} = result;
                     if (resultCode === 0) {
