@@ -10,8 +10,6 @@ class Actions {
     * */
     @action
     userInfo(){
-        this.store.uppimg = [];
-        this.store.imageFile = [];
         let url = "auth/getRoomInfo";
         let cformData = {userType: 0};
         window.GET({url, cformData});
