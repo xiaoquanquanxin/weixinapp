@@ -131,7 +131,6 @@ if (isPro) {
 }
 
 let buildPath = path.resolve(buildDirName, './' + randBuildDirname + "/");
-const dateString = new Date().format('yyyy-MM-dd.hh-mm-ss');
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     entry: {
@@ -140,8 +139,8 @@ module.exports = {
     output: {
         path: buildPath,
         publicPath: './',
-        filename: `wechat-pay/js/[name]${dateString}.js`,
-        chunkFilename: `wechat-pay/js/[name]${dateString}.js`
+        filename: `wechat-pay/js/[name][[hash]].js`,
+        chunkFilename: `wechat-pay/js/[name][[hash]].js`
     },
     plugins: [
         new CopyWebpackPlugin([
