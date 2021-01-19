@@ -9,15 +9,12 @@ class Actions {
     获取用户信息
     * */
     @action
-    userInfo = async () => {
-        console.log('userInfo');
-        let url = `user/userInfo`;
-        let cformData = {};
-        //let cformData = config.format(obj);
-        let result = await window.GET({url, cformData});
-        this.store.useInfo = result.data;
-        window.setLocalData('userInfo', result.data);
-        return result.resultCode;
+    userInfo(){
+        this.store.uppimg = [];
+        this.store.imageFile = [];
+        let url = "auth/getRoomInfo";
+        let cformData = {userType: 0};
+        window.GET({url, cformData});
     }
 }
 
