@@ -139,13 +139,8 @@ module.exports = {
     },
     output: {
         path: buildPath,
-        publicPath: './', //填写服务器绝对路径
-        //  todo      这块是否需要改成新的？
-        // publicPath: `/wechat-pay/${randBuildDirname}/`, //填写服务器绝对路径
-        // publicPath: `/wechat-pay/`, //填写服务器绝对路径
-        // filename: 'js/[name].js',
+        publicPath: './',
         filename: `wechat-pay/js/[name]${dateString}.js`,
-        // chunkFilename: 'js/[name].js',
         chunkFilename: `wechat-pay/js/[name]${dateString}.js`
     },
     plugins: [
