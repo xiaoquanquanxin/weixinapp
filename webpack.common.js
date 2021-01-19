@@ -139,8 +139,8 @@ module.exports = {
     output: {
         path: buildPath,
         publicPath: './',
-        filename: `wechat-pay/js/[name][[hash]].js`,
-        chunkFilename: `wechat-pay/js/[name][[hash]].js`
+        filename: `js/[name][hash].js`,
+        chunkFilename: `js/[name][chunkhash].js`
     },
     plugins: [
         new CopyWebpackPlugin([
