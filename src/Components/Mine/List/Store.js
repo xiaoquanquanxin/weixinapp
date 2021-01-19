@@ -2,6 +2,7 @@ import {observable} from 'mobx';
 import router from '../../../router'
 import zizhubaoxui from './img/zizhubaoxui.png';
 import jianyi from './img/jianyi.png';
+import authentication from './img/authentication.png';
 import addFamily from './img/add-family.png';
 import myActivity from './img/my-activity.png';
 import myQuestionnaire from './img/my-questionnaire.png';
@@ -15,26 +16,29 @@ class Store {
         {"ico": zizhubaoxui, test: "自助报修", link: "/RepairList", renzhen: 1},
         {"ico": jianyi, test: "投诉建议", link: "/ComplaintSuggestions"},
     ];
+    //  unverifiedShow:未认证的情况下是否展示
     @observable list1 = [
-        {ico: addFamily, test: "用户认证    √", link: router.FamilyMembers, renzhen: 1, unverifiedShow: true,},
-        // {ico: addFamily, test: "添加家属    √√", link: router.FamilyMembers, renzhen: 1},
-        {ico: myActivity, test: "我的活动   ?有一个未知的接口", link: "/PhasetwoActivitySignUpList"},
-        {ico: myQuestionnaire, test: "我的问卷   x详情有错误接口", link: "/PhasetwoMyQuestionnaireList/1"},
-        {ico: myRepair, test: '我的报修 ?、有列表，具体需要验证', link: router.RepairList[0]},
-        // {ico: changePhone, test: "同步房产  √√", type: 'synchronous'},
-        // {ico: changePhone, test: "更换号码  √√", type: 'changePhone'},
-        {ico: changePhone, test: "退出登录  x等待接口", type: 'layout'},
+        {ico: authentication, test: "用户认证(登录)    √√", link: router.FamilyMembers, renzhen: 1, unverifiedShow: true,},
+        {ico: addFamily, test: "添加家属    √√", link: router.FamilyMembers, renzhen: 1},
+        {ico: myActivity, test: "我的活动   需测试", link: "/PhasetwoActivitySignUpList"},
+        {ico: myQuestionnaire, test: "我的问卷   查不出数据", link: "/PhasetwoMyQuestionnaireList/1"},
+        {ico: myRepair, test: '我的报修', link: router.RepairList[0]},
+        {ico: changePhone, test: "同步房产  √√", type: 'synchronous'},
+        {ico: changePhone, test: "更换号码  √√", type: 'changePhone'},
+        {ico: changePhone, test: "退出登录  待调试观测数据", type: 'layout', unverifiedShow: false},
+
+        {ico: myRepair, test: '********************************************************',},
 
         //  todo    以下 测试其他链接
-        {ico: myRepair, test: '房屋报修 ?、有无法访问的接口', link: `${router.AddRepair[0]}/1`},
-        {ico: changePhone, test: "活动报名  ?、有列表，具体需要验证", link: '/PhasetwoActivityList'},
-        // {ico: changePhone, test: "投诉建议  √√", link: router.ComplaintSuggestions},
-        {ico: changePhone, test: "物业缴费 本期", link: '/wechat-pay/PayIndex'},
+        {ico: myRepair, test: '房屋报修   待测试', link: `${router.AddRepair[0]}/1`},
+        {ico: changePhone, test: "活动报名  需测试", link: '/PhasetwoActivityList'},
+        {ico: changePhone, test: "投诉建议  √√", link: router.ComplaintSuggestions},
+        {ico: changePhone, test: "物业缴费  待测试", link: '/wechat-pay/PayIndex'},
 
 
-        // {ico: changePhone, test: "城市资讯  √√", link: '/PhasetwoCityInformationList'},
-        // {ico: changePhone, test: "社区文化  √√subjectId=33", link: '/PhasetwoHomeLetterList?subjectId=33'},
-        // {ico: changePhone, test: "社区通知  √√subjectId=35", link: '/PhasetwoHomeLetterList?subjectId=35'},
+        {ico: changePhone, test: "城市资讯  √√", link: '/PhasetwoCityInformationList'},
+        {ico: changePhone, test: "社区文化  √√subjectId=33", link: '/PhasetwoHomeLetterList?subjectId=33'},
+        {ico: changePhone, test: "社区通知  √√subjectId=35", link: '/PhasetwoHomeLetterList?subjectId=35'},
     ];
     @observable type = "blue";
     @observable label = "退出";
