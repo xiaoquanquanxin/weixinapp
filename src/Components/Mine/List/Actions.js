@@ -64,7 +64,7 @@ class Actions {
                         Toast.info(resultMsg, 1);
                         window.clearLocalData();
                         setTimeout(() => {
-                            location.reload();
+                            location.href = location.origin + location.pathname;
                         }, 1000);
                     }
                 }
