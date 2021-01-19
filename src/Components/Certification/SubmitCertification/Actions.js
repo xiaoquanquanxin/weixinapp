@@ -10,37 +10,32 @@ class Actions {
 
     @action
     colorStylefun = () => {
-        this.store.colorStyle =
-            this.store.phoneNo &&
-            this.store.identityNo &&
-            this.store.validCode ? true : false
-    }
+        this.store.colorStyle = (this.store.phoneNo && this.store.identityNo && this.store.validCode);
+    };
     //输入框赋值
     @action
     inputfun = (v, tar) => {
-        this.store[tar] = v
+        this.store[tar] = v;
         this.colorStylefun()
         //console.log(v)
-    }
+    };
     /*
   房产认证
   * */
     @action
     userInfo = async (history) => {
-        this.store.authshow = 0
-        this.store.colorStyle = false
-        this.store.phoneNo = ""
-        this.store.identityNo = ""
-        this.store.validCode = ""
+        this.store.authshow = 0;
+        this.store.colorStyle = false;
+        this.store.phoneNo = "";
+        this.store.identityNo = "";
+        this.store.validCode = "";
         let result = await window.GET({url: 'user/userInfo'});
         if (!result.isSucess) return;
+        this.store.authshow = 1;
         if (result.data.authStatus === 1) {
             history.replace("/");
-            this.store.authshow = 1
-        } else {
-            this.store.authshow = 1
         }
-    }
+    };
 
     @action
     submit = async (history) => {
@@ -103,13 +98,11 @@ class Actions {
                     }
                 } else if (result.resultCode === 300) {
                     window.location.href = result.data.url
-
                 }
                 //return result.resultCode
             } else {
                 Toast.info('请输入正确的身份号码', 2);
             }
-
         } else {
             Toast.info('请输入正确的手机号码', 2);
         }
