@@ -13,27 +13,26 @@ import address from '../img/address.png';
 @observer
 export default class PhasetwoPeopleInfoListDetail extends React.Component {
     componentDidMount(){
-        window.setWindowTitle("便民信息")
-        console.log(6666);
-        console.log("11111111111111",this.props.actions);
+        window.setWindowTitle("便民信息");
         this.props.actions.actionsPhasetwoPeopleInfoListDetail.setnoticeDetail(this.props.match.params.id)
     }
-    render() {
+
+    render(){
         const {store, actions} = this.props;
-        const { storePhasetwoPeopleInfoListDetail} = store;
-        const { actionsPhasetwoPeopleInfoListDetail} = actions;
+        const {storePhasetwoPeopleInfoListDetail} = store;
+        const {actionsPhasetwoPeopleInfoListDetail} = actions;
         //const { setnoticeDetail } = actionsListDetail;
-        const { setnoticeDetail } = storePhasetwoPeopleInfoListDetail
+        const {setnoticeDetail} = storePhasetwoPeopleInfoListDetail
         return <div url={"/Notice"} className="Components-PeopleInfoListDetail-container article_img">
             <div className={"title"}>
                 {/* <span className={"more"}><img src={more} /></span> */}
                 <span className={"text"}>{setnoticeDetail.title}</span>
             </div>
             <div>
-                <img src={setnoticeDetail.bigBanner} />
+                <img src={setnoticeDetail.bigBanner}/>
             </div>
             <div className={"address"} onClick={() => window.location.href = setnoticeDetail.addressUrl}>
-                <span className={"addressimg"}><img src={address} /></span>
+                <span className={"addressimg"}><img src={address}/></span>
                 <span className={"text"}>{setnoticeDetail.projectAddress}</span>
             </div>
             <div className={"bg"}></div>
