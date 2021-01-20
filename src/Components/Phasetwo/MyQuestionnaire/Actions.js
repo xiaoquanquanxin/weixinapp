@@ -38,7 +38,6 @@ class Actions {
         this.type = type;
         let shareSurveyName = '';
         let shareSurveyDesc = '';
-        debugger
         switch (type) {
             case 1: {
                 let cformData = {
