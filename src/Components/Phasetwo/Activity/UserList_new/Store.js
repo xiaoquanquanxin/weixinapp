@@ -8,18 +8,16 @@ class Store {
     /*获取用户信息*/
     @observable useInfo = {};
 
-    @observable userFamily = [
-        {
-            id: '',
-            fullName: '',
-            sex: '',
-            phoneNo: '',
-            identityNo: '',
-            birthday: '',
-            userType: '',
-            editStatus: false
-        },
-    ];
+    @observable userFamily = [{
+        id: '',
+        fullName: '',
+        sex: '',
+        phoneNo: '',
+        identityNo: '',
+        birthday: '',
+        userType: '',
+        editStatus: false
+    }];
     @observable getRoomInfo = [];
     @observable roomId = -1;
     @observable roomName = -1;
