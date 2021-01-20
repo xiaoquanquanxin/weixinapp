@@ -32,7 +32,6 @@ export default class Template extends React.Component {
                     this.goPage('/wechat-pay/PaymentList');
                 }}>
                     物业缴费
-                    欠缴 - 0
                 </div>
             </div>
             <div className="payment right-button prepayment">
@@ -40,7 +39,6 @@ export default class Template extends React.Component {
                     this.goPage('/wechat-pay/Prepayment');
                 }}>
                     预缴费用
-                    预交 - 1
                 </div>
             </div>
             <div className="payment right-button paymentRecords">
