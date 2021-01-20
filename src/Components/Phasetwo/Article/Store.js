@@ -6,7 +6,7 @@ class Store {
     @observable tip = '公告页面';
     @observable setnoticeDetail = {
         authorName: "",
-        content: "<p/>",
+        content: "",
         noticeTitle: "",
         updateTime: "",
     };
