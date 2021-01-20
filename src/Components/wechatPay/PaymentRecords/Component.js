@@ -71,8 +71,8 @@ export default class Template extends React.Component {
                                                  }}
                                             >
                                                 {Number(item.payFeesType) ?
-                                                    (<div className="type prepay">预 {item.payFeesType}</div>)
-                                                    : (<div className="type payment">欠 {item.payFeesType}</div>)
+                                                    (<div className="type prepay">预</div>)
+                                                    : (<div className="type payment">缴</div>)
                                                 }
                                                 <div>
                                                     <h3>{Number(item.payFeesType) ? '预缴订单' : '缴费订单'}</h3>
