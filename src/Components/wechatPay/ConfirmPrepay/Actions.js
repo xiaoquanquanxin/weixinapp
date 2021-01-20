@@ -86,15 +86,15 @@ class Actions {
         const {code, data, msg} = result;
         //  请求错误
         //  todo    暂时放开
-        // if (!data || +code !== 2000) {
-        //     Toast.hide();
-        //     Modal.alert('提示', msg || '费项异常，暂不能进行预缴', [{
-        //         text: '确定', onPress: async () => {
-        //             window.history.back();
-        //         }
-        //     }]);
-        //     return;
-        // }
+        if (!data || +code !== 2000) {
+            Toast.hide();
+            Modal.alert('提示', msg || '费项异常，暂不能进行预缴', [{
+                text: '确定', onPress: async () => {
+                    window.history.back();
+                }
+            }]);
+            return;
+        }
         //  查询预缴费项信息
         this.getFeeInfo();
     };
