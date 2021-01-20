@@ -27,7 +27,6 @@ class Actions {
     @action
     Noticefun = async (id, history) => {
         window.delLocalData('UserInfodata')
-        console.log(222211112, parseInt(id))
         window.setLocalData("activityid", parseInt(id));
         // alert('!初始sessionKey___:'+sessionKeyurl)
         this.Detailid = id;
