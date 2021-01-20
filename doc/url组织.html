@@ -18,16 +18,13 @@
     </style>
 </head>
 <body>
-<ul id="list"></ul>
-<script>
-    const originUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx38471b86e45e684f&redirect_uri=https%3A%2F%2Fhachiseedland-dev.hachi-tech.com%2Fwechat-mobile%2Fwx%2Fredirect%3FforwordUrl%3Dhttp%253A%252F%252F192.168.100.128%253A8080%252F%2523%252FAddRepair%26snsApi%3Dsnsapi_base&response_type=code&scope=snsapi_base&state=1569237672274#wechat_redirect';
-    const deUrl = decodeURIComponent(originUrl);
-    // console.log(deUrl);
-    const dedeUrl = decodeURIComponent(deUrl);
-    // console.log(dedeUrl);
-    // console.log(decodeURIComponent(decodeURIComponent('http%253A%252F%252F192.168.100.128%253A8080%252F%2523%252FAddRepair')));
+<h2>服务号标签</h2>
+<ul id="list">
+</ul>
+<h2>服务端特殊链接</h2>
+<ul id="link"></ul>
+</body>
 
-</script>
 <script data-msg="创建连接">
     function createLink(realUrl){
         return `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx38471b86e45e684f&redirect_uri=${
@@ -68,5 +65,48 @@
         ]
     );
 </script>
-</body>
+<script>
+    //  预约收楼通知书地址
+    // const HandInBuildingNotice = createLink(basicUrl + `/HandInBuildingNotice?orderDetailId=1`);
+    // console.log(HandInBuildingNotice);
+    //
+
+    ((dataList) => {
+        dataList.forEach(({name, url}) => {
+            //  报事报修
+            const resultUrl = createLink(`${basicUrl}${url}`);
+            const li = document.createElement('li');
+            li.innerText = `${name}\n ${resultUrl}`;
+            link.appendChild(li);
+        });
+    })(
+        [
+            {
+                name: '城市、业主家书文章详情url\n参数是 /PhasetwoArticle/:id\n前端代码流程有问题？\n下面的连接是/PhasetwoArticle/65',
+                url: '/PhasetwoArticle/65'
+            },
+            {name: '便民文章详情url\n需要一个int参数 /PhasetwoPeopleInfoListDetail/:id', url: '/PhasetwoPeopleInfoListDetail/65'},
+            {
+                name: '活动列表跳转微信端url\n参数是 /PhasetwoActivityListDetail/:id \n目前返回的数据都一样？\n下面的连接是/PhasetwoActivityListDetail/50',
+                url: '/PhasetwoActivityListDetail/50'
+            },
+            {
+                name: '问卷推送跳转微信端url\n参数是 /PhasetwoMyQuestionnaire/:type/:id/:isDone \n需测试\n下面的连接是/PhasetwoMyQuestionnaire/1/1/2',
+                url: '/PhasetwoMyQuestionnaire/1/1/2'
+            },
+            {
+                name: '扫描二维码拼接活动id\n参数是 /PhasetwoActivitySignInConfirm/:activityId \n需测试\n下面的连接是/PhasetwoActivitySignInConfirm/id',
+                url: '/PhasetwoActivitySignInConfirm/id'
+            }
+        ]
+    );
+</script>
+<script>
+    //  活动报名
+    const activity50 = createLink(basicUrl + `/PhasetwoActivityListDetail/50`);
+    console.log(activity50);
+    //  http://192.168.100.128:8088/#/PhasetwoActivityListDetail/50
+    const activity53 = createLink(basicUrl + `/PhasetwoActivityListDetail/53`);
+
+</script>
 </html>
