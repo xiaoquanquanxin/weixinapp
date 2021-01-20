@@ -78,7 +78,7 @@ export default class SubmitCertification extends React.Component {
         const o = actionsSubmitCertification.userAuth(body);
         o.then((txt) => {
             if (txt == 0) {
-                let toUrl = window.getQueryString("url")
+                let toUrl = window.getQueryString("url") || ''
                 var url = "";
                 if (toUrl) url = "?url=" + toUrl
                 this.props.history.push(router.CertificationStatus + url);
