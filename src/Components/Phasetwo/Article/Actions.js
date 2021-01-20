@@ -8,6 +8,15 @@ class Actions {
     }
 
     @action
+    init(){
+        const {setnoticeDetail} = this.store;
+        setnoticeDetail.authorName="";
+        setnoticeDetail.content="";
+        setnoticeDetail.noticeTitle="";
+        setnoticeDetail.updateTime="";
+    }
+
+    @action
     setnoticeDetail = async (id) => {
         debugger
         let cformData = {
