@@ -10,27 +10,26 @@ class Actions {
     @action
     init(){
         const {setnoticeDetail} = this.store;
-        setnoticeDetail.authorName="";
-        setnoticeDetail.content="";
-        setnoticeDetail.noticeTitle="";
-        setnoticeDetail.updateTime="";
+        setnoticeDetail.authorName = "";
+        setnoticeDetail.content = "";
+        setnoticeDetail.noticeTitle = "";
+        setnoticeDetail.updateTime = "";
     }
 
     @action
     setnoticeDetail = async (id) => {
-        debugger
         let cformData = {
             id: id
         };
         //console.log(55,body)
         this.store.setnoticeDetail = "";
-        let result = await window.GET({url: "user/articleDetails", cformData})
+        let result = await window.GET({url: "user/articleDetails", cformData});
         if (!result.isSucess) return;
         //console.log(result.data)
-        if (result.data.contentType == 1) {//内容类型（1-自定义内容，2-引用链接）
+        if (result.data.contentType === 1) {//内容类型（1-自定义内容，2-引用链接）
             this.store.setnoticeDetail = result.data
         } else {
-            window.location.href = result.data.content
+            window.location.replace(result.data.content);
         }
 
 
