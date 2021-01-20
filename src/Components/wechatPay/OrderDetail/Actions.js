@@ -165,7 +165,7 @@ class Actions {
         store.maxTime = (new Date(data.createTime).getTime() + (15 * 60 - 1) * 1000 - new Date(data.nowTime).getTime()) / 1000;
         if (store.maxTime <= 0) {
             //  重新获取订单详情
-            //  todo，检查超时后的订单状态
+            //  todo，检查超时后的订单状态，因为服务端没跑task
             console.log('超时了');
             this.getOrderDetail();
             return;
