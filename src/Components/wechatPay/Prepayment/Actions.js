@@ -67,11 +67,11 @@ class Actions {
         });
         const {code, data, msg} = result;
         //  请求错误
-        //  todo    暂时放开
-        // if (!data || +code !== 2000) {
-        //     Modal.alert('提示', msg || '费项异常，暂不能进行预缴', [{text: '确定'}]);
-        //     return;
-        // }
+        //  todo    for development
+        if (!data || +code !== 2000) {
+            Modal.alert('提示', msg || '费项异常，暂不能进行预缴', [{text: '确定'}]);
+            return;
+        }
         //  查询预缴费项信息
         this.getFeeInfo()
     };
@@ -116,7 +116,7 @@ class Actions {
         //  默认选择第一个
         store.currentFee = data[0];
         const hash = {};
-        //  todo    这里做了去重，好像不对
+        //  todo    这里做了去重
         store.feeList = data.filter((item) => {
             if (!hash[item.itemSourceName]) {
                 hash[item.itemSourceName] = true;
@@ -242,7 +242,7 @@ class Actions {
         //  在快捷支付列表中加入自定义块
         paymentList.push(customFeeItem);
         //  todo    for development
-        queryFeeitemDetails.hasOutstandingBill = false;
+        // queryFeeitemDetails.hasOutstandingBill = false;
         store.queryFeeitemDetails = queryFeeitemDetails;
         store.paymentList = paymentList;
         Toast.hide();
