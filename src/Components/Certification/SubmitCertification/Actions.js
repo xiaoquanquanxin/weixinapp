@@ -83,14 +83,14 @@ class Actions {
                         history.replace('/HandInBuildingList' + sessionKeyurl);
                     } else {
                         let isMineListPaage = window.location.href.includes('isMineListPaage');
-                        const url = decodeURIComponent(window.getQueryString("url"));
+                        const replaceUrl = decodeURIComponent(window.getQueryString("url") || '');
                         //  todo    需要验证
                         console.log('需要验证，跳转规则');
-                        if (url) {
+                        if (replaceUrl) {
                             if (isMineListPaage) {
                                 history.replace('/MineList');
                             } else {
-                                history.replace(url);
+                                history.replace(replaceUrl);
                             }
                         } else {
                             history.replace('/MineList');
