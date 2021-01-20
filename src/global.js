@@ -54,7 +54,7 @@ window.myFun401 = function (){
             if (PhasetwoActivityListDetail) {
                 debugger;
                 let activityid = window.getLocalData("activityid");
-                url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210108?url=/PhasetwoActivityListDetail/" + activityid);
+                url = "login/getWxAuthUrl?forwordUrl=" + encodeURI(origin + "/wechat-pay/20210108/#/PhasetwoActivityListDetail/" + activityid);
             }
 
             //  问卷
@@ -63,7 +63,7 @@ window.myFun401 = function (){
                 let PhasetwoMyQuestionnaireType = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireType"));
                 let PhasetwoMyQuestionnaireId = JSON.parse(window.getLocalData("PhasetwoMyQuestionnaireId"));
                 let isDone = JSON.parse(window.getLocalData("isDone"));
-                let str = encodeURI(origin + "/wechat-pay/20210108?url=/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
+                let str = encodeURI(origin + "/wechat-pay/20210108/#/PhasetwoMyQuestionnaire/" + PhasetwoMyQuestionnaireType + "/" + PhasetwoMyQuestionnaireId + "/" + isDone);
                 url = "login/getWxAuthUrl?forwordUrl=" + str;
                 window.delLocalData('pageName');
                 window.delLocalData('PhasetwoMyQuestionnaireType');
