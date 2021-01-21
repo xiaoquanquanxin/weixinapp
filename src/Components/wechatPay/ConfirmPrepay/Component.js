@@ -46,7 +46,6 @@ export default class Template extends React.Component {
             if (result === true) {
                 console.log('可以跳转了');
                 Toast.hide();
-                //  todo    需要验证
                 debugger;
                 const {submitOrderData} = storeConfirmPrepay;
                 const {orderId, orderMoney, createTime} = submitOrderData;
