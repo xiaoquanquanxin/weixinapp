@@ -50,7 +50,6 @@ export default class Template extends React.Component {
             if (result === true) {
                 console.log('可以跳转了');
                 Toast.hide();
-                //  todo    需要验证
                 debugger;
                 const {updateTime, orderMoney} = submitOrderData;
                 this.props.history.push(`/wechat-pay/PaySuccess?orderId=${orderId}&orderMoney=${orderMoney}&updateTime=${updateTime}&type=1`);
