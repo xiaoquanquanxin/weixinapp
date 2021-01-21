@@ -200,10 +200,10 @@ export default class SubmitCertification extends React.Component {
                             </Flex>
 
                         </div>
-                        <div>
-                            <Link className={"choicephone"} to={'/CertificationModifySelfInfo'}>手机号更改申请<Icon
-                                type={'right'}/></Link>
-                        </div>
+                        {/*<div>*/}
+                        {/*    <Link className={"choicephone"} to={'/CertificationModifySelfInfo'}>手机号更改申请<Icon*/}
+                        {/*        type={'right'}/></Link>*/}
+                        {/*</div>*/}
                         <WhiteSpace size="lg"/>
                         <WhiteSpace/>
                         <div onClick={() => {
