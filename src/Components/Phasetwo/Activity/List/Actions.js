@@ -42,14 +42,14 @@ class Actions {
                 this.store.actbottom = 2
             }
         }
-        console.log(this.store.actListdata, "actListdata");
+        console.log(JSON.parse(JSON.stringify(this.store.actListdata)), "actListdata");
     };
     @action
     tabfun = (index) => {
         console.log("index", index);
         this.pageNum = 1;
         this.store.actListdata = [];
-        console.log(this.store.actListdata, "actListdata");
+        console.log(JSON.parse(JSON.stringify(this.store.actListdata)), "actListdata");
         this.Listfun(index, this.pageNum)
     };
     @action
