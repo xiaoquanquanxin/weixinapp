@@ -16,7 +16,6 @@ class Actions {
         store.refreshing = false;
         store.tabval = null;
         store.actbottom = 2;
-
     }
 
     /*
@@ -75,109 +74,62 @@ class Actions {
 
     @action
     signUpfun = async (history, v) => {
-        let cformData = {
-            activityId: v.activityId
-        };
-        let result = await window.GET({url: 'user/activity/signup', cformData});
-        if (!result.isSucess) {
+        //  0-全部，1-项目认证用户，2-城市用户
+        const scopeType = +v.scopeType;
+        //  status  当前活动报名状态：【1：当前人已报名，2：当前人未报名】
+        const status = +v.status;
+        //   activitytype  当前活动状态：【1-草稿，2-发布，3-报名结束，4-活动结束）】
+        const activitytype = +v.activitytype;
+        const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
+        //  已报名，跳转到报名状态页
+        if (status === 1) {
+            history.push('/PhasetwoActivitySignUpExamine/' + v.joinerId);
             return;
         }
-        console.log("data", result.data);
-        if (+result.data.scopeType === 1) {
-            if (+result.data.authStatus === 0) {
-                Modal.alert('提示', "该活动需要进行房产认证，请先认证？", [
-                    {
-                        text: '取消', onPress: () => {
-                        }
-                    },
-                    {
-                        text: '确定', onPress: () => {
-                            history.push("/SubmitCertification?url=/PhasetwoActivityList");
-                        }
-                    }
-                ])
-            } else {
-                if (+v.activitytype === 2) {
-                    console.log("status", v.status, "joinerId", v.joinerId);
-                    window.delLocalData('UserInfodata');
-                    window.setLocalData("activityid", parseInt(v.activityId));
-                    if (+v.status === 1) {
-                        history.push('/PhasetwoActivitySignUpExamine/' + v.joinerId)
-                    } else {
-                        this.isTrueToJoinActivity(v.activityId, history);
-                    }
-                } else if (+v.activitytype === 3) {
-                    if (+v.status === 1) {
-                        history.push('/PhasetwoActivitySignUpExamine/' + v.joinerId);
-                    } else {
-                        Modal.alert('提示', "该活动报名已结束!", [
-                            {
-                                text: '确定', onPress: () => {
-                                }
-                            }
-                        ])
-                    }
-
-                } else if (+v.activitytype === 4) {
-                    if (+v.status === 1) {
-                        history.push('/PhasetwoActivitySignUpExamine/' + v.joinerId);
-                    } else {
-                        Modal.alert('提示', "该活动已结束!", [
-                            {
-                                text: '确定', onPress: () => {
-                                }
-                            }
-                        ])
+        //  活动已结束
+        if (activitytype > 2) {
+            Modal.alert('提示', activitytype === 3 ? "该活动报名已结束!" : '该活动已结束!', [
+                {
+                    text: '确定', onPress: () => {
                     }
                 }
-            }
-
-
-        } else {
-            if (+v.activitytype === 2) {
-                console.log("status", v.status, "joinerId", v.joinerId);
-                window.delLocalData('UserInfodata');
-                window.setLocalData("activityid", parseInt(v.activityId));
-                if (+v.status === 1) {
-                    history.push('/PhasetwoActivitySignUpExamine/' + v.joinerId);
-                } else {
-                    this.isTrueToJoinActivity(v.activityId, history);
+            ]);
+            return;
+        }
+        //  需要认证的活动
+        if (scopeType === 1 && +userInfo.authStatus === 0) {
+            Modal.alert('提示', "该活动需要进行房产认证，请先认证？", [
+                {
+                    text: '取消', onPress: () => {
+                    }
+                },
+                {
+                    text: '确定', onPress: () => {
+                        history.push("/SubmitCertification?url=/PhasetwoActivityList");
+                    }
                 }
-            } else if (+v.activitytype === 3) {
-                if (+v.status === 1) {
-                    history.push('/PhasetwoActivitySignUpExamine/' + v.joinerId);
-                } else {
-                    Modal.alert('提示', "该活动报名已结束!", [
-                        {
-                            text: '确定', onPress: () => {
-                            }
-                        }
-                    ])
-                }
-            } else if (+v.activitytype === 4) {
-                if (+v.status === 1) {
-                    history.push('/PhasetwoActivitySignUpExamine/' + v.joinerId)
-                } else {
-                    Modal.alert('提示', "该活动已结束!", [
-                        {
-                            text: '确定', onPress: () => {
-                            }
-                        }
-                    ])
-                }
-            }
+            ]);
+            return;
+        }
+        //  正在进行中
+        if (activitytype === 2) {
+            console.log("status", status, "joinerId", v.joinerId);
+            window.delLocalData('UserInfodata');
+            window.setLocalData("activityid", parseInt(v.activityId));
+            this.isTrueToJoinActivity(v.activityId, history);
         }
     };
 
     @action
     isTrueToJoinActivity = async (activityId, history) => {
         let cformData = {
-            activityId: activityId
+            activityId,
         };
         let result = await window.GET({url: 'user/activity/isTrueToJoinActivity', cformData, isShowLoading: false});
-        if (+result.data.isTrue === 1) {
-            if (+result.data.canJoin === 0) {
-                Toast.info(result.data.msg, 2);
+        const {isTrue, canJoin, msg} = result.data;
+        if (+isTrue === 1) {
+            if (+canJoin === 0) {
+                Toast.info(msg, 2);
             } else {
                 history.push('/PhasetwoActivityUserList_new/' + activityId);
             }
