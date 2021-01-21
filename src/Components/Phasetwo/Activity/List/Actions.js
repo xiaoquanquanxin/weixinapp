@@ -13,6 +13,10 @@ class Actions {
     init(){
         const store = this.store;
         store.actListdata = [];
+        store.refreshing = false;
+        store.tabval = null;
+        store.actbottom = 2;
+
     }
 
     /*
