@@ -131,7 +131,9 @@ class Actions {
             if (+canJoin === 0) {
                 Toast.info(msg, 2);
             } else {
-                history.push('/PhasetwoActivityUserList_new/' + activityId);
+                //  todo    用老的报名
+                // history.push('/PhasetwoActivityUserList_new/' + activityId);
+                history.push('/PhasetwoActivityUserList/' + activityId);
             }
         } else {
             Toast.info(`抱歉，您不在此活动范围内！`, 2);
