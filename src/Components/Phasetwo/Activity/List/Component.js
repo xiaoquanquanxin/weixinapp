@@ -17,7 +17,9 @@ export default class PhasetwoActivityList extends React.Component {
     componentDidMount(){
         //console.log('[Template] componentDidMount..')
         window.setWindowTitle("活动列表");
-        this.props.actions.actionsPhasetwoActivityList.Listfun(0, 1);
+        const {actionsPhasetwoActivityList} = this.props.actions;
+        actionsPhasetwoActivityList.init();
+        actionsPhasetwoActivityList.Listfun(0, 1);
         wx.ready(function (){
             wx.hideMenuItems({
                 menuList: ["menuItem:share:appMessage", "menuItem:share:timeline"] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮
@@ -122,6 +124,7 @@ export default class PhasetwoActivityList extends React.Component {
             </PullToRefresh>
         </div>;
     }
+
     //组件的内部状态和生命周期
     //https://segmentfault.com/a/1190000011776013
 }
