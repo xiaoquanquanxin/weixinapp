@@ -8,6 +8,13 @@ class Actions {
         this.pageNum = 1
     }
 
+    //  初始化
+    @action
+    init(){
+        const store = this.store;
+        store.actListdata = [];
+    }
+
     /*
     @action
     incA = () => {
@@ -15,14 +22,12 @@ class Actions {
     }*/
     @action
     Listfun = async (activityType, pageNum) => {
-        console.log('activityType:', activityType);
-        console.log('pageNum:', pageNum);
         this.store.tabval = activityType;
         this.pageNum = pageNum;
         let cformData = {
             companyId: JSON.parse(window.getCompanyId()) ? JSON.parse(window.getCompanyId()) : "",
-            activityType: this.store.tabval,
-            pageNum: pageNum,
+            activityType,
+            pageNum,
             pageSize: 10
         };
         console.log('请求数据', cformData);
@@ -32,25 +37,25 @@ class Actions {
         }
         if (+result.resultCode === 0) {
             if (result.data.length === 0) {
-                this.store.actbottom = 1
+                this.store.actbottom = 1;
             } else {
                 if (pageNum > 1) {
                     this.store.actListdata = this.store.actListdata.concat(result.data);
                 } else {
-                    this.store.actListdata = result.data
+                    this.store.actListdata = result.data;
                 }
-                this.store.actbottom = 2
+                this.store.actbottom = 2;
             }
         }
-        console.log(JSON.parse(JSON.stringify(this.store.actListdata)), "actListdata");
+        console.log(JSON.parse(JSON.stringify(this.store.actListdata)), "列表数据");
     };
     @action
     tabfun = (index) => {
         console.log("index", index);
         this.pageNum = 1;
         this.store.actListdata = [];
-        console.log(JSON.parse(JSON.stringify(this.store.actListdata)), "actListdata");
-        this.Listfun(index, this.pageNum)
+        console.log('删除列表数据');
+        this.Listfun(index, this.pageNum);
     };
     @action
     onRefresh = () => {
@@ -58,9 +63,9 @@ class Actions {
         this.store.refreshing = true;
         this.Listfun(this.store.tabval, this.pageNum);
         setTimeout(() => {
-            this.store.refreshing = false
+            this.store.refreshing = false;
         }, 1000);
-        console.log(this.store.refreshing)
+        console.log(this.store.refreshing);
     };
 
     @action
@@ -82,7 +87,7 @@ class Actions {
                     },
                     {
                         text: '确定', onPress: () => {
-                            history.push("/SubmitCertification?url=/PhasetwoActivityList")
+                            history.push("/SubmitCertification?url=/PhasetwoActivityList");
                         }
                     }
                 ])
@@ -94,7 +99,7 @@ class Actions {
                     if (+v.status === 1) {
                         history.push('/PhasetwoActivitySignUpExamine/' + v.joinerId)
                     } else {
-                        this.isTrueToJoinActivity(v.activityId, history)
+                        this.isTrueToJoinActivity(v.activityId, history);
                     }
                 } else if (+v.activitytype === 3) {
                     if (+v.status === 1) {
@@ -131,12 +136,11 @@ class Actions {
                 if (+v.status === 1) {
                     history.push('/PhasetwoActivitySignUpExamine/' + v.joinerId);
                 } else {
-                    //history.push('/PhasetwoActivityUserList')
                     this.isTrueToJoinActivity(v.activityId, history);
                 }
             } else if (+v.activitytype === 3) {
                 if (+v.status === 1) {
-                    history.push('/PhasetwoActivitySignUpExamine/' + v.joinerId)
+                    history.push('/PhasetwoActivitySignUpExamine/' + v.joinerId);
                 } else {
                     Modal.alert('提示', "该活动报名已结束!", [
                         {
