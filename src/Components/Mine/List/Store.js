@@ -29,7 +29,7 @@ class Store {
 
         {ico: myRepair, test: '********************************************************',},
 
-        //  todo    以下 测试其他链接
+        //  以下 测试其他链接
         {ico: myRepair, test: '房屋报修   √√', link: `${router.AddRepair[0]}/1`},
         {ico: changePhone, test: "活动报名  需测试", link: '/PhasetwoActivityList'},
         {ico: changePhone, test: "投诉建议  √√", link: router.ComplaintSuggestions},
