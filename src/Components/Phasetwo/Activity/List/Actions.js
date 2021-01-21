@@ -55,9 +55,10 @@ class Actions {
     };
     @action
     tabfun = (index) => {
-        console.log("index", index);
+        // console.log("index", index);
         this.pageNum = 1;
         this.store.actListdata = [];
+        console.clear();
         console.log('删除列表数据');
         this.Listfun(index, this.pageNum);
     };
