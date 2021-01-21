@@ -62,7 +62,7 @@ class Actions {
                     const {resultMsg, resultCode} = result;
                     if (resultCode === 0) {
                         Toast.info(resultMsg, 1);
-                        window.clearLocalData();
+                        //  window.clearLocalData();
                         setTimeout(() => {
                             location.href = location.origin + location.pathname;
                         }, 1000);
