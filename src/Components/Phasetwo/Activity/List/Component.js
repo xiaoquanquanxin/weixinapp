@@ -86,10 +86,14 @@ export default class PhasetwoActivityList extends React.Component {
                                                     </div>
                                                 </div>
                                                 {
-                                                    v.activitytype !== 2 && v.status == 2 ? <div className={"text"}>
-                                                            {v.activitytype == 3 && <div className={"btn gray"}>报名已结束</div>}
-                                                            {v.activitytype == 4 && <div className={"btn gray"}>活动已结束</div>}
-                                                        </div> :
+                                                    (v.activitytype !== 2 && v.status === 2) ? (
+                                                        <div className={"text"}>
+                                                            {v.activitytype == 3 &&
+                                                            <div className={"btn gray"}>报名已结束</div>}
+                                                            {v.activitytype == 4 &&
+                                                            <div className={"btn gray"}>活动已结束</div>}
+                                                        </div>
+                                                    ) : (
                                                         <div className={"text"} onClick={() => {
 
                                                             signUpfun(history, v)
@@ -97,6 +101,7 @@ export default class PhasetwoActivityList extends React.Component {
                                                         }}>
                                                             <div className={"btn"}>{stext[v.status]}</div>
                                                         </div>
+                                                    )
                                                 }
                                                 <div className={"tag"}>
                                                     {/* <StatusFlag
