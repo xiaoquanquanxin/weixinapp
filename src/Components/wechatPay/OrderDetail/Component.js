@@ -48,7 +48,6 @@ const OrderStatusInfoRender = ({type, tranDate, spaceTime}) => {
 const OutstandingBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInfo, paymentList, totalMoney, transactionid}) => {
     let type = '';
     let spaceTime = '';
-    //  todo    欠缴的状态是什么
     switch (+tranStatus) {
         case 0:
             type = '待支付';
@@ -209,7 +208,6 @@ export default class Template extends React.Component {
             if (result === true) {
                 console.log('可以跳转了');
                 Toast.hide();
-                //  todo    需要验证
                 debugger;
                 const {updateTime, type, totalMoney: orderMoney,} = storeOrderDetail;
                 this.props.history.push(`/wechat-pay/PaySuccess?orderId=${orderId}&orderMoney=${orderMoney}&updateTime=${updateTime}&type=${type}`);
