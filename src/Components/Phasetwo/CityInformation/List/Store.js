@@ -25,6 +25,6 @@ class Store {
     @observable allList = [];
     @observable refreshing = false
     @observable actbottom = 2
-    @observable height = document.documentElement.clientHeight - 0
+    @observable height = +document.documentElement.clientHeight;
 }
 export default Store;
