@@ -32,7 +32,10 @@ export default class PhasetwoActivityUserList_new extends React.Component {
         const {store, actions} = this.props;
         const {actionsPhasetwoActivityUserList_new} = actions;
         window.setWindowTitle('报名成员');
-        actionsPhasetwoActivityUserList_new.userInfo(this.props);
+        setTimeout(() => {
+            console.clear();
+            actionsPhasetwoActivityUserList_new.userInfo(this.props);
+        }, 666);
     }
 
     componentWillUnmount(){
