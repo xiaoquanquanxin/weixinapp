@@ -58,8 +58,7 @@ export default class MineList extends React.Component {
             userLogo,
             nickName
         };
-        const isLoachost = !!(window.location.origin.includes('test') || window.location.origin.includes('10.3'));
-        console.info('当前环境是___________', isLoachost ? '测试' : '生产');
+        console.info('当前环境是___________', IS_CLIENT ? '生产' : '开发');
         return <div className={"Components-MineList-container"}>
             {/*头部*/}
             <TopBar
@@ -129,17 +128,6 @@ export default class MineList extends React.Component {
                     })
                 }
             </List>
-            {
-                (useInfo.authStatus == 1 && isLoachost) && false &&
-                <List className={"listcontent"}>
-                    <Item thumb={<i className={`font_family list-icon icon-tuichu`}
-                                    style={{color: '#de8686', marginLeft: '10px'}}> </i>}
-                          extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
-                          onClick={() => {
-                              tuichu()
-                          }}>{label}</Item>
-                </List>
-            }
             <WhiteSpace/>
             <WingBlank>
                 {/*{useInfo.authStatus == 1&&
