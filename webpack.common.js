@@ -42,13 +42,13 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 //判断当前运行环境是开发模式还是生产模式
-const nodeEnv = process.env.NODE_ENV || 'development'
-const API_TYPE = process.env.API_TYPE || '1'
-const isPro = nodeEnv === 'production'
-console.log('当前运行环境：', isPro ? 'production' : 'development')
-let buildDirName = path.resolve(__dirname, './wechat-pay/')
+const nodeEnv = process.env.NODE_ENV || 'development';
+const API_TYPE = process.env.API_TYPE || '1';
+const isPro = nodeEnv === 'production';
+console.log('当前运行环境：', isPro ? 'production' : 'development');
+let buildDirName = path.resolve(__dirname, './wechat-pay/');
 if (isPro) {
-    console.log("清空build目录。。")
+    console.log("清空build目录。。");
     if (!fs.existsSync(buildDirName)) {
         fs.mkdirSync(buildDirName)
     }
@@ -56,73 +56,12 @@ if (isPro) {
 }
 //  版本
 const randBuildDirname = 20210108;
-let html = `<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <title>加载中..</title>
-  <meta http-equiv="Access-Control-Allow-Origin" content="*" />
-  <meta charset="utf-8" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Cache-Control" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <link type="favicon" rel="shortcut icon" href="favicon.ico" />
-  <script language="javascript" type="text/javascript">
-    try {
-           window.getQueryString = function (name) {
-              var aftername = window.location.href.split("?")[1];
-              if (aftername&&aftername.length>1){
-                  var arr=aftername.split("&")
-                  var obj={};
-                  for (var i=0;i<arr.length;i++){
-                      var tem=arr[i].split('=')
-                      if (tem.length==2) obj[tem[0]]=tem[1]
-                  }
-                  return obj;
-              }
-              return null;
-          }
-        var arg=window.getQueryString();
-        var url="";
-        if (arg){
-            if (arg.url){
-                 url=decodeURIComponent(arg.url);
-            }
-            var pre=""
-            if(url.indexOf('/')!=0){
-                pre="/"
-            }
-            var tem=[];
-            for (var k in arg){
-                if (k!="url") tem.push(k+"="+arg[k])
-            }
-            if (tem.length>0){
-                url="#"+pre+url+"?"+tem.join("&")
-            }else{
-                url="#"+pre+url
-            }
-        } 
-        // console.log("url:",url)
-        console.log("${randBuildDirname}/"+url)
-        console.log("url1:",url)
-        url=url.replace(/__jh__/g, "#")
-        url=url.replace(/##/g, "#")
-        //url=url.replace(/#\/\//g, "#/")
-		console.log("url2:",url)
-        // window.location.replace("${randBuildDirname}/"+url); 
-        window.location.replace("/wechat-pay/${randBuildDirname}/"+url); 
-    } catch (err) {
-        alert("錯誤信息"+JSON.stringify(err)+e)
-    }
-  </script>
-  </head>
-<body>
-</body>
-</html>`;
+const {templateFn} = require('./webpack/templateConfig');
+const html = templateFn(randBuildDirname);
 if (isPro) {
     //setTimeout(function(){
-    let htmlFile = path.resolve(buildDirName, '../goto_index.html')
-    console.log("准备写入文件：" + htmlFile)
+    let htmlFile = path.resolve(buildDirName, '../goto_index.html');
+    console.log("准备写入文件：" + htmlFile);
     fs.writeFile(htmlFile, html, {flag: 'w+', encoding: 'utf8'}, function (err){
         if (err) return console.log('\n写入跳转文件失败:' + htmlFile, err);
         console.log('\n写入跳转文件成功:' + htmlFile);
@@ -157,12 +96,16 @@ module.exports = {
                 to: path.resolve(buildDirName, './favicon.ico')
             },
             {
-                from: __dirname + '/lib/jquery/jquery.min.js',
-                to: path.resolve(buildPath, './jquery.min.js')
+                from: __dirname + '/lib/jquery.min.js',
+                to: path.resolve(buildPath, './lib/jquery.min.js')
             },
             {
-                from: __dirname + '/lib/vconsole.min.js',
-                to: path.resolve(buildPath, './vconsole.min.js')
+                from: __dirname + '/lib/jweixin-1.6.0.min.js',
+                to: path.resolve(buildPath, './lib/jweixin-1.6.0.min.js')
+            },
+            {
+                from: __dirname + '/lib/md5.min.js',
+                to: path.resolve(buildPath, './lib/md5.min.js')
             },
             {
                 from: __dirname + '/src/favicon.ico',
