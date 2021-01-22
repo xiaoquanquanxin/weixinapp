@@ -14,36 +14,31 @@ class Actions {
       * */
     @action
     userInfo = async (thisP) => {
-        console.log(99999, document.referrer, thisP)
-        this.activityid = thisP.match.params.activityid
+        this.activityid = thisP.match.params.activityid;
         window.setLocalData("activityid", parseInt(thisP.match.params.activityid));
-        this.UserparamArr = []
-        this.success = ""
-        this.Toast = ""
+        this.UserparamArr = [];
+        this.success = "";
+        this.Toast = "";
         this.store.getRoomInfo = [];
         this.store.userList = [];
         this.store.roomName = '';
         this.store.roomId = '';
-        this.store.Interestselects = []
-        this.store.UserInfodata = []
-        console.log(2222, this.activityid)
+        this.store.Interestselects = [];
+        this.store.UserInfodata = [];
         let cformData = {activityId: this.activityid};
         let result = await window.GET({url: 'user/activity/signup', cformData});
         if (!result.isSucess) return;
-
-        this.store.needCost = result.data.needCost
-        console.log(11, result.data.roomList, this.store.getRoomInfo.length)
+        this.store.needCost = result.data.needCost;
+        console.log(result.data.roomList);
         result.data.roomList.forEach((v, i) => {
             this.store.getRoomInfo.push({
                 label: v.roomName,
                 value: v.roomId,
                 userList: v.userList
-            })
-
-
-        })
+            });
+        });
         //判断有数据值，默认取第一个
-        let memberIdarr = []
+        let memberIdarr = [];
         if (this.store.getRoomInfo.length > 0) {
             this.store.roomName = this.store.getRoomInfo[0].label;
             this.store.roomId = this.store.getRoomInfo[0].value;
@@ -56,8 +51,6 @@ class Actions {
             //console.log(333188, memberIdarr.join(","))
             //this.editOwnerInfofun(thisP.history, memberIdarr.join(","), this.store.roomId)
         }
-
-
         this.store.UserInfodata.push({
             name: "",
             phoneNo: "",
@@ -65,7 +58,7 @@ class Actions {
             linkWxUserId: "",
             paramArray: result.data.paramArray,
             paramArr: []
-        })
+        });
         if (result.data.paramArray && result.data.paramArray.length > 0) {
             result.data.paramArray.forEach((vv, ii) => {
                 this.store.UserInfodata[0].paramArr.push({
@@ -75,8 +68,8 @@ class Actions {
                     extValues: "",
                     paramOptions: [],
                     Interestselects: []
-                })
-                if (vv.paramType == 1 || vv.paramType == 2) {
+                });
+                if (+vv.paramType === 1 || +vv.paramType === 2) {
                     if (vv.paramOptions.length > 0) {
                         vv.paramOptions.forEach((vvv, iii) => {
                             this.store.UserInfodata[0].paramArr[ii].paramOptions.push({
@@ -86,11 +79,10 @@ class Actions {
                         })
                     }
                 }
-            })
-
+            });
             this.UserparamArr.push({
                 paramArr: []
-            })
+            });
             result.data.paramArray.forEach((vv, ii) => {
                 this.UserparamArr[0].paramArr.push({
                     id: vv.id,
@@ -99,8 +91,8 @@ class Actions {
                     extValues: "",
                     paramOptions: [],
                     Interestselects: []
-                })
-                if (vv.paramType == 1 || vv.paramType == 2) {
+                });
+                if (+vv.paramType === 1 || +vv.paramType === 2) {
                     if (vv.paramOptions.length > 0) {
                         vv.paramOptions.forEach((vvv, iii) => {
                             this.UserparamArr[0].paramArr[ii].paramOptions.push({
@@ -110,10 +102,11 @@ class Actions {
                         })
                     }
                 }
-            })
+            });
         }
-        console.log("UserInfodataUserInfodata", this.store.UserInfodata);
-        this.citylistfun()
+        console.log("UserInfodataUserInfodata", JSON.parse(JSON.stringify(this.store.UserInfodata)));
+        //  todo    暂时注释
+        // this.citylistfun()
     };
     @action
     citylistfun = async () => {
@@ -210,7 +203,8 @@ class Actions {
                 activityId: this.activityid,
                 roomId: this.store.roomId
             };
-            console.log("提交", cformData, JSON.stringify(cformData))
+            console.log("提交", cformData)
+            return
             let result = await window.POSTJSON({url: 'user/activity/signupSubmit', cformData});
             if (!result.isSucess) return;
             window.delLocalData('UserInfodata')
@@ -254,14 +248,14 @@ class Actions {
 
     @action
     Interestfun = (name, i, ii) => {
-        console.log(222, this.store.UserInfodata[i].paramArr[ii].Interestselects)
+        console.log(222, this.store.UserInfodata[i].paramArr[ii].Interestselects);
         this.store.UserInfodata[i].paramArr[ii].Interestselects = this.store.UserInfodata[i].paramArr[ii].Interestselects.includes(name)
             ? this.store.UserInfodata[i].paramArr[ii].Interestselects.filter(item => item !== name)
             : [...this.store.UserInfodata[i].paramArr[ii].Interestselects, name]
         //console.log(111, this.store.UserInfodata[i].paramArr[ii].Interestselects, this.store.UserInfodata[i].paramArr[ii].Interestselects.includes(name))
         this.store.UserInfodata[i].paramArr[ii].extValues = this.store.UserInfodata[i].paramArr[ii].Interestselects
         //console.log(222,this.store.UserInfodata[i].paramArr[ii].extValues )
-    }
+    };
 
     @action
     pickerfun = (v, vname, i, ii) => {
@@ -269,13 +263,12 @@ class Actions {
         this.store.UserInfodata[i].paramArr[ii].extValues = v
         // console.log(22345, this.store.UserInfodata, v.format('YYYY-MM-dd'))
         //this.store[vname] = v
-    }
+    };
 
     @action
     pickerareafun = (v, vname, picki, pickii) => {
-        let citylist = this.store.citylist
-        let cityName = ""
-
+        let citylist = this.store.citylist;
+        let cityName = "";
         for (let i = 0; i < citylist.length; i++) {
             if (citylist[i].value == v[0]) {
                 cityName = citylist[i].label
@@ -293,12 +286,8 @@ class Actions {
                 }
             }
         }
-
         console.log(7777, v, cityName)
-
-
-    }
-
+    };
 
     @action
     Toastfun = function (){
@@ -312,26 +301,25 @@ class Actions {
                     }
                 }
             })
-        })
+        });
+    };
 
-
-    }
     @action
     out = () => {
-        window.delLocalData('UserInfodata')
-    }
+        window.delLocalData('UserInfodata');
+    };
+
     @action
     addfun = () => {
-        this.store.UserInfodata.push(Object.assign({}, this.UserparamArr[0]))
-        console.log("addfun", this.store.UserInfodata)
-    }
+        this.store.UserInfodata.push(Object.assign({}, this.UserparamArr[0]));
+        console.log("addfun", JSON.parse(JSON.stringify(this.store.UserInfodata)));
+    };
+
     @action
     shanchufun = (i) => {
-        this.store.UserInfodata.splice(i, 1)
-        console.log(i)
+        this.store.UserInfodata.splice(i, 1);
+        console.log(i);
     }
-
-
 }
 
 export default Actions;
