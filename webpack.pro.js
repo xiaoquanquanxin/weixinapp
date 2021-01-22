@@ -28,5 +28,4 @@ module.exports = merge(common, {
             }]
         }]
     }
-})
-console.log('执行prod编译');
+});
