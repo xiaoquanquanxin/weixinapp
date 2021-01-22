@@ -1,16 +1,16 @@
-const webpack = require('webpack')
-const merge = require('webpack-merge')
-const common = require('./webpack.common.js')
-const webpackServerConfig = require('./webpack/webpackServerConfig')
-const {host, port} = webpackServerConfig.devServer
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
+const webpackServerConfig = require('./webpack/webpackServerConfig');
+const {host, port} = webpackServerConfig.devServer;
 module.exports = merge(common, {
     devtool: 'inline-source-map',
     entry: {
         app: [
+            'entry.js',
             'react-hot-loader/patch',
             `webpack-dev-server/client?http://${host}:${port}`,
             'webpack/hot/only-dev-server',
-            'entry.js'
         ]
     },
 
