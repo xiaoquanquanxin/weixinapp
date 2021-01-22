@@ -82,19 +82,10 @@ class Actions {
                         let sessionKeyurl = "?sessionKey=" + JSON.parse(window.getLocalData('auth'));
                         history.replace('/HandInBuildingList' + sessionKeyurl);
                     } else {
-                        let isMineListPaage = window.location.href.includes('isMineListPaage');
                         const replaceUrl = decodeURIComponent(window.getQueryString("url") || '');
                         //  todo    需要验证
                         console.log('需要验证，跳转规则');
-                        if (replaceUrl) {
-                            if (isMineListPaage) {
-                                history.replace('/MineList');
-                            } else {
-                                history.replace(replaceUrl);
-                            }
-                        } else {
-                            history.replace('/MineList');
-                        }
+                        history.replace(replaceUrl || '/');
                     }
                 } else if (result.resultCode === 300) {
                     window.location.href = result.data.url
