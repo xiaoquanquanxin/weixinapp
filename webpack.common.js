@@ -43,10 +43,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 //判断当前运行环境是开发模式还是生产模式
 const {API_TYPE, NODE_ENV} = process.env;
-const isPro = NODE_ENV === 'production';
-console.log('当前运行环境：', isPro ? 'production' : 'development');
+const isClient = NODE_ENV === 'production';
+console.log('当前运行环境：', isClient ? 'production' : 'development');
 let buildDirName = path.resolve(__dirname, './wechat-pay/');
-if (isPro) {
+if (isClient) {
     console.log("清空build目录。。");
     if (!fs.existsSync(buildDirName)) {
         fs.mkdirSync(buildDirName)
@@ -57,7 +57,7 @@ if (isPro) {
 const randBuildDirname = 20210108;
 const {templateFn} = require('./webpack/templateConfig');
 const html = templateFn(randBuildDirname);
-if (isPro) {
+if (isClient) {
     //setTimeout(function(){
     let htmlFile = path.resolve(buildDirName, '../goto_index.html');
     console.log("准备写入文件：" + htmlFile);
