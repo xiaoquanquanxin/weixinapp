@@ -10,6 +10,14 @@ class Actions {
         this.is_uploadMediaIds = {}
     }
 
+    @action
+    init(){
+        const store = this.store;
+        store.questionDetailDta = [];
+        store.showbtn = false;
+        store.isDone = "";
+        store.is_uploadMediaIds = {};
+    }
 
     /*分享link*/
     @action
