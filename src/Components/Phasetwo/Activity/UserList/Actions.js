@@ -111,14 +111,14 @@ class Actions {
                                 joinerSex: vv.sex,
                                 linkWxUserId: vv.linkWxUserId,
                                 paramArr: []
-                            })
+                            });
                             if (vv.paramArr.length > 0) {
                                 vv.paramArr.forEach((vvv, iii) => {
                                     //console.log(22222,iii,ii)
                                     joinerArr[joinerArr.length - 1].paramArr.push({
                                         signupParamId: vvv.id,//signupParamId
                                         extTitle: vvv.extTitle,
-                                        extValues: vvv.paramType == 2 ? vvv.extValues : vvv.extValues
+                                        extValues: +vvv.paramType === 2 ? vvv.extValues : vvv.extValues
                                     })
                                 })
                             }
@@ -126,8 +126,9 @@ class Actions {
                     })
                 })
             }
-            this.Toastfun()
-            console.log(this.Toast)
+            this.Toastfun();
+            console.log(this.Toast);
+            debugger;
             if (+this.Toast === 1) {
                 this.getLocalDatafun(history, joinerArr)
             } else {
