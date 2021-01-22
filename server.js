@@ -1,10 +1,13 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const config = require('./webpack.dev');
+const devConfig = require('./webpack.dev');
+const proConfig = require('./webpack.pro');
 const errorOverlayMiddleware = require('react-error-overlay/middleware');
 const webpackServerConfig = require('./webpack/webpackServerConfig');
 const {host, port, proxy} = webpackServerConfig.devServer;
-new WebpackDevServer(webpack(config), {
+const API_TYPE = process.env.API_TYPE;
+console.log(`API_TYPE:${API_TYPE}`);
+new WebpackDevServer(webpack((+API_TYPE === 1) ? devConfig : proConfig), {
     proxy,
     contentBase: './',
     host,
