@@ -260,8 +260,7 @@ export default class Template extends React.Component {
                         }}>取消订单
                         </div>
                         <div className="gopay" onClick={() => {
-                            alert('缺少接口');
-                            return
+                            alert('重新缴费同一单，接口可能待完善');
                             this.getTranStatusFn();
                         }}>去支付
                         </div>
