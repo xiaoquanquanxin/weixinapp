@@ -58,7 +58,6 @@ export default class MineList extends React.Component {
             userLogo,
             nickName
         };
-        console.info('当前环境是___________', IS_CLIENT ? '生产' : '开发');
         return <div className={"Components-MineList-container"}>
             {/*头部*/}
             <TopBar
