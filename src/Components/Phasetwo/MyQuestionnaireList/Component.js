@@ -31,8 +31,6 @@ export default class PhasetwoMyQuestionnaireList extends React.Component {
                 <div className={"list"}>
                     {
                         ListData && ListData.map((v, i) => {
-                            console.log("isDone", isDone[v.isDone]);
-                            console.log(JSON.parse(JSON.stringify(v)));
                             return (
                                 <div className={"item"} key={i} onClick={() => {
                                     history.push(`/PhasetwoMyQuestionnaire/${questiontype}/${v.surveyId}/${v.isDone}${"?isDone=" + v.isDone + sessionKeyurl}`)
