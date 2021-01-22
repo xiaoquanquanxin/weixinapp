@@ -18,21 +18,22 @@ export default class PhasetwoMyQuestionnaire extends React.Component {
     componentDidMount(){
         window.setWindowTitle("我的问卷");
         window.setLocalData("pageName", '我的问卷');//存儲token值
-        window.setLocalData("PhasetwoMyQuestionnaireType", this.props.match.params.type);//存儲token值
-        window.setLocalData("PhasetwoMyQuestionnaireId", this.props.match.params.id);//存儲token值
+        const {params, actions} = this.props.match;
+        const {actionsPhasetwoMyQuestionnaire} = actions;
+        actionsPhasetwoMyQuestionnaire.init();
+        window.setLocalData("PhasetwoMyQuestionnaireType", params.type);//存儲token值
+        window.setLocalData("PhasetwoMyQuestionnaireId", params.id);//存儲token值
         let isDones = '';
-        let booleanVa = this.props.match.params.isDone ? this.props.match.params.isDone.includes('&isDone') : null;
+        let booleanVa = params.isDone ? params.isDone.includes('&isDone') : null;
         if (booleanVa) {
-            isDones = this.props.match.params.isDone.split('&isDone')[0]
+            isDones = params.isDone.split('&isDone')[0]
         } else {
-            isDones = this.props.match.params.isDone
+            isDones = params.isDone
         }
         //	存儲token值
         window.setLocalData("isDone", isDones);
-        this.props.actions.actionsPhasetwoMyQuestionnaire.questionDetailfun(this.props.match.params.type, this.props.match.params.id, this.props.history, isDones)
+        actionsPhasetwoMyQuestionnaire.questionDetailfun(this.props.match.params.type, this.props.match.params.id, this.props.history, isDones)
         //this.refs.IPWX.addImg("https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg", "100", "111")
-
-
     }
 
     render(){
