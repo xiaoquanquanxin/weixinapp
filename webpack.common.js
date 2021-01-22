@@ -42,9 +42,8 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 //判断当前运行环境是开发模式还是生产模式
-const nodeEnv = process.env.NODE_ENV || 'development';
-const API_TYPE = process.env.API_TYPE || '1';
-const isPro = nodeEnv === 'production';
+const {API_TYPE, NODE_ENV} = process.env;
+const isPro = NODE_ENV === 'production';
 console.log('当前运行环境：', isPro ? 'production' : 'development');
 let buildDirName = path.resolve(__dirname, './wechat-pay/');
 if (isPro) {
@@ -116,9 +115,9 @@ module.exports = {
             name: 'vendor'
         }),
         new webpack.DefinePlugin({
-            // 定义全局变量
-            NODE_ENV: JSON.stringify(nodeEnv),
-            API_TYPE: JSON.stringify(API_TYPE)
+            // 往js里定义全局变量
+            // NODE_ENV: JSON.stringify(isClient),
+            API_TYPE: JSON.stringify(API_TYPE),
         }),
         new HtmlWebpackPlugin({
             filename: './index.html',
