@@ -116,7 +116,7 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             // 往js里定义全局变量
-            // NODE_ENV: JSON.stringify(isClient),
+            IS_CLIENT: JSON.stringify(isClient),
             API_TYPE: JSON.stringify(API_TYPE),
         }),
         new HtmlWebpackPlugin({
