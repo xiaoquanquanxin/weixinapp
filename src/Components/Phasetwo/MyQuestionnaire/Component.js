@@ -18,38 +18,38 @@ export default class PhasetwoMyQuestionnaire extends React.Component {
     componentDidMount(){
         window.setWindowTitle("我的问卷");
         window.setLocalData("pageName", '我的问卷');//存儲token值
-        const {params, actions} = this.props.match;
+        const {params} = this.props.match;
+        const {actions} = this.props;
         const {actionsPhasetwoMyQuestionnaire} = actions;
         actionsPhasetwoMyQuestionnaire.init();
         window.setLocalData("PhasetwoMyQuestionnaireType", params.type);//存儲token值
         window.setLocalData("PhasetwoMyQuestionnaireId", params.id);//存儲token值
-        let isDones = '';
+        const isDone = this.getIsDone(params);
+        //	存儲token值
+        window.setLocalData("isDone", isDone);
+        actionsPhasetwoMyQuestionnaire.questionDetailfun(params.type, params.id, this.props.history, isDone);
+        //this.refs.IPWX.addImg("https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg", "100", "111")
+    }
+
+    getIsDone(params){
+        let isDone;
         let booleanVa = params.isDone ? params.isDone.includes('&isDone') : null;
         if (booleanVa) {
-            isDones = params.isDone.split('&isDone')[0]
+            isDone = params.isDone.split('&isDone')[0];
         } else {
-            isDones = params.isDone
+            isDone = params.isDone;
         }
-        //	存儲token值
-        window.setLocalData("isDone", isDones);
-        actionsPhasetwoMyQuestionnaire.questionDetailfun(this.props.match.params.type, this.props.match.params.id, this.props.history, isDones)
-        //this.refs.IPWX.addImg("https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg", "100", "111")
+        return isDone;
     }
 
     render(){
         const {store, actions, history} = this.props;
+        const {params} = this.props.match;
         const {storePhasetwoMyQuestionnaire} = store;
         const {actionsPhasetwoMyQuestionnaire} = actions;
         const {radiofun, selectionfun, inputfun, Submitfun, change_ImagePickerWX, ImgItemdatafun} = actionsPhasetwoMyQuestionnaire;
         const {questionDetailDta, showbtn, is_uploadMediaIds} = storePhasetwoMyQuestionnaire;
-        let isDones = '';
-        let booleanVa = this.props.match.params.isDone ? this.props.match.params.isDone.includes('&isDone') : null;
-        if (booleanVa) {
-            isDones = this.props.match.params.isDone.split('&isDone')[0]
-        } else {
-            isDones = this.props.match.params.isDone
-        }
-        let isDone = isDones;
+        const isDone = this.getIsDone(params);
 
         // console.log(987,questionDetailDta)
         return (<div className="Component-PhasetwoMyQuestionnaire-container">
