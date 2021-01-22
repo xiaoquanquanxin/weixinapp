@@ -20,7 +20,7 @@ class Store {
     @observable list1 = [
         {ico: authentication, test: "用户认证(登录)    √√", link: router.FamilyMembers, renzhen: 1, unverifiedShow: true,},
         {ico: addFamily, test: "添加家属    √√", link: router.FamilyMembers, renzhen: 1},
-        {ico: myActivity, test: "我的活动   需测试", link: "/PhasetwoActivitySignUpList"},
+        {ico: myActivity, test: "我的活动   提供代码", link: "/PhasetwoActivitySignUpList"},
         {ico: myQuestionnaire, test: "我的问卷   √√", link: "/PhasetwoMyQuestionnaireList/1"},
         {ico: myRepair, test: '我的报修 怎么样才能到已完成状态', link: router.RepairList[0]},
         {ico: changePhone, test: "同步房产  √√", type: 'synchronous'},
@@ -30,8 +30,8 @@ class Store {
         {ico: myRepair, test: '********************************************************',},
 
         //  以下 测试其他链接
-        {ico: myRepair, test: '房屋报修   √√', link: `${router.AddRepair[0]}/1`},
-        {ico: changePhone, test: "活动报名  需测试", link: '/PhasetwoActivityList'},
+        {ico: myRepair, test: '房屋报修   xxxx', link: `${router.AddRepair[0]}/1`},
+        {ico: changePhone, test: "活动报名  提供代码", link: '/PhasetwoActivityList'},
         {ico: changePhone, test: "投诉建议  √√", link: router.ComplaintSuggestions},
         {ico: changePhone, test: "物业缴费  待测试", link: '/wechat-pay/PayIndex'},
 
