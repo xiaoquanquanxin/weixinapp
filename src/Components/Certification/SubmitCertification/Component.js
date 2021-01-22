@@ -46,57 +46,6 @@ export default class SubmitCertification extends React.Component {
 
     }
 
-    /*提交*/
-    submit = () => {
-        const {store, actions} = this.props;
-        const {actionsSubmitCertification} = actions;
-        const {storeSubmitCertification} = store;
-        const {submitCertification} = storeSubmitCertification;
-        const {personId, tel, VerificationCode} = submitCertification; 			 //用户输入的数据
-        //输入较验电话号码格式
-        const boolean = VerificationMobileFormat.checkMobile(submitCertification.tel);
-        if (!boolean) {
-            Toast.info('请输入正确的手机号!', 1);
-            return false;
-        }
-        //window.identity()
-        if (personId == "") {
-            Toast.info('请输入正确的身份证!', 1)
-            return false
-        }
-        // else{
-
-        // }
-
-        const domain = window.location.origin;
-        const body = {
-            phoneNo: tel,
-            identityNo: personId,
-            validCode: VerificationCode,
-            returnUrl: domain + '/index.html?url=/MineList',
-            // returnUrl: domain+'/mlistMiddle.html'
-
-        };
-        const o = actionsSubmitCertification.userAuth(body);
-        o.then((txt) => {
-            if (txt == 0) {
-                let toUrl = window.getQueryString("url") || ''
-                var url = "";
-                if (toUrl) url = "?url=" + toUrl
-                this.props.history.push(router.CertificationStatus + url);
-            }/* else {
-				alert('验证不成功', '对不起您的信息不存在，请让业主授权！', [
-					{ text: '关闭', onPress: () => console.log('cancel') },
-					{
-						text: '联系客服', onPress: () => {
-							window.location.href = 'tel:400432998';
-						}
-					},
-				]);
-			}*/
-        });
-
-    };
     onChange = (val) => {
         console.log(val);
     };
