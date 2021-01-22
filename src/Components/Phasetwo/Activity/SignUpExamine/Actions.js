@@ -19,7 +19,9 @@ class Actions {
             return;
         }
         this.store.DetailsData = result.data;
-        window.setLocalData("signDetailsData", this.store.DetailsData);
+        console.log(JSON.parse(JSON.stringify(this.store.DetailsData.joinerInfoArr)));
+        window.setLocalData("signDetailsData", JSON.parse(JSON.stringify(this.store.DetailsData)));
+        return;
         this.findInfoByJoinerIdfun(joinerId)
     };
     @action
