@@ -1,5 +1,3 @@
-let host;
-
 //  2020年12月29日19:41:37，新增接口配置
 export const ipUri = {
     //  '/life-web': 'http://asm-test.seedland.cc:8084/life-web/',
@@ -15,19 +13,7 @@ export const ipUri = {
     // '/bpi': 'https://hachiseedland-dev.hachi-tech.com/v3/api',
 };
 
-switch (+API_TYPE) {
-    case 1:     //测试
-        host = ipUri["/mpi"];
-        break;
-    case 2:     //生产
-        host = ipUri["/mpi"];
-        break;
-    case 3:
-        host = "https://211.159.163.183:9090/mock/171/";
-        break;
-    default:        //模拟接口\
-        host = "http://211.159.163.183:9090/mock/94/"
-}
+const host = ipUri["/mpi"];
 console.log(`api前面的静态资源前缀 ${host}`);
 const obj = {
     siteHost: host,
