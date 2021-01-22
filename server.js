@@ -5,7 +5,7 @@ const proConfig = require('./webpack.pro');
 const errorOverlayMiddleware = require('react-error-overlay/middleware');
 const webpackServerConfig = require('./webpack/webpackServerConfig');
 const {host, port, proxy} = webpackServerConfig.devServer;
-const API_TYPE = process.env.API_TYPE;
+const {API_TYPE} = process.env;
 new WebpackDevServer(webpack((+API_TYPE === 1) ? devConfig : proConfig), {
     proxy,
     contentBase: './',
