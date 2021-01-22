@@ -36,36 +36,11 @@ export default class MineList extends React.Component {
         const {store} = this.props;
         const {storeMineList} = store;
         const {useInfo} = storeMineList;
-        console.log('跳转到', item.link);
+        console.log('跳转到', JSON.parse(JSON.stringify(item)));
         if (useInfo.authStatus === 1 || item.renzhen !== 1) {
             this.props.history.push(item.link);
         } else {
-            if (item.test === '用户认证') {
-                this.props.history.push("/SubmitCertification?url=" + item.link + '&isMineListPaage=true');
-            } else {
-                this.props.history.push("/SubmitCertification?url=" + item.link);
-            }
-        }
-    };
-    toUrl = (item) => {
-        debugger
-        const {store, actions} = this.props;
-        const {storeMineList} = store;
-        const {useInfo} = storeMineList;
-        if (item.link) {
-            //认证状态（1-已认证，0-未认证）
-            if (useInfo.authStatus === 1) {
-                this.props.history.push(item.link);
-            } else {
-                if (item.renzhen === 1) {
-                    this.props.history.push("HouseAuthentication?url=" + item.link);
-                } else {
-                    this.props.history.push(item.link);
-                }
-            }
-        } else {
-            // 跳转到建设中页面
-            this.props.history.push('/Developing');
+            this.props.history.push("/HouseAuthentication?url=" + encodeURIComponent(item.link));
         }
     };
 
