@@ -19,9 +19,8 @@ class Actions {
         this.colorStylefun()
         //console.log(v)
     };
-    /*
-  房产认证
-  * */
+
+    // 认证
     @action
     userInfo = async (history) => {
         this.store.authshow = 0;
@@ -30,7 +29,9 @@ class Actions {
         this.store.identityNo = "";
         this.store.validCode = "";
         let result = await window.GET({url: 'user/userInfo'});
-        if (!result.isSucess) return;
+        if (!result || !result.isSucess) {
+            return;
+        }
         this.store.authshow = 1;
         if (result.data.authStatus === 1) {
             history.replace("/");
