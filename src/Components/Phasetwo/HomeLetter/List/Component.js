@@ -9,6 +9,7 @@ import headerimg from '../img/header.jpg';
 
 /*自定义类*/
 import './Component.less'
+import {ARTICLE_CODE_MAP} from "../../../../../lib/utils/const";
 
 @inject('store', 'actions')
 @observer
@@ -32,35 +33,10 @@ export default class PhasetwoHomeLetterList extends React.Component {
         // }
 
 
-        //  活动文章 1
-        //  社区文化 33
-        //  城市资讯 34
-        //  社区通知 35
-
         const urlObject = window.getQueryString() || {};
         const subjectId = +urlObject.subjectId;
-        let subjectName = '';
-        let name = 'yz';
-        switch (+urlObject.subjectId) {
-            case 1:
-                //  不一定有
-                subjectName = '活动文章';
-                break;
-            case 33:
-                subjectName = '社区文化';
-                break;
-            case 34:
-                //  不在这里调
-                subjectName = '城市资讯';
-                break;
-            case 35:
-                subjectName = '社区通知';
-                break;
-            default :
-                throw new Error('没有subjectId');
-        }
-
-
+        const subjectName = ARTICLE_CODE_MAP[urlObject.subjectId];
+        const name = 'yz';
         window.setWindowTitle(subjectName);
         console.log('name:', name);
         console.log('subjectId:', subjectId);
