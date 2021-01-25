@@ -23,15 +23,11 @@ function _appendHeader(headers){
 }
 
 function _isGet401(){
-    var isOk = !!window.__temhttp401_;
-    if (isOk) console.log("当前401,跳过请求")
-    let actUrl = window.location.href.includes('/PhasetwoActivityListDetail');
-    /*	if (actUrl) {
-            return true
-        } else {
-
-        }*/
-    return isOk
+    const isOk = !!window.__temhttp401_;
+    if (isOk) {
+        console.log("当前401,跳过请求");
+    }
+    return isOk;
 }
 
 window.myFun401 = function (){
