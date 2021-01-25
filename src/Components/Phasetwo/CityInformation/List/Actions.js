@@ -95,10 +95,10 @@ class Actions {
     @action
     itemfun = (history, v) => {
         if (v.contentType == 2) {
-            window.location.href = v.contentUrl
+            window.location.href = v.contentUrl;
             // window.location.href = v.content
         } else {
-            history.push('/PhasetwoArticle/' + v.id);
+            history.push(`/PhasetwoArticle/${v.id}?title=34`);
         }
     };
 
