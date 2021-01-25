@@ -1,6 +1,7 @@
 import {action} from "mobx";
 import {ipUri} from "../../../config";
 import {Modal, Toast} from "antd-mobile";
+import {requestGetFeeItem} from "../commonRequest";
 
 class Actions {
     constructor(store){
@@ -68,21 +69,7 @@ class Actions {
     @action getFeeItem = async () => {
         const store = this.store;
         const {currentRoom, params} = store;
-        const result = await new Promise(function (resolve, reject){
-            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
-            window.JQ.ajax({
-                type: "post",
-                url: `${ipUri["/bpi"]}/property/prepayment/hasFeeItem`,
-                contentType: "application/x-www-form-urlencoded",
-                data: {
-                    pmdsRoomId: params.roomId,
-                    cmdsId: userInfo.id,
-                },
-                success: (result) => {
-                    resolve(result);
-                }
-            })
-        });
+        const result = await requestGetFeeItem(currentRoom.roomId, currentRoom.cmdsId);
         const {code, data, msg} = result;
         //  请求错误
         //  todo    暂时放开
