@@ -238,6 +238,7 @@ composRepairHouseAuthentication({
     routePath: '/HouseAuthentication'
 });
 //提交认证
+//  登录
 import {
     compose as composRepairSubmitCertification,
     Component as SubmitCertification
@@ -308,6 +309,128 @@ import {compose as composMineList, Component as MineList} from './Components/Min
 
 composMineList({store, actions, routeList, name: 'MineList', routePath: router.MineList});
 
+/**
+ *  开发，2020年12月29日18:29:59
+ * */
+//  物业缴费首頁
+import {
+    compose as WeChatPayIndexFn,
+    Component as WeChatPayIndex
+} from './Components/wechatPay/index/index'
+
+WeChatPayIndexFn({
+    store,
+    actions,
+    routeList,
+    name: 'WeChatPayIndex',
+    routePath: '/wechat-pay/PayIndex'
+});
+
+//  缴费记录列表
+import {
+    compose as PaymentRecordsFn,
+    Component as PaymentRecords
+} from './Components/wechatPay/PaymentRecords/index'
+
+PaymentRecordsFn({
+    store,
+    actions,
+    routeList,
+    name: 'PaymentRecords',
+    routePath: '/wechat-pay/PaymentRecords'
+});
+
+//  缴费记录详情
+import {
+    compose as OrderDetailFn,
+    Component as OrderDetail
+} from './Components/wechatPay/OrderDetail'
+
+OrderDetailFn({
+    store,
+    actions,
+    routeList,
+    name: 'OrderDetail',
+    routePath: '/wechat-pay/OrderDetail'
+});
+
+//  欠缴账单列表
+import {
+    compose as PaymentListFn,
+    Component as PaymentList
+} from './Components/wechatPay/PaymentList'
+
+PaymentListFn({
+    store,
+    actions,
+    routeList,
+    name: 'PaymentList',
+    routePath: '/wechat-pay/PaymentList'
+});
+
+//  欠缴确认订单
+import {
+    compose as ConfirmPaymentFn,
+    Component as ConfirmPayment
+} from './Components/wechatPay/ConfirmPayment'
+
+ConfirmPaymentFn({
+    store,
+    actions,
+    routeList,
+    name: 'ConfirmPayment',
+    routePath: '/wechat-pay/ConfirmPayment'
+});
+
+
+//  预缴账单
+import {
+    compose as PrepaymentFn,
+    Component as Prepayment
+} from './Components/wechatPay/Prepayment'
+
+PrepaymentFn({
+    store,
+    actions,
+    routeList,
+    name: 'Prepayment',
+    routePath: '/wechat-pay/Prepayment'
+});
+
+//  预缴确认订单
+import {
+    compose as ConfirmPrepayFn,
+    Component as ConfirmPrepay
+} from './Components/wechatPay/ConfirmPrepay'
+
+ConfirmPrepayFn({
+    store,
+    actions,
+    routeList,
+    name: 'ConfirmPrepay',
+    routePath: '/wechat-pay/ConfirmPrepay'
+});
+
+
+//  支付成功
+import {
+    compose as PaySuccessFn,
+    Component as PaySuccess
+} from './Components/wechatPay/PaySuccess'
+
+PaySuccessFn({
+    store,
+    actions,
+    routeList,
+    name: 'PaySuccess',
+    routePath: '/wechat-pay/PaySuccess'
+});
+
+
+/**
+ * 物业缴费 开发，2020年12月29日18:29:59
+ * */
+
 
 // 页面建设中
 import {compose as composDeveloping, Component as Developing} from './Components/Developing'
@@ -335,6 +458,14 @@ import {compose as composRepairDetails, Component as RepairDetails} from './Comp
 
 composRepairDetails({store, actions, routeList, name: 'RepairDetails', routePath: '/RepairDetails/:id'});
 //房屋报修--新增报修
+//  todo    旧
+import {compose as composAddRepair, Component as AddRepairYu} from './Components/RepairYu/AddRepair'
+//
+composAddRepair({store, actions, routeList, name: 'AddRepairYu', routePath: '/AddRepair/:type'});
+//  todo    新
+// import {compose as composAddRepair, Component as AddRepair} from './Components/Repair/AddRepair'
+//
+// composAddRepair({store, actions, routeList, name: 'AddRepair', routePath: '/AddRepair/:type'});
 
 //房屋报修-- 评论
 import {compose as composRepairOwnerComment, Component as OwnerComment} from './Components/Repair/OwnerComment'
@@ -382,9 +513,19 @@ composEntrustedUploadSelfInfo({
     name: 'EntrustedUploadSelfInfo',
     routePath: router.EntrustedUploadSelfInfo
 });
-// //投诉建议
-// import {compose as composComplaintSuggestions,Component as ComplaintSuggestions} from './Components/RepairYu/ComplaintSuggestions'
-// composComplaintSuggestions({store,actions,routeList,name:'ComplaintSuggestions',routePath: router.ComplaintSuggestions});
+//  投诉建议
+import {
+    compose as composComplaintSuggestions,
+    Component as ComplaintSuggestions
+} from './Components/RepairYu/ComplaintSuggestions'
+
+composComplaintSuggestions({
+    store,
+    actions,
+    routeList,
+    name: 'ComplaintSuggestions',
+    routePath: router.ComplaintSuggestions
+});
 //问卷调查Questionnaire
 //问卷调查--列表
 import {compose as composQuestionnaireList, Component as QuestionnaireList} from './Components/Questionnaire/List'
@@ -554,8 +695,18 @@ composPhasetwoActivityListDetail({
     routePath: '/PhasetwoActivityListDetail/:id'
 });
 //用户列表，第一版本隐藏
-// import { compose as composPhasetwoActivityUserList, Component as PhasetwoActivityUserList } from './Components/Phasetwo/Activity/UserList'
-// composPhasetwoActivityUserList({ store, actions, routeList, name: 'PhasetwoActivityUserList', routePath: '/PhasetwoActivityUserList' });
+import {
+    compose as composPhasetwoActivityUserList,
+    Component as PhasetwoActivityUserList
+} from './Components/Phasetwo/Activity/UserList'
+
+composPhasetwoActivityUserList({
+    store,
+    actions,
+    routeList,
+    name: 'PhasetwoActivityUserList',
+    routePath: '/PhasetwoActivityUserList/:activitiyId'
+});
 //用户列表替换上个，属于第二版本
 import {
     compose as composPhasetwoActivityUserList_new,
@@ -787,7 +938,7 @@ window.__initWX__isReady = false;
 //当前浏览器是不是微信
 window.isWeiXin = function (){
     var ua = window.navigator.userAgent.toLowerCase();
-    return (ua.match(/MicroMessenger/i) === 'micromessenger')
+    return (ua.match(/MicroMessenger/i)[0] === 'micromessenger');
 };
 
 async function initWX(){
@@ -804,39 +955,37 @@ async function initWX(){
     let cformData = {
         currUrl: getCurrentUrl()
     }
-    console.log(cformData);
+    // console.log(cformData);
     let result = await window.GETNoAuth({url, isShowLoading, isAutoError, cformData});
     if (!result.isSucess) return;
     let data = result.data;
     let jsApiList = [
-        // 所有要调用的 API 都要加到这个列表中
-        'checkJsApi',
-        'hideMenuItems',
-        'showMenuItems',
-        'getLocalImgData',
-        'onMenuShareAppMessage',
-        'onMenuShareTimeline',
-        'onMenuShareQQ',
-        'onMenuShareWeibo',
-        'onMenuShareQZone',
-        'chooseImage',
-        'scanQRCode',
-        'startRecord',
-        'stopRecord',
-        'onVoiceRecordEnd',
-        'playVoice',
-        'pauseVoice',
-        'stopVoice',
-        'onVoicePlayEnd',
-        'uploadVoice',
-        'downloadVoice',
-        'chooseImage',
-        'previewImage',
-        'uploadImage',
-        'downloadImage',
-        'translateVoice',
-        'updateAppMessageShareData',
-        'updateTimelineShareData'
+        "checkJsApi",
+        "chooseImage",
+        "downloadImage",
+        "downloadVoice",
+        "getLocalImgData",
+        "hideMenuItems",
+        "onMenuShareAppMessage",
+        "onMenuShareQQ",
+        "onMenuShareQZone",
+        "onMenuShareTimeline",
+        "onMenuShareWeibo",
+        "onVoicePlayEnd",
+        "onVoiceRecordEnd",
+        "pauseVoice",
+        "playVoice",
+        "previewImage",
+        "scanQRCode",
+        "showMenuItems",
+        "startRecord",
+        "stopRecord",
+        "stopVoice",
+        "translateVoice",
+        "updateAppMessageShareData",
+        "updateTimelineShareData",
+        "uploadImage",
+        "uploadVoice"
     ];
     window.__initWX_configData = {
         debug: false,
@@ -863,27 +1012,56 @@ async function initWX(){
 import './App.less'
 
 class App extends React.Component {
-
-    render(){
-        var arg = window.getQueryString();
-        var currentUrl = window.location.href;
+    constructor(props){
+        super(props);
+        const arg = window.getQueryString();
+        let currentUrl = window.location.href;
         if (arg && (arg.sessionKey || arg.sessionkey)) {
+            console.log('这里说明sessionKye', arg);
             let sessionKey = "";
-            if (arg.sessionKey) sessionKey = arg.sessionKey;
-            if (arg.sessionkey) sessionKey = arg.sessionkey;
+            if (arg.sessionKey) {
+                sessionKey = arg.sessionKey;
+            }
+            if (arg.sessionkey) {
+                sessionKey = arg.sessionkey;
+            }
             const org = window.location.protocol;
+            //  服务器跑起来的项目，带http，或者https，都一样，认为是有react路由，所以切了#/
             if (org.includes('http')) {
                 sessionKey = sessionKey.split('#/')[0];
             }
-            window.setLocalData("auth", sessionKey);//存儲token值
-            if (arg.sessionkey) {
-                window.location.href = currentUrl.replace(/sessionkey/g, 'newSessionKey');       //重定向
-            }
-            if (arg.sessionKey) {
-                window.location.href = currentUrl.replace(/sessionKey/g, 'newSessionKey');       //重定向
-            }
+            console.log('设置 auth', sessionKey);
+            //存儲token值
+            window.setLocalData("auth", sessionKey);
+            // 获取当前时间 ，转换成JSON字符串序列
+            const authTime = new Date().getTime();
+            console.log('设置 authTime', authTime);
+            window.setLocalData('authTime', authTime);
+            //  只到首页,?前面的直接拿，如果没有？就直接到首页，这个逻辑可能有bug
+            // currentUrl = currentUrl.split('?')[0] || (window.location.origin + window.location.pathname + '#/');
+            // console.log(currentUrl);
+            currentUrl = currentUrl.replace(/(sessionkey|sessionKey)/g, 'newSessionKey');
+            window.location.replace(currentUrl);
         }
+    }
 
+    //  将要渲染
+    componentWillMount(){
+        console.log('App 将要渲染 componentWillMount');
+        setTimeout(function (){
+            //  微信 WeixinJSBridge 调用内置图片浏览功能
+            window.funcReadImgInfo();
+        }, 3000);
+        initWX();
+    }
+
+
+    //  渲染完成
+    componentDidMount(){
+        console.log("APP 渲染完成 componentDidMount")
+    }
+
+    render(){
         return <Provider store={store} actions={actions}>
             <ReactChildrenMap>
                 {
@@ -897,38 +1075,17 @@ class App extends React.Component {
         </Provider>
     }
 
-
-    //将要渲染
-    componentWillMount(){
-        setTimeout(function (){
-            //微信 WeixinJSBridge 调用内置图片浏览功能
-            window.funcReadImgInfo();
-        }, 3000);
-        console.log("App componentWillMount");
-        var arg = window.getQueryString();
-        // newSessionKey=oSuxiwn41M_6q6h3ZTRyyYThytZg
-        if (arg && (arg.sessionKey || arg.sessionkey)) {
-            console.log('这里说明sessionKye', arg)
-            let sessionKey = "";
-            if (arg.sessionKey) sessionKey = arg.sessionKey;
-            if (arg.sessionkey) sessionKey = arg.sessionkey;
-
-            const org = window.location.protocol;
-            if (org.includes('http')) {
-                sessionKey = sessionKey.split('#/')[0];
-            }
-            window.setLocalData("auth", sessionKey);//存儲token值
-        }
-        initWX();
-    }
-
-
-    //渲染完成
-    componentDidMount(){
-        console.log("App componentDidMount..")
-    }
 }
 
+console.info('当前环境是___________', IS_CLIENT ? '生产' : '开发');
+
+//  todo    wechat-pay
+import VConsole from 'vconsole';
+
+if (IS_CLIENT) {
+    var vConsole = new VConsole();
+    console.log(vConsole);
+}
 export default App
 
 
