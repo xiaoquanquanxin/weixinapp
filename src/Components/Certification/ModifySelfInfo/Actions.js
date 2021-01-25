@@ -239,13 +239,17 @@ class Actions {
             }, 1000);
 
             let url = `user/getSmsAuthCode`;
-            let prefix = 'http://asm-test.seedland.cc/wechat-mobile/';
             let cformData = {
                 phoneNo: this.store.phoneval
             };
-            let result = await window.GET({url, cformData});
+            let result;
+            if (API_TYPE == "1") {
+                result = await window.GET({url, cformData});
+            } else {
+                result = await window.POST({url, cformData});
+            }
             if (!result.isSucess) return;
-            if (API_TYPE == "1") {//
+            if (API_TYPE == "1") {
                 alert("调试信息:验证码:" + result.data)
             }
             //console.log(result.data)
