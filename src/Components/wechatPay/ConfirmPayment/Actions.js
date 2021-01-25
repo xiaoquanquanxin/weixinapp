@@ -156,6 +156,7 @@ class Actions {
                 projectID: currentRoom.belongProject,
             };
             const data = {'json': JSON.stringify(json)};
+            debugger
             console.log(json);
             console.log(data);
             window.JQ.ajax({
