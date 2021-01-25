@@ -18,6 +18,7 @@ class Actions {
         let cformData = {};
         let result = await window.GET({url, cformData});
         this.store.useInfo = result.data;
+        //  这里做了额外的逻辑，但不保证原来的代码是有需要保存错误的信息的
         if (result.resultCode !== 0) {
             return;
         }
