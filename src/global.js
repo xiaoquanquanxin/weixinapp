@@ -39,6 +39,14 @@ window.myFun401 = function (){
         window.__temhttp401_ = true;
 
         function refrshe(){
+            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
+            //  如果已关注,认为关注过就不调接口，直接跳转登录页
+            if (+userInfo.focusStatus === 1) {
+                const url = `${location.origin + location.pathname}#/HouseAuthentication`;
+                console.log('仅跳转到认证页面', url);
+                window.location.replace(url);
+                return;
+            }
             //  401后的跳转
             window.__temhttp401_ = false;
             //  window.location.href="#/Login";
