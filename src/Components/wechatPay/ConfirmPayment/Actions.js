@@ -155,12 +155,15 @@ class Actions {
                 //  当前房间的belongProject-从getPmdRooms.do接口里取
                 projectID: currentRoom.belongProject,
             };
+            const data = {'json': JSON.stringify(json)};
+            console.log(json);
+            console.log(data);
             window.JQ.ajax({
                 crossDomain: true,
                 type: "post",
                 url: `${ipUri["/bpi"]}/submitOrder.do`,
                 contentType: "application/x-www-form-urlencoded",
-                data: {'json': JSON.stringify(json)},
+                data,
                 success: (result) => {
                     resolve(result);
                 },
