@@ -18,9 +18,12 @@ class Actions {
         let cformData = {};
         let result = await window.GET({url, cformData});
         this.store.useInfo = result.data;
+        if (result.resultCode !== 0) {
+            return;
+        }
         window.setLocalData('userInfo', result.data);
-        return result.resultCode
-    }
+        return result.resultCode;
+    };
 
 
     /*微信端法大大认证接口* */
