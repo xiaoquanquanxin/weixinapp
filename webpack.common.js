@@ -107,6 +107,10 @@ module.exports = {
                 to: path.resolve(buildPath, './lib/md5.min.js')
             },
             {
+                from: __dirname + '/lib/aes.min.js',
+                to: path.resolve(buildPath, './lib/aes.min.js')
+            },
+            {
                 from: __dirname + '/src/favicon.ico',
                 to: path.resolve(buildDirName, './' + randBuildDirname + '/favicon.ico')
             }
