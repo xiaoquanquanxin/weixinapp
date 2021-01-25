@@ -2,6 +2,7 @@ import {action} from "mobx";
 import {ipUri} from "../../../config";
 import {Modal, Toast} from "antd-mobile";
 import {roomRemoveRepeat} from "../../../../lib/utils/number";
+import {requestGetFeeItem} from "../commonRequest";
 
 class Actions {
     constructor(store){
@@ -49,22 +50,8 @@ class Actions {
         const store = this.store;
         //  重置数据
         store.currentFee = {};
-        const result = await new Promise(function (resolve, reject){
-            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
-            const {currentRoom} = store;
-            window.JQ.ajax({
-                type: "post",
-                url: `${ipUri["/bpi"]}/property/prepayment/hasFeeItem`,
-                contentType: "application/x-www-form-urlencoded",
-                data: {
-                    pmdsRoomId: currentRoom.roomId,
-                    cmdsId: userInfo.id,
-                },
-                success: (result) => {
-                    resolve(result);
-                }
-            })
-        });
+        const {currentRoom} = store;
+        const result = await requestGetFeeItem(currentRoom.roomId, currentRoom.cmdsId);
         const {code, data, msg} = result;
         //  请求错误
         //  todo    for development
