@@ -89,52 +89,39 @@ class Actions {
     Pickfun = (value) => {
         this.store.projectList.forEach((v, i) => {
             if (value[0] == v.value) {
-                this.store.projectId = v.value
-                this.store.projectName = v.label
+                this.store.projectId = v.value;
+                this.store.projectName = v.label;
             }
-        })
-        this.store.listdataval = []
+        });
+        this.store.listdataval = [];
         this.articleList(1)
-        console.log(25555555555)
     }
 
 
     @action
     itemfun = (history, v) => {
-        // let urlobj = window.getQueryString();
-        // let subjectId = 1
-        // if (urlobj && urlobj.subjectId == 65) {
-        //     subjectId = 65
-        // } else if (urlobj && urlobj.subjectId == 66) {
-        //     subjectId = 66
-        // } else if (urlobj && urlobj.subjectId == 67) {
-        //     subjectId = 67
-        // } else {
-        //     subjectId = 1
-        // }
         if (v.contentType == 2) {
-            window.location.href = v.contentUrl
+            window.location.href = v.contentUrl;
         } else {
-            let sessionKeyurl = ""
-            if (window.getLocalData('auth') != "") {
+            let sessionKeyurl = "";
+            if (window.getLocalData('auth') !== "") {
                 sessionKeyurl = "&sessionKey=" + JSON.parse(window.getLocalData('auth'))
             }
-            console.log("sessionKeyurl", sessionKeyurl)
+            console.log("sessionKeyurl", sessionKeyurl);
             history.push('/PhasetwoArticle/' + v.id + '?title=' + this.store.subjectId + sessionKeyurl)
         }
-
-    }
+    };
 
 
     @action
     onRefresh = () => {
-        this.pageNum = this.pageNum + 1
-        this.store.refreshing = true
-        this.articleList(this.pageNum)
+        this.pageNum = this.pageNum + 1;
+        this.store.refreshing = true;
+        this.articleList(this.pageNum);
         setTimeout(() => {
-            this.store.refreshing = false
+            this.store.refreshing = false;
         }, 1000);
-        console.log(this.store.refreshing)
+        console.log(this.store.refreshing);
     }
 }
 
