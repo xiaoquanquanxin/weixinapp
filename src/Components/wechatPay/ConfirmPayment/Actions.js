@@ -284,6 +284,7 @@ class Actions {
                 //  openId-从微信授权数据里取
                 openId: userInfo.openId,
             };
+            console.log('create_order的参数是', params);
             window.JQ.ajax({
                 type: "get",
                 url: `${ipUri["/opi"]}/pay/create_order`,
