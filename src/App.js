@@ -1079,7 +1079,6 @@ class App extends React.Component {
 
 console.info('当前环境是___________', IS_CLIENT ? '生产' : '开发');
 
-//  todo    wechat-pay
 import VConsole from 'vconsole';
 
 if (IS_CLIENT) {
