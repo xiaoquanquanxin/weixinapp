@@ -1,5 +1,6 @@
 import {observable} from 'mobx';
-
+//  费用筛选的全部费用
+export const BILL_NAME = '全部费用';
 // 定义数据结构
 class Store {
     //  房间列表
@@ -23,7 +24,7 @@ class Store {
     //  费项列表-前端自己组织
     @observable costPickerList = [];
     //  费项名称
-    @observable billName = "全部费用";
+    @observable billName = BILL_NAME;
     //  总金额-真正支付的金额
     @observable totalMoneyForPay = 0;
 }
