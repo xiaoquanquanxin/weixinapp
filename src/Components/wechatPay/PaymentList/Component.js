@@ -171,7 +171,7 @@ export default class Template extends React.Component {
                                                 );
                                             }
                                             return (
-                                                <NoBillPaidYetRender noMessagePng={noMessagePng}/>
+                                                <NoBillPaidYetRender noMessagePng={noMessagePng} active={active}/>
                                             )
                                         })()}
                                     </div>
@@ -196,7 +196,7 @@ export default class Template extends React.Component {
                                         )
                                     }
                                     return (
-                                        <NoBillPaidYetRender noMessagePng={noMessagePng}/>
+                                        <NoBillPaidYetRender noMessagePng={noMessagePng} active={active}/>
                                     )
                                 })()}
                             </div>
@@ -210,11 +210,11 @@ export default class Template extends React.Component {
 }
 
 //  暂无已缴账单
-const NoBillPaidYetRender = ({noMessagePng}) => {
+const NoBillPaidYetRender = ({noMessagePng, active}) => {
     return (
         <div className="no-message">
             <img src={noMessagePng} alt=''/>
-            <p>暂无已缴账单</p>
+            <p>{active ? '暂无未缴账单' : '暂无已缴账单'}</p>
         </div>
     )
 };
