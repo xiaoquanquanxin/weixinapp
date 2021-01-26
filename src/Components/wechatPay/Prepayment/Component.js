@@ -5,6 +5,7 @@ import {observer, inject} from 'mobx-react';
 /*自定义类*/
 import './Component.less'
 import {Modal, Picker, Toast} from "antd-mobile";
+import calcTimeUint from './img/calcTimeUint.png';
 
 @inject('store', 'actions')
 @observer
@@ -155,7 +156,7 @@ export default class Template extends React.Component {
                                                 )
                                             })}
                                         </div>) : (<div className="calcTimeUint">
-                                                <img src="./img/calcTimeUint.png" alt=''/>
+                                                <img src={calcTimeUint} alt=''/>
                                                 <p>该费项没有收费设置</p>
                                             </div>
                                         )
@@ -163,7 +164,7 @@ export default class Template extends React.Component {
                                 </div>
                             ) : (
                                 <div className="calcTimeUint">
-                                    <img src="./img/calcTimeUint.png" alt=''/>
+                                    <img src={calcTimeUint} alt=''/>
                                     <p>抱歉，暂不支持“季度”和年预缴</p>
                                 </div>
                             )}
