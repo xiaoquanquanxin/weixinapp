@@ -388,8 +388,7 @@ class Actions {
                 mchOrderNo: transactionid,
                 //  渠道id,公众号传"WX_JSAPI"
                 channelId: "WX_JSAPI",
-                // amount: (totalMoney * 100) | 0,
-                amount: 1,
+                amount: (totalMoney * 100) | 0,
                 //  任意ip
                 clientIp: "192.168.100.128",
                 //  设备
