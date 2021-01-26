@@ -459,9 +459,14 @@ import {compose as composRepairDetails, Component as RepairDetails} from './Comp
 composRepairDetails({store, actions, routeList, name: 'RepairDetails', routePath: '/RepairDetails/:id'});
 //房屋报修--新增报修
 //  todo    旧
-import {compose as composAddRepair, Component as AddRepairYu} from './Components/RepairYu/AddRepair'
+import {compose as composAddRepair, Component as AddRepair} from './Components/Repair/AddRepair'
 //
-composAddRepair({store, actions, routeList, name: 'AddRepairYu', routePath: '/AddRepair/:type'});
+composAddRepair({store, actions, routeList, name: 'AddRepair', routePath: '/AddRepair/:type'});
+
+//  todo    旧
+// import {compose as composAddRepair, Component as AddRepairYu} from './Components/RepairYu/AddRepair'
+//
+// composAddRepair({store, actions, routeList, name: 'AddRepairYu', routePath: '/AddRepair/:type'});
 //  todo    新
 // import {compose as composAddRepair, Component as AddRepair} from './Components/Repair/AddRepair'
 //
