@@ -2,6 +2,7 @@ import {action} from "mobx";
 import {ipUri} from "../../../config";
 import {Toast} from "antd-mobile";
 import {roomRemoveRepeat, zeroFill} from "../../../../lib/utils/number";
+import {BILL_NAME} from "./Store";
 
 class Actions {
     constructor(store){
@@ -50,7 +51,7 @@ class Actions {
         store.paidOutList = [];
         //  筛选过的未缴账单列表--用于展示
         store.paidOutListFilter = [];
-        store.billName = '全部费用';
+        store.billName = BILL_NAME;
 
         const result = await new Promise(function (resolve, reject){
             const data = {
@@ -108,7 +109,7 @@ class Actions {
             });
         });
         //  费项筛选picker
-        let costPickerList = [];
+        const costPickerList = [{value: BILL_NAME, label: BILL_NAME, key: BILL_NAME}];
         Reflect.ownKeys(costItemObj).forEach(item => {
             costPickerList.push({
                 value: item,
@@ -322,14 +323,21 @@ class Actions {
     feeItemScreening(v){
         const store = this.store;
         store.billName = v[0];
-        const paidOutListFilter = JSON.parse(JSON.stringify(store.paidOutList)).filter((item) => {
-            item.billDetails = item.billDetails.filter(_item => {
-                if (_item.paidName === v[0]) {
-                    return true;
-                }
+        let paidOutListFilter;
+        const paidOutList = JSON.parse(JSON.stringify(store.paidOutList));
+        console.log(`选择了:${store.billName}`);
+        if (v[0] === BILL_NAME) {
+            paidOutListFilter = paidOutList;
+        } else {
+            paidOutListFilter = paidOutList.filter((item) => {
+                item.billDetails = item.billDetails.filter(_item => {
+                    if (_item.paidName === v[0]) {
+                        return true;
+                    }
+                });
+                return (item.billDetails && item.billDetails.length);
             });
-            return (item.billDetails && item.billDetails.length);
-        });
+        }
         console.log(JSON.stringify(paidOutListFilter));
         store.paidOutListFilter = paidOutListFilter;
         this.initPaidOutListFilter();
