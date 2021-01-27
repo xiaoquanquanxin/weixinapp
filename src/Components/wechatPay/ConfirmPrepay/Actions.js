@@ -61,9 +61,10 @@ class Actions {
         for (const item of roomList) {
             if (item.roomId === roomId) {
                 store.currentRoom = item;
-                break;
+                return;
             }
         }
+        throw new Error('没拿到匹配的房间');
     };
 
     //  获取当前房间下有没有预缴订单
