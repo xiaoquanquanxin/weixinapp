@@ -73,8 +73,6 @@ class Actions {
         const {currentRoom, params} = store;
         const result = await requestGetFeeItem(currentRoom.roomId, currentRoom.cmdsId);
         const {code, data, msg} = result;
-        //  请求错误
-        //  todo    暂时放开
         if (!data || +code !== 2000) {
             Toast.hide();
             Modal.alert('提示', msg || '费项异常，暂不能进行预缴', [{
