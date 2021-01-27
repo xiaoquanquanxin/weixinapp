@@ -14,7 +14,7 @@ class Store {
     @observable feeItems = [];
     //  订单对象
     @observable submitOrderData = {};
-    //  定时器
+    //  下单后轮训的定时器
     @observable timeout = null;
     //  完成订单的时间
     @observable updateTime = null;
