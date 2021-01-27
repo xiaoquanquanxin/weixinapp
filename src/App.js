@@ -4,6 +4,13 @@ import router from './router'
 import {Provider} from 'mobx-react';
 import ReactChildrenMap from 'LibComponents/ReactChildrenMap'
 
+import VConsole from 'vconsole';
+import {upDateUserInfo} from "../lib/utils/utils";
+
+if (IS_CLIENT) {
+    var vConsole = new VConsole();
+    console.log(vConsole);
+}
 function setDefaultPage(Component, routePath){
     let key = routeList.length;
     routeList.push({component: Component, path: routePath, exact: true, key})
@@ -1035,14 +1042,7 @@ class App extends React.Component {
             if (org.includes('http')) {
                 sessionKey = sessionKey.split('#/')[0];
             }
-            console.log('设置 auth', sessionKey);
-            //存儲token值
-            window.setLocalData("auth", sessionKey);
-            // 获取当前时间 ，转换成JSON字符串序列
-            const authTime = new Date().getTime();
-            console.log('设置 authTime', authTime);
-            window.setLocalData('authTime', authTime);
-            //  只到首页,?前面的直接拿，如果没有？就直接到首页，这个逻辑可能有bug
+            upDateUserInfo(sessionKey, false, true);
             // currentUrl = currentUrl.split('?')[0] || (window.location.origin + window.location.pathname + '#/');
             // console.log(currentUrl);
             currentUrl = currentUrl.replace(/(sessionkey|sessionKey)/g, 'newSessionKey');
@@ -1084,12 +1084,6 @@ class App extends React.Component {
 
 console.info('当前环境是___________', IS_CLIENT ? '生产' : '开发');
 
-import VConsole from 'vconsole';
-
-if (IS_CLIENT) {
-    var vConsole = new VConsole();
-    console.log(vConsole);
-}
 export default App
 
 
