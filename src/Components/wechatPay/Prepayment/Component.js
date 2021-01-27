@@ -18,6 +18,7 @@ export default class Template extends React.Component {
         window.setWindowTitle("预缴账单");
         const {actions} = this.props;
         const {actionsPrepayment} = actions;
+        Toast.loading('Loading...', 3);
         actionsPrepayment.getRoomList()
     }
 
@@ -55,6 +56,7 @@ export default class Template extends React.Component {
                                     storePrepayment.currentRoom = item;
                                 }
                             });
+                            Toast.loading('Loading...', 3);
                             //  请求数据
                             //  获取当前房间下有没有预缴订单
                             actionsPrepayment.getFeeItem();
@@ -74,7 +76,7 @@ export default class Template extends React.Component {
                                     storePrepayment.currentFee = item;
                                 }
                             });
-
+                            Toast.loading('Loading...', 3);
                             //  请求数据
                             //  获取当前房间下有没有预缴订单
                             actionsPrepayment.setCurrentFee();
