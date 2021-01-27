@@ -61,7 +61,7 @@ class Actions {
         for (const item of roomList) {
             if (item.roomId === roomId) {
                 store.currentRoom = item;
-                return item;
+                break;
             }
         }
     };
