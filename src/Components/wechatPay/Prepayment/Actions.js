@@ -100,8 +100,6 @@ class Actions {
             item.value = itemSourceName;
             item.key = itemSourceName;
         });
-        //  默认选择第一个
-        store.currentFee = data[0];
         const hash = {};
         //  todo    这里做了去重
         store.feeList = data.filter((item) => {
@@ -110,6 +108,8 @@ class Actions {
                 return item;
             }
         });
+        //  默认选择第一个
+        store.currentFee = store.feeList[0];
         //  console.log(JSON.parse(JSON.stringify(store.feeList)));
         this.setCurrentFee();
     };
