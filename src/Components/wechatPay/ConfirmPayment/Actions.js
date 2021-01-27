@@ -1,6 +1,7 @@
 import {action} from "mobx";
 import {ipUri} from "../../../config";
 import {Toast} from "antd-mobile";
+import {transformWechatPayData, weChatPayAdvanceFn} from "../commonRequest";
 
 class Actions {
     constructor(store){
@@ -157,7 +158,6 @@ class Actions {
                 projectID: currentRoom.belongProject,
             };
             const data = {'json': JSON.stringify(json)};
-            debugger
             console.log(json);
             console.log(data);
             window.JQ.ajax({
@@ -267,39 +267,12 @@ class Actions {
     getPay = async () => {
         const store = this.store;
         const {submitOrderData} = store;
-        const result = await new Promise((resolve, reject) => {
-            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
-            const params = {
-                //  自定义商户ID，公众号支付传10000000
-                mchId: '10000000',
-                //  商户订单号-从物管接口返回的数据取
-                mchOrderNo: submitOrderData.orderId,
-                //  渠道id,公众号传"WX_JSAPI"
-                channelId: "WX_JSAPI",
-                amount: (submitOrderData.orderMoney * 100) | 0,
-                //  任意ip
-                clientIp: "192.168.100.128",
-                //  设备
-                device: (window.OSInfo() === "ios") ? 'ios' : 'Android',
-                //  openId-从微信授权数据里取
-                openId: userInfo.openId,
-            };
-            console.log('create_order的参数是', params);
-            window.JQ.ajax({
-                type: "get",
-                url: `${ipUri["/opi"]}/pay/create_order`,
-                data: {params: JSON.stringify(params)},
-                success: (result) => {
-                    resolve(result);
-                },
-            })
-        });
-        //  result是一个字符串
-        const res = JSON.parse(result);
-        const {resCode, payParams} = res;
+        const result = await weChatPayAdvanceFn(submitOrderData.orderId, (submitOrderData.orderMoney * 100) | 0);
+        const {data} = result;
+        console.log(data);
         //  唤起微信支付
-        if (resCode === 'SUCCESS') {
-            return this.arouseWeChatToPay(payParams);
+        if (data.return_code === 'SUCCESS') {
+            return this.arouseWeChatToPay(data);
         } else {
             return false;
         }
@@ -308,6 +281,8 @@ class Actions {
     //  唤起微信支付
     @action
     arouseWeChatToPay = async (payParams) => {
+        // payParams = transformWechatPayData(payParams);
+        // console.log(payParams);
         const result = await new Promise((resolve, reject) => {
             if (typeof WeixinJSBridge != "undefined") {
                 WeixinJSBridge.invoke(
