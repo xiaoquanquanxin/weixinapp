@@ -47,7 +47,7 @@ class Actions {
                 }
             })
         });
-        const {code, data: roomList} = result;
+        const {code, data} = result;
         //  请求错误
         if (code !== 2000) {
             return;
@@ -55,13 +55,13 @@ class Actions {
         const store = this.store;
         const {params} = store;
         const {roomId} = params;
-        //  fixme   这这个地方，需要去重，因为框架支持问题。针对的另一个点是没有cmdsId的问题
-        //  todo    错
-        roomList.splice(1, 1);
+        const roomList = data.filter(item => {
+            return item.cmdsId && item.roomId
+        });
         for (const item of roomList) {
             if (item.roomId === roomId) {
                 store.currentRoom = item;
-                return
+                return item;
             }
         }
     };
