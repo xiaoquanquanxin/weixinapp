@@ -182,8 +182,8 @@ class Actions {
         // store.timeout = null;
         console.log('本地定时器');
         if (store.maxTime > 0) {
-            store.minutes = zeroFill(Math.floor(store.maxTime / 60));
-            store.seconds = zeroFill(Math.floor(store.maxTime % 60));
+            store.minutes = zeroFill((store.maxTime / 60) | 0);
+            store.seconds = zeroFill((store.maxTime % 60) | 0);
             --store.maxTime;
             --store.timeoutDelay;
             if (!store.timeoutDelay) {
