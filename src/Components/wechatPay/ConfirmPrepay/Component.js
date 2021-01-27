@@ -54,6 +54,15 @@ export default class Template extends React.Component {
         })();
     }
 
+    //  离开页面清除定时器
+    componentWillUnmount(){
+        const {store} = this.props;
+        const {storeConfirmPrepay} = store;
+        clearTimeout(storeConfirmPrepay.timeout);
+        storeConfirmPrepay.timeout = null;
+        console.log('清除定时器');
+    }
+
     render(){
         const {actions, store} = this.props;
         const {actionsConfirmPrepay} = actions;
