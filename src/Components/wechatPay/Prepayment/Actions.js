@@ -168,7 +168,6 @@ class Actions {
     //  获取专项预缴费项订单明细
     @action
     getFeeitemDetails = async () => {
-        Toast.loading('Loading...', 3);
         const store = this.store;
         const {currentFee, currentRoom, customFeeItem} = store;
         //  清空数据
