@@ -37,13 +37,10 @@ export default class SubmitCertification extends React.Component {
     componentDidMount(){
         console.log('140702199902227135');
         console.log('15712852037');
+        window.setWindowTitle('登录');
         const {store, actions} = this.props;
         const {actionsSubmitCertification} = actions;
-        const {storeSubmitCertification} = store;
-        const {authshow} = storeSubmitCertification;
-        //认证成功跳转回首页
-        actionsSubmitCertification.userInfo(this.props.history)
-
+        actionsSubmitCertification.init();
     }
 
     onChange = (val) => {
@@ -82,95 +79,95 @@ export default class SubmitCertification extends React.Component {
         const {storeSubmitCertification} = store;
         const {actionsSubmitCertification} = actions;
         const {submitCertification, authshow, colorStyle, identityNo, phoneNo} = storeSubmitCertification;
-        const {submit, inputfun} = actionsSubmitCertification
-        window.setWindowTitle(authshow == 1 ? '登录' : '加载中');
-        return (<div className={'Components-HouseAuthentication-container'}>
-            {authshow == 1 && <div className={"g-padding"}>
-                <TopBar
-                    hostry={this.props.history}
-                    title={'登录'}
-                    right={null}
-                    opacity={'0'}
-                />
-                <div className={'bg'}><img src={bgIcon} alt={''}/></div>
-                <div className={'login-padding'}>
-                    <div className={'login-box'}>
-                        <div className={'logo-icon'}>
-                            <img src={logoIcon} alt=''/>
-                        </div>
-                        <div>
-                            <InputItem
-                                placeholder="请输入身份证"
-                                maxLength={18}
-                                //value={submitCertification.personId}
-                                onChange={(e) => {
-                                    // submitCertification.personId = e;
-                                    // this._checkForm(submitCertification);
-                                    inputfun(e, "identityNo")
-                                }}
-                            ><i className={'font_family icon-shenfenzhenghaoma input-icon'}> </i></InputItem>
-                            {/* <div className={"phonecss "}>
+        const {submit, inputfun} = actionsSubmitCertification;
+        return (
+            <div className={'Components-HouseAuthentication-container'}>
+                <div className={"g-padding"}>
+                    <TopBar
+                        hostry={this.props.history}
+                        title={'登录'}
+                        right={null}
+                        opacity={'0'}
+                    />
+                    <div className={'bg'}><img src={bgIcon} alt={''}/></div>
+                    <div className={'login-padding'}>
+                        <div className={'login-box'}>
+                            <div className={'logo-icon'}>
+                                <img src={logoIcon} alt=''/>
+                            </div>
+                            <div>
+                                <InputItem
+                                    placeholder="请输入身份证"
+                                    maxLength={18}
+                                    //value={submitCertification.personId}
+                                    onChange={(e) => {
+                                        // submitCertification.personId = e;
+                                        // this._checkForm(submitCertification);
+                                        inputfun(e, "identityNo")
+                                    }}
+                                ><i className={'font_family icon-shenfenzhenghaoma input-icon'}> </i></InputItem>
+                                {/* <div className={"phonecss "}>
 						<div className={"am-list-line right"}>请输入购房时登记的手机号</div>
 					</div> */}
+                                <WhiteSpace/>
+                                <InputItem
+                                    placeholder="请输入购房时登记的手机号"
+                                    //value={submitCertification.tel}
+                                    maxLength={11}
+                                    onChange={(e) => {
+                                        // VerificationMobileFormat.setCallerNumber(e) ? submitCertification.tel = e : submitCertification.tel = '';
+                                        // this._checkForm(submitCertification);
+                                        inputfun(e, "phoneNo")
+                                    }
+                                    }
+                                ><i className={'font_family icon-shoujihaoma input-icon'}> </i></InputItem>
+
+                                <WhiteSpace/>
+
+                                <Flex className={'getCodeParentDode'}>
+                                    <Flex.Item className={'fristNode'}>
+                                        <InputItem
+                                            placeholder="请输入验证码"
+                                            maxLength={4}
+                                            //value={submitCertification.VerificationCode}
+                                            onChange={(e) => {
+                                                // submitCertification.VerificationCode = e;
+                                                // this._checkForm(submitCertification);
+                                                inputfun(e, "validCode")
+                                            }}
+                                        ><i className={'font_family icon-yanzhengma input-icon'}> </i>
+                                        </InputItem>
+                                    </Flex.Item>
+                                    <Flex.Item className={'lastNode'}>
+                                        <VerificationCode
+                                            personId={identityNo}
+                                            tel={phoneNo}
+                                            label={this.props}
+                                        />
+                                    </Flex.Item>
+                                </Flex>
+
+                            </div>
+                            {/*<div>*/}
+                            {/*    <Link className={"choicephone"} to={'/CertificationModifySelfInfo'}>手机号更改申请<Icon*/}
+                            {/*        type={'right'}/></Link>*/}
+                            {/*</div>*/}
+                            <WhiteSpace size="lg"/>
                             <WhiteSpace/>
-                            <InputItem
-                                placeholder="请输入购房时登记的手机号"
-                                //value={submitCertification.tel}
-                                maxLength={11}
-                                onChange={(e) => {
-                                    // VerificationMobileFormat.setCallerNumber(e) ? submitCertification.tel = e : submitCertification.tel = '';
-                                    // this._checkForm(submitCertification);
-                                    inputfun(e, "phoneNo")
-                                }
-                                }
-                            ><i className={'font_family icon-shoujihaoma input-icon'}> </i></InputItem>
-
-                            <WhiteSpace/>
-
-                            <Flex className={'getCodeParentDode'}>
-                                <Flex.Item className={'fristNode'}>
-                                    <InputItem
-                                        placeholder="请输入验证码"
-                                        maxLength={4}
-                                        //value={submitCertification.VerificationCode}
-                                        onChange={(e) => {
-                                            // submitCertification.VerificationCode = e;
-                                            // this._checkForm(submitCertification);
-                                            inputfun(e, "validCode")
-                                        }}
-                                    ><i className={'font_family icon-yanzhengma input-icon'}> </i>
-                                    </InputItem>
-                                </Flex.Item>
-                                <Flex.Item className={'lastNode'}>
-                                    <VerificationCode
-                                        personId={identityNo}
-                                        tel={phoneNo}
-                                        label={this.props}
-                                    />
-                                </Flex.Item>
-                            </Flex>
-
-                        </div>
-                        {/*<div>*/}
-                        {/*    <Link className={"choicephone"} to={'/CertificationModifySelfInfo'}>手机号更改申请<Icon*/}
-                        {/*        type={'right'}/></Link>*/}
-                        {/*</div>*/}
-                        <WhiteSpace size="lg"/>
-                        <WhiteSpace/>
-                        <div onClick={() => {
-                            colorStyle ? submit(history) : undefined
-                        }}>
-                            <Button type="primary" className={'btn'}>立即登录</Button>
-                        </div>
-                        {/*<div className={'tips'}>温馨提示</div>
+                            <div onClick={() => {
+                                colorStyle ? submit(history) : undefined
+                            }}>
+                                <Button type="primary" className={'btn'}>立即登录</Button>
+                            </div>
+                            {/*<div className={'tips'}>温馨提示</div>
                         <div className={'tips-content'}>
                             您是否已实名认证，若没有实名认证将跳转法大大进行实名认证。
                         </div>*/}
+                        </div>
                     </div>
                 </div>
-            </div>}
-
-        </div>);
+            </div>
+        );
     }
 
     // componentWillUnmount () {
