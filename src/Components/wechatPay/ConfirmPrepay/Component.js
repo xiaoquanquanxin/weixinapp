@@ -60,7 +60,7 @@ export default class Template extends React.Component {
         const {storeConfirmPrepay} = store;
         clearTimeout(storeConfirmPrepay.timeout);
         storeConfirmPrepay.timeout = null;
-        console.log('清除定时器');
+        console.log('清除下单后轮训的定时器');
     }
 
     render(){
