@@ -1,7 +1,6 @@
 import {action} from "mobx";
 import {ipUri} from "../../../config";
 import {Toast} from "antd-mobile";
-import {retrieveColumnLayout} from "echarts/src/layout/barGrid";
 
 class Actions {
     constructor(store){
