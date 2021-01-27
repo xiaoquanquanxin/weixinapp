@@ -20,7 +20,7 @@ class Actions {
         //  清除定时器
         clearTimeout(store.timeout);
         store.timeout = null;
-        console.log('清除定时器');
+        console.log('清除下单后轮训的定时器');
         //  拿页面url参数
         const params = window.getQueryString();
         params.label = decodeURIComponent(params.label);
