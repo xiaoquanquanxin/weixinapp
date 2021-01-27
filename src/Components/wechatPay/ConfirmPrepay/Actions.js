@@ -56,7 +56,7 @@ class Actions {
         const {params} = store;
         const {roomId} = params;
         const roomList = data.filter(item => {
-            return item.cmdsId && item.roomId
+            return item.cmdsId && item.roomId;
         });
         for (const item of roomList) {
             if (item.roomId === roomId) {
