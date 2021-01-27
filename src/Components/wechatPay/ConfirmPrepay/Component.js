@@ -14,7 +14,6 @@ export default class Template extends React.Component {
     }
 
     componentDidMount(){
-        console.clear();
         window.setWindowTitle("预缴确认订单");
         const {actions} = this.props;
         const {actionsConfirmPrepay} = actions;
