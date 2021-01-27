@@ -162,7 +162,8 @@ class Actions {
             return;
         }
         //  计算出下单到现在的时间 进行倒计时 /s
-        store.maxTime = (new Date(data.createTime).getTime() + (15 * 60 - 1) * 1000 - new Date(data.nowTime).getTime()) / 1000;
+        store.maxTime = (new Date(window.toTimestamp(data.createTime)).getTime() + (15 * 60 - 1) * 1000 - new Date(window.toTimestamp(data.nowTime)).getTime()) / 1000;
+
         if (store.maxTime <= 0) {
             //  重新获取订单详情
             //  todo，检查超时后的订单状态，因为服务端没跑task
