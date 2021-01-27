@@ -2,6 +2,7 @@ import {action} from "mobx";
 import {Modal, Toast} from 'antd-mobile';
 import router from "../../../router";
 import {APP_ID, APP_SECRET} from "../../../../lib/utils/const";
+import {upDateUserInfo} from "../../../../lib/utils/utils";
 
 // 定义对数据的操作
 class Actions {
@@ -22,7 +23,7 @@ class Actions {
         if (result.resultCode !== 0) {
             return;
         }
-        window.setLocalData('userInfo', result.data);
+        upDateUserInfo(false, result.data, false);
         return result.resultCode;
     };
 
