@@ -23,42 +23,6 @@ export default class TemplateNoMbox extends React.Component {
 
 
 
-		/*let overTimeSessionKey=()=>{
-			function getLocalStorage(key) {
-				// var exp = 60 ; //
-				var exp = 60 * 60 * 24; // 一天的秒数
-				if(localStorage.getItem(key)) {
-					var auth = localStorage.getItem(key); // 获取本地存储的值
-					var authTime= localStorage.getItem('authTime');
-					// var dataObj = JSON.parse(vals); // 将字符串转换成JSON对象
-					// 如果(当前时间 - 存储的元素在创建时候设置的时间) > 过期时间
-					var isTimed = (new Date().getTime() - authTime) > exp;
-
-					if(isTimed) {
-						console.log("存储已过期");
-						localStorage.removeItem(key);
-						localStorage.removeItem('authTime');
-						return null;
-					} else {
-						var newValue = auth;
-					}
-					return newValue;
-				} else {
-					return null;
-				}
-			}
-
-			var authTime= JSON.parse(window.getLocalData('authTime'));
-			if (!authTime) {
-				var curtime = new Date().getTime(); // 获取当前时间 ，转换成JSON字符串序列
-				window.setLocalData('authTime', curtime)
-			}
-
-			var localKey = getLocalStorage('auth');
-			console.log('localKey_____________', localKey);
-
-		};
-		overTimeSessionKey.call();*/
 	}
     state = {
         soundRecording_start:false,
