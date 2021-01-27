@@ -40,10 +40,12 @@ class Actions {
         console.log(billIDsList);
         // console.log(billIDsMap);
         // console.log(roomId);
+        Toast.loading('Loading...', 3);
         //  获取房间信息
         await this.getRoomList();
         //  获取未缴账单
         await this.getPaymentList();
+        Toast.hide();
     };
 
     //  获取房间信息
