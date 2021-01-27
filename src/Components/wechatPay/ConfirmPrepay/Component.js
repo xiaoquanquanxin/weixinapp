@@ -20,10 +20,12 @@ export default class Template extends React.Component {
         Toast.loading('Loading...', 3);
         //  解析参数
         actionsConfirmPrepay.init();
-        //  拿房间列表
-        actionsConfirmPrepay.getRoomList();
-        //  拿费项列表
-        actionsConfirmPrepay.getFeeItem();
+        (async () => {
+            //  拿房间列表
+            await actionsConfirmPrepay.getRoomList();
+            //  拿费项列表
+            await actionsConfirmPrepay.getFeeItem();
+        })();
     }
 
     //  微信支付
