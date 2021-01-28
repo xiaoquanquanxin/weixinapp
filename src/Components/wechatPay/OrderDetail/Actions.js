@@ -141,7 +141,6 @@ class Actions {
     //  获取时间接口
     @action
     getTime = async () => {
-        return
         // console.log('获取时间接口');
         const store = this.store;
         const {transactionid} = store;
