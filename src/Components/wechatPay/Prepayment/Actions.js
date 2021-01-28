@@ -2,7 +2,7 @@ import {action} from "mobx";
 import {ipUri} from "../../../config";
 import {Modal, Toast} from "antd-mobile";
 import {roomRemoveRepeat} from "../../../../lib/utils/number";
-import {requestGetFeeItem} from "../commonRequest";
+import {requestGetFeeItem, requestGetPmdRoomsFn} from "../commonRequest";
 
 class Actions {
     constructor(store){
@@ -17,20 +17,7 @@ class Actions {
         store.currentRoom = {};
         store.currentFee = {};
         this.clearQueryFeeitemDetails();
-        const result = await new Promise(function (resolve, reject){
-            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
-            window.JQ.ajax({
-                type: "POST",
-                url: `${ipUri["/bpi"]}/getPmdRooms.do`,
-                contentType: "application/x-www-form-urlencoded",
-                data: {
-                    wxUserID: userInfo.id,
-                },
-                success: (result) => {
-                    resolve(result);
-                }
-            })
-        });
+        const result = await requestGetPmdRoomsFn();
         const {code, data} = result;
         //  请求错误
         if (code !== 2000) {
