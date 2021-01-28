@@ -1,5 +1,40 @@
 import {ipUri} from "../../config";
 
+//  获取房间信息
+export const requestGetPmdRoomsFn = async () => {
+    return await new Promise(function (resolve, reject){
+        const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
+        window.JQ.ajax({
+            type: "POST",
+            url: `${ipUri["/bpi"]}/getPmdRooms.do`,
+            contentType: "application/x-www-form-urlencoded",
+            data: {
+                //  微信的用户id-从微信的登录后的数据里取
+                wxUserID: userInfo.id,
+            },
+            success: (result) => {
+                resolve(result);
+            }
+        })
+    });
+};
+
+//  获取未缴账单列表
+export const requestGetUnpaidBillFn = async (roomIDs, userID) => {
+    return await new Promise(function (resolve, reject){
+        window.JQ.ajax({
+            crossDomain: true,
+            type: "post",
+            url: `${ipUri["/bpi"]}/getUnpaidBill.do`,
+            contentType: "application/x-www-form-urlencoded",
+            data: {'json': JSON.stringify({roomIDs, userID})},
+            success: (result) => {
+                resolve(result);
+            }
+        });
+    })
+};
+
 //  获取当前房间下有没有预缴订单
 export const requestGetFeeItem = async (pmdsRoomId, cmdsId) => {
     return new Promise(function (resolve, reject){
