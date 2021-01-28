@@ -226,7 +226,7 @@ class Actions {
     getTranStatus = async () => {
         const store = this.store;
         const {submitOrderData} = store;
-        const result = await requestGetTranStatusFn({transactionId: submitOrderData.orderCode});
+        const result = await requestGetTranStatusFn({transactionId: submitOrderData.orderId});
         const {data,} = result;
         if (data.status === 0) {
             //  微信支付
@@ -294,6 +294,8 @@ class Actions {
     @action
     completePaidOrder = async () => {
         const store = this.store;
+        const {submitOrderData} = store;
+        debugger
         const result = await new Promise((resolve, reject) => {
             const updateTime = new Date().format('yyyy-MM-dd hh:mm:ss');
             store.updateTime = updateTime;
