@@ -104,6 +104,8 @@ export const requestGetTranStatusFn = async (json) => {
 
 //  完成订单
 export const requestCompletePaidOrderFn = async (transactionId, store) => {
+    return {code: 2000};
+    //  下面好像是多余的
     return await new Promise((resolve, reject) => {
         const updateTime = new Date().format('yyyy-MM-dd hh:mm:ss');
         store.updateTime = updateTime;
