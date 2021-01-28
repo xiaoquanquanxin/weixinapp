@@ -86,7 +86,7 @@ class Actions {
             item.key = itemSourceName;
         });
         const hash = {};
-        //  todo    这里做了去重
+        //  这里以 itemSourceName 字段做了去重
         store.feeList = data.filter((item) => {
             if (!hash[item.itemSourceName]) {
                 hash[item.itemSourceName] = true;
