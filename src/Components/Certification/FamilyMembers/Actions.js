@@ -67,6 +67,7 @@ class Actions {
             if (item.phoneNo && item.memberId) {
                 store.userFamily.push({
                     id: item.id,
+                    memberId: item.memberId,
                     fullName: item.fullName,
                     sex: item.sex,
                     phoneNo: item.phoneNo,
