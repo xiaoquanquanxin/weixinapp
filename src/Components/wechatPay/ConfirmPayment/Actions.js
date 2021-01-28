@@ -134,6 +134,7 @@ class Actions {
                 //  当前房间的belongProject-从getPmdRooms.do接口里取
                 projectID: currentRoom.belongProject,
             };
+            console.log('submitOrder的参数', json);
             const data = {'json': JSON.stringify(json)};
             window.JQ.ajax({
                 crossDomain: true,
