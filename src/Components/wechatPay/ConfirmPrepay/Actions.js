@@ -228,7 +228,8 @@ class Actions {
     getTranStatus = async () => {
         const store = this.store;
         const {submitOrderData} = store;
-        const result = await requestGetTranStatusFn({transactionId: submitOrderData.orderId});
+        console.log('第三个transactionId', submitOrderData.orderCode);
+        const result = await requestGetTranStatusFn({transactionId: submitOrderData.orderCode});
         const {data,} = result;
         if (data.status === 0) {
             //  微信支付
@@ -274,7 +275,8 @@ class Actions {
     pollingGetTranStatus = async () => {
         const store = this.store;
         const {submitOrderData} = store;
-        const result = await requestGetTranStatusFn({transactionId: submitOrderData.orderId});
+        console.log('第四个transactionId', submitOrderData.orderCode);
+        const result = await requestGetTranStatusFn({transactionId: submitOrderData.orderCode});
         const {data} = result;
         const {status} = data;
         console.log('轮训状态', new Date().getSeconds());
