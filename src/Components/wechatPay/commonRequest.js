@@ -63,3 +63,20 @@ export const transformWechatPayData = (data) => {
         paySign: sign,
     }
 };
+
+//  唤醒微信
+export const getBrandWCPayRequestFn = async (payParams) => {
+    return await new Promise((resolve, reject) => {
+        if (typeof WeixinJSBridge != "undefined") {
+            WeixinJSBridge.invoke(
+                'getBrandWCPayRequest',
+                payParams,
+                (res) => {
+                    resolve(res.err_msg === "get_brand_wcpay_request:ok");
+                }
+            );
+            return;
+        }
+        resolve(false);
+    });
+};
