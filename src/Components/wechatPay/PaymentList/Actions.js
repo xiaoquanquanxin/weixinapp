@@ -35,12 +35,13 @@ class Actions {
     @action
     getPaymentList = async () => {
         const store = this.store;
+        const {currentRoom} = store;
         //  所有未缴账单列表
         store.paidOutList = [];
         //  筛选过的未缴账单列表--用于展示
         store.paidOutListFilter = [];
         store.billName = BILL_NAME;
-        const result = await requestGetUnpaidBillFn(store.currentRoom.roomId, store.currentRoom.cmdsId);
+        const result = await requestGetUnpaidBillFn(currentRoom.roomId, currentRoom.cmdsId);
         const {code, data, msg} = result;
         //  请求错误
         if (code !== 2000) {
