@@ -4,7 +4,6 @@ import router from './router'
 import {Provider} from 'mobx-react';
 import ReactChildrenMap from 'LibComponents/ReactChildrenMap'
 
-import VConsole from 'vconsole';
 import {upDateUserInfo} from "../lib/utils/utils";
 
 function setDefaultPage(Component, routePath){
