@@ -24,8 +24,6 @@ class Actions {
         clearTimeout(store.timeout);
         store.timeout = null;
         console.log('清除定时器');
-        //  for development
-        // this.pollingGetTranStatus();
     }
 
     //  解析url参数
