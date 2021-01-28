@@ -102,6 +102,29 @@ export const requestGetTranStatusFn = async (json) => {
     });
 };
 
+//  完成订单
+export const requestCompletePaidOrderFn = async (transactionId) => {
+    return await new Promise((resolve, reject) => {
+        const updateTime = new Date().format('yyyy-MM-dd hh:mm:ss');
+        store.updateTime = updateTime;
+        let data = {
+            transactionId,
+            updateTime,
+            //  服务端处理
+            payMethod: ''
+        };
+        window.JQ.ajax({
+            crossDomain: true,
+            type: "post",
+            url: `${ipUri["/bpi"]}/completePaidOrder.do`,
+            contentType: "application/x-www-form-urlencoded",
+            data: {'json': JSON.stringify(data)},
+            success: (result) => {
+                resolve(result);
+            },
+        })
+    });
+};
 
 //  转json
 const transformWechatPayData = (data) => {
