@@ -39,15 +39,17 @@ export default class Template extends React.Component {
         (async () => {
             const result = await actionsConfirmPayment.goPay();
             console.log(result);
-            const {submitOrderData} = storeConfirmPayment;
-            const {orderId} = submitOrderData;
             //  下单失败
             if (result === false) {
+                const {submitOrderData} = storeConfirmPayment;
+                const {orderId} = submitOrderData;
                 Toast.info('下单失败', 1);
                 this.props.history.push(`/wechat-pay/OrderDetail?orderId=${orderId}&type=0`);
                 return;
             }
             if (result === true) {
+                const {submitOrderData} = storeConfirmPayment;
+                const {orderId} = submitOrderData;
                 console.log('可以跳转了');
                 Toast.hide();
                 debugger;
