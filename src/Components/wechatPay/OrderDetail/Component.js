@@ -194,6 +194,7 @@ export default class Template extends React.Component {
             const {actions, store} = this.props;
             const {actionsOrderDetail} = actions;
             const {storeOrderDetail} = store;
+            Toast.loading('Loading...', 3);
             //  这与直接支付不同，需要先验证是否已经支付、是否已经过期等等
             const result = await actionsOrderDetail.getTranStatusFn();
             console.log(result);
