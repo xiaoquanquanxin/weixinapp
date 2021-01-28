@@ -5,7 +5,7 @@ import {
     getBrandWCPayRequestFn,
     transformWechatPayData,
     requestWeChatPayAdvanceFn,
-    requestGetTranStatusFn, requestGetPmdRoomsFn
+    requestGetTranStatusFn, requestGetPmdRoomsFn, requestGetUnpaidBillFn
 } from "../commonRequest";
 
 class Actions {
@@ -70,22 +70,7 @@ class Actions {
     getPaymentList = async () => {
         const store = this.store;
         const {billIDsMap, currentRoom} = store;
-        const result = await new Promise((resolve, reject) => {
-            const data = {
-                roomIDs: currentRoom.roomId,
-                userID: currentRoom.cmdsId,
-            };
-            window.JQ.ajax({
-                crossDomain: true,
-                type: "post",
-                url: `${ipUri["/bpi"]}/getUnpaidBill.do`,
-                contentType: "application/x-www-form-urlencoded",
-                data: {'json': JSON.stringify(data)},
-                success: (result) => {
-                    resolve(result);
-                }
-            })
-        });
+        const result = await requestGetUnpaidBillFn(currentRoom.roomId, currentRoom.cmdsId);
         const {code, data} = result;
         //  请求错误
         if (code !== 2000) {
