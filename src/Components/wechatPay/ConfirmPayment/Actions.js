@@ -265,7 +265,6 @@ class Actions {
         console.log('轮训状态', new Date().getSeconds());
         console.log(data);
         if (status === 2) {
-            return true;
             //  完成订单【确实已经支付】
             return await this.completePaidOrder();
         }
