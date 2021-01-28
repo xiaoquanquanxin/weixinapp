@@ -3,7 +3,6 @@ import {ipUri} from "../../../config";
 import {Toast} from "antd-mobile";
 import {
     getBrandWCPayRequestFn,
-    transformWechatPayData,
     requestWeChatPayAdvanceFn,
     requestGetTranStatusFn, requestGetPmdRoomsFn, requestGetUnpaidBillFn, requestCompletePaidOrderFn
 } from "../commonRequest";
@@ -245,8 +244,6 @@ class Actions {
     //  唤起微信支付
     @action
     arouseWeChatToPay = async (payParams) => {
-        // payParams = transformWechatPayData(payParams);
-        // console.log(payParams);
         const result = await getBrandWCPayRequestFn(payParams);
         console.log('唤起微信支付', result);
         //  如果支付失败
