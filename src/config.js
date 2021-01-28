@@ -5,14 +5,16 @@ export const ipUri = {
     // '/mpi': 'http://192.168.100.208:5080/wechat-mobile/',
 
     //  少杰 端口
+    //  todo    wechat-pay
     // '/opi': 'http://hachi-pay.mynatapp.cc/api',
-    // '/opi': 'https://hachiseedland-dev.hachi-tech.com/v3/api',
-    '/opi': '/opi',
+    '/opi': 'https://hachiseedland-dev.hachi-tech.com/v3/api',
+    // '/opi': '/opi',
 
     //  todo    wechat-pay
-    '/bpi': 'https://hachiseedland-dev.hachi-tech.com/v3/api',
-    // '/bpi': 'http://192.168.100.208:3080',
+    // '/bpi': 'https://hachiseedland-dev.hachi-tech.com/v3/api',
+    '/bpi': 'http://192.168.100.208:3080',
 
+    //  todo    wechat-pay
     // '/wpi': 'http://asm-test.seedland.cc:8084/life-web/sso/api/workorder',
     '/wpi': '/wpi',
 };
