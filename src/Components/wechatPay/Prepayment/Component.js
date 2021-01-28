@@ -114,7 +114,7 @@ export default class Template extends React.Component {
                         <div className='content'>
                             {(+currentFee.calcTimeUint === 2) ? (
                                 <div className="pay">
-                                    {(paymentList.length) ?
+                                    {(paymentList.length > 1) ?
                                         (<div className="pay-list">
                                             {paymentList.map((item, index) => {
                                                 return (
