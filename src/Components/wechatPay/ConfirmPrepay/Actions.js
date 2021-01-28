@@ -5,7 +5,7 @@ import {
     getBrandWCPayRequestFn,
     requestGetFeeItem,
     requestWeChatPayAdvanceFn,
-    requestGetTranStatusFn
+    requestGetTranStatusFn, requestGetPmdRoomsFn
 } from "../commonRequest";
 
 class Actions {
@@ -38,20 +38,7 @@ class Actions {
     //  获取房间列表
     @action
     getRoomList = async () => {
-        const result = await new Promise(function (resolve, reject){
-            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
-            window.JQ.ajax({
-                type: "POST",
-                url: `${ipUri["/bpi"]}/getPmdRooms.do`,
-                contentType: "application/x-www-form-urlencoded",
-                data: {
-                    wxUserID: userInfo.id,
-                },
-                success: (result) => {
-                    resolve(result);
-                }
-            })
-        });
+        const result = await requestGetPmdRoomsFn();
         const {code, data} = result;
         //  请求错误
         if (code !== 2000) {
