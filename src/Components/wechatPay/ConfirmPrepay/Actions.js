@@ -1,7 +1,7 @@
 import {action} from "mobx";
 import {ipUri} from "../../../config";
 import {Modal, Toast} from "antd-mobile";
-import {requestGetFeeItem, transformWechatPayData, weChatPayAdvanceFn} from "../commonRequest";
+import {getBrandWCPayRequestFn, requestGetFeeItem, transformWechatPayData, weChatPayAdvanceFn} from "../commonRequest";
 
 class Actions {
     constructor(store){
@@ -275,19 +275,7 @@ class Actions {
     arouseWeChatToPay = async (payParams) => {
         // payParams = transformWechatPayData(payParams);
         // console.log(payParams);
-        const result = await new Promise((resolve, reject) => {
-            if (typeof WeixinJSBridge != "undefined") {
-                WeixinJSBridge.invoke(
-                    'getBrandWCPayRequest',
-                    payParams,
-                    (res) => {
-                        resolve(res.err_msg === "get_brand_wcpay_request:ok");
-                    }
-                );
-                return;
-            }
-            resolve(false);
-        });
+        const result = await getBrandWCPayRequestFn(payParams);
         console.log('唤起微信支付', result);
         //  如果支付失败
         if (result !== true) {
