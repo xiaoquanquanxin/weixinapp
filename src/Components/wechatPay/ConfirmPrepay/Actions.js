@@ -296,7 +296,7 @@ class Actions {
     @action
     completePaidOrder = async () => {
         const store = this.store;
-        const result = await requestCompletePaidOrderFn(store.submitOrderData.orderId);
+        const result = await requestCompletePaidOrderFn(store.submitOrderData.orderId, store);
         const {code} = result;
         return code === 2000;
     }
