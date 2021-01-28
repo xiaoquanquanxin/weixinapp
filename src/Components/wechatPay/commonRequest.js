@@ -120,7 +120,6 @@ const transformWechatPayData = (data) => {
 //  唤醒微信
 export const getBrandWCPayRequestFn = async (payParams) => {
     payParams = transformWechatPayData(payParams);
-    alert(payParams);
     console.log('payParams是', payParams);
     return await new Promise((resolve, reject) => {
         if (typeof WeixinJSBridge != "undefined") {
