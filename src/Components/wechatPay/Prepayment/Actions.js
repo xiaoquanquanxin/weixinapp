@@ -40,8 +40,6 @@ class Actions {
         const {currentRoom} = store;
         const result = await requestGetFeeItem(currentRoom.roomId, currentRoom.cmdsId);
         const {code, data, msg} = result;
-        //  请求错误
-        //  todo    for development
         if (!data || +code !== 2000) {
             Modal.alert('提示', msg || '费项异常，暂不能进行预缴', [{text: '确定'}]);
             return;
