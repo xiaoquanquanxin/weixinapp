@@ -5,7 +5,9 @@ import {
     getBrandWCPayRequestFn,
     requestGetFeeItem,
     requestWeChatPayAdvanceFn,
-    requestGetTranStatusFn, requestGetPmdRoomsFn
+    requestGetTranStatusFn,
+    requestGetPmdRoomsFn,
+    requestCompletePaidOrderFn
 } from "../commonRequest";
 
 class Actions {
@@ -294,28 +296,7 @@ class Actions {
     @action
     completePaidOrder = async () => {
         const store = this.store;
-        const {submitOrderData} = store;
-        debugger
-        const result = await new Promise((resolve, reject) => {
-            const updateTime = new Date().format('yyyy-MM-dd hh:mm:ss');
-            store.updateTime = updateTime;
-            let data = {
-                transactionId: submitOrderData.orderId,
-                updateTime,
-                //  服务端处理
-                payMethod: ''
-            };
-            window.JQ.ajax({
-                crossDomain: true,
-                type: "post",
-                url: `${ipUri["/bpi"]}/completePaidOrder.do`,
-                contentType: "application/x-www-form-urlencoded",
-                data: {'json': JSON.stringify(data)},
-                success: (result) => {
-                    resolve(result);
-                },
-            })
-        });
+        const result = await requestCompletePaidOrderFn(store.submitOrderData.orderId);
         const {code} = result;
         return code === 2000;
     }
