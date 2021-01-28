@@ -3,6 +3,7 @@ import {ipUri} from "../../../config";
 import {Toast} from "antd-mobile";
 import {roomRemoveRepeat, zeroFill} from "../../../../lib/utils/number";
 import {BILL_NAME} from "./Store";
+import {requestGetPmdRoomsFn} from "../commonRequest";
 
 class Actions {
     constructor(store){
@@ -15,20 +16,7 @@ class Actions {
         const store = this.store;
         //  清空数据
         store.currentRoom = {};
-        const result = await new Promise(function (resolve, reject){
-            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
-            window.JQ.ajax({
-                type: "POST",
-                url: `${ipUri["/bpi"]}/getPmdRooms.do`,
-                contentType: "application/x-www-form-urlencoded",
-                data: {
-                    wxUserID: userInfo.id,
-                },
-                success: (result) => {
-                    resolve(result);
-                }
-            })
-        });
+        const result = await requestGetPmdRoomsFn();
         const {code, data} = result;
         //  请求错误
         if (code !== 2000) {
