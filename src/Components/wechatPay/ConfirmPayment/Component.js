@@ -52,8 +52,8 @@ export default class Template extends React.Component {
                 const {orderId} = submitOrderData;
                 console.log('可以跳转了');
                 Toast.hide();
-                debugger;
-                const {updateTime, orderMoney} = submitOrderData;
+                const { orderMoney} = submitOrderData;
+                const updateTime = new Date().format('yyyy-MM-dd hh:mm:ss');
                 this.props.history.push(`/wechat-pay/PaySuccess?orderId=${orderId}&orderMoney=${orderMoney}&updateTime=${updateTime}&type=1`);
             }
             //  其他情况在具体的await里处理，他们中的大部分不需要跳转

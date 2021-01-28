@@ -50,8 +50,9 @@ export default class Template extends React.Component {
                 Toast.hide();
                 const {submitOrderData} = storeConfirmPrepay;
                 console.log('跳转前参数是', submitOrderData);
-                const {orderCode, orderMoney, createTime} = submitOrderData;
-                this.props.history.push(`/wechat-pay/PaySuccess?orderId=${orderCode}&orderMoney=${orderMoney}&updateTime=${createTime}&type=1`);
+                const {orderCode, orderMoney} = submitOrderData;
+                const updateTime = new Date().format('yyyy-MM-dd hh:mm:ss');
+                this.props.history.push(`/wechat-pay/PaySuccess?orderId=${orderCode}&orderMoney=${orderMoney}&updateTime=${updateTime}&type=1`);
             }
             //  其他情况在具体的await里处理，他们中的大部分不需要跳转
         })();
