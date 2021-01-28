@@ -9,6 +9,13 @@ module.exports = {
                 pathRewrite: {
                     '^/wpi': ''
                 }
+            },
+            "/opi": {
+                target: 'https://hachiseedland-dev.hachi-tech.com/v3/api',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/opi': ''
+                }
             }
         }
     },
