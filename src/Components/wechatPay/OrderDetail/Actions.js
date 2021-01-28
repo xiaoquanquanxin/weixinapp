@@ -171,7 +171,6 @@ class Actions {
 
         if (store.maxTime <= 0) {
             //  重新获取订单详情
-            //  todo，检查超时后的订单状态，因为服务端没跑task
             console.log('超时了');
             this.getOrderDetail();
             return;
