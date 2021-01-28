@@ -1,7 +1,12 @@
 import {action} from "mobx";
 import {ipUri} from "../../../config";
 import {Toast} from "antd-mobile";
-import {getBrandWCPayRequestFn, transformWechatPayData, weChatPayAdvanceFn} from "../commonRequest";
+import {
+    getBrandWCPayRequestFn,
+    transformWechatPayData,
+    requestWeChatPayAdvanceFn,
+    requestGetTranStatusFn
+} from "../commonRequest";
 
 class Actions {
     constructor(store){
@@ -239,18 +244,7 @@ class Actions {
     getTranStatus = async () => {
         const store = this.store;
         const {submitOrderData} = store;
-        const result = await new Promise((resolve, reject) => {
-            window.JQ.ajax({
-                crossDomain: true,
-                type: "post",
-                url: `${ipUri["/bpi"]}/getTranStatus.do`,
-                contentType: "application/x-www-form-urlencoded",
-                data: {'json': JSON.stringify({transactionId: submitOrderData.orderId})},
-                success: (result) => {
-                    resolve(result);
-                },
-            })
-        });
+        const result = await requestGetTranStatusFn({transactionId: submitOrderData.orderId});
         const {code} = result;
         //  请求错误
         if (code !== 2000) {
@@ -267,7 +261,7 @@ class Actions {
     getPay = async () => {
         const store = this.store;
         const {submitOrderData} = store;
-        const result = await weChatPayAdvanceFn(submitOrderData.orderId, (submitOrderData.orderMoney * 100) | 0);
+        const result = await requestWeChatPayAdvanceFn(submitOrderData.orderId, (submitOrderData.orderMoney * 100) | 0);
         const {data} = result;
         console.log(data);
         //  唤起微信支付
@@ -298,18 +292,7 @@ class Actions {
     pollingGetTranStatus = async () => {
         const store = this.store;
         const {submitOrderData} = store;
-        const result = await new Promise((resolve, reject) => {
-            window.JQ.ajax({
-                crossDomain: true,
-                type: "post",
-                url: `${ipUri["/bpi"]}/getTranStatus.do`,
-                contentType: "application/x-www-form-urlencoded",
-                data: {'json': JSON.stringify({transactionId: submitOrderData.orderId})},
-                success: (result) => {
-                    resolve(result);
-                },
-            })
-        });
+        const result = await requestGetTranStatusFn({transactionId: submitOrderData.orderId});
         const {data} = result;
         const {status} = data;
         console.log('轮训状态', new Date().getSeconds());
