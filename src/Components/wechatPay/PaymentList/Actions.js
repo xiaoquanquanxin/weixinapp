@@ -3,7 +3,7 @@ import {ipUri} from "../../../config";
 import {Toast} from "antd-mobile";
 import {roomRemoveRepeat, zeroFill} from "../../../../lib/utils/number";
 import {BILL_NAME} from "./Store";
-import {requestGetPmdRoomsFn} from "../commonRequest";
+import {requestGetPmdRoomsFn, requestGetUnpaidBillFn} from "../commonRequest";
 
 class Actions {
     constructor(store){
@@ -40,23 +40,7 @@ class Actions {
         //  筛选过的未缴账单列表--用于展示
         store.paidOutListFilter = [];
         store.billName = BILL_NAME;
-
-        const result = await new Promise(function (resolve, reject){
-            const data = {
-                roomIDs: store.currentRoom.roomId,
-                userID: store.currentRoom.cmdsId,
-            };
-            window.JQ.ajax({
-                crossDomain: true,
-                type: "post",
-                url: `${ipUri["/bpi"]}/getUnpaidBill.do`,
-                contentType: "application/x-www-form-urlencoded",
-                data: {'json': JSON.stringify(data)},
-                success: (result) => {
-                    resolve(result);
-                }
-            })
-        });
+        const result = await requestGetUnpaidBillFn(store.currentRoom.roomId, store.currentRoom.cmdsId);
         const {code, data, msg} = result;
         //  请求错误
         if (code !== 2000) {
