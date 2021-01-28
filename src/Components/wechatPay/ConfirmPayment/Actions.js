@@ -232,7 +232,6 @@ class Actions {
         const {submitOrderData} = store;
         const result = await requestWeChatPayAdvanceFn(submitOrderData.orderId, (submitOrderData.orderMoney * 100) | 0);
         const {data} = result;
-        console.log(data);
         //  唤起微信支付
         if (data.return_code === 'SUCCESS') {
             return await this.arouseWeChatToPay(data);
