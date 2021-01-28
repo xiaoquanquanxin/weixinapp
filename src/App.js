@@ -7,10 +7,6 @@ import ReactChildrenMap from 'LibComponents/ReactChildrenMap'
 import VConsole from 'vconsole';
 import {upDateUserInfo} from "../lib/utils/utils";
 
-if (IS_CLIENT) {
-    var vConsole = new VConsole();
-    console.log(vConsole);
-}
 function setDefaultPage(Component, routePath){
     let key = routeList.length;
     routeList.push({component: Component, path: routePath, exact: true, key})
