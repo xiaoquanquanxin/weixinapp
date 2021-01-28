@@ -5,7 +5,9 @@ import {zeroFill} from "../../../../lib/utils/number";
 import {
     getBrandWCPayRequestFn,
     requestWeChatPayAdvanceFn,
-    requestGetTranStatusFn, requestGetPmdRoomsFn, requestCompletePaidOrderFn
+    requestGetTranStatusFn,
+    requestGetPmdRoomsFn,
+    requestCompletePaidOrderFn
 } from "../commonRequest";
 
 class Actions {
@@ -360,7 +362,6 @@ class Actions {
         const {transactionid, totalMoney} = store;
         const result = await requestWeChatPayAdvanceFn(transactionid, (totalMoney * 100) | 0);
         const {data} = result;
-        console.log(data);
         //  唤起微信支付
         if (data.return_code === 'SUCCESS') {
             return await this.arouseWeChatToPay(data);
@@ -372,8 +373,6 @@ class Actions {
     //  唤起微信支付
     @action
     arouseWeChatToPay = async (payParams) => {
-        // payParams = transformWechatPayData(payParams);
-        // console.log(payParams);
         const result = await getBrandWCPayRequestFn(payParams);
         console.log('唤起微信支付', result);
         //  如果支付失败
