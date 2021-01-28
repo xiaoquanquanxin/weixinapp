@@ -1,16 +1,17 @@
 //  2020年12月29日19:41:37，新增接口配置
 export const ipUri = {
-
     //  服务端源码接口
     '/mpi': 'https://hachiseedland-dev.hachi-tech.com/wechat-mobile/',
     // '/mpi': 'http://192.168.100.208:5080/wechat-mobile/',
+
     //  少杰 端口
-    '/opi': 'http://hachi-pay.mynatapp.cc/api',
+    // '/opi': 'http://hachi-pay.mynatapp.cc/api',
+    // '/opi': 'https://hachiseedland-dev.hachi-tech.com/v3/api',
+    '/opi': '/opi',
 
     //  todo    wechat-pay
     '/bpi': 'https://hachiseedland-dev.hachi-tech.com/v3/api',
     // '/bpi': 'http://192.168.100.208:3080',
-
 
     // '/wpi': 'http://asm-test.seedland.cc:8084/life-web/sso/api/workorder',
     '/wpi': '/wpi',
