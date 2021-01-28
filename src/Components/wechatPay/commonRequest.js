@@ -151,6 +151,7 @@ export const getBrandWCPayRequestFn = async (payParams) => {
                 'getBrandWCPayRequest',
                 payParams,
                 (res) => {
+                    console.log('唤醒微信后的res', res);
                     resolve(res.err_msg === "get_brand_wcpay_request:ok");
                 }
             );
