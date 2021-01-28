@@ -19,7 +19,7 @@ export const requestGetFeeItem = async (pmdsRoomId, cmdsId) => {
 };
 
 //  拿微信缴费签名
-export const weChatPayAdvanceFn = async (mchOrderNo, amount) => {
+export const requestWeChatPayAdvanceFn = async (mchOrderNo, amount) => {
     return await new Promise((resolve, reject) => {
         const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
         const params = {
@@ -49,6 +49,24 @@ export const weChatPayAdvanceFn = async (mchOrderNo, amount) => {
         })
     });
 };
+
+
+//  获取订单状态
+export const requestGetTranStatusFn = async (json) => {
+    return await new Promise((resolve, reject) => {
+        window.JQ.ajax({
+            crossDomain: true,
+            type: "post",
+            url: `${ipUri["/bpi"]}/getTranStatus.do`,
+            contentType: "application/x-www-form-urlencoded",
+            data: {'json': JSON.stringify(json)},
+            success: (response) => {
+                resolve(response);
+            },
+        })
+    });
+};
+
 
 //  转json
 export const transformWechatPayData = (data) => {
