@@ -221,7 +221,7 @@ class Actions {
         // orderId: "e8dfb66d-81be-4665-b2ad-efabcfb660e2"
         // orderMoney: 350
         //  查看是否是待支付
-        return this.getTranStatus();
+        return await this.getTranStatus();
     };
 
     //  获取订单状态
@@ -233,7 +233,7 @@ class Actions {
         const {data,} = result;
         if (data.status === 0) {
             //  微信支付
-            return this.getPay();
+            return await this.getPay();
         } else {
             Toast.info('您的账单已缴纳，请重新选择！', 2);
         }
@@ -249,7 +249,7 @@ class Actions {
         console.log(data);
         //  唤起微信支付
         if (data.return_code === 'SUCCESS') {
-            return this.arouseWeChatToPay(data);
+            return await this.arouseWeChatToPay(data);
         } else {
             return false;
         }
@@ -267,7 +267,7 @@ class Actions {
             return false;
         }
         Toast.loading('正在处理订单', 10000);
-        return this.pollingGetTranStatus();
+        return await this.pollingGetTranStatus();
     };
 
     //  轮训状态
@@ -283,7 +283,7 @@ class Actions {
         console.log(data);
         if (status === 2) {
             //  完成订单【确实已经支付】
-            return this.completePaidOrder();
+            return await this.completePaidOrder();
         }
         const next = await new Promise(resolve => {
             setTimeout(() => {
@@ -291,7 +291,7 @@ class Actions {
             }, 3000);
         });
         if (next) {
-            return this.pollingGetTranStatus();
+            return await this.pollingGetTranStatus();
         }
     };
     //  完成订单
