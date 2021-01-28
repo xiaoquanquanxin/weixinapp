@@ -210,8 +210,8 @@ export default class Template extends React.Component {
                 console.log('可以跳转了');
                 Toast.hide();
                 debugger;
-                const {updateTime, type, totalMoney: orderMoney,} = storeOrderDetail;
-                this.props.history.push(`/wechat-pay/PaySuccess?orderId=${orderId}&orderMoney=${orderMoney}&updateTime=${updateTime}&type=${type}`);
+                const {createTime, type, totalMoney: orderMoney,} = storeOrderDetail;
+                this.props.history.push(`/wechat-pay/PaySuccess?orderId=${orderId}&orderMoney=${orderMoney}&updateTime=${createTime}&type=${type}`);
             }
             //  其他情况在具体的await里处理，他们中的大部分不需要跳转
         })()
