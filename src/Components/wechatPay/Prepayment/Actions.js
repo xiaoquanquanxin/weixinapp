@@ -214,8 +214,6 @@ class Actions {
         store.activeIndex = Math.min(paymentList.length - 1, 1);
         //  在快捷支付列表中加入自定义块
         paymentList.push(customFeeItem);
-        //  todo    for development
-        // queryFeeitemDetails.hasOutstandingBill = false;
         store.queryFeeitemDetails = queryFeeitemDetails;
         store.paymentList = paymentList;
         Toast.hide();
