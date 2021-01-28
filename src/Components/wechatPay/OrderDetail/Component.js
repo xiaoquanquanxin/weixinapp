@@ -198,7 +198,7 @@ export default class Template extends React.Component {
             //  这与直接支付不同，需要先验证是否已经支付、是否已经过期等等
             const result = await actionsOrderDetail.getTranStatusFn();
             console.log(result);
-            const {orderId} = storeOrderDetail;
+            const {transactionid} = storeOrderDetail;
             //  下单失败
             if (result === false) {
                 Toast.info('下单失败', 1);
@@ -211,7 +211,7 @@ export default class Template extends React.Component {
                 Toast.hide();
                 const {type, totalMoney: orderMoney} = storeOrderDetail;
                 const updateTime = new Date().format('yyyy-MM-dd hh:mm:ss');
-                this.props.history.push(`/wechat-pay/PaySuccess?orderId=${orderId}&orderMoney=${orderMoney}&updateTime=${updateTime}&type=${type}`);
+                this.props.history.push(`/wechat-pay/PaySuccess?orderId=${transactionid}&orderMoney=${orderMoney}&updateTime=${updateTime}&type=${type}`);
             }
             //  其他情况在具体的await里处理，他们中的大部分不需要跳转
         })()
