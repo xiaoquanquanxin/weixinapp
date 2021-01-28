@@ -135,8 +135,6 @@ class Actions {
                 projectID: currentRoom.belongProject,
             };
             const data = {'json': JSON.stringify(json)};
-            console.log(json);
-            console.log(data);
             window.JQ.ajax({
                 crossDomain: true,
                 type: "post",
@@ -216,6 +214,7 @@ class Actions {
     getTranStatus = async () => {
         const store = this.store;
         const {submitOrderData} = store;
+        console.log('第一个transactionId', submitOrderData.orderId);
         const result = await requestGetTranStatusFn({transactionId: submitOrderData.orderId});
         const {code} = result;
         //  请求错误
@@ -264,6 +263,7 @@ class Actions {
     pollingGetTranStatus = async () => {
         const store = this.store;
         const {submitOrderData} = store;
+        console.log('第二个transactionId', submitOrderData.orderId);
         const result = await requestGetTranStatusFn({transactionId: submitOrderData.orderId});
         const {data} = result;
         const {status} = data;
