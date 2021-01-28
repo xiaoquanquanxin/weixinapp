@@ -69,21 +69,21 @@ export const requestGetTranStatusFn = async (json) => {
 
 
 //  转json
-export const transformWechatPayData = (data) => {
-    return data;
-    const {appid, nonce_str, prepay_id, sign} = data;
+const transformWechatPayData = (data) => {
+    const {appid: appId, nonce_str: nonceStr, prepay_id, paySign, signType} = data;
     return {
         timeStamp: new Date().getTime(),
         package: `prepay_id=${prepay_id}`,
-        nonceStr: nonce_str,
-        signType: 'MD5',
-        appId: appid,
-        paySign: sign,
+        nonceStr,
+        signType,
+        paySign,
+        appId,
     }
 };
 
 //  唤醒微信
 export const getBrandWCPayRequestFn = async (payParams) => {
+    payParams = transformWechatPayData(payParams);
     return await new Promise((resolve, reject) => {
         if (typeof WeixinJSBridge != "undefined") {
             WeixinJSBridge.invoke(
