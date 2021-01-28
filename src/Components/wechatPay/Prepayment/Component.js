@@ -174,9 +174,12 @@ export default class Template extends React.Component {
                                 (
                                     <div className="footer is-freeze">您有已出账单未结算，不能预缴</div>
                                 ) : (
-                                    <div className={`footer ${customPickerShow ? 'is-custom' : ''}`} onClick={() => {
-                                        this.goPayment();
-                                    }}> 立即缴费 </div>
+                                    (paymentList.length > 1) && (
+                                        <div className={`footer ${customPickerShow ? 'is-custom' : ''}`}
+                                             onClick={() => {
+                                                 this.goPayment();
+                                             }}> 立即缴费 </div>
+                                    )
                                 )
                             }
                         </div>
