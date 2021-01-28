@@ -111,7 +111,7 @@ export const requestCompletePaidOrderFn = async (transactionId, store) => {
             transactionId,
             updateTime,
             //  服务端处理
-            payMethod: ''
+            payMethod: '600'
         };
         console.log('completePaidOrder的参数是', data);
         window.JQ.ajax({
