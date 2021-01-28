@@ -105,6 +105,7 @@ export const requestGetTranStatusFn = async (json) => {
 
 //  转json
 const transformWechatPayData = (data) => {
+    return JSON.parse(data.payParams);
     const {appid: appId, nonce_str: nonceStr, prepay_id, paySign, signType} = data;
     return {
         timeStamp: new Date().getTime(),
@@ -119,6 +120,7 @@ const transformWechatPayData = (data) => {
 //  唤醒微信
 export const getBrandWCPayRequestFn = async (payParams) => {
     payParams = transformWechatPayData(payParams);
+    alert(payParams);
     console.log('payParams是', payParams);
     return await new Promise((resolve, reject) => {
         if (typeof WeixinJSBridge != "undefined") {
