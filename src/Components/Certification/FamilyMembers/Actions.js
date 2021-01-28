@@ -64,7 +64,7 @@ class Actions {
         store.userFamily = [];
         //  过滤数据
         result.data.forEach((item, index) => {
-            if (item.id && item.fullName && item.authUserId) {
+            if (item.phoneNo && item.memberId) {
                 store.userFamily.push({
                     id: item.id,
                     fullName: item.fullName,
