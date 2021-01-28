@@ -5,7 +5,7 @@ import {zeroFill} from "../../../../lib/utils/number";
 import {
     getBrandWCPayRequestFn,
     requestWeChatPayAdvanceFn,
-    requestGetTranStatusFn
+    requestGetTranStatusFn, requestGetPmdRoomsFn
 } from "../commonRequest";
 
 class Actions {
@@ -320,21 +320,7 @@ class Actions {
     //  获取房间信息
     @action
     getRoomList = async () => {
-        const result = await new Promise((resolve, reject) => {
-            const userInfo = JSON.parse(window.getLocalData('userInfo') || '{}');
-            window.JQ.ajax({
-                type: "POST",
-                url: `${ipUri["/bpi"]}/getPmdRooms.do`,
-                contentType: "application/x-www-form-urlencoded",
-                data: {
-                    //  微信的用户id-从微信的登录后的数据里取
-                    wxUserID: userInfo.id,
-                },
-                success: (result) => {
-                    resolve(result);
-                }
-            })
-        });
+        const result = await requestGetPmdRoomsFn();
         const store = this.store;
         // console.log(store.roomInfo);
         // console.table(result.data.map(item => item.roomId));
