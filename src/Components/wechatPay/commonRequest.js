@@ -103,16 +103,17 @@ export const requestGetTranStatusFn = async (json) => {
 };
 
 //  完成订单
-export const requestCompletePaidOrderFn = async (transactionId) => {
+export const requestCompletePaidOrderFn = async (transactionId, store) => {
     return await new Promise((resolve, reject) => {
         const updateTime = new Date().format('yyyy-MM-dd hh:mm:ss');
         store.updateTime = updateTime;
-        let data = {
+        const data = {
             transactionId,
             updateTime,
             //  服务端处理
             payMethod: ''
         };
+        console.log('completePaidOrder的参数是', data);
         window.JQ.ajax({
             crossDomain: true,
             type: "post",
