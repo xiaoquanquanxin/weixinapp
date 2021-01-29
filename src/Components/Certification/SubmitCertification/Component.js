@@ -43,6 +43,12 @@ export default class SubmitCertification extends React.Component {
         actionsSubmitCertification.init();
     }
 
+    componentWillUnmount(){
+        const {store, actions} = this.props;
+        const {actionsSubmitCertification} = actions;
+        actionsSubmitCertification.init();
+    }
+
     onChange = (val) => {
         console.log(val);
     };
