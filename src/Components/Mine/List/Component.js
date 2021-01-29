@@ -9,12 +9,9 @@ import PersonalInfo from '../../pub/PersonalInfo';
 import seedlandbg from './img/seedlandbg.png';
 import TopBar from '../../CloudPayment/pub/TopBar-cloudPayment';
 
-const Item = List.Item;
-
 const title = '我的';
 /*自定义类*/
 import './Component.less'
-import router from "../../../router";
 import rightArrow from './img/right-arrow.png';
 
 
@@ -100,7 +97,7 @@ export default class MineList extends React.Component {
                             }
                         }
                         return (
-                            <Item key={index}
+                            <List.Item key={index}
                                   extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
                                   onClick={() => {
                                       switch (type) {
@@ -121,7 +118,7 @@ export default class MineList extends React.Component {
                                               this.hanldClick(item);
                                       }
                                   }}
-                            ><img className='thumb' src={ico} alt=''/>{item.test}</Item>
+                            ><img className='thumb' src={ico} alt=''/>{item.test}</List.Item>
                         )
                     })
                 }
