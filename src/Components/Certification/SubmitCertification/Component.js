@@ -48,10 +48,6 @@ export default class SubmitCertification extends React.Component {
         const {actionsSubmitCertification} = actions;
         actionsSubmitCertification.init();
     }
-
-    onChange = (val) => {
-        console.log(val);
-    };
     //检查按纽状态
     _checkForm = (data) => {
         const array = [];
