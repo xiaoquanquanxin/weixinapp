@@ -24,6 +24,9 @@ class Actions {
         }
         //  房间去重复
         const roomList = roomRemoveRepeat(data);
+        if (!roomList.length) {
+            return false;
+        }
         store.roomList = roomList;
         //  默认第一个房间
         store.currentRoom = roomList[0];
