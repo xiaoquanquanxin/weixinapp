@@ -7,8 +7,8 @@ if (IS_CLIENT) {
 export const ipUri = {
     //  todo    wechat-pay
     //  服务端源码接口
-    // '/mpi': 'https://hachiseedland-dev.hachi-tech.com/wechat-mobile/',
-    '/mpi': '/mpi',
+    '/mpi': 'https://hachiseedland-dev.hachi-tech.com/wechat-mobile/',
+    // '/mpi': 'http://192.168.100.208:5080/wechat-mobile/',
 
     //  少杰 端口
     //  todo    wechat-pay
