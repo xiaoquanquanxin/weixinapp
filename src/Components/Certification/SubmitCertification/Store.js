@@ -14,10 +14,10 @@ class Store {
     //房产认证
     @observable userAuthInfo = {};
 
-    @observable authshow = 0
-    @observable phoneNo = ""
-    @observable identityNo = ""
-    @observable validCode = ""
+    @observable authshow = 0;
+    @observable phoneNo = "";
+    @observable identityNo = "";
+    @observable validCode = "";
     @observable colorStyle = false
 }
 
