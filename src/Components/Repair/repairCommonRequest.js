@@ -120,7 +120,7 @@ export const submitScore = async (data) => {
             type: "POST",
             headers: createHeader(),
             url: `${ipUri["/wpi"]}/submitScore`,
-            data: JSON.stringify(data),
+            data,
             success: (response) => {
                 resolve(response);
             }
