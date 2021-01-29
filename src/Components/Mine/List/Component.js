@@ -10,7 +10,6 @@ import seedlandbg from './img/seedlandbg.png';
 import TopBar from '../../CloudPayment/pub/TopBar-cloudPayment';
 
 const Item = List.Item;
-const BoxItem = Flex.Item;
 
 const title = '我的';
 /*自定义类*/
