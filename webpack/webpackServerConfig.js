@@ -3,13 +3,13 @@ module.exports = {
         host: '192.168.100.128',
         port: 8088,
         proxy: {
-            "/mpi": {
-                target: 'http://192.168.100.208:5080/wechat-mobile/',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/mpi': ''
-                }
-            },
+            // "/mpi": {
+            //     target: 'http://192.168.100.208:5080/wechat-mobile/',
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         '^/mpi': ''
+            //     }
+            // },
             "/wpi": {
                 target: 'http://asm-test.seedland.cc:8084/life-web/sso/api/workorder',
                 changeOrigin: true,
