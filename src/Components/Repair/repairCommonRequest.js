@@ -113,13 +113,13 @@ export const newEvaluationItems = async () => {
 };
 
 //	提交评价
-export const submitScore = async (data) => {
+export const submitScore = async (data, evaluateParams) => {
     return await new Promise(function (resolve, reject){
         window.JQ.ajax({
             crossDomain: true,
             type: "POST",
             headers: createHeader(),
-            url: `${ipUri["/wpi"]}/submitScore`,
+            url: `${ipUri["/wpi"]}/submitScore?evaluateParams=${evaluateParams}`,
             data,
             success: (response) => {
                 resolve(response);
