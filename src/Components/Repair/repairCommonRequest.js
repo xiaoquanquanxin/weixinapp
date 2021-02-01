@@ -1,5 +1,6 @@
 import {ipUri} from "../../config";
 
+//  1：物业 2：地产
 const reportResponsibility = '2';
 
 //  http://asm-test.seedland.cc:8084/life-web/sso/api/workorder需要的header
