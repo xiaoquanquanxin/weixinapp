@@ -1,8 +1,5 @@
 import {ipUri} from "../../config";
 
-//  1：物业 2：地产
-const reportResponsibility = '2';
-
 //  http://asm-test.seedland.cc:8084/life-web/sso/api/workorder需要的header
 export const createHeader = () => {
     //  todo    公众号的信息？
@@ -27,8 +24,6 @@ export const getWorkOrder = async (id) => {
                 id,
                 // 工单id (不必填)
                 workId: "",
-                // 1：物业   2：地产 (不必填)
-                reportResponsibility,
             },
             success: (result) => {
                 resolve(result);
@@ -38,7 +33,7 @@ export const getWorkOrder = async (id) => {
 };
 
 //  客诉处理状态历史接口
-export const taskHistory = async (id) => {
+export const taskHistory = async (id, reportResponsibility) => {
     return await new Promise(function (resolve, reject){
         const data = {
             id,
@@ -77,7 +72,7 @@ export const progressTracking = async (id) => {
 };
 
 //  查看评价（新）
-export const newViewReviews = async (id) => {
+export const newViewReviews = async (id, reportResponsibility) => {
     return await new Promise(function (resolve, reject){
         const data = {
             id,
@@ -98,7 +93,7 @@ export const newViewReviews = async (id) => {
 
 
 //	评价项 (新)
-export const newEvaluationItems = async () => {
+export const newEvaluationItems = async (reportResponsibility) => {
     return await new Promise(function (resolve, reject){
         window.JQ.ajax({
             crossDomain: true,
