@@ -1,6 +1,5 @@
 //import {action } from 'mobx';
 // 定义对数据的操作
-import config from '../../../config';
 import {action} from 'mobx/lib/mobx';
 
 class Actions {
@@ -10,7 +9,12 @@ class Actions {
 
     //  初始化
     init(){
-
+        const store = this.store;
+        store.getRoomInfo = [];
+        store.roomId = -1;
+        store.roomName = -1;
+        store.roomCmdsId = -1;
+        store.userType = -1;
     }
 
     /*
@@ -31,15 +35,20 @@ class Actions {
         }
         const {getRoomInfo} = store;
         for (let i = 0; resultgetRoomInfo.data.length > i; i++) {
-            if (!getRoomInfo[i]) {
-                getRoomInfo[i] = {};
-            }
-            getRoomInfo[i].label = resultgetRoomInfo.data[i].roomName;
-            getRoomInfo[i].value = resultgetRoomInfo.data[i].roomId;
-            getRoomInfo[i].userType = resultgetRoomInfo.data[i].userType
+            const getRoomInfoData = getRoomInfo[i] || {};
+            const currentData = resultgetRoomInfo.data[i];
+            getRoomInfoData.label = currentData.roomName;
+            getRoomInfoData.value = currentData.roomId;
+            getRoomInfoData.userType = currentData.userType;
+            getRoomInfoData.custId = currentData.custId;
+            getRoomInfo [i] = getRoomInfoData;
         }
         // console.log(JSON.parse(JSON.stringify(getRoomInfo)));
+        if (!getRoomInfo.length) {
+            return;
+        }
         store.roomId = getRoomInfo[0].value;
+        store.custId = getRoomInfo[0].custId;
         this.topfunproject(store.roomId);
     };
     @action
