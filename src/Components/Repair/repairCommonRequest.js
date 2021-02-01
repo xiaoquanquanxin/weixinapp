@@ -1,6 +1,6 @@
 import {ipUri} from "../../config";
 
-const reportResponsibility = '1';
+const reportResponsibility = '2';
 
 //  http://asm-test.seedland.cc:8084/life-web/sso/api/workorder需要的header
 export const createHeader = () => {
