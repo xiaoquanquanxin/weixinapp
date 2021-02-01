@@ -12,7 +12,7 @@ class Actions {
 
     /*初始化一些*/
     @action
-    init = async () => {
+    init = async (custId) => {
         const store = this.store;
         store.Foldval = false;
         store.roomName = "";
@@ -29,7 +29,7 @@ class Actions {
             roomName: ''
         };
         store.getUserInfoByParamval = '';
-        store.custId = -1;
+        store.custId = custId;
     };
 
 
