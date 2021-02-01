@@ -38,7 +38,7 @@ class Actions {
             getRoomInfo[i].value = resultgetRoomInfo.data[i].roomId;
             getRoomInfo[i].userType = resultgetRoomInfo.data[i].userType
         }
-        console.log(JSON.parse(JSON.stringify(getRoomInfo)));
+        // console.log(JSON.parse(JSON.stringify(getRoomInfo)));
         store.roomId = getRoomInfo[0].value;
         this.topfunproject(store.roomId);
     };
