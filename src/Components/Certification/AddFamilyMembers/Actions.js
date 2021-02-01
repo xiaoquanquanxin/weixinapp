@@ -29,6 +29,7 @@ class Actions {
             roomName: ''
         };
         store.getUserInfoByParamval = '';
+        store.custId = -1;
     };
 
 
@@ -52,7 +53,6 @@ class Actions {
     /*家庭成员信息* */
     @action
     userFamily = async () => {
-        this.init()
         //userType 编辑添加值为1，成员列表为0（可编辑可删除地方）
         let cformData = {
             userType: 1
