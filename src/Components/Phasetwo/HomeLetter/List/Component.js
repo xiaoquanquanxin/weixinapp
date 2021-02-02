@@ -32,6 +32,8 @@ export default class PhasetwoHomeLetterList extends React.Component {
         //     name = 'sd';
         // }
 
+        //  固定到头部
+        window.scrollTo(0, 0);
 
         const urlObject = window.getQueryString() || {};
         const subjectId = +urlObject.subjectId;
