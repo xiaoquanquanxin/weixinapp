@@ -17,6 +17,8 @@ import './Component.less'
 @observer
 export default class PhasetwoCityInformationList extends React.Component {
     componentDidMount(){
+        //  固定到头部
+        window.scrollTo(0, 0);
         window.setWindowTitle("城市资讯");
         const {actions, store} = this.props;
         const {actionsPhasetwoCityInformationList} = actions;
