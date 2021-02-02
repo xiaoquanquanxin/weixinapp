@@ -3,8 +3,10 @@ import {ipUri} from "../../config";
 //  http://asm-test.seedland.cc:8084/life-web/sso/api/workorder需要的header
 export const createHeader = () => {
     //  todo    公众号的信息？
-    const appkey = '7AYzorn2RSbhED2K';
-    const appSecret = 'JSWdDBcDY62tL3hrVWTl5EylNnh2FHrY';
+    // const appkey = '7AYzorn2RSbhED2K';
+    // const appSecret = 'JSWdDBcDY62tL3hrVWTl5EylNnh2FHrY';
+    const appkey = 'iRoxGSTN';
+    const appSecret = 'e0106c3c834c87c4eee535d7385b9974a97a67c4';
     const t = Date.now();
     return {
         appkey,
