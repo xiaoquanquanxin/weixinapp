@@ -44,13 +44,16 @@ class VerificationCode extends React.Component {
         let url = "user/getSmsAuthCode";
         let cformData = {
             phoneNo: phoneNumber,
-        }
+        };
         const result = await window.POST({url, cformData});
-        if (!result.isSucess) return;
-        //测试环境弹出验证码
-        if (API_TYPE == "1") {//
-            alert("调试信息:验证码:" + result.data)
+        if (!result.isSucess) {
+            return;
         }
+        //  todo
+        //测试环境弹出验证码
+        // if (API_TYPE == "1") {//
+        alert("调试信息:验证码:" + result.data)
+        // }
 
     }
 
