@@ -56,53 +56,52 @@ export default class PhasetwoHomeLetterList extends React.Component {
         //     Pickerfalse=false
         // }
         //const {tip}=storeTemplate;
-        return <div className={"Components-HomeLetterList-container"}>
-            {
-                name === "yz" ? "" :
-                    <Picker
-                        data={projectList}
-                        cols={1}
-                        onOk={(v) => {
-                            Pickfun(v)
-                        }}
-                    >
-                        <List.Item arrow="down" className={"companyNametitle"}>{projectName}</List.Item>
-                    </Picker>
-            }
-            <PullToRefresh
-                className={"onRefresh"}
-                damping={60}
-                direction={'up'}
-                style={{
-                    height: height,
-                    overflow: 'auto',
-                }}
-                refreshing={refreshing}
-                onRefresh={() => {
-                    onRefresh()
-                }}
-            >
-                <div className={"list"}>
-                    {
-                        listdataval && listdataval.map((v, i) => {
-                            return (
-                                <div key={i} className={"item"} onClick={() => {
-                                    itemfun(history, v)
-                                }}>
-                                    <div className={"img"}><img src={v.bigBanner}/></div>
-                                    <div className={"title"}>{v.title}</div>
-                                    {/* <div className={"date"}>{v.createTime}</div> */}
-                                </div>
-                            )
-                        })
+        return (
+            <div className={"Components-HomeLetterList-container"}>
+                <Picker
+                    data={projectList}
+                    cols={1}
+                    onOk={(v) => {
+                        Pickfun(v)
+                    }}
+                >
+                    <List.Item arrow="down" className={"companyNametitle"}>{projectName}</List.Item>
+                </Picker>
+                <PullToRefresh
+                    className={"onRefresh"}
+                    damping={60}
+                    direction={'up'}
+                    style={{
+                        height: height,
+                        overflow: 'auto',
+                    }}
+                    refreshing={refreshing}
+                    onRefresh={() => {
+                        onRefresh()
+                    }}
+                >
+                    <div className={"list"}>
+                        {
+                            listdataval && listdataval.map((v, i) => {
+                                return (
+                                    <div key={i} className={"item"} onClick={() => {
+                                        itemfun(history, v)
+                                    }}>
+                                        <div className={"img"}><img src={v.bigBanner}/></div>
+                                        <div className={"title"}>{v.title}</div>
+                                        {/* <div className={"date"}>{v.createTime}</div> */}
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                    {listdataval && listdataval.length == 0 ? < div className={"actbottomgray"}>暂无数据</div> :
+                        actbottom == 1 ? <div className={"actbottom"}>已经到底部</div> :
+                            <div className={"actbottom"}>拉动刷新数据</div>
                     }
-                </div>
-                {listdataval && listdataval.length == 0 ? < div className={"actbottomgray"}>暂无数据</div> :
-                    actbottom == 1 ? <div className={"actbottom"}>已经到底部</div> :
-                        <div className={"actbottom"}>拉动刷新数据</div>
-                }
-            </PullToRefresh>
-        </div>;
+                </PullToRefresh>
+            </div>
+        );
     }
 
     //组件的内部状态和生命周期
