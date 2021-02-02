@@ -36,7 +36,7 @@ export default class PhasetwoHomeLetterList extends React.Component {
         const urlObject = window.getQueryString() || {};
         const subjectId = +urlObject.subjectId;
         const subjectName = ARTICLE_CODE_MAP[urlObject.subjectId];
-        const name = 'yz';
+        const name = 'sd';
         window.setWindowTitle(subjectName);
         console.log('name:', name);
         console.log('subjectId:', subjectId);
