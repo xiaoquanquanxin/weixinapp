@@ -107,7 +107,6 @@ class Actions {
             if (window.getLocalData('auth') !== "") {
                 sessionKeyurl = "&sessionKey=" + JSON.parse(window.getLocalData('auth'))
             }
-            console.log("sessionKeyurl", sessionKeyurl);
             history.push('/PhasetwoArticle/' + v.id + '?title=' + this.store.subjectId + sessionKeyurl)
         }
     };
@@ -121,7 +120,6 @@ class Actions {
         setTimeout(() => {
             this.store.refreshing = false;
         }, 1000);
-        console.log(this.store.refreshing);
     }
 }
 
