@@ -6,6 +6,7 @@ import Layout from "../../pub/LayoutContainersOne";
 /*自定义类*/
 import './Component.less'
 import {map} from 'mobx';
+import noMessage from "../../wechatPay/PaymentRecords/img/noMessage.png";
 
 // 公共组件
 @inject('store', 'actions')
@@ -30,18 +31,25 @@ export default class PhasetwoMyQuestionnaireList extends React.Component {
             <div className="Component-PhasetwoMyQuestionnaireList-container">
                 <div className={"list"}>
                     {
-                        ListData && ListData.map((v, i) => {
-                            return (
-                                <div className={"item"} key={i} onClick={() => {
-                                    history.push(`/PhasetwoMyQuestionnaire/${questiontype}/${v.surveyId}/${v.isDone}${"?isDone=" + v.isDone + sessionKeyurl}`)
-                                }}>
-                                    <div className={"tit"}>{v.surveyName}</div>
-                                    <div className={"time"}>[调研时间] {v.startTime} - {v.endTime}</div>
-                                    <div className={"content"}>{v.surveyDesc}...</div>
-                                    <div className={"lag"}>{isDone[v.isDone]}</div>
-                                </div>
-                            )
-                        })
+                        ListData && ListData.length ? (
+                            ListData.map((v, i) => {
+                                return (
+                                    <div className={"item"} key={i} onClick={() => {
+                                        history.push(`/PhasetwoMyQuestionnaire/${questiontype}/${v.surveyId}/${v.isDone}${"?isDone=" + v.isDone + sessionKeyurl}`)
+                                    }}>
+                                        <div className={"tit"}>{v.surveyName}</div>
+                                        <div className={"time"}>[调研时间] {v.startTime} - {v.endTime}</div>
+                                        <div className={"content"}>{v.surveyDesc}...</div>
+                                        <div className={"lag"}>{isDone[v.isDone]}</div>
+                                    </div>
+                                )
+                            })
+                        ) : (
+                            <div className="no-message">
+                                <img src={noMessage} alt=''/>
+                                <p>暂无问卷记录</p>
+                            </div>
+                        )
                     }
                 </div>
             </div>
