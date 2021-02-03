@@ -32,7 +32,6 @@ class Actions {
                 custName: store.Nameval,
                 phoneNo: store.phoneval,
                 validCode: store.verificationval,//验证码
-                identityNo: store.IdentityNoval,//身份证号码
                 identityImg: store.identityImg,//身份证照片
                 faceImg: store.faceImg,//正面照
                 custId: store.custId//客户iD
@@ -51,7 +50,6 @@ class Actions {
         // this.store.saveEntrustInfo = JSON.parse(window.getLocalData("saveEntrustInfo"))
         // this.store.AddRepair.orderDetailId=this.store.saveEntrustInfo.orderDetailId
         // this.store.AddRepair.trustName=""
-        // this.store.AddRepair.trustIdentityNo=""
         // this.store.AddRepair.trustPhoneNo=""
         // this.store.authPhoto=""
         // this.store.identityPhotoFront=""
@@ -67,7 +65,6 @@ class Actions {
         this.store.verificationval = '';//验证码
         this.store.phoneval = '';
         this.store.Nameval = '';
-        this.store.IdentityNoval = '';//身份证号码
         this.store.choicephoneindex = '';//選擇客戶樣式
         this.store.identityImg = '';//身份证照片
         this.store.faceImg = '';//正面照
@@ -76,20 +73,19 @@ class Actions {
     @action
     colorStylefun = () => {
         const store = this.store;
-        store.colorStyle = (store.verificationval && store.phoneval && store.Nameval && store.IdentityNoval);
+        store.colorStyle = (store.verificationval && store.phoneval && store.Nameval);
     };
 
     @action
     SignSavefun = async (history) => {
         console.log("AddRepair", this.store.AddRepair);
         //window.identity()
-        if (window.phone(this.store.phoneval) && this.store.IdentityNoval !== "") {
+        if (window.phone(this.store.phoneval)) {
             if (this.store.identityImg !== "" && this.store.faceImg !== "") {
                 let cformData = {
                     custName: this.store.Nameval,
                     phoneNo: this.store.phoneval,
                     validCode: this.store.verificationval,//验证码
-                    identityNo: this.store.IdentityNoval,//身份证号码
                     identityImg: this.store.identityImg,//身份证照片
                     faceImg: this.store.faceImg,//正面照
                     //custId: this.store.custId//客户iD
