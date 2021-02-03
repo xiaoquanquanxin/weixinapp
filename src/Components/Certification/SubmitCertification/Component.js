@@ -80,7 +80,7 @@ export default class SubmitCertification extends React.Component {
         const {store, actions, history} = this.props;
         const {storeSubmitCertification} = store;
         const {actionsSubmitCertification} = actions;
-        const {submitCertification, authshow, colorStyle, identityNo, phoneNo} = storeSubmitCertification;
+        const {submitCertification, authshow, colorStyle, phoneNo} = storeSubmitCertification;
         const {submit, inputfun} = actionsSubmitCertification;
         return (
             <div className={'Components-HouseAuthentication-container'}>
@@ -98,16 +98,7 @@ export default class SubmitCertification extends React.Component {
                                 <img src={logoIcon} alt=''/>
                             </div>
                             <div>
-                                <InputItem
-                                    placeholder="请输入身份证"
-                                    maxLength={18}
-                                    //value={submitCertification.personId}
-                                    onChange={(e) => {
-                                        // submitCertification.personId = e;
-                                        // this._checkForm(submitCertification);
-                                        inputfun(e, "identityNo")
-                                    }}
-                                ><i className={'font_family icon-shenfenzhenghaoma input-icon'}> </i></InputItem>
+
                                 {/* <div className={"phonecss "}>
 						<div className={"am-list-line right"}>请输入购房时登记的手机号</div>
 					</div> */}
@@ -142,7 +133,6 @@ export default class SubmitCertification extends React.Component {
                                     </Flex.Item>
                                     <Flex.Item className={'lastNode'}>
                                         <VerificationCode
-                                            personId={identityNo}
                                             tel={phoneNo}
                                             label={this.props}
                                         />

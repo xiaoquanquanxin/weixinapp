@@ -16,7 +16,6 @@ class Store {
 
     @observable authshow = 0;
     @observable phoneNo = "";
-    @observable identityNo = "";
     @observable validCode = "";
     @observable colorStyle = false
 }

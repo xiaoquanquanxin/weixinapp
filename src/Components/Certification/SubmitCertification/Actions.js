@@ -12,14 +12,13 @@ class Actions {
     @action
     init(){
         const store = this.store;
-        store.identityNo = '';
         store.phoneNo = '';
         store.validCode = '';
     }
 
     @action
     colorStylefun = () => {
-        this.store.colorStyle = (this.store.phoneNo && this.store.identityNo && this.store.validCode);
+        this.store.colorStyle = (this.store.phoneNo && this.store.validCode);
     };
     //输入框赋值
     @action
@@ -35,10 +34,6 @@ class Actions {
             Toast.info('请输入正确的手机号码', 2);
             return;
         }
-        if (this.store.identityNo.trim() === "") {
-            Toast.info('请输入正确的身份号码', 2);
-            return;
-        }
         let url = `user/userAuth`;
         //跳回认购列表(HandInBuilding/List)
         let toUrl = window.getQueryString("url");
@@ -51,7 +46,6 @@ class Actions {
         }
         const cformData = {
             phoneNo: this.store.phoneNo,
-            identityNo: this.store.identityNo,
             validCode: this.store.validCode,
             // returnUrl: domain+'/mlistMiddle.html'
             // returnUrl: toUrl ? returnurl: domain+'/index.html?url=/MineList'
