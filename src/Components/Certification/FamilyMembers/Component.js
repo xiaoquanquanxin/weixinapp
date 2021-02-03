@@ -39,6 +39,7 @@ export default class Template extends React.Component {
 
         /* 用户信息*/
         //const useInfo = { sessionKey: 'a8e19cc85f6779758c6d004cf22bb28b' };
+        actionsFamilyMembers.init();
         actionsFamilyMembers.userInfo();
         // o.then((txt) => {
         // 	if (txt == 0) {
