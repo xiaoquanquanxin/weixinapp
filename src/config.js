@@ -7,17 +7,17 @@ if (IS_CLIENT) {
 export const ipUri = {
     //  todo    wechat-pay
     //  服务端源码接口
-    '/mpi': 'https://hachiseedland-dev.hachi-tech.com/wechat-mobile/',
+    '/mpi': 'http://wygzh-test.seedland.cc/wechat-mobile/',
     // '/mpi': 'http://192.168.100.208:5080/wechat-mobile/',
 
     //  少杰 端口
     //  todo    wechat-pay
     // '/opi': 'http://hachi-pay.mynatapp.cc/api',
-    // '/opi': 'https://hachiseedland-dev.hachi-tech.com/v3/api',
+    // '/opi': 'http://wygzh-test.seedland.cc/v3/api',
     '/opi': '/opi',
 
     //  todo    wechat-pay
-    // '/bpi': 'https://hachiseedland-dev.hachi-tech.com/v3/api',
+    // '/bpi': 'http://wygzh-test.seedland.cc/v3/api',
     '/bpi': 'http://192.168.100.208:3080',
 
     //  todo    wechat-pay
