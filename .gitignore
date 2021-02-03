@@ -8,12 +8,12 @@
 
 goto_index.html
 
-/src/Components/Repair_1
-
-
-/src/Components/Repair_新給的
-
-
-/src/Components/Phasetwo/Activity_bak
-/src/Components/Mine/ActiveStaff_bak
-/src/Components/Mine/AddActiveStaff_bak
+#/src/Components/Repair_1
+#
+#
+#/src/Components/Repair_新給的
+#
+#
+#/src/Components/Phasetwo/Activity_bak
+#/src/Components/Mine/ActiveStaff_bak
+#/src/Components/Mine/AddActiveStaff_bak
