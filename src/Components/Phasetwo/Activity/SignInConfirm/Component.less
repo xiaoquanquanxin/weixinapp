@@ -1,0 +1,123 @@
+.Components-PhasetwoActivitySignInConfirm-container{
+    padding: 0.1rem;
+    .btn{
+        margin-top:0.15rem;
+    }
+.userlist{
+  background:rgba(255,255,255,1);
+  box-shadow:1px 1px 5px 0px rgba(178,190,198,0.5);
+  border-radius:3px;
+  .user{
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    padding:0.12rem 0;
+    border-bottom:0.01rem solid #DEDEDE;
+    .info{
+      .name{
+        font-size:0.16rem;
+        font-weight:400;
+        color:rgba(51,51,51,1);
+        line-height: 0.21rem;
+      }
+      .phone{
+        font-size:0.14rem;
+        font-weight:400;
+        color:rgba(102,102,102,1);
+        margin-top:0.05rem;
+        line-height: 0.19rem;
+        span{
+          margin-right: 0.1rem;
+        }
+      }
+    }
+    .checkboxFive {
+        margin:0 0.22rem 0 0.1rem;
+        width: 0.16rem;
+        height: 0.16rem;
+        position: relative;
+        .li{
+            cursor: pointer;
+            position: absolute;
+            width: 0.16rem;
+            height: 0.16rem;
+            top: 0;
+            left: 0;
+            background: #eee;
+            border: 0.01rem solid #ddd;
+        }
+        .on{
+            background: #3890F9;
+            border: none;
+            width: 0.18rem;
+            height: 0.18rem;
+        }
+        .on:after {
+            content: '';
+            position: absolute;
+            width: 0.08rem;
+            height: 0.03rem;
+            background: transparent;
+            top: 0.05rem;
+            left: 0.04rem;
+            border: 0.02rem solid #ffffff;
+            border-top: none;
+            border-right: none;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+        // input {
+        //     opacity: 0;
+        // }
+        // label {
+        //     cursor: pointer;
+        //     position: absolute;
+        //     width: 0.16rem;
+        //     height: 0.16rem;
+        //     top: 0;
+        //     left: 0;
+        //     background: #eee;
+        //     border: 0.01rem solid #ddd;
+        // }
+        // label:after {
+        //     opacity: 0;
+        //     content: '';
+        //     position: absolute;
+        //     width: 0.08rem;
+        //     height: 0.03rem;
+        //     background: transparent;
+        //     top: 0.04rem;
+        //     left: 0.03rem;
+        //     border: 0.02rem solid #ffffff;
+        //     border-top: none;
+        //     border-right: none;
+        //     -webkit-transform: rotate(-45deg);
+        //     -moz-transform: rotate(-45deg);
+        //     -o-transform: rotate(-45deg);
+        //     -ms-transform: rotate(-45deg);
+        //     transform: rotate(-45deg);
+        // }
+        // label:hover::after {
+        //     opacity: 0;
+        // }
+        // input[type=radio]:checked+label:after {
+        //     opacity: 1;
+        //     top: 0.05rem;
+        //     left: 0.04rem;
+        // }
+        // input[type=radio]:checked+label {
+        //     background: #3890F9;
+        //     border: none;
+        //     width: 0.18rem;
+        //     height: 0.18rem;
+        // }
+    }
+  }
+  .userlist .user:last-child{
+    border-bottom:none;
+  }
+}
+}
