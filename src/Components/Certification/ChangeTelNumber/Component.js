@@ -38,7 +38,6 @@ export default class Template extends React.Component {
 		const { actionsChangeTelNumber } = actions;
 		const { ChangeTelNumberInfo, ChangeNewTelNumberInfo } = storeChangeTelNumber;
 		let { isFinishPototypeInfo, userInfo, userInfoByParam } = storeChangeTelNumber;
-		const { fullName, identityNo, phoneNo } = userInfo; 					//服务器上用户数据
 		const { certificationPerson, personId, tel,VerificationCode } = ChangeTelNumberInfo;    //用户输入数据
 		const boolean = VerificationMobileFormat.checkMobile(ChangeTelNumberInfo.tel);
 		if (!boolean) return false;
@@ -48,7 +47,6 @@ export default class Template extends React.Component {
 
 			const body = {
 				userName: certificationPerson,
-				identityNo: personId,
 				phoneNo: tel,
 				validCode: VerificationCode,
 			};
