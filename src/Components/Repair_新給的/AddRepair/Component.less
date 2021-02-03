@@ -1,0 +1,123 @@
+@import "../GlobalPrivate";
+
+.Components-Repair-AddRepair-container {
+	@relative_div: relative;
+	@paddingDefault: 0.2rem;
+	@smallFont: 0.08rem;
+	@grayColor: #666666;
+	@whiteColor: #fff;
+	@m_topDefault: 10px;
+	@blue: #108EE9;
+	padding: @paddingDefault 0;
+	line-height: 0.25rem;
+	background-color: #fff;
+
+	.blue {
+		color: @blue
+	}
+
+	.am-list-item .am-list-line .am-list-content, .am-list-item .am-input-label {
+		color: #999999;
+	}
+
+	.grayColor {
+		color: #999999;
+	}
+
+	.upload-img-title {
+		.grayColor;
+		line-height: 0.35rem;
+		height: 0.35rem;
+	}
+
+	.gray {
+		height: 0.14rem;
+		background: #FAFAFC;
+		border-top: 0.01rem solid #ECECEC;
+		border-bottom: 0.01rem solid #ECECEC;
+	}
+
+	.grayval {
+		.am-textarea-control textarea {
+			color: #999999;
+		}
+	}
+
+	.upload-img {
+		min-height: 1.2rem;
+	}
+
+	.am-list-item .am-list-line .am-list-extra {
+		color: #333333;
+		flex-basis: 66%;
+	}
+
+	.am-picker-col-item-selected {
+		font-size: 0.14rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 90%;
+		margin: 0 auto;
+	}
+}
+
+/*
+
+.upload-img-list{
+  margin-top: @m_topDefault;
+  display: flex;
+  .upload-img-btn{
+     position: relative;
+     border: solid 0.005rem #CCCCCC;
+     text-align: center;
+     justify-content: center;
+     border-radius: 0.07rem;
+     width: 0.6rem;
+     height: 0.6rem;
+     &>i{
+       border-bottom: solid 0.005rem #CCCCCC;
+       width: 55%;
+       height: 0.05rem;
+       overflow: hidden;
+       display: inline-block;
+       position: absolute;
+       top: 0.25rem;
+       left: 0.15rem;
+
+     }
+     i:nth-child(2) {
+     transform: rotate(90deg);
+     }
+   }
+  .upload-img-box-list{
+    img{
+
+    }
+  }
+  .img-sub-box{
+    position: relative;
+    z-index: 9;
+    img{
+      width: 0.56rem;
+      height: 0.56rem;
+      overflow: hidden;
+      padding: 0.03rem 0.05rem;
+      margin-left: 0.04rem;
+      border: solid @border #CCCCCC;
+    }
+    span:nth-child(1) {
+      display: inline-block;
+    }
+  }
+  .closeBtn{
+    width: 0.28rem;
+    height: 0.28rem;
+    overflow: hidden;
+    position: absolute;
+    right: -0.08rem;
+    top: -0.6rem;
+    background: url('./icon-delete.png') no-repeat center center;
+    background-size: 50% 50% ;
+  }
+}*/
