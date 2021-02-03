@@ -48,10 +48,6 @@ class StepsList extends React.Component {
 										<Flex.Item style={{ flex: 1, fontSize: '0.14rem' }}> 姓名：</Flex.Item>
 										<Flex.Item className={"namehei"} style={{ flex: 3 }}>{v.userName}</Flex.Item>
 									</Flex>
-									<Flex className={"row"}>
-										<Flex.Item style={{ flex: 1, fontSize: '0.14rem' }}>  身份证:</Flex.Item>
-										<Flex.Item className={"namehei"} style={{ flex: 3 }}>{v.identityNo}</Flex.Item>
-									</Flex>
 
 									<Flex className={"row"}>
 										<Flex.Item style={{ flex: 1, fontSize: '0.14rem' }}>  电话号码:</Flex.Item>
@@ -62,20 +58,20 @@ class StepsList extends React.Component {
 									{
 										v.identityPhoto && <img src={v.identityPhoto} className={'imgStyle'} />
 									}
-									
-									</span>  
+
+									</span>
 									<span onClick={() => { this.props.onClick(v.authPhoto); }}>
 										{
 											v.identityPhoto && <img src={v.authPhoto} className={'imgStyle'} />
 										}
-										
+
 										</span></div >
 							</div >}
 						/>
 						)
 					})
 				}
-				
+
 
 			</Steps >
 		</div >);
