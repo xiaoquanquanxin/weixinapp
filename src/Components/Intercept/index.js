@@ -11,6 +11,7 @@ const HocIntercept = (arg) => (WapperComponent) => {
 		}
 
 		componentDidMount () {
+			debugger
 			/*非必填入参*/
 			const domain = window.location.origin;
 			const body = {
