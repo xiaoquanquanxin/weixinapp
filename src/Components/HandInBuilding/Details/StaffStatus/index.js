@@ -23,9 +23,6 @@ class __C extends React.Component {
 							<span className={"sex"}>性别：{sex[ActiveItemdata.sex]}</span>
 							<span className={"PhoneNumber"}>电话：{ActiveItemdata.phoneNo}</span>
 						</Brief>
-						{
-							this.props.hasIDCard == true ? <Brief>身份证号码：{ActiveItemdata.identityNo}</Brief> : null
-						}
 					</List.Item>
 				</List>
 			</div>
