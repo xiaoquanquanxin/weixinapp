@@ -1,0 +1,215 @@
+.Components-Repair-Details-container {
+	@relative_div: relative;
+	@paddingDefault: 0.2rem;
+	@smallFont: 0.08rem;
+	@grayColor: #666666;
+	@whiteColor: #fff;
+	@m_topDefault: 10px;
+	@blue: #108EE9;
+	width: 100%;
+	line-height: 0.25rem;
+
+	.blue {
+		color: @blue
+	}
+
+	.relative_div {
+		position: @relative_div;
+		padding: @paddingDefault @paddingDefault 0;
+	}
+
+	.font12 {
+		font-size: @smallFont;
+	}
+
+	color: @grayColor;
+
+	.repair-item {
+		background-color: @whiteColor;
+		border-bottom: solid 1px #D8D8D8;
+
+		.detail-room-name {
+			padding-right: 0.40rem;
+		}
+	}
+
+	.content {
+		line-height: 0.27rem;
+	}
+
+	.m_imgtop10 {
+		display: flex;
+		display: -webkit-flex;
+		flex-wrap: wrap;
+		width: 80%;
+
+		span {
+			margin-top: 0.1rem;
+			margin-right: 0.1rem;
+			width: 0.5rem;
+			height: 0.5rem;
+			overflow: hidden;
+			display: block;
+
+			img {
+				width: 100%
+			}
+		}
+	}
+
+	.imgStyle {
+		width: 0.2rem;
+		vertical-align: text-bottom;
+		height: 0.2rem;
+	}
+
+	.status-flag-g {
+		position: absolute;
+		right: 0;
+		top: 0.12rem;
+		height: 0.25rem;
+		line-height: 0.25rem;
+		text-indent: 0.14rem;
+		color: #fff;
+		background: #fff;
+		border-radius: 1rem 0 0 1rem;
+		font-size: 0.11rem;
+		padding-right: 0.1rem;
+	}
+
+	.s1 {
+		background: #D0021B;
+	}
+
+	.s2 {
+		background: #F5A623;
+	}
+
+	.s3 {
+		background: #35AAFF;
+	}
+
+	.s4 {
+		background: #55C54D;
+	}
+
+	.createTime {
+		border-top: 0.01rem solid #D8D8D8;
+		padding: 0.08rem 0;
+		color: #999999;
+		margin-top: 0.12rem;
+	}
+
+	.evaluate {
+		background: #fff;
+		color: #4A90E2;
+		font-size: 0.14rem;
+		border-radius: 0.09rem;
+		border: 1px solid rgba(74, 144, 226, 1);
+		padding: 0.02rem 0.16rem;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	.routeimg {
+		display: flex;
+		display: -webkit-flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+
+		span {
+			display: block;
+			margin-right: 0.1rem;
+			margin-bottom: 0.05rem;
+		}
+	}
+}
+
+.Components-Repair-Details-WorkRouter-container {
+	@relative_div: relative;
+	@paddingDefault: 0.2rem;
+	@smallFont: 0.08rem;
+	@grayColor: #666666;
+	@whiteColor: #fff;
+	@m_topDefault: 0.15rem;
+	@borderHeight: 0.007rem;
+
+	padding: @paddingDefault*0.3 @paddingDefault @paddingDefault;
+	line-height: 180%;
+	background: #fff;
+	margin-top: 0.1rem;
+	border-top: 0.01rem solid #D8D8D8;
+
+	.breadNav {
+		height: 0.5rem;
+		border-bottom: dashed #D8D8D8 @borderHeight;
+	}
+
+}
+
+.Components-setp-container {
+	.routerTitlewidth {
+		//width:82%;
+	}
+
+	.status {
+		background-color: #108ee9;
+		border-radius: 50%;
+		text-align: center;
+		width: 0.4rem;
+		height: 0.4rem;
+		display: inline-block;
+		line-height: 0.4rem;
+		color: #fff;
+		font-size: 0.1rem;
+	}
+
+	.am-steps-item-tail {
+		top: 0.07rem;
+		left: 0.2rem
+	}
+
+	.imgStyle {
+		width: 0.6rem;
+		height: 0.6rem;
+	}
+
+	.steps {
+		.content {
+			color: #999;
+			padding-bottom: 0.05rem;
+		}
+
+		padding: 0.06rem 0 0.06rem;
+	}
+
+	.am-steps-item-title {
+		margin-bottom: 0;
+		font-weight: normal;
+	}
+}
+
+.Components-Repair-Details-Notice-container {
+	p {
+		font-size: 0.14rem;
+		color: #999;
+		padding: 0 0.1rem;
+		text-align: center;
+		margin-top: 0.46rem;
+	}
+}
+
+.am-steps-item-finish .am-steps-item-tail:after {
+	background: #ddd;
+}
+
+.am-steps-vertical .am-steps-item-icon {
+	float: left;
+	left: 0;
+	position: absolute;
+}
+
+.am-steps-item-content {
+	margin-left: 0.5rem;
+}
