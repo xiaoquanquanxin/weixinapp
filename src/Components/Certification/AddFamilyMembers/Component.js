@@ -76,7 +76,6 @@ export default class Template extends React.Component {
         const body = {
             fullName: AddFamilyMembers.fullName,
             phoneNo: AddFamilyMembers.phoneNo,
-            identityNo: AddFamilyMembers.identityNo,
             sex: AddFamilyMembers.sex,
             birthday: AddFamilyMembers.birthday,
             userType: AddFamilyMembers.userType,
@@ -148,18 +147,6 @@ export default class Template extends React.Component {
                         }
                         }
                     >手机电话</InputItem>
-
-                    <InputItem
-                        placeholder="请输入身份证号"
-                        maxLength={18}
-                        value={AddFamilyMembers.identityNo}
-                        onChange={(e) => {
-                            AddFamilyMembers.identityNo = e;
-                            // VerificationMobileFormat.setCallerNumber(e) ? AddFamilyMembers.personId = e : AddFamilyMembers.personId = '';
-                            _checkForm(AddFamilyMembers);
-                            actionsAddFamilyMembers.getUserInfoByParam()
-                        }}
-                    >身份证号</InputItem>
 
                     <InputItem
                         placeholder="请输入姓名"

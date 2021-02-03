@@ -22,7 +22,6 @@ class Actions {
         store.AddFamilyMembers = {
             fullName: '',                 //姓名
             phoneNo: '',                 //电话号码
-            identityNo: '',           //身份证
             sex: '',                //姓别
             birthday: '',              //出生年月
             userType: '',       //客户类型
@@ -155,11 +154,6 @@ class Actions {
             Toast.info('输入手机格式不对', 1);
             return false
         }
-        //window.identity()
-        if (this.store.AddFamilyMembers.identityNo == "") {
-            Toast.info('身份证不能为空', 1);
-            return false
-        }
 
         Modal.alert('提示', '确定要增加？', [
             {text: '关闭', onPress: () => console.log('cancel')},
@@ -169,7 +163,6 @@ class Actions {
                     let cformData = {
                         fullName: this.store.AddFamilyMembers.fullName,
                         phoneNo: this.store.AddFamilyMembers.phoneNo,
-                        identityNo: this.store.AddFamilyMembers.identityNo,
                         sex: this.store.AddFamilyMembers.sex,
                         birthday: this.store.AddFamilyMembers.birthday,
                         userType: this.store.AddFamilyMembers.userType,
@@ -194,11 +187,6 @@ class Actions {
             return false
         }
 
-        if (this.store.AddFamilyMembers.identityNo == "") {
-            Toast.info('身份证不能为空', 1);
-            return false
-        }
-
         Modal.alert('提示', '确定要修改？', [
             {text: '关闭', onPress: () => console.log('cancel')},
             {
@@ -206,7 +194,6 @@ class Actions {
                     let cformData = {
                         fullName: this.store.AddFamilyMembers.fullName,
                         phoneNo: this.store.AddFamilyMembers.phoneNo,
-                        identityNo: this.store.AddFamilyMembers.identityNo,
                         sex: this.store.AddFamilyMembers.sex,
                         birthday: this.store.AddFamilyMembers.birthday,
                         userType: this.store.AddFamilyMembers.userType,
@@ -260,11 +247,10 @@ class Actions {
         const store = this.store;
         const {AddFamilyMembers, getUserInfoByParamval} = store;
         //window.identity()
-        if (AddFamilyMembers.phoneNo.length === 11 && (AddFamilyMembers.identityNo !== "")) {
+        if (AddFamilyMembers.phoneNo.length === 11) {
             // console.log(AddFamilyMembers);
             let cformData = {
                 phoneNo: AddFamilyMembers.phoneNo,
-                identityNo: AddFamilyMembers.identityNo
             };
             let result = await window.GET({url: "user/getUserInfoByParam", cformData});
             if (!result.isSucess) {

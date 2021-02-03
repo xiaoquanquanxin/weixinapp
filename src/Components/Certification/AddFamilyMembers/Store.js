@@ -8,7 +8,6 @@ class Store {
     @observable AddFamilyMembers = {
         fullName: '',                 //姓名
         phoneNo: '',                 //电话号码
-        identityNo: '',           //身份证
         sex: '',                //姓别
         birthday: '',              //出生年月
         userType: '',       //客户类型
