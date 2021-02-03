@@ -58,35 +58,29 @@ class VerificationCode extends React.Component {
     }
 
     handleVerificationCode = () => {
-        const {tel, personId} = this.props;
-        // window.identity()
-        if (personId != "") {
-            !tel ? Toast.info('手机号码不能为空', 1) : this.checkValidator(tel) ? this.setState({
-                telNumber: true
-            }, () => {
-                this.time = window.setInterval(() => {
-                    if (this.state.setIntervalVar <= 60 && this.state.setIntervalVar > 1) {
-                        this.setState({
-                            setIntervalVar: this.state.setIntervalVar -= 1
-                        });
-                        if (this.isAjax) {
-                            this.getVerificationCode(tel);
-                            this.isAjax = false;
-                        }
-                    } else {
-                        this.setState({
-                            setIntervalVar: 60,
-                            telNumber: false
-                        });
-                        this.isAjax = true;
-                        window.clearInterval(this.time);
+        const {tel} = this.props;
+        !tel ? Toast.info('手机号码不能为空', 1) : this.checkValidator(tel) ? this.setState({
+            telNumber: true
+        }, () => {
+            this.time = window.setInterval(() => {
+                if (this.state.setIntervalVar <= 60 && this.state.setIntervalVar > 1) {
+                    this.setState({
+                        setIntervalVar: this.state.setIntervalVar -= 1
+                    });
+                    if (this.isAjax) {
+                        this.getVerificationCode(tel);
+                        this.isAjax = false;
                     }
-                }, 1000);
-            }) : Toast.info('请输入正确的手机号!', 1);
-        } else {
-            Toast.info('请输入正确的身份证!', 1)
-        }
-
+                } else {
+                    this.setState({
+                        setIntervalVar: 60,
+                        telNumber: false
+                    });
+                    this.isAjax = true;
+                    window.clearInterval(this.time);
+                }
+            }, 1000);
+        }) : Toast.info('请输入正确的手机号!', 1);
     };
 
     render(){
