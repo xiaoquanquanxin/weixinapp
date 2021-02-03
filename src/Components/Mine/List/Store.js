@@ -56,7 +56,6 @@ class Store {
         // "focusStatus": 1,
         // "focusTime": "2020-07-10 15:08:42",
         // "fullName": null,
-        // "identityNo": null,
         // "nickName": "权鑫",
         // "openId": "ouxLS1G1Y2ZMQ81vz3KZJe0oyieQ",
         // "phoneNo": null,
