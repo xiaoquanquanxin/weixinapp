@@ -7,7 +7,7 @@ module.exports = {
                 target: 'https://wygzh-test.seedland.cc/wechat-mobile/',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/mpi': ''
+                    '^/mpi': '/'
                 }
             },
 
