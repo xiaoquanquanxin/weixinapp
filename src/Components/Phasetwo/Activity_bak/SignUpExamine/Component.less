@@ -1,0 +1,70 @@
+.Components-Myactive-container{
+    .Myactive-content{
+      .am-list-item{
+            padding-top:0.1rem;
+        }
+    }
+    .Component-ActiveTip-container .am-list-body .am-list-item{
+        display: flex;
+        align-items: flex-start;
+        display: -webkit-flex;
+        padding-top: 0.1rem;
+    }
+    .am-list-item .am-list-line .am-list-content{
+        padding-top: 0;
+        line-height: 1.2;
+    }
+    .leftButton{
+        width:0.02rem;
+        height:0.15rem;
+        display:inline-block;
+        background:#3890F9;
+        position:relative;
+        top:-0.13rem;
+    }
+    .Myactive-header{
+        padding-top:0.08rem;
+    }
+    .btnbox{
+        margin-top:0.2rem;
+        .btn{
+            margin-left: 0.16rem;
+            float: left;
+        }
+    }
+    .QRcode{
+        padding: 0.15rem 0 0.2rem;
+        border-top: 0.01rem solid #ededed;
+        background-color: #ffffff;
+        img{
+            width: 2rem;
+            display: block;
+            margin: 0 auto;
+            pointer-events:auto;
+            -webkit-touch-callout: none;
+            // box-sizing: border-box!important;
+            // -webkit-box-sizing: border-box!important;
+            // visibility: visible !important; 
+            // -webkit-user-select: none;/*禁用手机浏览器的用户选择功能 */
+            // -moz-user-select: none;
+            // position: relative;
+            // z-index: 0;
+            // overflow: hidden;
+    
+        }
+        .QRtext{
+            font-size: 0.16rem;
+            color: #333;
+            text-align: center;
+            margin-top: 0.1rem;
+        }
+    }
+}
+#root{
+    overflow: auto;
+}
+.am-list-item .am-list-line .am-list-brief{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+}
