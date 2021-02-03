@@ -26,13 +26,15 @@
 </body>
 
 <script data-msg="创建连接">
+
     function createLink(realUrl){
         return `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx38471b86e45e684f&redirect_uri=${
-            encodeURIComponent(`https://hachiseedland-dev.hachi-tech.com/wechat-mobile/wx/redirect?forwordUrl=${
+            encodeURIComponent(`https://wygzh-test.seedland.cc/wechat-mobile/wx/redirect?forwordUrl=${
                 encodeURIComponent(realUrl)}`)
         }&response_type=code&scope=snsapi_base&state=1#wechat_redirect`
     }
 </script>
+
 <script data-msg="创建连接">
     //  本地服务环境
     // const basicUrl = 'http://192.168.100.128:8080/wechat-pay/20210108/#';
