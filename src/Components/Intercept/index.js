@@ -16,7 +16,6 @@ const HocIntercept = (arg) => (WapperComponent) => {
 			const domain = window.location.origin;
 			const body = {
 				phoneNo: '',
-				identityNo: '',
 				validCode: '',
 				// returnUrl: domain + '/'
 				returnUrl: window.location.href,
