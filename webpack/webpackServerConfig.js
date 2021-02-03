@@ -3,13 +3,30 @@ module.exports = {
         host: '192.168.100.128',
         port: 8088,
         proxy: {
-            // "/mpi": {
-            //     target: 'http://192.168.100.208:5080/wechat-mobile/',
-            //     changeOrigin: true,
-            //     pathRewrite: {
-            //         '^/mpi': ''
-            //     }
-            // },
+            "/mpi": {
+                target: 'https://wygzh-test.seedland.cc/wechat-mobile/',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/mpi': ''
+                }
+            },
+
+            "/opi": {
+                target: 'https://wygzh-test.seedland.cc/v3/api',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/opi': ''
+                }
+            },
+
+            "/bpi": {
+                target: 'https://wygzh-test.seedland.cc/v3/api',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/bpi': ''
+                }
+            },
+
             "/wpi": {
                 target: 'http://asm-test.seedland.cc:8084/life-web/sso/api/workorder',
                 changeOrigin: true,
@@ -17,13 +34,6 @@ module.exports = {
                     '^/wpi': ''
                 }
             },
-            "/opi": {
-                target: 'https://hachiseedland-dev.hachi-tech.com/v3/api',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/opi': ''
-                }
-            }
         }
     },
 };
