@@ -80,7 +80,6 @@ class Actions {
                     fullName: item.fullName,
                     sex: item.sex,
                     phoneNo: item.phoneNo,
-                    identityNo: item.identityNo,
                     birthday: item.birthday,
                     userType: item.userType,
                     authUserId: item.authUserId,
@@ -120,7 +119,6 @@ class Actions {
     // 			fullName: item.fullName,
     // 			sex: item.sex,
     // 			phoneNo: item.phoneNo,
-    // 			identityNo: item.identityNo,
     // 			birthday: item.birthday,
     // 			userType: item.userType,
     // 			editStatus:false

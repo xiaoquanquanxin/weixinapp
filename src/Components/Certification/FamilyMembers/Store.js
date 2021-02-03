@@ -12,7 +12,6 @@ class Store {
             fullName: '',
             sex: '',
             phoneNo: '',
-            identityNo: '',
             birthday: '',
             userType: '',
             editStatus: false
