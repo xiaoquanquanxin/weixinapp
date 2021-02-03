@@ -33,7 +33,7 @@ export default class HandInBuildingNotice extends React.Component {
 		const { actionsHandInBuildingNotice } = actions;
 		const { NoticeData, currentUseInfo } = storeHandInBuildingNotice;
 		const { scanQRCode, qryPersonalCertification } = actionsHandInBuildingNotice;
-		const { authStatus, identityNo, phoneNo, fddAuthStatus } = currentUseInfo;
+		const { authStatus,  phoneNo, fddAuthStatus } = currentUseInfo;
 		console.log('currentUseInfo______________', authStatus);
 		return <div className={'Components-HandInBuildingNotice-container'} >
 
@@ -93,7 +93,7 @@ export default class HandInBuildingNotice extends React.Component {
 			{/*<div className={"heightbottom"}></div>*/}
 			{/* {
                 NoticeData && <div className={"fixed"}>
-                
+
                 <div className={"center"}>
                     <div className={"btn"} onClick={() => { this.submit() }}>
                         <MyButton type={"blue"} label={"预约到访"} width={163} />
@@ -102,7 +102,7 @@ export default class HandInBuildingNotice extends React.Component {
                         <MyButton type={"white"} label={"扫码签到"} width={163} />
                     </div>
                 </div>
-                
+
             </div>
             }*/}
 
