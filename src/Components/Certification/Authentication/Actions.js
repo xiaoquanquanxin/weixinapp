@@ -11,6 +11,7 @@ class Actions {
    * */
 	@action
 	userAuth = async() => {
+		debugger
 		let url=`user/userAuth`;
 		let cformData = {
 			sessionKey: 'a8e19cc85f6779758c6d004cf22bb28b',
