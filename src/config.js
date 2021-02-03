@@ -7,22 +7,22 @@ if (IS_CLIENT) {
 export const ipUri = {
     //  todo    wechat-pay
     //  服务端源码接口
-    '/mpi': 'http://wygzh-test.seedland.cc/wechat-mobile/',
+    '/mpi': 'https://wygzh-test.seedland.cc/wechat-mobile/',
     // '/mpi': 'http://192.168.100.208:5080/wechat-mobile/',
 
     //  少杰 端口
     //  todo    wechat-pay
     // '/opi': 'http://hachi-pay.mynatapp.cc/api',
-    // '/opi': 'http://wygzh-test.seedland.cc/v3/api',
-    '/opi': '/opi',
+    '/opi': 'https://wygzh-test.seedland.cc/v3/api',
+    // '/opi': '/opi',
 
     //  todo    wechat-pay
-    // '/bpi': 'http://wygzh-test.seedland.cc/v3/api',
-    '/bpi': 'http://192.168.100.208:3080',
+    '/bpi': 'https://wygzh-test.seedland.cc/v3/api',
+    // '/bpi': 'http://192.168.100.208:3080',
 
     //  todo    wechat-pay
-    // '/wpi': 'http://asm-test.seedland.cc:8084/life-web/sso/api/workorder',
-    '/wpi': '/wpi',
+    '/wpi': 'http://asm-test.seedland.cc:8084/life-web/sso/api/workorder',
+    // '/wpi': '/wpi',
 };
 
 const host = ipUri["/mpi"];
