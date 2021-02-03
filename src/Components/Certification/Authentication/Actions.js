@@ -11,12 +11,10 @@ class Actions {
    * */
 	@action
 	userAuth = async() => {
-		debugger
 		let url=`user/userAuth`;
 		let cformData = {
 			sessionKey: 'a8e19cc85f6779758c6d004cf22bb28b',
 			phoneNo:1341111111,
-			identityNo:4401122121211221,
 			validCode:123456,
 			returnUrl:window.location.href,
 		};
