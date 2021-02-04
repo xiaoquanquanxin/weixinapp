@@ -12,7 +12,7 @@ class Actions {
 
     /*初始化一些*/
     @action
-    init = async (custId) => {
+    init(custId){
         const store = this.store;
         store.Foldval = false;
         store.roomName = "";
@@ -219,7 +219,6 @@ class Actions {
     _checkForm = (data) => {
         const array = [];
         delete data.editStatus;
-        //console.log("data2", data)
         const bolean = data instanceof Object || data instanceof Array;
         if (bolean) {
             if (data instanceof Object) {
@@ -227,15 +226,14 @@ class Actions {
                     array.push(ele);
                 }
             }
-            //console.log("array", array)
-            const value = array.every((item, index) => {
+            // console.log(array);
+            const colorStyle = array.every((item, index) => {
                 if (item !== '') {
-                    return item !== false
-                }					//注:自定义store时，必需为空('')
+                    return item;
+                }
             });
-
-            //console.log("value",value)
-            this.store.colorStyle = !!value;
+            // console.log(colorStyle);
+            this.store.colorStyle = colorStyle;
         } else {
             Toast.info(`只支持数组和对象`, 1);
         }
