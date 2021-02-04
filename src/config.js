@@ -13,8 +13,8 @@ export const ipUri = {
 
     //  少杰 端口
     //  todo    wechat-pay
-    // '/opi': 'http://hachi-pay.mynatapp.cc/api',
     // '/opi': 'https://wygzh-test.seedland.cc/v3/api',
+    // '/opi': 'http://hachi-pay.mynatapp.cc/api',
     '/opi': '/opi',
 
     //  todo    wechat-pay
@@ -23,7 +23,7 @@ export const ipUri = {
     '/bpi': '/bpi',
 
     //  todo    wechat-pay
-    // '/wpi': '/workorder',
+    // '/wpi': 'http://asm-test.seedland.cc:8084/life-web/sso/api/workorder',
     '/wpi': '/wpi',
 };
 
