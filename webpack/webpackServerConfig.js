@@ -27,11 +27,11 @@ module.exports = {
                 }
             },
 
-            "/wpi": {
+            "/workorder": {
                 target: 'http://asm-test.seedland.cc:8084/life-web/sso/api/workorder',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/wpi': ''
+                    '^/workorder': ''
                 }
             },
         }

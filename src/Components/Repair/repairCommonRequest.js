@@ -19,7 +19,7 @@ export const getWorkOrder = async (id) => {
     return new Promise(function (resolve, reject){
         window.JQ.ajax({
             type: "get",
-            url: `${ipUri["/wpi"]}/getWorkOrder`,
+            url: `${ipUri["/workorder"]}/getWorkOrder`,
             contentType: "application/x-www-form-urlencoded",
             headers: createHeader(),
             data: {
@@ -48,7 +48,7 @@ export const taskHistory = async (id, reportResponsibility) => {
             crossDomain: true,
             type: "get",
             headers: createHeader(),
-            url: `${ipUri["/wpi"]}/taskHistory`,
+            url: `${ipUri["/workorder"]}/taskHistory`,
             data,
             success: (response) => {
                 resolve(response);
@@ -64,7 +64,7 @@ export const progressTracking = async (id) => {
             crossDomain: true,
             type: "get",
             headers: createHeader(),
-            url: `${ipUri["/wpi"]}/progressTracking`,
+            url: `${ipUri["/workorder"]}/progressTracking`,
             data: {id},
             success: (response) => {
                 resolve(response);
@@ -84,7 +84,7 @@ export const newViewReviews = async (id, reportResponsibility) => {
             crossDomain: true,
             type: "get",
             headers: createHeader(),
-            url: `${ipUri["/wpi"]}/newViewReviews`,
+            url: `${ipUri["/workorder"]}/newViewReviews`,
             data,
             success: (response) => {
                 resolve(response);
@@ -101,7 +101,7 @@ export const newEvaluationItems = async (reportResponsibility) => {
             crossDomain: true,
             type: "get",
             headers: createHeader(),
-            url: `${ipUri["/wpi"]}/newEvaluationItems`,
+            url: `${ipUri["/workorder"]}/newEvaluationItems`,
             data: {reportResponsibility},
             success: (response) => {
                 resolve(response);
@@ -117,7 +117,7 @@ export const submitScore = async (data, evaluateParams) => {
             crossDomain: true,
             type: "POST",
             headers: createHeader(),
-            url: `${ipUri["/wpi"]}/submitScore?evaluateParams=${evaluateParams}`,
+            url: `${ipUri["/workorder"]}/submitScore?evaluateParams=${evaluateParams}`,
             data,
             success: (response) => {
                 resolve(response);
