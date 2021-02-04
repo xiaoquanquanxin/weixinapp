@@ -38,6 +38,29 @@
 
     /*限制sessionkye时间*/
     function overTimeSessionKey(){
+        const whiteListMap = {
+            //  城市资讯
+            HouseAuthentication: true,
+            //  社区活动【具体活动详情】
+            PhasetwoActivityListDetail: true,
+            //  社区通知
+            PhasetwoHomeLetterList: true,
+            //  投诉建议
+            ComplaintSuggestions: true,
+            //  活动报名【列表】
+            PhasetwoActivityList: true,
+        };
+        if (!location.hash) {
+            return;
+        }
+        const hash = location.hash.split('#/')[1];
+        if(!hash){
+            return;
+        }
+        const routeKey = hash.split('?')[0];
+        if (whiteListMap[routeKey]) {
+            return;
+        }
         //  1个小时
         const exp = 60 * 60 * 1000;
         const authTime = localStorage.getItem('authTime');
