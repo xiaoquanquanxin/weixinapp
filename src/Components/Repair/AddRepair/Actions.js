@@ -276,7 +276,7 @@ class Actions {
             contentType: false,
             processData: false,
             headers: createHeader(),
-            url: `${ipUri["/wpi"]}/fileUpload`,
+            url: `${ipUri["/workorder"]}/fileUpload`,
             success: (data) => {
                 //  接口没有返回正常的图片地址
                 if (data.resultCode === 0) {
@@ -337,7 +337,7 @@ class Actions {
                 crossDomain: true,//兼容ie8,9
                 type: "POST",
                 headers: createHeader(),
-                url: `${ipUri["/wpi"]}/newWorkOrder`,
+                url: `${ipUri["/workorder"]}/newWorkOrder`,
                 data,
                 success: (result) => {
                     resolve(result);
