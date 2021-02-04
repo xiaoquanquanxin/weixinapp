@@ -35,7 +35,7 @@ export default class Template extends React.Component {
     componentDidMount(){
         const {store, actions} = this.props;
         const {actionsFamilyMembers} = actions;
-        window.setWindowTitle('我的');
+        window.setWindowTitle('添加家属');
 
         /* 用户信息*/
         //const useInfo = { sessionKey: 'a8e19cc85f6779758c6d004cf22bb28b' };
