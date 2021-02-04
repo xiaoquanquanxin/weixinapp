@@ -23,8 +23,8 @@ export const ipUri = {
     '/bpi': '/bpi',
 
     //  todo    wechat-pay
-    // '/wpi': 'http://asm-test.seedland.cc:8084/life-web/sso/api/workorder',
-    '/wpi': '/wpi',
+    // '/workorder': 'http://asm-test.seedland.cc:8084/life-web/sso/api/workorder',
+    '/workorder': '/workorder',
 };
 
 const host = ipUri["/mpi"];
