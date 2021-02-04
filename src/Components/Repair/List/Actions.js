@@ -63,7 +63,7 @@ class Actions {
                 crossDomain: true,//兼容ie8,9
                 type: "get",
                 headers: createHeader(),
-                url: `${ipUri["/wpi"]}/newPujiSearchCase`,
+                url: `${ipUri["/workorder"]}/newPujiSearchCase`,
                 data,
                 success: (result) => {
                     resolve(result);
