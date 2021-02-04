@@ -58,6 +58,9 @@
             return;
         }
         const routeKey = hash.split('?')[0];
+        if (!routeKey) {
+            return;
+        }
         if (whiteListMap[routeKey]) {
             console.log('白名单');
             return;
