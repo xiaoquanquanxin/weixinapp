@@ -44,7 +44,7 @@ export default class Template extends React.Component {
         const {store, actions} = this.props;
         const {storeAddFamilyMembers} = store;
         const {actionsAddFamilyMembers} = actions;
-        const {AddFamilyMembers,} = storeAddFamilyMembers;
+        actionsAddFamilyMembers.init();
         actionsAddFamilyMembers.userFamily();
 
         // const id = this.props.match.params.id; //要修改的家庭成员ID
