@@ -135,7 +135,7 @@ export default class Template extends React.Component {
                                                                      onClick={() => {
                                                                          this.props.history.push('/wechat-pay/PaymentRecords');
                                                                      }}
-                                                                >您有账单被冻结，请支付或取消后再缴费>></div>
+                                                                >您有账单未支付，点击这里去支付或取消订单>></div>
                                                             )
                                                         })()}
                                                         <div
