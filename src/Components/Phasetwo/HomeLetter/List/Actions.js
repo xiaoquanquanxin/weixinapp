@@ -26,14 +26,20 @@ class Actions {
         } else {
             let result = await window.GET({url: "user/projectList"});
             if (!result.isSucess) return;
-            result.data.projectList.forEach((v, i) => {
+            const {projectList, defaultProjectId} = result.data;
+            if (!projectList || !projectList.length) {
+                return;
+            }
+            store.projectId = projectList[0].projectId;
+            store.projectName = projectList[0].projectName;
+            projectList.forEach((v, i) => {
                 this.store.projectList.push({
                     label: v.projectName,
                     value: v.projectId,
                 });
-                if (v.projectId === result.data.defaultProjectId) {
-                    this.store.projectId = v.projectId;
-                    this.store.projectName = v.projectName;
+                if (v.projectId === defaultProjectId) {
+                    store.projectId = v.projectId;
+                    store.projectName = v.projectName;
                 }
             });
             this.articleList(pageNum)
