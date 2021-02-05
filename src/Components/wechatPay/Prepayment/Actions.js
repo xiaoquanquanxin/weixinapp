@@ -45,6 +45,7 @@ class Actions {
         const {code, data, msg} = result;
         if (!data || +code !== 2000) {
             Modal.alert('提示', msg || '费项异常，暂不能进行预缴', [{text: '确定'}]);
+            Toast.hide();
             return;
         }
         //  查询预缴费项信息
