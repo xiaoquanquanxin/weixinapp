@@ -25,7 +25,7 @@ class Actions {
         let result = await window.GET({url: "user/provincesList"});
         if (!result.isSucess) return;
         const {provincesList, defaultProvincesId, defaultCityId} = result.data;
-        console.log(defaultCityId, defaultProvincesId);
+        console.log(`defaultCityId ${defaultCityId}`, ` defaultProvincesId :${defaultProvincesId}`);
         console.log(provincesList);
         provincesList.forEach((v, i) => {
             this.store.provincesList.push({
