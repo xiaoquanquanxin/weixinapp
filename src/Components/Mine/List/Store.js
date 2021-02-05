@@ -8,6 +8,7 @@ import myActivity from './img/my-activity.png';
 import myQuestionnaire from './img/my-questionnaire.png';
 import myRepair from './img/my-repair.png';
 import changePhone from './img/change-phone.png';
+import synchronizatonProperty from './img/synchronizaton-property.png';
 
 // 定义数据结构
 class Store {
@@ -23,9 +24,9 @@ class Store {
         {ico: myActivity, test: "我的活动", link: "/PhasetwoActivitySignUpList"},
         {ico: myQuestionnaire, test: "我的问卷", link: "/PhasetwoMyQuestionnaireList/1"},
         {ico: myRepair, test: '我的报修', link: router.RepairList[0]},
-        {ico: changePhone, test: "同步房产", type: 'synchronous'},
+        {ico: synchronizatonProperty, test: "同步房产", type: 'synchronous'},
         {ico: changePhone, test: "更换号码", type: 'changePhone'},
-        {ico: changePhone, test: "退出登录", type: 'layout', unverifiedShow: false},
+        // {ico: changePhone, test: "退出登录", type: 'layout', unverifiedShow: false},
 
 
         //  以下 测试其他链接
