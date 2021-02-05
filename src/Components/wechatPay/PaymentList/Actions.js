@@ -187,7 +187,7 @@ class Actions {
             Toast.info(msg, 1);
             return false;
         }
-        store.paidInList = data.content;
+        store.paidInList = data.content || [];
         return true;
     };
 
