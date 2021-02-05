@@ -250,13 +250,9 @@ const PaymentRender = ({paidData, dataMsg, isFrozen, paidName, actionsPaymentLis
                                                     })()}
                                                     <div className="world">
                                                         {_item.paidName}
-                                                        {(() => {
-                                                            if (!(_item.isFrozen)) {
-                                                                return (
-                                                                    <span className="border">冻结</span>
-                                                                )
-                                                            }
-                                                        })()}
+                                                        {!(+_item.isFrozen) ? (
+                                                            <span className="border">冻结</span>
+                                                        ) : null}
                                                     </div>
                                                 </div>
                                                 <div className="paid-pay">￥{_item.paidTotal.toFixed(2)}</div>
