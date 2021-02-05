@@ -22,6 +22,7 @@ export default class PhasetwoCityInformationList extends React.Component {
         window.setWindowTitle("城市资讯");
         const {actions, store} = this.props;
         const {actionsPhasetwoCityInformationList} = actions;
+        actionsPhasetwoCityInformationList.init();
         actionsPhasetwoCityInformationList.listProvide();
     }
 
