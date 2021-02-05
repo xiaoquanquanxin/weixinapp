@@ -5,6 +5,7 @@ module.exports = {
         proxy: {
             "/mpi": {
                 target: 'https://wygzh-test.seedland.cc/wechat-mobile/',
+                // target: 'http://192.168.100.208:5080/wechat-mobile/',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/mpi': '/'
