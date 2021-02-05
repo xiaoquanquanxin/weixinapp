@@ -57,6 +57,9 @@ const OutstandingBills = ({tranStatus, minutes, seconds, memo, tranDate, roomInf
             type = '已取消';
             spaceTime = memo;
             break;
+        case -1:
+            //  初始化
+            break;
         default:
             type = '支付成功';
             spaceTime = '感谢您使用在线缴费！';
