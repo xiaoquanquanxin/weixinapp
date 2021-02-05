@@ -62,7 +62,7 @@ export default class Template extends React.Component {
                             actionsPrepayment.getFeeItem();
                         }}
                     >
-                        <div className="header world bg">房间: {currentRoom.roomName}</div>
+                        <div className="header world bg text-overflow">房间: {currentRoom.roomName}</div>
                     </Picker>
 
                     <Picker
