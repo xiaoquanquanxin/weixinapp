@@ -35,7 +35,8 @@ export default class SubmitCertification extends React.Component {
     };
 
     componentDidMount(){
-        console.log('140702199902227135');
+        //  todo
+        // console.log('140702199902227135');
         console.log('15712852037');
         window.setWindowTitle('登录');
         const {store, actions} = this.props;
