@@ -18,27 +18,27 @@ class Store {
     ];
     //  unverifiedShow:未认证的情况下是否展示
     @observable list1 = [
-        {ico: authentication, test: "用户认证(登录)    √√", link: router.FamilyMembers, renzhen: 1, unverifiedShow: true,},
-        {ico: addFamily, test: "添加家属    √√", link: router.FamilyMembers, renzhen: 1},
-        {ico: myActivity, test: "我的活动   提供代码，可以测试", link: "/PhasetwoActivitySignUpList"},
-        {ico: myQuestionnaire, test: "我的问卷   √√", link: "/PhasetwoMyQuestionnaireList/1"},
-        {ico: myRepair, test: '我的报修 我也不知道是什么情况', link: router.RepairList[0]},
-        {ico: changePhone, test: "同步房产  √√", type: 'synchronous'},
-        {ico: changePhone, test: "更换号码  √√", type: 'changePhone'},
-        {ico: changePhone, test: "退出登录  待调试观测数据", type: 'layout', unverifiedShow: false},
+        {ico: authentication, test: "用户认证", link: router.FamilyMembers, renzhen: 1, unverifiedShow: true,},
+        {ico: addFamily, test: "添加家属", link: router.FamilyMembers, renzhen: 1},
+        {ico: myActivity, test: "我的活动", link: "/PhasetwoActivitySignUpList"},
+        {ico: myQuestionnaire, test: "我的问卷", link: "/PhasetwoMyQuestionnaireList/1"},
+        {ico: myRepair, test: '我的报修', link: router.RepairList[0]},
+        {ico: changePhone, test: "同步房产", type: 'synchronous'},
+        {ico: changePhone, test: "更换号码", type: 'changePhone'},
+        {ico: changePhone, test: "退出登录", type: 'layout', unverifiedShow: false},
 
-        {ico: myRepair, test: '********************************************************',},
 
         //  以下 测试其他链接
-        {ico: myRepair, test: '房屋报修   xxxx', link: `${router.AddRepair[0]}/1`},
-        {ico: changePhone, test: "活动报名  提供代码，可以测试", link: '/PhasetwoActivityList'},
-        {ico: changePhone, test: "投诉建议  √√", link: router.ComplaintSuggestions},
-        {ico: changePhone, test: "物业缴费  可以测试", link: '/wechat-pay/PayIndex'},
-
-
-        {ico: changePhone, test: "城市资讯  √√", link: '/PhasetwoCityInformationList'},
-        {ico: changePhone, test: "社区文化  √√subjectId=33", link: '/PhasetwoHomeLetterList?subjectId=33'},
-        {ico: changePhone, test: "社区通知  √√subjectId=35", link: '/PhasetwoHomeLetterList?subjectId=35'},
+        // {ico: myRepair, test: '********************************************************',},
+        // {ico: myRepair, test: '房屋报修', link: `${router.AddRepair[0]}/1`},
+        // {ico: changePhone, test: "活动报名  提供代码，可以测试", link: '/PhasetwoActivityList'},
+        // {ico: changePhone, test: "投诉建议  √√", link: router.ComplaintSuggestions},
+        // {ico: changePhone, test: "物业缴费  可以测试", link: '/wechat-pay/PayIndex'},
+        //
+        //
+        // {ico: changePhone, test: "城市资讯  √√", link: '/PhasetwoCityInformationList'},
+        // {ico: changePhone, test: "社区文化  √√subjectId=33", link: '/PhasetwoHomeLetterList?subjectId=33'},
+        // {ico: changePhone, test: "社区通知  √√subjectId=35", link: '/PhasetwoHomeLetterList?subjectId=35'},
     ];
     @observable type = "blue";
     @observable label = "退出";
