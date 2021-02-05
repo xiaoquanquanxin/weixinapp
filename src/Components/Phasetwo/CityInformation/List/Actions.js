@@ -8,11 +8,15 @@ class Actions {
         this.pageNum = 1
     }
 
-    /*
     @action
-    incA = () => {
-        this.store.xxxxx++;
-    }*/
+    init(){
+        const store = this.store;
+        store.provincesId = null;
+        store.provincesName = null;
+        store.cityId = null;
+        store.cityName = null;
+    }
+
     //  获取省份列表
     @action
     listProvide = async () => {
@@ -44,6 +48,17 @@ class Actions {
                 }
             })
         });
+        //  如果没有找到城市，使用全部
+        if (!store.cityId) {
+            const province = provincesList[0];
+            if (province) {
+                store.provincesId = province.provinceId;
+                store.provincesName = province.provinceName;
+                const ciytList = province.ciytList[0];
+                store.cityId = ciytList.cityId;
+                store.cityName = ciytList.cityName;
+            }
+        }
         this.articleList(1);
     };
 
