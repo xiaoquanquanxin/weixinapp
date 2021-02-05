@@ -16,27 +16,31 @@ class Actions {
     //  获取省份列表
     @action
     listProvide = async () => {
-        this.store.provincesList = [];
+        const store = this.store;
+        store.provincesList = [];
         let result = await window.GET({url: "user/provincesList"});
         if (!result.isSucess) return;
-        result.data.provincesList.forEach((v, i) => {
+        const {provincesList, defaultProvincesId, defaultCityId} = result.data;
+        console.log(defaultCityId, defaultProvincesId);
+        console.log(provincesList);
+        provincesList.forEach((v, i) => {
             this.store.provincesList.push({
                 label: v.provinceName,
                 value: v.provinceId,
                 children: []
             });
-            if (result.data.defaultProvincesId == v.provinceId) {
-                this.store.provincesId = v.provinceId
-                this.store.provincesName = v.provinceName
+            if (defaultProvincesId === v.provinceId) {
+                store.provincesId = v.provinceId;
+                store.provincesName = v.provinceName
             }
             v.ciytList.forEach((vv, ii) => {
-                this.store.provincesList[i].children.push({
+                store.provincesList[i].children.push({
                     label: vv.cityName,
                     value: vv.cityId
                 });
-                if (result.data.defaultCityId == vv.cityId) {
-                    this.store.cityId = vv.cityId
-                    this.store.cityName = vv.cityName
+                if (defaultCityId === vv.cityId) {
+                    store.cityId = vv.cityId;
+                    store.cityName = vv.cityName;
                 }
             })
         });
