@@ -151,20 +151,16 @@ export default class Template extends React.Component {
                                                                     </label>
                                                                     <b>¥ {totalMoneyForPay.toFixed(2)}</b>
                                                                 </div>
-                                                                {(() => {
-                                                                    if (isFrozen || +totalMoneyForPay === 0) {
-                                                                        return (
-                                                                            <div className="payment isFrozen">立即缴费</div>
-                                                                        )
-                                                                    }
-                                                                    return (
-                                                                        <div className="payment"
-                                                                             onClick={() => {
-                                                                                 this.goConfirmPayment();
-                                                                             }}
-                                                                        >立即缴费</div>
+                                                                {
+                                                                    (isFrozen || +totalMoneyForPay === 0) ? (
+                                                                        <div className="payment is-freeze">立即缴费</div>
+                                                                    ) : (
+                                                                        <div className="payment" onClick={() => {
+                                                                            this.goConfirmPayment();
+                                                                        }}>立即缴费
+                                                                        </div>
                                                                     )
-                                                                })()}
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>
