@@ -98,26 +98,26 @@ export default class MineList extends React.Component {
                         }
                         return (
                             <List.Item key={index}
-                                  extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
-                                  onClick={() => {
-                                      switch (type) {
-                                          case 'changePhone':
-                                              //    这里暂时只有更换号码，所以只有一个弹框
-                                              Toast.info('请联系本楼栋管家', 2);
-                                              break;
-                                          case 'layout':
-                                              //    退出登录
-                                              tuichu();
-                                              break;
-                                          case 'synchronous':
-                                              //    同步房产
-                                              tongbufun();
-                                              break;
-                                          default:
-                                              console.log('点击', JSON.parse(JSON.stringify(item)));
-                                              this.hanldClick(item);
-                                      }
-                                  }}
+                                       extra={<img style={{width: '11px', height: '18px'}} src={rightArrow} alt=''/>}
+                                       onClick={() => {
+                                           switch (type) {
+                                               case 'changePhone':
+                                                   //    这里暂时只有更换号码，所以只有一个弹框
+                                                   Toast.info('请联系本楼栋管家', 2);
+                                                   break;
+                                               case 'layout':
+                                                   //    退出登录
+                                                   tuichu();
+                                                   break;
+                                               case 'synchronous':
+                                                   //    同步房产
+                                                   tongbufun();
+                                                   break;
+                                               default:
+                                                   console.log('点击', JSON.parse(JSON.stringify(item)));
+                                                   this.hanldClick(item);
+                                           }
+                                       }}
                             ><img className='thumb' src={ico} alt=''/>{item.test}</List.Item>
                         )
                     })
@@ -125,9 +125,11 @@ export default class MineList extends React.Component {
             </List>
             <WhiteSpace/>
             <WingBlank>
-                {/*{useInfo.authStatus == 1&&
-                <Mybutton callback={()=>{tuichu()}} type={type} label={label} />
-                }*/}
+                {+useInfo.authStatus === 1 && (
+                    <div className='log-out' onClick={() => {
+                        tuichu()
+                    }}>退出登录</div>)
+                }
             </WingBlank>
         </div>;
     }
