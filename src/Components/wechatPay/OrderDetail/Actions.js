@@ -231,7 +231,7 @@ class Actions {
         //  是否为超时取消
         store.isType = "1";
         //  支付状态    0:待支付
-        store.tranStatus = "0";
+        store.tranStatus = -1;
         //  预缴费项名称
         store.feeName = "";
         //  预缴费项价格
