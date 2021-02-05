@@ -3,14 +3,14 @@ import VConsole from 'vconsole';
 export const ipUri = {
     //  服务端源码接口
     // '/mpi': 'http://192.168.100.208:5080/wechat-mobile/',
-    // '/mpi': '/mpi',
+    '/mpi': '/mpi',
 
     //  少杰 端口
     // '/opi': 'http://hachi-pay.mynatapp.cc/api',
-    // '/opi': '/opi',
+    '/opi': '/opi',
 
     // '/bpi': 'http://192.168.100.208:3080',
-    // '/bpi': '/bpi',
+    '/bpi': '/bpi',
 
     //  todo    wechat-pay
     // '/workorder': 'http://asm-test.seedland.cc:8084/life-web/sso/api/workorder',
