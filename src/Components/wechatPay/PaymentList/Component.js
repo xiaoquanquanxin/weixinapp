@@ -70,7 +70,7 @@ export default class Template extends React.Component {
                                 }
                             }}
                         >
-                            <div className="world">房间：{currentRoom.roomName}</div>
+                            <div className="world text-overflow">房间：{currentRoom.roomName}</div>
                         </Picker>
                     </div>
                     <div className="nav line">
