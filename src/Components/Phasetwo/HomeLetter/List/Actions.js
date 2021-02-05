@@ -32,6 +32,7 @@ class Actions {
             }
             store.projectId = projectList[0].projectId;
             store.projectName = projectList[0].projectName;
+            console.log('defaultProjectId：', defaultProjectId);
             projectList.forEach((v, i) => {
                 this.store.projectList.push({
                     label: v.projectName,
